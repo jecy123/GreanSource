@@ -99,9 +99,9 @@
 			children = (
 				51D205632005F255008763B9 /* AppDelegate.swift */,
 				51D205652005F255008763B9 /* ViewController.swift */,
-				51D205672005F255008763B9 /* Main.storyboard */,
 				51D2056A2005F255008763B9 /* Assets.xcassets */,
 				51D2056C2005F255008763B9 /* LaunchScreen.storyboard */,
+				51D205672005F255008763B9 /* Main.storyboard */,
 				51D2056F2005F255008763B9 /* Info.plist */,
 			);
 			path = GreanSourceManeger;
