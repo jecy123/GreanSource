@@ -16,16 +16,21 @@ class ViewController: UIViewController {
     @IBOutlet var btnRememberPass:UIButton!
     @IBOutlet var btnAutoLogin:UIButton!
     
+    //var color:UIColor!
+    
     func initViews() {
         //btnLogin.layer.borderWidth = 1
-        btnLogin.layer.backgroundColor = UIColor(red: 25/255, green: 140/255, blue: 58/255, alpha: 1).cgColor //  UIColor.green.cgColor
+        btnLogin.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor //  UIColor.green.cgColor
         btnLogin.layer.cornerRadius = 5
         
         //btnLogin.layer.masksToBounds = true
         
         btnLogin.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         
+        btnRegister.setTitleColor(ColorUtils.mainThemeColor, for: .normal)
+        btnRefind.setTitleColor(ColorUtils.mainThemeColor, for: .normal)
         btnRegister.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
+        btnRefind.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         
     }
     
@@ -42,6 +47,8 @@ class ViewController: UIViewController {
         }else if sender == btnRegister
         {
             self.performSegue(withIdentifier: "toRegister", sender: self)
+        }else if sender == btnRefind{
+            self.performSegue(withIdentifier: "toRefind", sender: self)
         }
     }
 
