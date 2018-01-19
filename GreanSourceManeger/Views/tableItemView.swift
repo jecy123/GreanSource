@@ -17,14 +17,12 @@ class TableItem
 {
     var itemName:String!
     var itemType:TableItemType!
-    var itemPopupNames:[String]?
     var itemFrame: CGRect!
     var itemLabelRatio: CGFloat!
-    init(name: String, type: TableItemType, frame:CGRect, ratio:CGFloat, popup: [String]?) {
+    init(name: String, type: TableItemType, frame:CGRect, ratio:CGFloat) {
         self.itemName = name
         self.itemType = type
         self.itemFrame = frame
-        self.itemPopupNames = popup
         self.itemLabelRatio = ratio
     }
 }
@@ -32,15 +30,16 @@ class TableItem
 class TableItemView: UIView {
     var nameLabel:UILabel!
     var contentText:UITextField!
+    var contentPopup:DropBoxView!
     
     ///constructor
-    convenience init(item: TableItem)
+    convenience init(parentVC:UIViewController, item: TableItem)
     {
+        let type = item.itemType
         let frame = item.itemFrame!
         let labelRatio = item.itemLabelRatio!
         
         self.init(frame: frame)
-        
         
         let rect = CGRect(x: 0, y: 0, width: frame.width * labelRatio - 5, height: frame.height)
         nameLabel = UILabel(frame: rect)
@@ -51,11 +50,14 @@ class TableItemView: UIView {
         
         self.addSubview(nameLabel)
         
-        let rect2 = CGRect(x:frame.width * labelRatio + 5, y:0, width:frame.width*(1 - labelRatio) - 5, height:frame.height)
-        contentText = UITextField(frame: rect2)
-        contentText.layer.masksToBounds = true
-        contentText.layer.backgroundColor = UIColor.white.cgColor
-        self.addSubview(contentText)
+        if type == TableItemType.typeText {
+            
+            let rect2 = CGRect(x:frame.width * labelRatio + 5, y:0, width:frame.width*(1 - labelRatio) - 5, height:frame.height)
+            contentText = UITextField(frame: rect2)
+            contentText.layer.masksToBounds = true
+            contentText.layer.backgroundColor = UIColor.white.cgColor
+            self.addSubview(contentText)
+        }
     }
     
     override init(frame: CGRect) {

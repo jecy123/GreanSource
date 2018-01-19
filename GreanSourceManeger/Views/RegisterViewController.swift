@@ -11,7 +11,7 @@ import UIKit
 class RegisterViewController: UserBaseController {
     
     var menuNames:[String] = ["手机号：","验证码：","账  号：","邮箱地址：","用户姓名：","密  码：","确认密码：","用户类型：","环保局地址："]
-    var identiCodeConfirm:UIButton!
+    let userTypes: [String] = ["环保人员", "管理员","维护人员"]
     
     func initViews(){
         self.titleString = "用户注册"
@@ -28,50 +28,46 @@ class RegisterViewController: UserBaseController {
         var rect:CGRect!
         
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[0], type: .typeText, frame: rect, ratio: 0.4, popup: nil))
+        items.append(TableItem(name: menuNames[0], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX + 100, y: startY, width: itemWidth - 100, height: itemHeight)
-        items.append(TableItem(name: menuNames[1], type: .typeText, frame: rect, ratio: 0.5, popup: nil))
+        items.append(TableItem(name: menuNames[1], type: .typeText, frame: rect, ratio: 0.5))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[2], type: .typeText, frame: rect, ratio: 0.4, popup: nil))
+        items.append(TableItem(name: menuNames[2], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[3], type: .typeText, frame: rect, ratio: 0.4, popup: nil))
+        items.append(TableItem(name: menuNames[3], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[4], type: .typeText, frame: rect, ratio: 0.4, popup: nil))
+        items.append(TableItem(name: menuNames[4], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[5], type: .typeText, frame: rect, ratio: 0.4, popup: nil))
+        items.append(TableItem(name: menuNames[5], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[6], type: .typeText, frame: rect, ratio: 0.4, popup: nil))
+        items.append(TableItem(name: menuNames[6], type: .typeText, frame: rect, ratio: 0.4))
+        
+        startY += itemHeight + itemPadding
+        let userTypeY = startY
+        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[7], type: .typePopup, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[7], type: .typeText, frame: rect, ratio: 0.4, popup: nil))
-        
-        startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[8], type: .typeText, frame: rect, ratio: 0.4, popup: nil))
-        
+        items.append(TableItem(name: menuNames[8], type: .typeText, frame: rect, ratio: 0.4))
         self.tabelItems = items
         
+        let r = CGRect(x: startX + itemWidth * 0.4 + 5, y: userTypeY, width: itemWidth * 0.6 - 5, height: itemHeight)
+        addDropBox(frame: r, userTypeMenus: userTypes)
         
-        identiCodeConfirm = UIButton(frame: CGRect(x: startX, y: identiCodeY, width: 100, height: itemHeight))
-        identiCodeConfirm.titleLabel?.font = UIFont.systemFont(ofSize: itemHeight * 0.57)
-        identiCodeConfirm.setTitle("获取验证码", for: .normal)
-        identiCodeConfirm.setTitleColor(ColorUtils.mainThemeColor, for: .normal)
-        identiCodeConfirm.setTitleColor(UIColor.white, for: .highlighted)
-        identiCodeConfirm.addTarget(self, action: #selector(onIdentiCodeObtain(_:)), for: .touchUpInside)
-        self.view.addSubview(identiCodeConfirm)
+        addIdentiCodeButton(frame: CGRect(x: startX, y: identiCodeY, width: 100, height: itemHeight))
     }
     
     override func viewDidLoad() {
@@ -90,9 +86,11 @@ class RegisterViewController: UserBaseController {
         
     }
     
-    @objc func onIdentiCodeObtain(_ sender: Any){
-        print("获取验证码")
+    override func onIdentiCodeObtain(_ sender: Any) {
+        
+        print("获取验证码RRRR")
     }
+    
 
     /*
     // MARK: - Navigation

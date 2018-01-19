@@ -90,6 +90,59 @@ class UserBaseController: UIViewController {
         }
     }
     
+    
+    public var identiCodeConfirm:UIButton!
+    public var userTypeDropBox:DropBoxView!
+    
+    func addDropBox(frame: CGRect, userTypeMenus:[String]){
+        //let choice:[String] = ["类型1","类型2"]
+        
+        userTypeDropBox = DropBoxView(parentVC: self, title: "请选择", items: userTypeMenus, frame: frame)
+        userTypeDropBox.isHightWhenShowList = true
+        userTypeDropBox.willShowOrHideBoxListHandler = { (isShow) in
+            self.onDropBoxWillShowOrHide(isShow: isShow)
+        }
+        userTypeDropBox.didShowOrHideBoxListHandler = { (isShow) in
+            self.onDropBoxDidShowOrHide(isShow: isShow)
+        }
+        userTypeDropBox.didSelectBoxItemHandler = { (row) in
+            self.onDropBoxDidSelect(row: row)
+        }
+        self.view.addSubview(userTypeDropBox)
+    }
+    
+    public func onDropBoxWillShowOrHide(isShow: Bool){
+        if isShow {
+            NSLog("will show choices")
+        }
+        else {
+            NSLog("will hide choices")
+        }
+    }
+    
+    public func onDropBoxDidShowOrHide(isShow: Bool){
+        if isShow {
+            NSLog("did show choices")
+            
+        }else {
+            NSLog("did hide choices")
+        }
+    }
+    
+    public func onDropBoxDidSelect(row: Int){
+        NSLog("selected No.\(row): \(self.userTypeDropBox.currentTitle())")
+    }
+    
+    func addIdentiCodeButton(frame: CGRect){
+        identiCodeConfirm = UIButton(frame: frame)
+        identiCodeConfirm.titleLabel?.font = UIFont.systemFont(ofSize: itemHeight * 0.57)
+        identiCodeConfirm.setTitle("获取验证码", for: .normal)
+        identiCodeConfirm.setTitleColor(ColorUtils.mainThemeColor, for: .normal)
+        identiCodeConfirm.setTitleColor(UIColor.white, for: .highlighted)
+        identiCodeConfirm.addTarget(self, action: #selector(onIdentiCodeObtain(_:)), for: .touchUpInside)
+        self.view.addSubview(identiCodeConfirm)
+    }
+    
     public func addTitleView(pageTitleString: String){
         
         let ox:CGFloat = (screenWidth - titleWidth) / 2
@@ -165,6 +218,9 @@ class UserBaseController: UIViewController {
     @objc public func onConfirmButtonTapped(_ sender: Any){
         
     }
+    @objc public func onIdentiCodeObtain(_ sender: Any){
+        print("获取验证码")
+    }
     
     func goBack()
     {
@@ -178,10 +234,10 @@ class UserBaseController: UIViewController {
     
     func addTabelItem(item: TableItem)
     {
-        let itemView = TableItemView(item: item)
+        let itemView = TableItemView(parentVC: self, item: item)
         self.view.addSubview(itemView)
     }
-
+    
     /*
     // MARK: - Navigation
 
