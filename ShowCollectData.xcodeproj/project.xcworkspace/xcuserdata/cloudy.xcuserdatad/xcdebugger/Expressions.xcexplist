@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "TableItemView.init(parentVC:item:):tableItemView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "contentPopup">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DropBoxView.init(parentVC:title:items:frame:):DropBoxView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parentVC.view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DropBoxView.init(parentView:title:items:frame:):DropBoxView.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
