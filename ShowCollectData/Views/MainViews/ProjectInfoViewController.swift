@@ -20,15 +20,15 @@ class ProjectInfoViewController: BasePageViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func onBack(_ sender: UIButton) {
-        print("项目信息界面返回")
-        self.delegate?.onMenu(self)
-    }
-    
-    override func onMenu(_ sender: UIButton) {
-        print("项目信息界面菜单")
-        self.delegate?.onBack(self)
-    }
+//    override func onBack(_ sender: UIButton) {
+//        print("项目信息界面返回")
+//        self.delegate?.onMenu(self)
+//    }
+//    
+//    override func onMenu(_ sender: UIButton) {
+//        print("项目信息界面菜单")
+//        self.delegate?.onBack(self)
+//    }
 
     /*
     // MARK: - Navigation

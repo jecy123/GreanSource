@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     @IBOutlet var btnRememberPass:UIButton!
     @IBOutlet var btnAutoLogin:UIButton!
     
+    @IBOutlet weak var textName: UITextField!
+    @IBOutlet weak var textPwd: UITextField!
+    
     //var color:UIColor!
     
     func initViews() {
@@ -84,7 +87,33 @@ class ViewController: UIViewController {
     
     @objc func onClick(_ sender : UIButton) {
         if sender == btnLogin {
-            gotoMainView()
+            if let name = textName.text, let pwd = textPwd.text{
+                
+                if name.isEmpty || pwd.isEmpty{
+                    print("用户名密码不能为空")
+                    return
+                }
+                
+                ClientRequest.login(accountName: name, password: pwd){
+                    resAccount in
+                    if let resAccount = resAccount{
+                        //登陆失败的返回码是1
+                        if resAccount.retCode == 1{
+                            print("登陆失败：\(resAccount.msg)")
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            self.gotoMainView()
+                        }
+                    }else{
+                        print("登录失败！")
+                    }
+                }
+                
+            }else{
+                print("用户名密码不能为空")
+            }
+            //gotoMainView()
             //self.performSegue(withIdentifier: "toMain", sender: self)
         }else if sender == btnRegister
         {

@@ -13,7 +13,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GreanSourceManeger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ShowCollectData" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,6 +147,8 @@
                         <outlet property="btnRefind" destination="hkA-DH-SQs" id="vnH-fC-FhQ"/>
                         <outlet property="btnRegister" destination="Lre-su-gIi" id="g8h-kT-Jaw"/>
                         <outlet property="btnRememberPass" destination="pZ7-1e-Ez1" id="vJf-Hf-xXC"/>
+                        <outlet property="textName" destination="ye6-nH-9fm" id="Ut1-Zs-RFY"/>
+                        <outlet property="textPwd" destination="Vm7-YR-gXT" id="FUQ-YH-e2S"/>
                         <segue destination="yFL-86-LJf" kind="show" identifier="toMain" id="1EC-sM-EFq"/>
                         <segue destination="UXB-7Y-XFg" kind="show" identifier="toRegister" animates="NO" action="showDetailViewController:sender:" id="kCI-jo-Re0"/>
                         <segue destination="Z8m-cX-IMg" kind="show" identifier="toRefind" animates="NO" id="fq0-kd-SHb"/>
@@ -159,7 +161,7 @@
         <!--Register View Controller-->
         <scene sceneID="uw0-HT-FV9">
             <objects>
-                <viewController id="UXB-7Y-XFg" customClass="RegisterViewController" customModule="GreanSourceManeger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UXB-7Y-XFg" customClass="RegisterViewController" customModule="ShowCollectData" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Beb-to-Y0O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -174,7 +176,7 @@
         <!--Use Retrieve View Controller-->
         <scene sceneID="jLE-fM-QLh">
             <objects>
-                <viewController id="Z8m-cX-IMg" customClass="UseRetrieveViewController" customModule="GreanSourceManeger" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z8m-cX-IMg" customClass="UseRetrieveViewController" customModule="ShowCollectData" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yuK-eR-gJ7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

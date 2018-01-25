@@ -7,13 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		511F6AA62015724800C47096 /* SoAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F6AA52015724800C47096 /* SoAccount.swift */; };
+		511F6AA62015724800C47096 /* ShowAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F6AA52015724800C47096 /* ShowAccount.swift */; };
 		511F85E820075291008CA05A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F85E720075291008CA05A /* RegisterViewController.swift */; };
 		511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F85E920078CA9008CA05A /* tableItemView.swift */; };
 		512E654C2009D47500478420 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512E654B2009D47500478420 /* ColorUtils.swift */; };
 		512E654E2009F3F800478420 /* UserBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512E654D2009F3F800478420 /* UserBaseController.swift */; };
 		513D7AF0201836A600F6DA4C /* ConnectAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7AEF201836A600F6DA4C /* ConnectAPI.swift */; };
 		513D7B002018628000F6DA4C /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 513D7AFF2018628000F6DA4C /* GCDAsyncSocket.m */; };
+		513D7B0420186CD700F6DA4C /* BaseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0320186CD700F6DA4C /* BaseData.swift */; };
+		513D7B0620186E2A00F6DA4C /* JSONUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0520186E2A00F6DA4C /* JSONUtils.swift */; };
+		513D7B0B2018703800F6DA4C /* MsgProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0A2018703800F6DA4C /* MsgProtocol.swift */; };
+		513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0C2018790C00F6DA4C /* ClientRequest.swift */; };
+		513D7B0F2018831A00F6DA4C /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0E2018831A00F6DA4C /* StringUtils.swift */; };
+		516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC22019ADF10030B4A2 /* ShowMessage.swift */; };
+		516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC42019BFA90030B4A2 /* ShowLocation.swift */; };
+		516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC62019C07E0030B4A2 /* ShowProject.swift */; };
 		5170D15E201022C1005BA9C8 /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D15D201022C1005BA9C8 /* BasePageViewController.swift */; };
 		5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D16C20118C0A005BA9C8 /* ISViewPager.swift */; };
 		5170D1702011CD88005BA9C8 /* SocketConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D16F2011CD88005BA9C8 /* SocketConn.swift */; };
@@ -21,7 +29,7 @@
 		51A68BA7200C9CB60046A5E6 /* UseRetrieveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A68BA6200C9CB60046A5E6 /* UseRetrieveViewController.swift */; };
 		51A68BA9200CA7130046A5E6 /* DropBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A68BA8200CA7120046A5E6 /* DropBoxView.swift */; };
 		51D205642005F255008763B9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D205632005F255008763B9 /* AppDelegate.swift */; };
-		51D205662005F255008763B9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D205652005F255008763B9 /* ViewController.swift */; };
+		51D205662005F255008763B9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D205652005F255008763B9 /* LoginViewController.swift */; };
 		51D205692005F255008763B9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51D205672005F255008763B9 /* Main.storyboard */; };
 		51D2056B2005F255008763B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51D2056A2005F255008763B9 /* Assets.xcassets */; };
 		51D2056E2005F255008763B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51D2056C2005F255008763B9 /* LaunchScreen.storyboard */; };
@@ -47,7 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		511F6AA52015724800C47096 /* SoAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoAccount.swift; sourceTree = "<group>"; };
+		511F6AA52015724800C47096 /* ShowAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAccount.swift; sourceTree = "<group>"; };
 		511F85E720075291008CA05A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		511F85E920078CA9008CA05A /* tableItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableItemView.swift; sourceTree = "<group>"; };
 		512E654B2009D47500478420 /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
@@ -56,6 +64,14 @@
 		513D7AFE2018628000F6DA4C /* GCDAsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDAsyncSocket.h; sourceTree = "<group>"; };
 		513D7AFF2018628000F6DA4C /* GCDAsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDAsyncSocket.m; sourceTree = "<group>"; };
 		513D7B01201862AD00F6DA4C /* ShowCollectData-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShowCollectData-Bridging-Header.h"; sourceTree = "<group>"; };
+		513D7B0320186CD700F6DA4C /* BaseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseData.swift; sourceTree = "<group>"; };
+		513D7B0520186E2A00F6DA4C /* JSONUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtils.swift; sourceTree = "<group>"; };
+		513D7B0A2018703800F6DA4C /* MsgProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgProtocol.swift; sourceTree = "<group>"; };
+		513D7B0C2018790C00F6DA4C /* ClientRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientRequest.swift; sourceTree = "<group>"; };
+		513D7B0E2018831A00F6DA4C /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		516D8AC22019ADF10030B4A2 /* ShowMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMessage.swift; sourceTree = "<group>"; };
+		516D8AC42019BFA90030B4A2 /* ShowLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocation.swift; sourceTree = "<group>"; };
+		516D8AC62019C07E0030B4A2 /* ShowProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProject.swift; sourceTree = "<group>"; };
 		5170D15D201022C1005BA9C8 /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
 		5170D16C20118C0A005BA9C8 /* ISViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISViewPager.swift; sourceTree = "<group>"; };
 		5170D16F2011CD88005BA9C8 /* SocketConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConn.swift; sourceTree = "<group>"; };
@@ -64,7 +80,7 @@
 		51A68BA8200CA7120046A5E6 /* DropBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxView.swift; sourceTree = "<group>"; };
 		51D205602005F255008763B9 /* ShowCollectData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShowCollectData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D205632005F255008763B9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		51D205652005F255008763B9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		51D205652005F255008763B9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		51D205682005F255008763B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		51D2056A2005F255008763B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51D2056D2005F255008763B9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -102,26 +118,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		511F6AA42015722500C47096 /* Account */ = {
+		511F6AA42015722500C47096 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				511F6AA52015724800C47096 /* SoAccount.swift */,
+				511F6AA52015724800C47096 /* ShowAccount.swift */,
+				516D8AC22019ADF10030B4A2 /* ShowMessage.swift */,
+				516D8AC42019BFA90030B4A2 /* ShowLocation.swift */,
+				513D7B0320186CD700F6DA4C /* BaseData.swift */,
+				516D8AC62019C07E0030B4A2 /* ShowProject.swift */,
 			);
-			path = Account;
+			path = Common;
 			sourceTree = "<group>";
 		};
 		511F85E5200750F3008CA05A /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5170D16B20118BDD005BA9C8 /* ISViewPager */,
-				511F85E720075291008CA05A /* RegisterViewController.swift */,
-				511F85E920078CA9008CA05A /* tableItemView.swift */,
-				512E654D2009F3F800478420 /* UserBaseController.swift */,
-				51A68BA6200C9CB60046A5E6 /* UseRetrieveViewController.swift */,
-				51A68BA8200CA7120046A5E6 /* DropBoxView.swift */,
-				5170D15D201022C1005BA9C8 /* BasePageViewController.swift */,
-				5170D17B2014CF9E005BA9C8 /* ProjectInfoViewController.swift */,
-				51D205652005F255008763B9 /* ViewController.swift */,
+				513D7B0920186FB800F6DA4C /* CustomWidgets */,
+				513D7B0820186F8200F6DA4C /* MainViews */,
+				513D7B0720186F2900F6DA4C /* UserViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -139,6 +153,8 @@
 			isa = PBXGroup;
 			children = (
 				512E654B2009D47500478420 /* ColorUtils.swift */,
+				513D7B0520186E2A00F6DA4C /* JSONUtils.swift */,
+				513D7B0E2018831A00F6DA4C /* StringUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -153,12 +169,34 @@
 			path = GCDAsyncSocket;
 			sourceTree = "<group>";
 		};
-		5170D16B20118BDD005BA9C8 /* ISViewPager */ = {
+		513D7B0720186F2900F6DA4C /* UserViews */ = {
 			isa = PBXGroup;
 			children = (
+				512E654D2009F3F800478420 /* UserBaseController.swift */,
+				511F85E720075291008CA05A /* RegisterViewController.swift */,
+				51D205652005F255008763B9 /* LoginViewController.swift */,
+				51A68BA6200C9CB60046A5E6 /* UseRetrieveViewController.swift */,
+			);
+			path = UserViews;
+			sourceTree = "<group>";
+		};
+		513D7B0820186F8200F6DA4C /* MainViews */ = {
+			isa = PBXGroup;
+			children = (
+				5170D15D201022C1005BA9C8 /* BasePageViewController.swift */,
+				5170D17B2014CF9E005BA9C8 /* ProjectInfoViewController.swift */,
+			);
+			path = MainViews;
+			sourceTree = "<group>";
+		};
+		513D7B0920186FB800F6DA4C /* CustomWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				511F85E920078CA9008CA05A /* tableItemView.swift */,
+				51A68BA8200CA7120046A5E6 /* DropBoxView.swift */,
 				5170D16C20118C0A005BA9C8 /* ISViewPager.swift */,
 			);
-			path = ISViewPager;
+			path = CustomWidgets;
 			sourceTree = "<group>";
 		};
 		5170D16E2011CD4D005BA9C8 /* Socket */ = {
@@ -167,6 +205,8 @@
 				513D7AFD2018626700F6DA4C /* GCDAsyncSocket */,
 				5170D16F2011CD88005BA9C8 /* SocketConn.swift */,
 				513D7AEF201836A600F6DA4C /* ConnectAPI.swift */,
+				513D7B0A2018703800F6DA4C /* MsgProtocol.swift */,
+				513D7B0C2018790C00F6DA4C /* ClientRequest.swift */,
 			);
 			path = Socket;
 			sourceTree = "<group>";
@@ -195,10 +235,10 @@
 			isa = PBXGroup;
 			children = (
 				5170D16E2011CD4D005BA9C8 /* Socket */,
-				511F6AA42015722500C47096 /* Account */,
+				511F6AA42015722500C47096 /* Common */,
 				512E65482008986300478420 /* Utils */,
-				511F85E620075141008CA05A /* StoryBoards */,
 				511F85E5200750F3008CA05A /* Views */,
+				511F85E620075141008CA05A /* StoryBoards */,
 				51D205632005F255008763B9 /* AppDelegate.swift */,
 				51D2056F2005F255008763B9 /* Info.plist */,
 				51D2056A2005F255008763B9 /* Assets.xcassets */,
@@ -360,19 +400,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				513D7AF0201836A600F6DA4C /* ConnectAPI.swift in Sources */,
+				513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */,
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,
 				51A68BA7200C9CB60046A5E6 /* UseRetrieveViewController.swift in Sources */,
 				512E654C2009D47500478420 /* ColorUtils.swift in Sources */,
+				513D7B0B2018703800F6DA4C /* MsgProtocol.swift in Sources */,
 				511F85E820075291008CA05A /* RegisterViewController.swift in Sources */,
+				516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */,
 				513D7B002018628000F6DA4C /* GCDAsyncSocket.m in Sources */,
 				5170D15E201022C1005BA9C8 /* BasePageViewController.swift in Sources */,
 				51A68BA9200CA7130046A5E6 /* DropBoxView.swift in Sources */,
+				516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */,
+				513D7B0620186E2A00F6DA4C /* JSONUtils.swift in Sources */,
 				5170D17C2014CF9E005BA9C8 /* ProjectInfoViewController.swift in Sources */,
-				511F6AA62015724800C47096 /* SoAccount.swift in Sources */,
-				51D205662005F255008763B9 /* ViewController.swift in Sources */,
+				511F6AA62015724800C47096 /* ShowAccount.swift in Sources */,
+				51D205662005F255008763B9 /* LoginViewController.swift in Sources */,
 				5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */,
+				516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */,
+				513D7B0F2018831A00F6DA4C /* StringUtils.swift in Sources */,
 				5170D1702011CD88005BA9C8 /* SocketConn.swift in Sources */,
+				513D7B0420186CD700F6DA4C /* BaseData.swift in Sources */,
 				51D205642005F255008763B9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

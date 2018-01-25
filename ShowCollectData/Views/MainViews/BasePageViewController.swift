@@ -55,7 +55,7 @@ class BasePageViewController:UIViewController{
         
         let menuBtn:UIButton = UIButton(frame: CGRect(x: screenWidth - 40, y: 5, width: 40, height: 30))
         menuBtn.setImage(UIImage(named: "arrow_menu"), for: .normal)
-        backBtn.addTarget(self, action: #selector(onMenu(_:)), for: .touchUpInside)
+        menuBtn.addTarget(self, action: #selector(onMenu(_:)), for: .touchUpInside)
         self.titleView.addSubview(menuBtn)
         
         let titleLabelWidth = screenWidth - 80
@@ -72,6 +72,7 @@ class BasePageViewController:UIViewController{
     
     @objc public func onBack(_ sender: UIButton){
         print("父类onBack调用")
+        self.dismiss(animated: true, completion: nil)
         delegate?.onBack(self)
     }
     
