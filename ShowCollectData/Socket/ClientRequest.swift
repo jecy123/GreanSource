@@ -35,7 +35,10 @@ class ClientRequest {
                 }else if code == socketErrorCode.responseFormatError{
                     print("服务器响应字符串格式错误！")
                 }
-                completeHandler(nil)
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
             case .success(let msg):
                 if msg.msgCode == ConnectAPI.LOGIN_RESPONSE{
                     print(msg.msgStr)
@@ -44,10 +47,16 @@ class ClientRequest {
                     var resAccount:ShowAccount? = nil
                     let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
                     resAccount = ShowAccount.fromDictionary(dic: dic)
-                    completeHandler(resAccount)
+                    
+                    DispatchQueue.main.async {
+                        completeHandler(resAccount)
+                    }
                 }else{
                     print("服务器消息响应码不符合条件！")
-                    completeHandler(nil)
+                    
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
                 }
             }
             

@@ -40,7 +40,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ye6-nH-9fm">
-                                <rect key="frame" x="70" y="197" width="275" height="40"/>
+                                <rect key="frame" x="70" y="190" width="275" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Uar-97-eDC"/>
                                 </constraints>
@@ -49,21 +49,21 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico2" translatesAutoresizingMaskIntoConstraints="NO" id="skQ-Wc-CRV">
-                                <rect key="frame" x="30" y="197" width="40" height="40"/>
+                                <rect key="frame" x="30" y="190" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="oX5-3E-pAN"/>
                                     <constraint firstAttribute="height" constant="40" id="v1O-ke-dm8"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ico1" translatesAutoresizingMaskIntoConstraints="NO" id="Wfd-S5-ixA">
-                                <rect key="frame" x="30" y="267" width="40" height="40"/>
+                                <rect key="frame" x="30" y="260" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="7vb-H3-Awh"/>
                                     <constraint firstAttribute="height" constant="40" id="GtW-Jq-Wj8"/>
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Vm7-YR-gXT">
-                                <rect key="frame" x="70" y="267" width="275" height="40"/>
+                                <rect key="frame" x="70" y="260" width="275" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="wHt-wg-km7"/>
                                 </constraints>
@@ -72,7 +72,7 @@
                                 <textInputTraits key="textInputTraits" textContentType="password"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FYe-eP-HUZ">
-                                <rect key="frame" x="30" y="380.5" width="315" height="40"/>
+                                <rect key="frame" x="30" y="387.5" width="315" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="K8c-xz-bQR"/>
                                 </constraints>
@@ -82,25 +82,24 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lre-su-gIi">
-                                <rect key="frame" x="60" y="450.5" width="74" height="34"/>
+                                <rect key="frame" x="60" y="457.5" width="74" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="用户注册"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkA-DH-SQs">
-                                <rect key="frame" x="241" y="450" width="74" height="34"/>
+                                <rect key="frame" x="241" y="457" width="74" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <state key="normal" title="密码找回"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zjr-QO-dWh">
-                                <rect key="frame" x="50" y="316.5" width="74" height="34"/>
-                                <state key="normal" title="记住密码">
+                                <rect key="frame" x="50" y="309.5" width="122" height="48"/>
+                                <state key="normal" title="记住密码" image="btn_check_off">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lK9-vj-FmC">
-                                <rect key="frame" x="251" y="316.5" width="74" height="34"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="自动登录">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lK9-vj-FmC">
+                                <rect key="frame" x="203" y="309.5" width="122" height="48"/>
+                                <state key="normal" title="自动登录" image="btn_check_off">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                 </state>
                             </button>
@@ -142,11 +141,11 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="btnAutoLogin" destination="Ojx-Lp-SE2" id="WKz-0F-fbU"/>
+                        <outlet property="btnAutoLogin" destination="lK9-vj-FmC" id="Uos-dA-DAV"/>
                         <outlet property="btnLogin" destination="FYe-eP-HUZ" id="1GX-lw-NiK"/>
                         <outlet property="btnRefind" destination="hkA-DH-SQs" id="vnH-fC-FhQ"/>
                         <outlet property="btnRegister" destination="Lre-su-gIi" id="g8h-kT-Jaw"/>
-                        <outlet property="btnRememberPass" destination="pZ7-1e-Ez1" id="vJf-Hf-xXC"/>
+                        <outlet property="btnRememberPass" destination="zjr-QO-dWh" id="ETF-r8-TE1"/>
                         <outlet property="textName" destination="ye6-nH-9fm" id="Ut1-Zs-RFY"/>
                         <outlet property="textPwd" destination="Vm7-YR-gXT" id="FUQ-YH-e2S"/>
                         <segue destination="yFL-86-LJf" kind="show" identifier="toMain" id="1EC-sM-EFq"/>
@@ -206,6 +205,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="btn_check_off" width="48" height="48"/>
         <image name="foot_bg" width="1080" height="150"/>
         <image name="ico1" width="140" height="140"/>
         <image name="ico2" width="140" height="140"/>

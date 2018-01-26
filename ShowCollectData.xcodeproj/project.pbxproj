@@ -22,6 +22,7 @@
 		516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC22019ADF10030B4A2 /* ShowMessage.swift */; };
 		516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC42019BFA90030B4A2 /* ShowLocation.swift */; };
 		516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC62019C07E0030B4A2 /* ShowProject.swift */; };
+		516D8AC9201B09EF0030B4A2 /* TGCToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC8201B09EF0030B4A2 /* TGCToastView.swift */; };
 		5170D15E201022C1005BA9C8 /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D15D201022C1005BA9C8 /* BasePageViewController.swift */; };
 		5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D16C20118C0A005BA9C8 /* ISViewPager.swift */; };
 		5170D1702011CD88005BA9C8 /* SocketConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D16F2011CD88005BA9C8 /* SocketConn.swift */; };
@@ -72,6 +73,7 @@
 		516D8AC22019ADF10030B4A2 /* ShowMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMessage.swift; sourceTree = "<group>"; };
 		516D8AC42019BFA90030B4A2 /* ShowLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocation.swift; sourceTree = "<group>"; };
 		516D8AC62019C07E0030B4A2 /* ShowProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProject.swift; sourceTree = "<group>"; };
+		516D8AC8201B09EF0030B4A2 /* TGCToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGCToastView.swift; sourceTree = "<group>"; };
 		5170D15D201022C1005BA9C8 /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
 		5170D16C20118C0A005BA9C8 /* ISViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISViewPager.swift; sourceTree = "<group>"; };
 		5170D16F2011CD88005BA9C8 /* SocketConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConn.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				511F85E920078CA9008CA05A /* tableItemView.swift */,
 				51A68BA8200CA7120046A5E6 /* DropBoxView.swift */,
 				5170D16C20118C0A005BA9C8 /* ISViewPager.swift */,
+				516D8AC8201B09EF0030B4A2 /* TGCToastView.swift */,
 			);
 			path = CustomWidgets;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				513D7AF0201836A600F6DA4C /* ConnectAPI.swift in Sources */,
+				516D8AC9201B09EF0030B4A2 /* TGCToastView.swift in Sources */,
 				513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */,
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,

@@ -11,13 +11,18 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var btnLogin:UIButton!
+    
     @IBOutlet var btnRegister:UIButton!
     @IBOutlet var btnRefind:UIButton!
-    @IBOutlet var btnRememberPass:UIButton!
-    @IBOutlet var btnAutoLogin:UIButton!
+    
+    @IBOutlet weak var btnRememberPass:UIButton!
+    @IBOutlet weak var btnAutoLogin:UIButton!
     
     @IBOutlet weak var textName: UITextField!
     @IBOutlet weak var textPwd: UITextField!
+    
+    var btnRememberPwdFlag: Int!
+    var btnAutoLoginFlag: Int!
     
     //var color:UIColor!
     
@@ -32,8 +37,11 @@ class ViewController: UIViewController {
         
         btnRegister.setTitleColor(ColorUtils.mainThemeColor, for: .normal)
         btnRefind.setTitleColor(ColorUtils.mainThemeColor, for: .normal)
+        
         btnRegister.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         btnRefind.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
+        btnRememberPass.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
+        btnAutoLogin.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         
     }
     
@@ -41,7 +49,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         initViews()
-        
+        btnRememberPwdFlag = -1
+        btnAutoLoginFlag = -1
     }
     
     func gotoMainView(){
@@ -91,6 +100,7 @@ class ViewController: UIViewController {
                 
                 if name.isEmpty || pwd.isEmpty{
                     print("用户名密码不能为空")
+                    self.view.tgc_makeToast(message: "用户名或密码不能为空")
                     return
                 }
                 
@@ -99,19 +109,25 @@ class ViewController: UIViewController {
                     if let resAccount = resAccount{
                         //登陆失败的返回码是1
                         if resAccount.retCode == 1{
-                            print("登陆失败：\(resAccount.msg)")
+                            let errorMsg = "登陆失败：\(resAccount.msg)"
+                            print(errorMsg)
+                            UIApplication.shared.keyWindow?.tgc_makeToast(message: errorMsg)
+                            //self.view.tgc_makeToast(message: errorMsg)
                             return
                         }
                         DispatchQueue.main.async {
                             self.gotoMainView()
                         }
                     }else{
+                        
                         print("登录失败！")
+                        self.view.tgc_makeToast(message: "数据获取失败，登录失败！")
                     }
                 }
                 
             }else{
-                print("用户名密码不能为空")
+                print("用户名或密码不能为空")
+                self.view.tgc_makeToast(message: "用户名或密码不能为空！")
             }
             //gotoMainView()
             //self.performSegue(withIdentifier: "toMain", sender: self)
@@ -120,6 +136,21 @@ class ViewController: UIViewController {
             self.performSegue(withIdentifier: "toRegister", sender: self)
         }else if sender == btnRefind{
             self.performSegue(withIdentifier: "toRefind", sender: self)
+        }else if sender == btnAutoLogin{
+            self.btnAutoLoginFlag = -self.btnAutoLoginFlag
+            if self.btnAutoLoginFlag == 1{
+                btnAutoLogin.setImage(UIImage(named: "btn_check_on") , for: .normal)
+            }else if self.btnAutoLoginFlag == -1{
+                btnAutoLogin.setImage(UIImage(named: "btn_check_off") , for: .normal)
+            }
+            
+        }else if sender == btnRememberPass{
+            self.btnRememberPwdFlag = -self.btnRememberPwdFlag
+            if self.btnRememberPwdFlag == 1{
+                btnRememberPass.setImage(UIImage(named: "btn_check_on") , for: .normal)
+            }else if self.btnRememberPwdFlag == -1{
+                btnRememberPass.setImage(UIImage(named: "btn_check_off") , for: .normal)
+            }
         }
     }
 
