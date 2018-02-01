@@ -11,8 +11,19 @@ import Foundation
 class ShowLocation : BaseData{
     var locationId: String!
     
+    override init() {
+        super.init()
+    }
+    
     init(locationId: String, retCode: Int, msg: String) {
         super.init(retCode: retCode, msg: msg)
         self.locationId = locationId
+    }
+    
+    override func fromDictionary(dic: NSDictionary) {
+        super.fromDictionary(dic: dic)
+        if let locationId = dic["locationId"] {
+            self.locationId = locationId as! String
+        }
     }
 }

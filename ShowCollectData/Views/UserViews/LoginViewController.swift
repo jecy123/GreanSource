@@ -8,6 +8,18 @@
 
 import UIKit
 
+struct UIButtonCheckState {
+    static let btnChecked: Int = 1
+    static let btnUnchecked: Int = -1
+}
+
+struct Keys {
+    static let isAutoLogin = "isAutoLogin"
+    static let isRemberPwd = "isRemberPwb"
+    static let username = "userName"
+    static let password = "passWord"
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet var btnLogin:UIButton!
@@ -21,8 +33,31 @@ class ViewController: UIViewController {
     @IBOutlet weak var textName: UITextField!
     @IBOutlet weak var textPwd: UITextField!
     
-    var btnRememberPwdFlag: Int!
-    var btnAutoLoginFlag: Int!
+    
+    var btnAutoLoginFlag: Int!{
+        didSet{
+            if btnAutoLogin != nil {
+                //自动登录选中的时候，必定会记住密码
+                if self.btnAutoLoginFlag == UIButtonCheckState.btnChecked{
+                    btnRememberPwdFlag = UIButtonCheckState.btnChecked
+                    btnAutoLogin.setImage(UIImage(named: "btn_check_on") , for: .normal)
+                }else if self.btnAutoLoginFlag == UIButtonCheckState.btnUnchecked{
+                    btnAutoLogin.setImage(UIImage(named: "btn_check_off") , for: .normal)
+                }
+            }
+        }
+    }
+    var btnRememberPwdFlag: Int!{
+        didSet{
+            if btnRememberPass != nil {
+                if self.btnRememberPwdFlag == UIButtonCheckState.btnChecked{
+                    btnRememberPass.setImage(UIImage(named: "btn_check_on") , for: .normal)
+                }else if self.btnRememberPwdFlag == UIButtonCheckState.btnUnchecked{
+                    btnRememberPass.setImage(UIImage(named: "btn_check_off") , for: .normal)
+                }
+            }
+        }
+    }
     
     //var color:UIColor!
     
@@ -49,8 +84,40 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         initViews()
-        btnRememberPwdFlag = -1
-        btnAutoLoginFlag = -1
+        
+        let accountDefaults = UserDefaults.standard
+        if let retLogin = accountDefaults.value(forKey: Keys.isAutoLogin){
+            btnAutoLoginFlag = retLogin as! Int
+        }else{
+            btnAutoLoginFlag = UIButtonCheckState.btnUnchecked
+            
+        }
+        
+        if let retPwd = accountDefaults.value(forKey: Keys.isRemberPwd){
+            btnRememberPwdFlag = retPwd as! Int
+        }else{
+            btnRememberPwdFlag = UIButtonCheckState.btnUnchecked
+        }
+        
+        var name:String? = nil
+        var pwd:String? = nil
+        if let retUserName = accountDefaults.value(forKey: Keys.username) {
+            name = retUserName as? String
+        }
+        if let retPassword = accountDefaults.value(forKey: Keys.password) {
+            pwd = retPassword as? String
+        }
+        self.textName.text = name
+        self.textPwd.text = pwd
+        
+        if btnAutoLoginFlag == UIButtonCheckState.btnChecked {
+            if let name = name, let pwd = pwd{
+                doLogin(accountName: name, password: pwd)
+            }else{
+                print("未获取到保存的用户数据")
+                ToastHelper.showGlobalToast(message: "未获取到保存的用户数据")
+            }
+        }
     }
     
     func gotoMainView(){
@@ -97,37 +164,11 @@ class ViewController: UIViewController {
     @objc func onClick(_ sender : UIButton) {
         if sender == btnLogin {
             if let name = textName.text, let pwd = textPwd.text{
-                
-                if name.isEmpty || pwd.isEmpty{
-                    print("用户名密码不能为空")
-                    self.view.tgc_makeToast(message: "用户名或密码不能为空")
-                    return
-                }
-                
-                ClientRequest.login(accountName: name, password: pwd){
-                    resAccount in
-                    if let resAccount = resAccount{
-                        //登陆失败的返回码是1
-                        if resAccount.retCode == 1{
-                            let errorMsg = "登陆失败：\(resAccount.msg)"
-                            print(errorMsg)
-                            UIApplication.shared.keyWindow?.tgc_makeToast(message: errorMsg)
-                            //self.view.tgc_makeToast(message: errorMsg)
-                            return
-                        }
-                        DispatchQueue.main.async {
-                            self.gotoMainView()
-                        }
-                    }else{
-                        
-                        print("登录失败！")
-                        self.view.tgc_makeToast(message: "数据获取失败，登录失败！")
-                    }
-                }
-                
+                doLogin(accountName: name, password: pwd)
             }else{
-                print("用户名或密码不能为空")
-                self.view.tgc_makeToast(message: "用户名或密码不能为空！")
+                print("用户名或密码不能为空2")
+                ToastHelper.showGlobalToast(message: "用户名或密码不能为空")
+                //UIApplication.shared.keyWindow?.tgc_makeToast(message: "用户名或密码不能为空！")
             }
             //gotoMainView()
             //self.performSegue(withIdentifier: "toMain", sender: self)
@@ -138,22 +179,63 @@ class ViewController: UIViewController {
             self.performSegue(withIdentifier: "toRefind", sender: self)
         }else if sender == btnAutoLogin{
             self.btnAutoLoginFlag = -self.btnAutoLoginFlag
-            if self.btnAutoLoginFlag == 1{
-                btnAutoLogin.setImage(UIImage(named: "btn_check_on") , for: .normal)
-            }else if self.btnAutoLoginFlag == -1{
-                btnAutoLogin.setImage(UIImage(named: "btn_check_off") , for: .normal)
-            }
             
         }else if sender == btnRememberPass{
             self.btnRememberPwdFlag = -self.btnRememberPwdFlag
-            if self.btnRememberPwdFlag == 1{
-                btnRememberPass.setImage(UIImage(named: "btn_check_on") , for: .normal)
-            }else if self.btnRememberPwdFlag == -1{
-                btnRememberPass.setImage(UIImage(named: "btn_check_off") , for: .normal)
-            }
         }
     }
 
+    
+    func doLogin(accountName:String, password:String){
+        
+        if accountName.isEmpty || password.isEmpty{
+            print("用户名密码不能为空1")
+            ToastHelper.showGlobalToast(message: "用户名或密码不能为空")
+            return
+        }
+        
+        
+        ClientRequest.login(accountName: accountName, password: password){
+            resAccount in
+            if let resAccount = resAccount{
+                //登陆失败的返回码是1
+                if resAccount.retCode == 1{
+                    
+                    let error:String = resAccount.msg
+                    let errorMsg:String = "登陆失败：" + error
+                    print(errorMsg)
+                    ToastHelper.showGlobalToast(message: errorMsg)
+                    //self.view.tgc_makeToast(message: errorMsg)
+                    return
+                }
+                
+                self.doRecordNameAndPwd(isRecord: self.btnRememberPwdFlag, name: accountName, password: password)
+                print("\(resAccount.account) 已经登录")
+                self.gotoMainView()
+            }else{
+                
+                print("登录失败！")
+                ToastHelper.showGlobalToast(message: "数据获取失败，登录失败！")
+            }
+            
+        }
+    }
+    
+    func doRecordNameAndPwd(isRecord: Int, name: String, password: String){
+        
+        let accountDefaults = UserDefaults.standard
+        accountDefaults.set(self.btnAutoLoginFlag, forKey: Keys.isAutoLogin)
+        accountDefaults.set(self.btnRememberPwdFlag, forKey: Keys.isRemberPwd)
+        if isRecord == UIButtonCheckState.btnChecked {
+            accountDefaults.set(name, forKey: Keys.username)
+            accountDefaults.set(password, forKey: Keys.password)
+            
+        }else if isRecord == UIButtonCheckState.btnUnchecked{
+            accountDefaults.removeObject(forKey: Keys.username)
+            accountDefaults.removeObject(forKey: Keys.password)
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -19,4 +19,14 @@ class BaseData {
         self.retCode = retCode
         self.msg = msg
     }
+    
+    func fromDictionary(dic: NSDictionary){
+        
+        if let msg = dic["msg"] {
+            self.msg = msg as! String
+        }
+        if let retCode = dic["retCode"] {
+            self.retCode = retCode as! Int
+        }
+    }
 }

@@ -23,6 +23,7 @@
 		516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC42019BFA90030B4A2 /* ShowLocation.swift */; };
 		516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC62019C07E0030B4A2 /* ShowProject.swift */; };
 		516D8AC9201B09EF0030B4A2 /* TGCToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC8201B09EF0030B4A2 /* TGCToastView.swift */; };
+		516D8ACB201EC2A40030B4A2 /* ToastHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8ACA201EC2A40030B4A2 /* ToastHelper.swift */; };
 		5170D15E201022C1005BA9C8 /* BasePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D15D201022C1005BA9C8 /* BasePageViewController.swift */; };
 		5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D16C20118C0A005BA9C8 /* ISViewPager.swift */; };
 		5170D1702011CD88005BA9C8 /* SocketConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D16F2011CD88005BA9C8 /* SocketConn.swift */; };
@@ -74,6 +75,7 @@
 		516D8AC42019BFA90030B4A2 /* ShowLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocation.swift; sourceTree = "<group>"; };
 		516D8AC62019C07E0030B4A2 /* ShowProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProject.swift; sourceTree = "<group>"; };
 		516D8AC8201B09EF0030B4A2 /* TGCToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TGCToastView.swift; sourceTree = "<group>"; };
+		516D8ACA201EC2A40030B4A2 /* ToastHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastHelper.swift; sourceTree = "<group>"; };
 		5170D15D201022C1005BA9C8 /* BasePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewController.swift; sourceTree = "<group>"; };
 		5170D16C20118C0A005BA9C8 /* ISViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISViewPager.swift; sourceTree = "<group>"; };
 		5170D16F2011CD88005BA9C8 /* SocketConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConn.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				512E654B2009D47500478420 /* ColorUtils.swift */,
 				513D7B0520186E2A00F6DA4C /* JSONUtils.swift */,
 				513D7B0E2018831A00F6DA4C /* StringUtils.swift */,
+				516D8ACA201EC2A40030B4A2 /* ToastHelper.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				513D7B0620186E2A00F6DA4C /* JSONUtils.swift in Sources */,
 				5170D17C2014CF9E005BA9C8 /* ProjectInfoViewController.swift in Sources */,
 				511F6AA62015724800C47096 /* ShowAccount.swift in Sources */,
+				516D8ACB201EC2A40030B4A2 /* ToastHelper.swift in Sources */,
 				51D205662005F255008763B9 /* LoginViewController.swift in Sources */,
 				5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */,
 				516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */,

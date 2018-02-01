@@ -24,6 +24,10 @@ class ShowProject: BaseData{
     "workerName": "里方正",
     "workerPhone": "133232"*/
     
+    override init() {
+        super.init()
+    }
+    
     var capability:Int!
     var createTime:String!
     var emissionStandards:Int!
@@ -36,9 +40,37 @@ class ShowProject: BaseData{
     var workerName:String!
     var workerPhone:String!
     
-    override init() {
-        super.init()
+    override func fromDictionary(dic: NSDictionary) {
+        super.fromDictionary(dic: dic)
+        if let capability = dic["capability"] {
+            self.capability = capability as! Int
+        }
+        if let createTime = dic["createTime"] {
+            self.createTime = createTime as! String
+        }
+        if let emissionStandards = dic["emissionStandards"] {
+            self.emissionStandards = emissionStandards as! Int
+        }
+        if let id = dic["id"] {
+            self.id = id as! Int
+        }
+        if let locationId = dic["locationId"] {
+            self.locationId = locationId as! String
+        }
+        if let projectName = dic["projectName"] {
+            self.projectName = projectName as! String
+        }
+        if let state = dic["state"] {
+            self.state = state as! Int
+        }
+        if let type = dic["type"] {
+            self.type = type as! Int
+        }
+        if let workerName = dic["workerName"] {
+            self.workerName = workerName as! String
+        }
+        if let workerPhone = dic["workerPhone"] {
+            self.workerPhone = workerPhone as! String
+        }
     }
-    
-    
 }

@@ -44,9 +44,9 @@ class ClientRequest {
                     print(msg.msgStr)
                     print("成功收到服务器响应！")
                     
-                    var resAccount:ShowAccount? = nil
+                    let resAccount = ShowAccount()
                     let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
-                    resAccount = ShowAccount.fromDictionary(dic: dic)
+                    resAccount.fromDictionary(dic: dic)
                     
                     DispatchQueue.main.async {
                         completeHandler(resAccount)

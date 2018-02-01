@@ -93,6 +93,7 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
         print("断开连接")
         if let err = err{
             print("连接错误:\(err)")
+            self.connect()
         }
     }
     

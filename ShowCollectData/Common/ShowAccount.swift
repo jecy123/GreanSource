@@ -59,40 +59,60 @@ class ShowAccount: BaseData {
         return str
     }
     
-    static func fromDictionary(dic: NSDictionary) -> ShowAccount?{
-        let account:ShowAccount = ShowAccount()
-        if let act = dic.value(forKey: "account") {
-            account.account = act as! String
+    override func fromDictionary(dic: NSDictionary){
+        super.fromDictionary(dic: dic)
+        if let act = dic["account"]{
+            self.account = act as! String
         }
-        if let time = dic.value(forKey: "createTime") {
-            account.createTime = time as! String
+        if let time = dic["createTime"] {
+            self.createTime = time as! String
         }
-        if let email = dic.value(forKey: "email") {
-            account.email = email as! String
+        if let email = dic["email"] {
+            self.email = email as! String
         }
-        if let id = dic.value(forKey: "id") {
-            account.id = id as! Int
+        if let id = dic["id"] {
+            self.id = id as! Int
         }
-        if let msg = dic.value(forKey: "msg") {
-            account.msg = msg as! String
+        if let role = dic["role"] {
+            self.role = role as! Int
         }
-        if let retCode = dic.value(forKey: "retCode") {
-            account.retCode = retCode as! Int
+        if let type = dic["type"] {
+            self.type = type as! Int
         }
-        if let role = dic.value(forKey: "role") {
-            account.role = role as! Int
+        if let name = dic["name"] {
+            self.name = name as! String
         }
-        if let type = dic.value(forKey: "type") {
-            account.type = type as! Int
-        }
-        if let name = dic.value(forKey: "name") {
-            account.name = name as! String
-        }
-        if let phone = dic.value(forKey: "phone") {
-            account.phone = phone as! String
+        if let phone = dic["phone"] {
+            self.phone = phone as! String
         }
         
-        return account
+        if let locations = dic["locations"] {
+            self.locations = [ShowLocation]()
+            
+            let locationsDic = locations as! Array<NSDictionary>
+            for locDic in locationsDic {
+                let location = ShowLocation()
+                location.fromDictionary(dic: locDic)
+                self.locations.append(location)
+            }
+            print("locationSize  = \(self.locations.count)")
+            //print("jsonLen = \(jsonString.count)")
+        }
+        
+        if let projects = dic["projects"] {
+            self.projects = [ShowProject]()
+            
+            let projectsDic = projects as! Array<NSDictionary>
+            
+            for projDic in projectsDic{
+                let project = ShowProject()
+                project.fromDictionary(dic: projDic)
+                self.projects.append(project)
+            }
+            print("projectSize = \(self.projects.count)")
+        }
+        
+        
     }
     
     
