@@ -19,6 +19,14 @@
 		513D7B0B2018703800F6DA4C /* MsgProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0A2018703800F6DA4C /* MsgProtocol.swift */; };
 		513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0C2018790C00F6DA4C /* ClientRequest.swift */; };
 		513D7B0F2018831A00F6DA4C /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0E2018831A00F6DA4C /* StringUtils.swift */; };
+		513EEE07203FA64200F49CDB /* RuningStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE06203FA64200F49CDB /* RuningStateViewController.swift */; };
+		513EEE09203FAB0C00F49CDB /* RunningDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE08203FAB0C00F49CDB /* RunningDataViewController.swift */; };
+		513EEE0B203FAB9800F49CDB /* ProjectAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE0A203FAB9800F49CDB /* ProjectAddViewController.swift */; };
+		513EEE0D203FAE2100F49CDB /* ProjectModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE0C203FAE2100F49CDB /* ProjectModifyViewController.swift */; };
+		513EEE0F203FAE4200F49CDB /* DeviceModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE0E203FAE4200F49CDB /* DeviceModifyViewController.swift */; };
+		513EEE11203FAF7100F49CDB /* MaintainerModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE10203FAF7100F49CDB /* MaintainerModifyViewController.swift */; };
+		513EEE13203FAF9500F49CDB /* InfoRefindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE12203FAF9500F49CDB /* InfoRefindViewController.swift */; };
+		513EEE1520410CF000F49CDB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE1420410CF000F49CDB /* MainViewController.swift */; };
 		516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC22019ADF10030B4A2 /* ShowMessage.swift */; };
 		516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC42019BFA90030B4A2 /* ShowLocation.swift */; };
 		516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC62019C07E0030B4A2 /* ShowProject.swift */; };
@@ -71,6 +79,14 @@
 		513D7B0A2018703800F6DA4C /* MsgProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgProtocol.swift; sourceTree = "<group>"; };
 		513D7B0C2018790C00F6DA4C /* ClientRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientRequest.swift; sourceTree = "<group>"; };
 		513D7B0E2018831A00F6DA4C /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		513EEE06203FA64200F49CDB /* RuningStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuningStateViewController.swift; sourceTree = "<group>"; };
+		513EEE08203FAB0C00F49CDB /* RunningDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningDataViewController.swift; sourceTree = "<group>"; };
+		513EEE0A203FAB9800F49CDB /* ProjectAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddViewController.swift; sourceTree = "<group>"; };
+		513EEE0C203FAE2100F49CDB /* ProjectModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModifyViewController.swift; sourceTree = "<group>"; };
+		513EEE0E203FAE4200F49CDB /* DeviceModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModifyViewController.swift; sourceTree = "<group>"; };
+		513EEE10203FAF7100F49CDB /* MaintainerModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintainerModifyViewController.swift; sourceTree = "<group>"; };
+		513EEE12203FAF9500F49CDB /* InfoRefindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRefindViewController.swift; sourceTree = "<group>"; };
+		513EEE1420410CF000F49CDB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		516D8AC22019ADF10030B4A2 /* ShowMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMessage.swift; sourceTree = "<group>"; };
 		516D8AC42019BFA90030B4A2 /* ShowLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocation.swift; sourceTree = "<group>"; };
 		516D8AC62019C07E0030B4A2 /* ShowProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProject.swift; sourceTree = "<group>"; };
@@ -188,8 +204,16 @@
 		513D7B0820186F8200F6DA4C /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				513EEE1420410CF000F49CDB /* MainViewController.swift */,
 				5170D15D201022C1005BA9C8 /* BasePageViewController.swift */,
 				5170D17B2014CF9E005BA9C8 /* ProjectInfoViewController.swift */,
+				513EEE06203FA64200F49CDB /* RuningStateViewController.swift */,
+				513EEE08203FAB0C00F49CDB /* RunningDataViewController.swift */,
+				513EEE0A203FAB9800F49CDB /* ProjectAddViewController.swift */,
+				513EEE0C203FAE2100F49CDB /* ProjectModifyViewController.swift */,
+				513EEE0E203FAE4200F49CDB /* DeviceModifyViewController.swift */,
+				513EEE10203FAF7100F49CDB /* MaintainerModifyViewController.swift */,
+				513EEE12203FAF9500F49CDB /* InfoRefindViewController.swift */,
 			);
 			path = MainViews;
 			sourceTree = "<group>";
@@ -408,12 +432,16 @@
 				513D7AF0201836A600F6DA4C /* ConnectAPI.swift in Sources */,
 				516D8AC9201B09EF0030B4A2 /* TGCToastView.swift in Sources */,
 				513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */,
+				513EEE11203FAF7100F49CDB /* MaintainerModifyViewController.swift in Sources */,
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
+				513EEE0D203FAE2100F49CDB /* ProjectModifyViewController.swift in Sources */,
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,
 				51A68BA7200C9CB60046A5E6 /* UseRetrieveViewController.swift in Sources */,
 				512E654C2009D47500478420 /* ColorUtils.swift in Sources */,
 				513D7B0B2018703800F6DA4C /* MsgProtocol.swift in Sources */,
 				511F85E820075291008CA05A /* RegisterViewController.swift in Sources */,
+				513EEE07203FA64200F49CDB /* RuningStateViewController.swift in Sources */,
+				513EEE1520410CF000F49CDB /* MainViewController.swift in Sources */,
 				516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */,
 				513D7B002018628000F6DA4C /* GCDAsyncSocket.m in Sources */,
 				5170D15E201022C1005BA9C8 /* BasePageViewController.swift in Sources */,
@@ -422,11 +450,15 @@
 				513D7B0620186E2A00F6DA4C /* JSONUtils.swift in Sources */,
 				5170D17C2014CF9E005BA9C8 /* ProjectInfoViewController.swift in Sources */,
 				511F6AA62015724800C47096 /* ShowAccount.swift in Sources */,
+				513EEE09203FAB0C00F49CDB /* RunningDataViewController.swift in Sources */,
 				516D8ACB201EC2A40030B4A2 /* ToastHelper.swift in Sources */,
 				51D205662005F255008763B9 /* LoginViewController.swift in Sources */,
 				5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */,
 				516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */,
 				513D7B0F2018831A00F6DA4C /* StringUtils.swift in Sources */,
+				513EEE0B203FAB9800F49CDB /* ProjectAddViewController.swift in Sources */,
+				513EEE0F203FAE4200F49CDB /* DeviceModifyViewController.swift in Sources */,
+				513EEE13203FAF9500F49CDB /* InfoRefindViewController.swift in Sources */,
 				5170D1702011CD88005BA9C8 /* SocketConn.swift in Sources */,
 				513D7B0420186CD700F6DA4C /* BaseData.swift in Sources */,
 				51D205642005F255008763B9 /* AppDelegate.swift in Sources */,

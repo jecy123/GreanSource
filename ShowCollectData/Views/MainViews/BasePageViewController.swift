@@ -47,6 +47,7 @@ class BasePageViewController:UIViewController{
         self.view.addSubview(imageTop)
         
         self.titleView = UIView(frame: CGRect(x: 0, y: topImageHeight - titleViewHeight, width: screenWidth, height: titleViewHeight))
+        
         let backBtn:UIButton = UIButton(frame: CGRect(x: 0, y: 5, width: 40, height: 30))
         backBtn.setImage(UIImage(named: "arrow_back"), for: .normal)
         backBtn.addTarget(self, action: #selector(onBack(_:)), for: .touchUpInside)

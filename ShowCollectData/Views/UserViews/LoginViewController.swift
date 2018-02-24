@@ -121,15 +121,7 @@ class ViewController: UIViewController {
     }
     
     func gotoMainView(){
-        let titles = ["项目信息","运行状态","运行数据","标题四","标题五","标题六","标题七","标题八","标题九","标题十"]
-        var pages = [BasePageViewController]()
-        //let infoViewController = ProjectInfoViewController(title: titles[0])
-        //pages.append(infoViewController)
         
-        for title in titles{
-            let page = ProjectInfoViewController(title:title)
-            pages.append(page)
-        }
         let pagesOptions:[UIViewPagerOption] = [
             .TitleBarHeight(50),
             .TitleBarBackgroudColor(ColorUtils.mainThemeColor),
@@ -137,7 +129,7 @@ class ViewController: UIViewController {
             .TitleFont(UIFont.systemFont(ofSize: 15)),
             .TitleColor(UIColor.black),
             .TitleSelectedColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
-            .TitleItemWidth(90),
+            .TitleItemWidth(self.view.frame.width / 3),
             .IndicatorColor(ColorUtils.mainThemeColor/*#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)*/),
             .IndicatorHeight(5),
             .BottomlineColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
@@ -146,15 +138,9 @@ class ViewController: UIViewController {
             
         ]
         
-        let rootView:ISViewPagerContainer = ISViewPagerContainer()
+        let rootView:MainViewController = MainViewController(options: pagesOptions, type: MainViewType.typeAdmin)
         let baseVc = UINavigationController(rootViewController: rootView)
-        
-        rootView.titles = titles
-        rootView.viewPages = pages
-        rootView.options = pagesOptions
-        // let pages = ISViewPagerContainer(titles: titles, viewPages:viewPages,options: pagesOptions)
-        rootView.view.backgroundColor = UIColor.white
-        
+    
         //baseVc.navigationBar.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         baseVc.isNavigationBarHidden = true
         
