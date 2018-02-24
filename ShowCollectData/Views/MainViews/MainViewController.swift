@@ -18,6 +18,9 @@ enum MainViewType{
 class MainViewController: ISViewPagerContainer {
     let titlesAdmin = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","维护人员修改","找回信息审核"]
     
+    var projects:[ShowProject]!
+    var pages:[BasePageViewController]!
+    
     init(options: [UIViewPagerOption], type: MainViewType) {
         super.init(nibName: nil, bundle: nil)
         self.options = options
@@ -29,7 +32,7 @@ class MainViewController: ISViewPagerContainer {
             break
         }
         //let titles = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","维护人员修改","找回信息审核"]
-        var pages = [BasePageViewController]()
+        pages = [BasePageViewController]()
         
         let projectInfoView = ProjectInfoViewController(title:titles[0])
         pages.append(projectInfoView)
