@@ -14,10 +14,17 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
     
     private var socket: GCDAsyncSocket!
     private var tag:Int!
+
+    var readCount:Int
+    var unreadCount:Int
+    var responseMsg: ShowMessage!
     
     public var responceHandler:((RequestRet)->Void)?
     
     override init(){
+        self.readCount = 0
+        self.unreadCount = 0
+        self.responseMsg = ShowMessage()
         super.init()
         self.setup()
     }
@@ -97,6 +104,9 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
         }
     }
     
+    func readData(){
+    }
+    
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
         let readClientDataString: NSString? = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)
@@ -104,36 +114,75 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
         print(data.base64EncodedString())
         
         let bytes = [UInt8](data)
+        //这里要分段获取数据，因为如果待获取的数据太长，可能需要不止一次的读取数据
+        if readCount == 0 {
+            //第一次获取到数据
+            readCount += bytes.count
+            print("数据长度 = \(bytes.count)")
+            print("首次获取到数据")
+            let flag = bytes[0]
+            let msgTotalLen = StringUtils.conventBytesToUint32(bytes: bytes, start: 1, bigDean: true)
+            let msgCode = StringUtils.conventBytesToUint32(bytes: bytes, start: 5, bigDean: true)
+            let statusCode = StringUtils.conventBytesToUint32(bytes: bytes, start: 9, bigDean: true)
+            let msgLen = StringUtils.conventBytesToUint16(bytes: bytes, start: 13, bigDean: true)
+            let responseStr = StringUtils.conventBytesToString(bytes: bytes, start: 15)
+            
+            if let msgTotalLen = msgTotalLen,
+                let msgCode = msgCode,
+                let statusCode = statusCode,
+                let msgLen = msgLen,
+                let responseStr = responseStr
+            {
+                print("===Success===")
+                print("flag = \(flag)")
+                print("msgTotalLen = \(msgTotalLen)")
+                print("msgCode = \(msgCode)")
+                print("statusCode = \(statusCode)")
+                print("msgLen = \(msgLen)")
+                
+                unreadCount = Int(msgTotalLen - UInt32(readCount))
+                responseMsg = ShowMessage(flag: flag, totalLen: msgTotalLen, code: msgCode, status: statusCode, msgLen: msgLen, msgStr: responseStr)
+                
+            }else{
+                responseMsg = nil
+            }
+            
+        }else{
+            //不是第一次获取到数据
+            readCount += bytes.count
+            print("数据长度 = \(bytes.count)")
+            print("非首次读取数据")
+            let responseStr = StringUtils.conventBytesToString(bytes: bytes, start: 0)
+            if let str = responseStr{
+                unreadCount = bytes.count - unreadCount
+                responseMsg.msgStr.append(str)
+            }else{
+                responseMsg = nil
+            }
+        }
         
-        let flag = bytes[0]
-        let msgTotalLen = StringUtils.conventBytesToUint32(bytes: bytes, start: 1, bigDean: true)
-        let msgCode = StringUtils.conventBytesToUint32(bytes: bytes, start: 5, bigDean: true)
-        let statusCode = StringUtils.conventBytesToUint32(bytes: bytes, start: 9, bigDean: true)
-        let msgLen = StringUtils.conventBytesToUint16(bytes: bytes, start: 13, bigDean: true)
-        let responseStr = StringUtils.conventBytesToString(bytes: bytes, start: 15)
         
-        if let msgTotalLen = msgTotalLen,
-            let msgCode = msgCode,
-            let statusCode = statusCode,
-            let msgLen = msgLen,
-            let responseStr = responseStr
+        
+        if let responseMsg = responseMsg
         {
-         
+            if unreadCount > 0 {
+                //数据没有读完，还要再次读取数据
+                self.socket.readData(withTimeout: -1, tag: self.tag)
+                return
+            }
             
-            
-            print("===Success===")
-            print("flag = \(flag)")
-            print("msgTotalLen = \(msgTotalLen)")
-            print("msgCode = \(msgCode)")
-            print("statusCode = \(statusCode)")
-            print("msgLen = \(msgLen)")
+            //当所有数据读取完成后就会执行这里的代码
+            readCount = 0
+            unreadCount = 0
             
             //let r:RequestRet = RequestRet.success(response: readClientDataString as! String)
             if let handler = self.responceHandler {
-                handler(.success(responseMsg: ShowMessage(code: msgCode, msg: responseStr)))
+                handler(.success(responseMsg: responseMsg))
             }
         }else{
             print("Failed")
+            readCount = 0
+            unreadCount = 0
             
             if let handler = self.responceHandler{
                 handler(.failed(errCode: .responseFormatError))

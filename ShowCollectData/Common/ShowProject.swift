@@ -24,6 +24,10 @@ class ShowProject: BaseData{
     "workerName": "里方正",
     "workerPhone": "133232"*/
     
+    //项目类型：10 - 太阳能污水处理系统，20 - 智能运维系统
+    static let PROJ_TYPE_SUNPOWER = 10
+    static let PROJ_TYPE_SMART = 20
+    
     override init() {
         super.init()
     }

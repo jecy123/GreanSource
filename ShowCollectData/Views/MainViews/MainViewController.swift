@@ -20,18 +20,20 @@ class MainViewController: ISViewPagerContainer {
     
     var projects:[ShowProject]!
     var pages:[BasePageViewController]!
+    var viewType: MainViewType!{
+        didSet{
+            initViewPages(type: viewType)
+        }
+    }
     
-    init(options: [UIViewPagerOption], type: MainViewType) {
-        super.init(nibName: nil, bundle: nil)
-        self.options = options
-        
+    func initViewPages(type: MainViewType){
         switch type {
-        case .typeAdmin:
+        case MainViewType.typeAdmin:
             self.titles = titlesAdmin
         default:
             break
         }
-        //let titles = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","维护人员修改","找回信息审核"]
+        
         pages = [BasePageViewController]()
         
         let projectInfoView = ProjectInfoViewController(title:titles[0])
@@ -60,7 +62,12 @@ class MainViewController: ISViewPagerContainer {
         
         self.viewPages = pages
         self.view.backgroundColor = UIColor.white
-        
+    }
+    
+    init(options: [UIViewPagerOption], type: MainViewType) {
+        super.init(nibName: nil, bundle: nil)
+        self.options = options
+        initViewPages(type: type)
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -73,7 +80,7 @@ class MainViewController: ISViewPagerContainer {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("MainView.navigationController = \(self.navigationController)")
         // Do any additional setup after loading the view.
     }
     

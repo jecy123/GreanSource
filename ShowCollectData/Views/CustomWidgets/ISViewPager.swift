@@ -192,9 +192,9 @@ open class ISViewPagerContainer:UIViewController{
         super.viewDidLoad()
         ISViewPagerContainer.cnt += 1
         
-        print("count = \(ISViewPagerContainer.cnt)")
+        print("ISViewPagerContainer.count = \(ISViewPagerContainer.cnt)")
         self.navigationController?.title = "2222"
-        print("navigationController = \(self.navigationController)")
+        print("ISViewPagerContainer.navigationController = \(self.navigationController)")
         if((UIDevice.current.systemVersion as NSString).doubleValue >= 7.0){
             self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
         }

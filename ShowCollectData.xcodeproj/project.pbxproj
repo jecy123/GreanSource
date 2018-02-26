@@ -27,6 +27,9 @@
 		513EEE11203FAF7100F49CDB /* MaintainerModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE10203FAF7100F49CDB /* MaintainerModifyViewController.swift */; };
 		513EEE13203FAF9500F49CDB /* InfoRefindViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE12203FAF9500F49CDB /* InfoRefindViewController.swift */; };
 		513EEE1520410CF000F49CDB /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE1420410CF000F49CDB /* MainViewController.swift */; };
+		513EEE1820439F5100F49CDB /* AddressUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE1720439F5100F49CDB /* AddressUtils.swift */; };
+		513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE1920439F8D00F49CDB /* AddressItem.swift */; };
+		513EEE1C2043A4DE00F49CDB /* address.txt in Resources */ = {isa = PBXBuildFile; fileRef = 513EEE1B2043A4DE00F49CDB /* address.txt */; };
 		516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC22019ADF10030B4A2 /* ShowMessage.swift */; };
 		516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC42019BFA90030B4A2 /* ShowLocation.swift */; };
 		516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC62019C07E0030B4A2 /* ShowProject.swift */; };
@@ -87,6 +90,9 @@
 		513EEE10203FAF7100F49CDB /* MaintainerModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintainerModifyViewController.swift; sourceTree = "<group>"; };
 		513EEE12203FAF9500F49CDB /* InfoRefindViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoRefindViewController.swift; sourceTree = "<group>"; };
 		513EEE1420410CF000F49CDB /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		513EEE1720439F5100F49CDB /* AddressUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressUtils.swift; sourceTree = "<group>"; };
+		513EEE1920439F8D00F49CDB /* AddressItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressItem.swift; sourceTree = "<group>"; };
+		513EEE1B2043A4DE00F49CDB /* address.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = address.txt; sourceTree = "<group>"; };
 		516D8AC22019ADF10030B4A2 /* ShowMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMessage.swift; sourceTree = "<group>"; };
 		516D8AC42019BFA90030B4A2 /* ShowLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocation.swift; sourceTree = "<group>"; };
 		516D8AC62019C07E0030B4A2 /* ShowProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProject.swift; sourceTree = "<group>"; };
@@ -141,6 +147,7 @@
 		511F6AA42015722500C47096 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				513EEE1620439F2F00F49CDB /* Address */,
 				511F6AA52015724800C47096 /* ShowAccount.swift */,
 				516D8AC22019ADF10030B4A2 /* ShowMessage.swift */,
 				516D8AC42019BFA90030B4A2 /* ShowLocation.swift */,
@@ -229,6 +236,15 @@
 			path = CustomWidgets;
 			sourceTree = "<group>";
 		};
+		513EEE1620439F2F00F49CDB /* Address */ = {
+			isa = PBXGroup;
+			children = (
+				513EEE1720439F5100F49CDB /* AddressUtils.swift */,
+				513EEE1920439F8D00F49CDB /* AddressItem.swift */,
+			);
+			name = Address;
+			sourceTree = "<group>";
+		};
 		5170D16E2011CD4D005BA9C8 /* Socket */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,6 +286,7 @@
 				511F85E5200750F3008CA05A /* Views */,
 				511F85E620075141008CA05A /* StoryBoards */,
 				51D205632005F255008763B9 /* AppDelegate.swift */,
+				513EEE1B2043A4DE00F49CDB /* address.txt */,
 				51D2056F2005F255008763B9 /* Info.plist */,
 				51D2056A2005F255008763B9 /* Assets.xcassets */,
 			);
@@ -405,6 +422,7 @@
 				51D2056E2005F255008763B9 /* LaunchScreen.storyboard in Resources */,
 				51D2056B2005F255008763B9 /* Assets.xcassets in Resources */,
 				51D205692005F255008763B9 /* Main.storyboard in Resources */,
+				513EEE1C2043A4DE00F49CDB /* address.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,6 +454,7 @@
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
 				513EEE0D203FAE2100F49CDB /* ProjectModifyViewController.swift in Sources */,
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,
+				513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */,
 				51A68BA7200C9CB60046A5E6 /* UseRetrieveViewController.swift in Sources */,
 				512E654C2009D47500478420 /* ColorUtils.swift in Sources */,
 				513D7B0B2018703800F6DA4C /* MsgProtocol.swift in Sources */,
@@ -449,6 +468,7 @@
 				516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */,
 				513D7B0620186E2A00F6DA4C /* JSONUtils.swift in Sources */,
 				5170D17C2014CF9E005BA9C8 /* ProjectInfoViewController.swift in Sources */,
+				513EEE1820439F5100F49CDB /* AddressUtils.swift in Sources */,
 				511F6AA62015724800C47096 /* ShowAccount.swift in Sources */,
 				513EEE09203FAB0C00F49CDB /* RunningDataViewController.swift in Sources */,
 				516D8ACB201EC2A40030B4A2 /* ToastHelper.swift in Sources */,

@@ -138,8 +138,10 @@ class ViewController: UIViewController {
             
         ]
         
-        let rootView:MainViewController = MainViewController(options: pagesOptions, type: MainViewType.typeAdmin)
+        let rootView:MainViewController = MainViewController()
         let baseVc = UINavigationController(rootViewController: rootView)
+        rootView.options = pagesOptions
+        rootView.viewType = MainViewType.typeAdmin
     
         //baseVc.navigationBar.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         baseVc.isNavigationBarHidden = true
@@ -197,6 +199,7 @@ class ViewController: UIViewController {
                 
                 self.doRecordNameAndPwd(isRecord: self.btnRememberPwdFlag, name: accountName, password: password)
                 print("\(resAccount.account) 已经登录")
+                //print("projects = \(resAccount.projects)")
                 self.gotoMainView()
             }else{
                 
