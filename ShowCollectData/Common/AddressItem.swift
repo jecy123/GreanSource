@@ -11,6 +11,10 @@ import Foundation
 class AddressItem {
     var provinceItem: [ProvinceItem]!
     
+    init() {
+        self.provinceItem = [ProvinceItem]()
+    }
+    
     func fromDictionary(dic:NSDictionary){
         if let provinceItems = dic["ProvinceItems"] {
             let provinces = provinceItems as! NSDictionary
@@ -30,12 +34,15 @@ class AddressItem {
     }
 }
 
-class ProvinceItem {
-    var cityItems:[CityItem]!
-    var id: String!
-    var name: String!
+class ProvinceItem : BaseItem{
+    override init() {
+        super.init()
+        self.level = 0
+        self.children = [CityItem]()
+    }
     
-    func fromDictionary(dic: NSDictionary){
+    override func fromDictionary(dic: NSDictionary){
+        super.fromDictionary(dic: dic)
         if let id = dic["Id"] {
             self.id = id as! String
         }
@@ -45,54 +52,66 @@ class ProvinceItem {
         }
         
         if let city = dic["City"] {
-            self.cityItems = [CityItem]()
             let cityDics = city as! Array<NSDictionary>
             for cityDic in cityDics{
                 let cityItem = CityItem()
                 cityItem.fromDictionary(dic: cityDic)
-                self.cityItems.append(cityItem)
+                self.children.append(cityItem)
             }
         }
     }
 }
 
-class CityItem {
-    var areaItems: [AreaItem]!
-    var id: String!
-    var name: String!
+class CityItem : BaseItem{
     
-    func fromDictionary(dic: NSDictionary){
-        if let id = dic["Id"] {
-            self.id = id as! String
-        }
-        
-        if let name = dic["Name"] {
-            self.name = name as! String
-        }
-        
+    override init() {
+        super.init()
+        self.level = 1
+        self.children = [AreaItem]()
+    }
+    
+    override func fromDictionary(dic: NSDictionary){
+        super.fromDictionary(dic: dic)
         
         if let areas = dic["Area"] {
-            self.areaItems = [AreaItem]()
             let areaDics = areas as! Array<NSDictionary>
             for areaDic in areaDics{
                 let area = AreaItem()
                 area.fromDictionary(dic: areaDic)
-                self.areaItems.append(area)
+                self.children.append(area)
             }
         }
     }
 }
 
-class AreaItem {
-    var id: String!
-    var name: String!
+class AreaItem :BaseItem {
     
-    func fromDictionary(dic: NSDictionary){
-        if let id = dic["Id"] {
-            self.id = id as! String
-        }
-        if let name = dic["Name"] {
-            self.name = name as! String
-        }
+    override init() {
+        super.init()
+        self.level = 2
+        self.children = [ProjectNameItem]()
+    }
+    override func fromDictionary(dic: NSDictionary){
+        super.fromDictionary(dic: dic)
+    }
+    
+    func addProject(projectName: String, projectId: String) {
+        let projectItem: ProjectNameItem = ProjectNameItem(name: projectName, id: projectId)
+        self.children.append(projectItem)
+        
+    }
+}
+
+class ProjectNameItem: BaseItem {
+    
+    convenience init(name: String, id: String) {
+        self.init()
+        self.name = name
+        self.id = id
+    }
+    override init() {
+        super.init()
+        self.isLeaf = true
+        self.level = 3
     }
 }

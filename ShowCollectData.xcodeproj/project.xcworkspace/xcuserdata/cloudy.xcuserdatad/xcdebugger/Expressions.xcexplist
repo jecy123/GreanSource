@@ -3,12 +3,29 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "GLOBAL">
+         <PersistentStrings>
+            <PersistentString
+               value = "AddressUtils.sunPowerItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static AddressUtils.buildItems(projects:):AddressUtils.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DropBoxView.init(parentView:title:items:frame:):DropBoxView.swift">
+      </ContextState>
+      <ContextState
          contextName = "DropBoxView.init(parentVC:title:items:frame:):DropBoxView.swift">
          <PersistentStrings>
             <PersistentString
                value = "parentVC.view">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "static AddressUtils.queryLocationId(locationId:):AddressUtils.swift">
       </ContextState>
       <ContextState
          contextName = "ShowAccount.fromDictionary(dic:):ShowAccount.swift">
@@ -19,15 +36,20 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "ViewController.gotoMainView():LoginViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AddressUtils.smartSysItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "TableItemView.init(parentVC:item:):tableItemView.swift">
          <PersistentStrings>
             <PersistentString
                value = "contentPopup">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "DropBoxView.init(parentView:title:items:frame:):DropBoxView.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

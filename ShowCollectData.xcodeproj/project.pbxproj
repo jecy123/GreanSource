@@ -7,9 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5109A49A2045478300986733 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109A4992045478300986733 /* Popover.swift */; };
 		511F6AA62015724800C47096 /* ShowAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F6AA52015724800C47096 /* ShowAccount.swift */; };
 		511F85E820075291008CA05A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F85E720075291008CA05A /* RegisterViewController.swift */; };
 		511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F85E920078CA9008CA05A /* tableItemView.swift */; };
+		5125781E20452E7800344B60 /* BaseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125781D20452E7800344B60 /* BaseItem.swift */; };
+		512578202045315B00344B60 /* TreeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5125781F2045315B00344B60 /* TreeTableView.swift */; };
+		512578232045317900344B60 /* TreeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512578212045317800344B60 /* TreeTableViewCell.swift */; };
+		512578242045317900344B60 /* TreeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 512578222045317900344B60 /* TreeTableViewCell.xib */; };
+		512578282045354F00344B60 /* tree_ec.png in Resources */ = {isa = PBXBuildFile; fileRef = 512578262045354F00344B60 /* tree_ec.png */; };
+		512578292045354F00344B60 /* tree_ex.png in Resources */ = {isa = PBXBuildFile; fileRef = 512578272045354F00344B60 /* tree_ex.png */; };
 		512E654C2009D47500478420 /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512E654B2009D47500478420 /* ColorUtils.swift */; };
 		512E654E2009F3F800478420 /* UserBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512E654D2009F3F800478420 /* UserBaseController.swift */; };
 		513D7AF0201836A600F6DA4C /* ConnectAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7AEF201836A600F6DA4C /* ConnectAPI.swift */; };
@@ -68,9 +75,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5109A4992045478300986733 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
 		511F6AA52015724800C47096 /* ShowAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAccount.swift; sourceTree = "<group>"; };
 		511F85E720075291008CA05A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		511F85E920078CA9008CA05A /* tableItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableItemView.swift; sourceTree = "<group>"; };
+		5125781D20452E7800344B60 /* BaseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseItem.swift; sourceTree = "<group>"; };
+		5125781F2045315B00344B60 /* TreeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeTableView.swift; sourceTree = "<group>"; };
+		512578212045317800344B60 /* TreeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeTableViewCell.swift; sourceTree = "<group>"; };
+		512578222045317900344B60 /* TreeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TreeTableViewCell.xib; sourceTree = "<group>"; };
+		512578262045354F00344B60 /* tree_ec.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree_ec.png; sourceTree = "<group>"; };
+		512578272045354F00344B60 /* tree_ex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree_ex.png; sourceTree = "<group>"; };
 		512E654B2009D47500478420 /* ColorUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
 		512E654D2009F3F800478420 /* UserBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBaseController.swift; sourceTree = "<group>"; };
 		513D7AEF201836A600F6DA4C /* ConnectAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectAPI.swift; sourceTree = "<group>"; };
@@ -176,6 +190,15 @@
 			path = StoryBoards;
 			sourceTree = "<group>";
 		};
+		512578252045352700344B60 /* Asserts */ = {
+			isa = PBXGroup;
+			children = (
+				512578262045354F00344B60 /* tree_ec.png */,
+				512578272045354F00344B60 /* tree_ex.png */,
+			);
+			name = Asserts;
+			sourceTree = "<group>";
+		};
 		512E65482008986300478420 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -228,10 +251,14 @@
 		513D7B0920186FB800F6DA4C /* CustomWidgets */ = {
 			isa = PBXGroup;
 			children = (
+				5109A4992045478300986733 /* Popover.swift */,
 				511F85E920078CA9008CA05A /* tableItemView.swift */,
 				51A68BA8200CA7120046A5E6 /* DropBoxView.swift */,
 				5170D16C20118C0A005BA9C8 /* ISViewPager.swift */,
 				516D8AC8201B09EF0030B4A2 /* TGCToastView.swift */,
+				5125781F2045315B00344B60 /* TreeTableView.swift */,
+				512578212045317800344B60 /* TreeTableViewCell.swift */,
+				512578222045317900344B60 /* TreeTableViewCell.xib */,
 			);
 			path = CustomWidgets;
 			sourceTree = "<group>";
@@ -241,6 +268,7 @@
 			children = (
 				513EEE1720439F5100F49CDB /* AddressUtils.swift */,
 				513EEE1920439F8D00F49CDB /* AddressItem.swift */,
+				5125781D20452E7800344B60 /* BaseItem.swift */,
 			);
 			name = Address;
 			sourceTree = "<group>";
@@ -280,6 +308,7 @@
 		51D205622005F255008763B9 /* ShowCollectData */ = {
 			isa = PBXGroup;
 			children = (
+				512578252045352700344B60 /* Asserts */,
 				5170D16E2011CD4D005BA9C8 /* Socket */,
 				511F6AA42015722500C47096 /* Common */,
 				512E65482008986300478420 /* Utils */,
@@ -420,9 +449,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				51D2056E2005F255008763B9 /* LaunchScreen.storyboard in Resources */,
+				512578282045354F00344B60 /* tree_ec.png in Resources */,
 				51D2056B2005F255008763B9 /* Assets.xcassets in Resources */,
+				512578292045354F00344B60 /* tree_ex.png in Resources */,
 				51D205692005F255008763B9 /* Main.storyboard in Resources */,
 				513EEE1C2043A4DE00F49CDB /* address.txt in Resources */,
+				512578242045317900344B60 /* TreeTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,20 +484,24 @@
 				513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */,
 				513EEE11203FAF7100F49CDB /* MaintainerModifyViewController.swift in Sources */,
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
+				512578202045315B00344B60 /* TreeTableView.swift in Sources */,
 				513EEE0D203FAE2100F49CDB /* ProjectModifyViewController.swift in Sources */,
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,
 				513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */,
 				51A68BA7200C9CB60046A5E6 /* UseRetrieveViewController.swift in Sources */,
+				5109A49A2045478300986733 /* Popover.swift in Sources */,
 				512E654C2009D47500478420 /* ColorUtils.swift in Sources */,
 				513D7B0B2018703800F6DA4C /* MsgProtocol.swift in Sources */,
 				511F85E820075291008CA05A /* RegisterViewController.swift in Sources */,
 				513EEE07203FA64200F49CDB /* RuningStateViewController.swift in Sources */,
 				513EEE1520410CF000F49CDB /* MainViewController.swift in Sources */,
+				512578232045317900344B60 /* TreeTableViewCell.swift in Sources */,
 				516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */,
 				513D7B002018628000F6DA4C /* GCDAsyncSocket.m in Sources */,
 				5170D15E201022C1005BA9C8 /* BasePageViewController.swift in Sources */,
 				51A68BA9200CA7130046A5E6 /* DropBoxView.swift in Sources */,
 				516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */,
+				5125781E20452E7800344B60 /* BaseItem.swift in Sources */,
 				513D7B0620186E2A00F6DA4C /* JSONUtils.swift in Sources */,
 				5170D17C2014CF9E005BA9C8 /* ProjectInfoViewController.swift in Sources */,
 				513EEE1820439F5100F49CDB /* AddressUtils.swift in Sources */,

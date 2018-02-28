@@ -101,4 +101,14 @@ class StringUtils {
         let str = String(bytes: stringBytes, encoding: .utf8)!
         return str
     }
+    
+    public static func subString(of string: String, from: Int, to: Int) -> String?{
+        guard from <= to else{
+            return nil
+        }
+        let start = string.index(string.startIndex, offsetBy: from)
+        let end = string.index(string.startIndex, offsetBy: to)
+        return String(string[start...end])
+    
+    }
 }

@@ -199,6 +199,8 @@ class ViewController: UIViewController {
                 
                 self.doRecordNameAndPwd(isRecord: self.btnRememberPwdFlag, name: accountName, password: password)
                 print("\(resAccount.account) 已经登录")
+                
+                AddressUtils.getItems(projects: resAccount.projects)
                 //print("projects = \(resAccount.projects)")
                 self.gotoMainView()
             }else{
