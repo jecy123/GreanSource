@@ -108,6 +108,7 @@ class ProjectNameItem: BaseItem {
         self.init()
         self.name = name
         self.id = id
+        self.children = []
     }
     override init() {
         super.init()

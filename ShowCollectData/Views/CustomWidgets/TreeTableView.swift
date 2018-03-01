@@ -8,9 +8,17 @@
 
 import UIKit
 
+@objc protocol TreeTableDelegate {
+    @objc optional func TreeTable(_ treeTableView: TreeTableView, section: Int, didSelectProject id: Int)
+}
+
+
 class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     
-    var mNodes: [BaseItem]!
+    var mNodes1: [BaseItem]!
+    var mNodes2: [BaseItem]!
+    
+    var treeTableDelegate: TreeTableDelegate?
     
     let NodeCellId = "nodeCell"
     //选项展开的图标
@@ -18,9 +26,11 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     //选项未展开的图标
     let image_ec = "tree_ec.png"
     
-    init(frame: CGRect, data: [BaseItem]) {
+    init(frame: CGRect, data1: [BaseItem], data2: [BaseItem]) {
         super.init(frame: frame, style: .plain)
-        self.mNodes = data
+        self.mNodes1 = data1
+        self.mNodes2 = data2
+        
         self.delegate = self
         self.dataSource = self
     }
@@ -29,8 +39,17 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         fatalError("init(coder:) has not been implemented")
     }
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return mNodes.count
+        if section == 0 {
+            return mNodes1.count
+        }else if section == 1{
+            return mNodes2.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -41,7 +60,14 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         
         let cell = tableView.dequeueReusableCell(withIdentifier: NodeCellId) as! TreeTableViewCell
         
-        let node: BaseItem = mNodes![indexPath.row]
+        
+        var node: BaseItem!
+        
+        if indexPath.section == 0 {
+            node = mNodes1[indexPath.row]
+        }else{
+            node = mNodes2[indexPath.row]
+        }
         
         //cell缩进
         cell.background.bounds.origin.x = -20.0 * CGFloat(node.level)
@@ -63,6 +89,59 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 40
+    }
+   
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return CGFloat.leastNormalMagnitude
+    }
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let title = StringUtils.systemNames[section]
+        return title
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var selectedNode: BaseItem!
+        switch indexPath.section {
+        case 0:
+            selectedNode = mNodes1[indexPath.row]
+        default:
+            selectedNode = mNodes2[indexPath.row]
+            
+        }
+        
+        //let startPosition = indexPath.row + 1
+        //var endPosition = startPosition
+        
+        if selectedNode.isLeaf {
+            //叶子节点被选中
+            self.treeTableDelegate?.TreeTable!(self, section: indexPath.section, didSelectProject: Int(selectedNode.id)!)
+            return
+        }else{
+            if selectedNode.isExpand{
+                //endPosition += AddressUtils.getAnimateSubCnt(selectedNode)
+                selectedNode.setExpand(false)
+                
+            }else{
+                selectedNode.setExpand(true)
+                //endPosition += AddressUtils.getAnimateSubCnt(selectedNode)
+            }
+        }
+        switch indexPath.section {
+        case 0:
+            mNodes1 = AddressUtils.getVisibleItems(section: indexPath.section)
+        case 1:
+            mNodes2 = AddressUtils.getVisibleItems(section: indexPath.section)
+        default:
+            break
+        }
+        self.reloadData()
+    }
 
     /*
     // Only override draw() if you perform custom drawing.

@@ -26,10 +26,11 @@ class ProjectInfoViewController: BasePageViewController {
 //        self.delegate?.onMenu(self)
 //    }
 //    
-    override func onMenu(_ sender: UIButton) {
-        print("项目信息界面菜单")
-        self.delegate?.onBack(self)
-    }
+//    override func onMenu(_ sender: UIButton) {
+//        print("项目信息界面菜单")
+//        super.onMenu(sender)
+//        self.delegate?.onMenu(self)
+//    }
 
     /*
     // MARK: - Navigation

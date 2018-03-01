@@ -14,6 +14,31 @@ class AddressUtils {
     static var sunPowerItem: AddressItem!
     static var smartSysItem: AddressItem!
     
+    static func getVisibleItems(section: Int) -> [BaseItem]{
+        
+        var res:[BaseItem] = []
+        let sectionProvince = section == 0 ? sunPowerItem.provinceItem : smartSysItem.provinceItem
+        for item in sectionProvince! {
+            res.append(item)
+            if item.isExpand {
+                for child in item.children{
+                    res.append(child)
+                    if child.isExpand {
+                        for area in child.children {
+                            res.append(area)
+                            if area.isExpand {
+                                for proj in area.children {
+                                    res.append(proj)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return res
+    }
+    
     static func initAddress()
     {
         if let path = Bundle.main.path(forResource: "address", ofType: "txt"){

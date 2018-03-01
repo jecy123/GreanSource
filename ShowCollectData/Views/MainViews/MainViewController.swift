@@ -15,14 +15,43 @@ enum MainViewType{
     case typeNormalUser //普通用户
 }
 
-class MainViewController: ISViewPagerContainer {
+protocol MainViewTitleItemDelegate {
+    func onBack(_ sender: UIButton)
+    func onMenu(_ sender: UIButton)
+}
+
+class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     let titlesAdmin = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","维护人员修改","找回信息审核"]
+    let titlesEp = ["项目信息", "运行状态","运行数据"]
     
-    var projects:[ShowProject]!
+    var delegate:MainViewTitleItemDelegate?
+    
     var pages:[BasePageViewController]!
     var viewType: MainViewType!{
         didSet{
             initViewPages(type: viewType)
+        }
+    }
+    
+    
+    public var selectedProject: ShowProject!
+    var projects:[ShowProject]!
+    
+    public let screenWidth: CGFloat = UIScreen.main.bounds.width
+    public let topImageHeight: CGFloat = 120
+    public let titleViewHeight: CGFloat = 40
+    
+    
+    public var imageTop: UIImageView!
+    public var titleView: UIView!
+    public var titleLabel: UILabel!
+
+    public var projectListTreeView: TreeTableView!
+    public var projectListPopover: Popover!
+    
+    public var titleName:String!{
+        didSet{
+            self.titleLabel?.text = titleName
         }
     }
     
@@ -31,6 +60,7 @@ class MainViewController: ISViewPagerContainer {
         case MainViewType.typeAdmin:
             self.titles = titlesAdmin
         default:
+            //self.titles = titlesEp
             break
         }
         
@@ -60,7 +90,9 @@ class MainViewController: ISViewPagerContainer {
         let infoRefindView = InfoRefindViewController(title:titles[7])
         pages.append(infoRefindView)
         
+        self.titleName = "太阳能污水处理系统"
         self.viewPages = pages
+        //self.yOffset = self.topImageHeight + self.titleViewHeight
         self.view.backgroundColor = UIColor.white
     }
     
@@ -78,10 +110,69 @@ class MainViewController: ISViewPagerContainer {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func initPopover(){
+        projectListPopover = Popover(options: nil, showHandler: nil, dismissHandler: nil)
+        
+        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 3 * 2, height: self.view.bounds.height - 100)
+        projectListTreeView = TreeTableView(frame: frame, data1: AddressUtils.sunPowerItem.provinceItem, data2:AddressUtils.smartSysItem.provinceItem)
+        projectListTreeView.treeTableDelegate = self
+        
+    }
+    
+    func addHeadView(){
+        self.imageTop = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: topImageHeight))
+        self.imageTop.image = UIImage(named: "top")
+        self.view.addSubview(imageTop)
+        
+        self.titleView = UIView(frame: CGRect(x: 0, y: topImageHeight - titleViewHeight, width: screenWidth, height: titleViewHeight))
+        
+        let backBtn:UIButton = UIButton(frame: CGRect(x: 0, y: 5, width: 40, height: 30))
+        backBtn.setImage(UIImage(named: "arrow_back"), for: .normal)
+        backBtn.addTarget(self, action: #selector(onBack(_:)), for: .touchUpInside)
+        self.titleView.addSubview(backBtn)
+        
+        
+        let menuBtn:UIButton = UIButton(frame: CGRect(x: screenWidth - 40, y: 5, width: 40, height: 30))
+        menuBtn.setImage(UIImage(named: "arrow_menu"), for: .normal)
+        menuBtn.addTarget(self, action: #selector(onMenu(_:)), for: .touchUpInside)
+        self.titleView.addSubview(menuBtn)
+        
+        let titleLabelWidth = screenWidth - 80
+        self.titleLabel = UILabel(frame: CGRect(x: 40, y: 0, width: titleLabelWidth, height: titleViewHeight))
+        titleLabel.text = titleName
+        titleLabel.font = UIFont.systemFont(ofSize: 20)
+        titleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        titleLabel.textAlignment = .center
+        self.titleView.addSubview(titleLabel)
+        
+        self.titleView.backgroundColor = ColorUtils.mainThemeColor
+        self.view.addSubview(titleView)
+    }
+    
+    @objc public func onBack(_ sender: UIButton){
+        print("MainView onBack调用")
+        self.dismiss(animated: true, completion: nil)
+        delegate?.onBack(sender)
+    }
+    
+    @objc public func onMenu(_ sender: UIButton){
+        print("MainView onMenu调用")
+        
+        let startPoint = CGPoint(x: self.view.frame.width - 20, y: 120)
+        projectListPopover.show(projectListTreeView, point: startPoint)
+        
+        delegate?.onMenu(sender)
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("MainView.navigationController = \(self.navigationController)")
+        
         // Do any additional setup after loading the view.
+        self.addHeadView()
+        self.initPopover()
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -93,15 +184,28 @@ class MainViewController: ISViewPagerContainer {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func TreeTable(_ treeTableView: TreeTableView, section: Int, didSelectProject id: Int) {
+        
+        projectListPopover.dismiss()
+        
+        guard let projects = self.projects else {
+            return
+        }
+        
+        self.titleName = StringUtils.systemNames[section]
+        print(section)
+        print(id)
+        
+        for project in projects {
+            if project.id == id {
+                self.selectedProject = project
+                break
+            }
+        }
+        print(self.selectedProject.projectName)
+        
+        
     }
-    */
+
 
 }

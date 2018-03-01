@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func gotoMainView(){
+    func gotoMainView(projects: [ShowProject]){
         
         let pagesOptions:[UIViewPagerOption] = [
             .TitleBarHeight(50),
@@ -142,7 +142,8 @@ class ViewController: UIViewController {
         let baseVc = UINavigationController(rootViewController: rootView)
         rootView.options = pagesOptions
         rootView.viewType = MainViewType.typeAdmin
-    
+        rootView.projects = projects
+        
         //baseVc.navigationBar.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         baseVc.isNavigationBarHidden = true
         
@@ -202,7 +203,7 @@ class ViewController: UIViewController {
                 
                 AddressUtils.getItems(projects: resAccount.projects)
                 //print("projects = \(resAccount.projects)")
-                self.gotoMainView()
+                self.gotoMainView(projects: resAccount.projects)
             }else{
                 
                 print("登录失败！")

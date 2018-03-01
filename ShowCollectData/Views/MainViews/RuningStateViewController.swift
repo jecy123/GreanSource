@@ -26,8 +26,4 @@ class RunningStateViewController: BasePageViewController{
     //        self.delegate?.onMenu(self)
     //    }
     //
-    override func onMenu(_ sender: UIButton) {
-        print("运行状态界面菜单")
-        self.delegate?.onBack(self)
-    }
 }

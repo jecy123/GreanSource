@@ -20,8 +20,4 @@ class RunningDataViewController: BasePageViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func onMenu(_ sender: UIButton) {
-        print("运行数据界面菜单")
-        self.delegate?.onBack(self)
-    }
 }

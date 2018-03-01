@@ -32,6 +32,8 @@ public enum UIViewPagerOption {
     case BottomlineColor(UIColor)
     case BottomlineHeight(CGFloat)
     case TitleBarPosition(UIViewPageTitlePosition)
+    case xOffset(CGFloat)
+    case yOffset(CGFloat)
 }
 
 // MARK: - Scroll view delegate
@@ -98,6 +100,10 @@ open class ISViewPagerContainer:UIViewController{
     var bottomlineColor  = UIColor.blue
     var bottomlineHeight:CGFloat = 5.0
     var titleBarPosition: UIViewPageTitlePosition = UIViewPageTitlePosition.top
+    
+    var xOffset: CGFloat = 0
+    var yOffset: CGFloat = 0
+    
     private var titleLables = [UIButton]()
     private let contentView = UIScrollView()
     private let titleBar = UIScrollView()
@@ -137,6 +143,10 @@ open class ISViewPagerContainer:UIViewController{
                     bottomlineHeight = value
                 case let .TitleBarPosition(value):
                     titleBarPosition = value
+                case let .xOffset(value):
+                    xOffset = value
+                case let .yOffset(value):
+                    yOffset = value
                 }
             }
         }
@@ -193,7 +203,6 @@ open class ISViewPagerContainer:UIViewController{
         ISViewPagerContainer.cnt += 1
         
         print("ISViewPagerContainer.count = \(ISViewPagerContainer.cnt)")
-        self.navigationController?.title = "2222"
         print("ISViewPagerContainer.navigationController = \(self.navigationController)")
         if((UIDevice.current.systemVersion as NSString).doubleValue >= 7.0){
             self.edgesForExtendedLayout = UIRectEdge(rawValue: 0)
@@ -254,9 +263,9 @@ open class ISViewPagerContainer:UIViewController{
         
         let indicatorFrame:CGRect
         if titleBarPosition == .bottom {
-            indicatorFrame = CGRect(x: 0, y:0, width: titleItemWidth, height: indicatorHeight)
+            indicatorFrame = CGRect(x: xOffset, y: yOffset, width: titleItemWidth, height: indicatorHeight)
         }else{
-            indicatorFrame = CGRect(x: 0, y:titleBarHeight-indicatorHeight, width: titleItemWidth, height: indicatorHeight)
+            indicatorFrame = CGRect(x: xOffset, y: yOffset + titleBarHeight-indicatorHeight, width: titleItemWidth, height: indicatorHeight)
         }
         indicator.frame = indicatorFrame
         indicator.backgroundColor = indicatorColor
@@ -283,11 +292,11 @@ open class ISViewPagerContainer:UIViewController{
         case .bottom:
             titleBarFrame = CGRect(x: 0, y: Int(height - titleBarHeight), width: Int(width), height: Int(titleBarHeight))
             bottomLineFrame = CGRect(x: 0, y: 0, width: titleItemWidth*CGFloat(viewPages.count), height: bottomlineHeight)
-            contentViewFrame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: titleBarFrame.minY)
+            contentViewFrame = CGRect(x: xOffset, y: yOffset, width: self.view.frame.width, height: titleBarFrame.minY)
         case .top:
             titleBarFrame = CGRect(x: 0, y: 0, width: Int(width), height: Int(titleBarHeight))
             bottomLineFrame = CGRect(x: 0, y: titleBarHeight-bottomlineHeight, width: titleItemWidth*CGFloat(viewPages.count), height: bottomlineHeight)
-            contentViewFrame = CGRect(x: 0, y: titleBarFrame.origin.y + titleBarFrame.height, width: self.view.frame.width, height: self.view.frame.height - titleBarFrame.origin.y-titleBar.frame.height)
+            contentViewFrame = CGRect(x: xOffset, y: yOffset + titleBarFrame.origin.y + titleBarFrame.height, width: self.view.frame.width, height: self.view.frame.height - titleBarFrame.origin.y-titleBar.frame.height)
         }
         
         
