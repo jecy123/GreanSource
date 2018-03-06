@@ -21,6 +21,11 @@ class RunningStateViewController: BasePageViewController{
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        addTitleView(titleHeight: 40)
+    }
+    
     //    override func onBack(_ sender: UIButton) {
     //        print("项目信息界面返回")
     //        self.delegate?.onMenu(self)

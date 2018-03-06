@@ -44,7 +44,8 @@ class TableItemView: UIView {
         let rect = CGRect(x: 0, y: 0, width: frame.width * labelRatio - 5, height: frame.height)
         nameLabel = UILabel(frame: rect)
         nameLabel.textAlignment = .right
-        nameLabel.font = UIFont.systemFont(ofSize: frame.height * 0.57)
+        nameLabel.adjustsFontSizeToFitWidth = true
+        //nameLabel.font = UIFont.systemFont(ofSize: frame.height * 0.57)
         nameLabel.text = item.itemName
         
         

@@ -10,7 +10,6 @@ import Foundation
 
 class StringUtils {
     
-    static let systemNames = ["太阳能污水处理系统", "智能运维系统"]
     
     public static func conventUint16ToUin8(value: UInt16, bigDean: Bool) ->[UInt8]{
         var res: [UInt8]

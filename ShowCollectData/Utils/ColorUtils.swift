@@ -11,5 +11,7 @@ import UIKit
 
 class ColorUtils
 {
-    static let mainThemeColor = UIColor(red: 25/255, green: 140/255, blue: 58/255, alpha: 1)
+    static let mainThemeColor = #colorLiteral(red: 0.09803921569, green: 0.5490196078, blue: 0.3450980392, alpha: 1)
+    static let mainViewBackgroudColor = #colorLiteral(red: 0.9490196078, green: 0.9490196078, blue: 0.9490196078, alpha: 1)
+    static let itemTitleViewBgColor = #colorLiteral(red: 0.6509803922, green: 0.6509803922, blue: 0.6509803922, alpha: 1)
 }

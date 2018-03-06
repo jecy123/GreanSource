@@ -154,7 +154,7 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
             print("非首次读取数据")
             let responseStr = StringUtils.conventBytesToString(bytes: bytes, start: 0)
             if let str = responseStr{
-                unreadCount = bytes.count - unreadCount
+                unreadCount =  unreadCount - bytes.count
                 responseMsg.msgStr.append(str)
             }else{
                 responseMsg = nil

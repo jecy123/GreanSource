@@ -39,6 +39,7 @@ class ProvinceItem : BaseItem{
         super.init()
         self.level = 0
         self.children = [CityItem]()
+        self.parent = nil
     }
     
     override func fromDictionary(dic: NSDictionary){
@@ -56,6 +57,7 @@ class ProvinceItem : BaseItem{
             for cityDic in cityDics{
                 let cityItem = CityItem()
                 cityItem.fromDictionary(dic: cityDic)
+                cityItem.parent = self
                 self.children.append(cityItem)
             }
         }
@@ -68,6 +70,7 @@ class CityItem : BaseItem{
         super.init()
         self.level = 1
         self.children = [AreaItem]()
+        //self.parent = ProvinceItem()
     }
     
     override func fromDictionary(dic: NSDictionary){
@@ -78,6 +81,7 @@ class CityItem : BaseItem{
             for areaDic in areaDics{
                 let area = AreaItem()
                 area.fromDictionary(dic: areaDic)
+                area.parent = self
                 self.children.append(area)
             }
         }
@@ -90,6 +94,7 @@ class AreaItem :BaseItem {
         super.init()
         self.level = 2
         self.children = [ProjectNameItem]()
+        //self.parent = CityItem()
     }
     override func fromDictionary(dic: NSDictionary){
         super.fromDictionary(dic: dic)
@@ -97,6 +102,7 @@ class AreaItem :BaseItem {
     
     func addProject(projectName: String, projectId: String) {
         let projectItem: ProjectNameItem = ProjectNameItem(name: projectName, id: projectId)
+        projectItem.parent = self
         self.children.append(projectItem)
         
     }
@@ -109,6 +115,7 @@ class ProjectNameItem: BaseItem {
         self.name = name
         self.id = id
         self.children = []
+        self.parent = AreaItem()
     }
     override init() {
         super.init()

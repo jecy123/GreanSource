@@ -8,15 +8,72 @@
 
 import UIKit
 
-
-
-class BasePageViewController:UIViewController{
+class BasePageViewController: UIViewController{
     
-    public var selectedProject: ShowProject!
     
-    init(title:String) {
+    var topViewHeight: CGFloat = 120
+    var bottomViewHeight: CGFloat = 50
+    
+    var itemLeftPadding: CGFloat = 20
+    var itemTopPadding:CGFloat = 20
+    
+    var itemBgHeight: CGFloat {
+        return self.view.frame.height - itemTopPadding - itemTopPadding
+    }
+    
+    var itemBgWidth: CGFloat {
+        return self.view.frame.width - itemLeftPadding - itemLeftPadding
+    }
+    
+    var itemBgView: UIView!
+    var mainTitleLabel: UILabel!
+    var subTitleLabel: UILabel!
+    
+    
+    public var infomationView: InfoView!
+    
+    public var allProjects: [ShowProject]!
+    
+    public var selectedProject: ShowProject!{
+        didSet{
+            selectedProject.locationName = "" + addressNames[3] + addressNames[2] +  addressNames[1]
+            print(self.selectedProject.projectName)
+            self.refreshProject()
+            
+        }
+    }
+    
+    public var addressNames: [String]!{
+        didSet{
+            guard  addressNames.count == 4 else {
+                ToastHelper.showGlobalToast(message: "数据返回出错！")
+                return
+            }
+            self.mainTitleName = addressNames[3] + "-" + addressNames[2] + "-" + addressNames[1] + "-" + addressNames[0]
+            
+        }
+    }
+    
+    public var mainTitleName: String!{
+        didSet{
+            
+            mainTitleLabel?.text = mainTitleName
+        }
+    }
+    public var subTitleName: String!{
+        didSet{
+            subTitleLabel?.text = subTitleName
+        }
+    }
+    
+    //保存列表项
+    public var tableItemViews: [TableItemView] = []
+    //保存下拉列表
+    public var dropBoxViews: [DropBoxView] = []
+    
+    init(title: String) {
         super.init(nibName: nil, bundle: nil)
-        //self.titleName = title
+        self.subTitleName = title
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -26,9 +83,116 @@ class BasePageViewController:UIViewController{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        //self.view.backgroundColor = ColorUtils.mainThemeColor
+        
+        initItemBgView()
+        
+        print("frame = \(self.view.frame)")
+        print("bounds = \(self.view.bounds)")
+        self.view.backgroundColor = ColorUtils.mainViewBackgroudColor
         
     }
+    
+    func addInfoView(infoViewFrame: CGRect, titleRatio: CGFloat, titles: [String], contents: [String]){
+        infomationView = InfoView(frame: infoViewFrame, titleRatio: titleRatio, titles: titles, contents: contents)
+        self.itemBgView.addSubview(infomationView)
+    }
+    
+    func addTableItemView(tableFrame: CGRect, titleRatio: CGFloat, title: String, type: TableItemType, withBottomLine: Bool){
+        let tableItem = TableItem(name: title, type: type, frame: tableFrame, ratio: titleRatio)
+        let tableItemView = TableItemView(parentVC: self, item: tableItem)
+        self.itemBgView.addSubview(tableItemView)
+        self.tableItemViews.append(tableItemView)
+        
+        if withBottomLine {
+            let x: CGFloat = tableFrame.minX
+            let y: CGFloat = tableFrame.maxY
+            let w: CGFloat = tableFrame.width
+            let h: CGFloat = 1
+            let bottomLineFrame = CGRect(x: x, y: y, width: w, height: h)
+            let bottomLine = UIView(frame: bottomLineFrame)
+            bottomLine.backgroundColor = ColorUtils.itemTitleViewBgColor
+            self.itemBgView.addSubview(bottomLine)
+        }
+    }
+    
+    func addTitleView(titleHeight: CGFloat)
+    {
+        
+        let mainTitleFrame: CGRect = CGRect(x: 0, y: 0, width: self.itemBgView.frame.width, height: titleHeight)
+        let subTitleFrame: CGRect = CGRect(x: 0, y: titleHeight, width: self.itemBgView.frame.width, height: titleHeight)
+        
+        mainTitleLabel = UILabel(frame: mainTitleFrame)
+        subTitleLabel = UILabel(frame: subTitleFrame)
+        
+        mainTitleLabel.backgroundColor = ColorUtils.mainThemeColor
+        mainTitleLabel.textColor = UIColor.white
+        mainTitleLabel.textAlignment = .center
+        mainTitleLabel.text = self.mainTitleName
+        mainTitleLabel.adjustsFontSizeToFitWidth = true
+        
+        subTitleLabel.backgroundColor = ColorUtils.itemTitleViewBgColor
+        subTitleLabel.textColor = UIColor.white
+        subTitleLabel.textAlignment = .center
+        subTitleLabel.text = self.subTitleName
+        
+        self.itemBgView.addSubview(mainTitleLabel)
+        self.itemBgView.addSubview(subTitleLabel)
+    }
+    
+    func addButton(buttonframe:CGRect,title: String? , target: Any?, action: Selector, for event: UIControlEvents){
+        let button = UIButton(frame: buttonframe)
+        button.setTitle(title, for: .normal)
+        //button.setTitleColor(UIColor.white, for: .normal)
+        button.setTitleColor(UIColor.gray, for: .highlighted)
+        button.layer.cornerRadius = 5
+        button.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor
+        button.addTarget(target, action: action, for: event)
+        self.itemBgView.addSubview(button)
+    }
+    
+    func addDropBox(dropBoxFrame: CGRect, names: [String], dropBoxOffset: CGPoint, dropBoxDidSelected: @escaping (Int) -> Void){
+        
+        let dropBox = DropBoxView(title: "请选择", items: names, frame: dropBoxFrame, offset: dropBoxOffset)
+        dropBox.isHightWhenShowList = true
+        dropBox.didSelectBoxItemHandler = dropBoxDidSelected
+        self.itemBgView.addSubview(dropBox)
+        self.dropBoxViews.append(dropBox)
+    }
+    
+    func generateDeviceInfo(index: Int) -> String{
+        return ""
+    }
+
+    public func initItemBgView(){
+        itemBgView = UIView()
+        self.view.addSubview(itemBgView)
+        itemBgView.layer.borderWidth = 1
+        itemBgView.layer.borderColor = ColorUtils.itemTitleViewBgColor.cgColor
+        itemBgView.backgroundColor = UIColor.white
+    }
+    
+    public func layoutUI(){
+        let itemBgFrame = CGRect(x: itemLeftPadding, y: itemTopPadding, width: itemBgWidth, height: itemBgHeight)
+        self.itemBgView.frame = itemBgFrame
+    }
+    
+    //子类继承
+    public func refreshProject(){
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        print("size = \(size)")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        print(self.view.frame)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(self.view.frame)
+        layoutUI()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -14,6 +14,9 @@ class AddressUtils {
     static var sunPowerItem: AddressItem!
     static var smartSysItem: AddressItem!
     
+    //存储项目id和项目节点类的映射字典
+    static var projectItemDic: [Int: ProjectNameItem]!
+    
     static func getVisibleItems(section: Int) -> [BaseItem]{
         
         var res:[BaseItem] = []
@@ -76,6 +79,7 @@ class AddressUtils {
         sunPowerProjects.sort(by: { $0.locationId < $1.locationId })
         smartSysProjects.sort(by: { $0.locationId < $1.locationId })
         
+        projectItemDic = [Int : ProjectNameItem]()
         sunPowerItem = buildItems(projects: sunPowerProjects)
         smartSysItem = buildItems(projects: smartSysProjects)
         
@@ -93,6 +97,8 @@ class AddressUtils {
             guard let locationId = project.locationId else { continue }
             
             let projectItem = ProjectNameItem(name: project.projectName, id: String(project.id))
+            projectItemDic[project.id] = projectItem
+            
             //省的Id号
             let provinceId = StringUtils.subString(of: locationId, from: 0, to: 1)! + "0000"
             //市的Id号
@@ -148,37 +154,46 @@ class AddressUtils {
                     //找到了地区
                     if k < cityItem.children.count {
                         let areaItem = cityItem.children[k] as! AreaItem
+                       
+                        projectItem.parent = areaItem
                         areaItem.children.append(projectItem)
                         areaItem.childrenSize = areaItem.childrenSize + 1
                         
                     }else{
+                        projectItem.parent = areaEnity
                         areaEnity.children.append(projectItem)
                         areaEnity.childrenSize = areaEnity.childrenSize + 1
                         
+                        areaEnity.parent = cityItem
                         cityItem.children.append(areaEnity)
                         cityItem.childrenSize = cityItem.childrenSize + 1
                     }
                     
                 }else{
-                    
+                    projectItem.parent = areaEnity
                     areaEnity.children.append(projectItem)
                     areaEnity.childrenSize = areaEnity.childrenSize + 1
                     
+                    areaEnity.parent = cityEnity
                     cityEnity.children.append(areaEnity)
                     cityEnity.childrenSize = cityEnity.childrenSize + 1
                     
+                    cityEnity.parent = provinceItem
                     provinceItem.children.append(cityEnity)
                     provinceItem.childrenSize = provinceItem.childrenSize + 1
                 }
                 
                 
             }else{
+                projectItem.parent = areaEnity
                 areaEnity.children.append(projectItem)
                 areaEnity.childrenSize =  areaEnity.childrenSize + 1
                 
+                areaEnity.parent = cityEnity
                 cityEnity.children.append(areaEnity)
                 cityEnity.childrenSize = cityEnity.childrenSize + 1
                 
+                cityEnity.parent = provinceEnity
                 provinceEnity.children.append(cityEnity)
                 provinceEnity.childrenSize = provinceEnity.childrenSize + 1
                 
@@ -187,6 +202,52 @@ class AddressUtils {
             
         }
         return resItem
+    }
+    
+    public static func queryAddressNames(by locationId: String) -> [String]{
+        var res:[String] = []
+        
+        let range1 = locationId.startIndex..<locationId.index(locationId.startIndex, offsetBy: 2)
+        let range2 = locationId.startIndex..<locationId.index(locationId.startIndex, offsetBy: 4)
+        
+        let provinceId: String = locationId[range1] + "0000"
+        let cityId: String = locationId[range2] + "00"
+        
+        var i = 0
+        for item in self.addressItem.provinceItem {
+            if item.id == provinceId {
+                //找到省
+                res.append(item.name)
+                break
+            }
+            i += 1
+        }
+        if i < self.addressItem.provinceItem.count {
+            var j = 0
+            let province = self.addressItem.provinceItem[i]
+            for item in province.children{
+                //找到市
+                if item.id == cityId {
+                    res.append(item.name)
+                    break
+                }
+                j += 1
+            }
+            if j < province.children.count {
+                let city = province.children[j] as! CityItem
+                for item in city.children {
+                    
+                    //找到地区
+                    if item.id == locationId {
+                        res.append(item.name)
+                        break
+                    }
+                }
+            }
+            
+        }
+        
+        return res
     }
     
     private static func queryLocationId(locationId: String) -> [String : String]{
@@ -236,4 +297,17 @@ class AddressUtils {
         }
         return res
     }
+    public static func queryLocationNames(itemNode: BaseItem!)->[String]{
+        var resNames:[String] = []
+        var parentNode = itemNode
+        while parentNode != nil{
+            resNames.append(parentNode!.name)
+            parentNode = parentNode!.parent
+        }
+        return resNames
+    }
+    
+    
 }
+
+

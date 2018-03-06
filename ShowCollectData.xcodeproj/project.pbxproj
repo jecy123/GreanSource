@@ -55,6 +55,8 @@
 		51D2056E2005F255008763B9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51D2056C2005F255008763B9 /* LaunchScreen.storyboard */; };
 		51D205792005F255008763B9 /* ShowCollectDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D205782005F255008763B9 /* ShowCollectDataTests.swift */; };
 		51D205842005F255008763B9 /* ShowCollectDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D205832005F255008763B9 /* ShowCollectDataUITests.swift */; };
+		51E3EDD320490118003F8903 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E3EDD220490118003F8903 /* InfoView.swift */; };
+		51E3EDD5204E66FC003F8903 /* GlobalVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51E3EDD4204E66FC003F8903 /* GlobalVar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +133,8 @@
 		51D2057F2005F255008763B9 /* ShowCollectDataUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowCollectDataUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		51D205832005F255008763B9 /* ShowCollectDataUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCollectDataUITests.swift; sourceTree = "<group>"; };
 		51D205852005F255008763B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51E3EDD220490118003F8903 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		51E3EDD4204E66FC003F8903 /* GlobalVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +210,7 @@
 				513D7B0520186E2A00F6DA4C /* JSONUtils.swift */,
 				513D7B0E2018831A00F6DA4C /* StringUtils.swift */,
 				516D8ACA201EC2A40030B4A2 /* ToastHelper.swift */,
+				51E3EDD4204E66FC003F8903 /* GlobalVar.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,6 +264,7 @@
 				5125781F2045315B00344B60 /* TreeTableView.swift */,
 				512578212045317800344B60 /* TreeTableViewCell.swift */,
 				512578222045317900344B60 /* TreeTableViewCell.xib */,
+				51E3EDD220490118003F8903 /* InfoView.swift */,
 			);
 			path = CustomWidgets;
 			sourceTree = "<group>";
@@ -486,7 +492,9 @@
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
 				512578202045315B00344B60 /* TreeTableView.swift in Sources */,
 				513EEE0D203FAE2100F49CDB /* ProjectModifyViewController.swift in Sources */,
+				51E3EDD5204E66FC003F8903 /* GlobalVar.swift in Sources */,
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,
+				51E3EDD320490118003F8903 /* InfoView.swift in Sources */,
 				513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */,
 				51A68BA7200C9CB60046A5E6 /* UseRetrieveViewController.swift in Sources */,
 				5109A49A2045478300986733 /* Popover.swift in Sources */,

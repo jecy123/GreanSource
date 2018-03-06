@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol TreeTableDelegate {
-    @objc optional func TreeTable(_ treeTableView: TreeTableView, section: Int, didSelectProject id: Int)
+    @objc optional func TreeTable(_ treeTableView: TreeTableView, section: Int, addressNames: [String], didSelectProject id: Int)
 }
 
 
@@ -101,7 +101,7 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         return CGFloat.leastNormalMagnitude
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let title = StringUtils.systemNames[section]
+        let title = systemNames[section]
         return title
     }
     
@@ -119,8 +119,21 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         //var endPosition = startPosition
         
         if selectedNode.isLeaf {
+            
+            //var parentNode = selectedNode
+            
+            let names:[String] = AddressUtils.queryLocationNames(itemNode: selectedNode)
+            
+//            while parentNode != nil{
+//                names.append(parentNode!.name)
+//                parentNode = parentNode!.parent
+//            }
+            guard names.count == 4 else{
+                print("地址数据获取失败")
+                return
+            }
             //叶子节点被选中
-            self.treeTableDelegate?.TreeTable!(self, section: indexPath.section, didSelectProject: Int(selectedNode.id)!)
+            self.treeTableDelegate?.TreeTable!(self, section: indexPath.section, addressNames: names, didSelectProject: Int(selectedNode.id)!)
             return
         }else{
             if selectedNode.isExpand{

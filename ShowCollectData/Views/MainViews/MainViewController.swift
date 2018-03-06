@@ -35,12 +35,20 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     
     
     public var selectedProject: ShowProject!
-    var projects:[ShowProject]!
+    var projects:[ShowProject]!{
+        didSet{
+            guard let pages = self.pages else {
+                return
+            }
+            for page in pages {
+                page.allProjects = self.projects
+            }
+        }
+    }
     
     public let screenWidth: CGFloat = UIScreen.main.bounds.width
-    public let topImageHeight: CGFloat = 120
-    public let titleViewHeight: CGFloat = 40
-    
+    public static let topImageHeight: CGFloat = 120
+    public static let titleViewHeight: CGFloat = 40
     
     public var imageTop: UIImageView!
     public var titleView: UIView!
@@ -54,6 +62,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
             self.titleLabel?.text = titleName
         }
     }
+    
     
     func initViewPages(type: MainViewType){
         switch type {
@@ -92,8 +101,10 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         
         self.titleName = "太阳能污水处理系统"
         self.viewPages = pages
-        //self.yOffset = self.topImageHeight + self.titleViewHeight
+        self.yOffset = MainViewController.topImageHeight
         self.view.backgroundColor = UIColor.white
+        
+        
     }
     
     init(options: [UIViewPagerOption], type: MainViewType) {
@@ -111,20 +122,24 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     }
     
     func initPopover(){
-        projectListPopover = Popover(options: nil, showHandler: nil, dismissHandler: nil)
         
-        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 3 * 2, height: self.view.bounds.height - 100)
+        let options: [PopoverOption] = []
+        
+        projectListPopover = Popover(options: options, showHandler: nil, dismissHandler: nil)
+        projectListPopover.arrowSize.height = 0
+        
+        let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 3 * 2, height: self.view.frame.height * 0.75)
         projectListTreeView = TreeTableView(frame: frame, data1: AddressUtils.sunPowerItem.provinceItem, data2:AddressUtils.smartSysItem.provinceItem)
         projectListTreeView.treeTableDelegate = self
         
     }
     
     func addHeadView(){
-        self.imageTop = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: topImageHeight))
+        self.imageTop = UIImageView(frame: CGRect(x: 0, y: 0, width: screenWidth, height: MainViewController.topImageHeight))
         self.imageTop.image = UIImage(named: "top")
         self.view.addSubview(imageTop)
         
-        self.titleView = UIView(frame: CGRect(x: 0, y: topImageHeight - titleViewHeight, width: screenWidth, height: titleViewHeight))
+        self.titleView = UIView(frame: CGRect(x: 0, y: MainViewController.topImageHeight - MainViewController.titleViewHeight, width: screenWidth, height: MainViewController.titleViewHeight))
         
         let backBtn:UIButton = UIButton(frame: CGRect(x: 0, y: 5, width: 40, height: 30))
         backBtn.setImage(UIImage(named: "arrow_back"), for: .normal)
@@ -138,7 +153,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         self.titleView.addSubview(menuBtn)
         
         let titleLabelWidth = screenWidth - 80
-        self.titleLabel = UILabel(frame: CGRect(x: 40, y: 0, width: titleLabelWidth, height: titleViewHeight))
+        self.titleLabel = UILabel(frame: CGRect(x: 40, y: 0, width: titleLabelWidth, height: MainViewController.titleViewHeight))
         titleLabel.text = titleName
         titleLabel.font = UIFont.systemFont(ofSize: 20)
         titleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -157,8 +172,8 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     
     @objc public func onMenu(_ sender: UIButton){
         print("MainView onMenu调用")
-        
         let startPoint = CGPoint(x: self.view.frame.width - 20, y: 120)
+        print("frame = \(projectListPopover.frame)")
         projectListPopover.show(projectListTreeView, point: startPoint)
         
         delegate?.onMenu(sender)
@@ -175,26 +190,26 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-    }
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        super.viewWillTransition(to: size, with: coordinator)
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func TreeTable(_ treeTableView: TreeTableView, section: Int, didSelectProject id: Int) {
-        
+    func TreeTable(_ treeTableView: TreeTableView, section: Int, addressNames: [String], didSelectProject id: Int) {
         projectListPopover.dismiss()
         
         guard let projects = self.projects else {
             return
         }
         
-        self.titleName = StringUtils.systemNames[section]
+        self.titleName = systemNames[section]
         print(section)
         print(id)
+        print(addressNames)
         
         for project in projects {
             if project.id == id {
@@ -202,10 +217,11 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
                 break
             }
         }
-        print(self.selectedProject.projectName)
         
-        
+        for page in self.pages {
+            page.addressNames = addressNames
+            page.selectedProject = self.selectedProject
+        }
+
     }
-
-
 }

@@ -37,6 +37,12 @@ class DropBoxView: UIView {
         }
     }
     
+    var contentParentView: UIView!
+    var backgroundParentView: UIView!
+    
+    //下拉列表和button的偏移量
+    var offset: CGPoint = CGPoint.zero
+    
     fileprivate var currentIndex = -1
     fileprivate var items: [String]!
     
@@ -48,12 +54,16 @@ class DropBoxView: UIView {
     fileprivate var backgroundView: UIView! // under the box background
     fileprivate var listTableView: UITableView!
     
-    
-    init(parentVC:UIViewController, parentView: UIView, title: String, items: [String], frame: CGRect, parentVCFrame:CGRect){
-        
-        print("parentView=\(parentView)")
+    init(title: String, items: [String], frame: CGRect, offset: CGPoint){
+        //print("parentView=\(parentView)")
         print("frame = \(frame)")
         super.init(frame: frame)
+        
+        guard let rootView = UIApplication.shared.keyWindow else {
+            return
+        }
+        
+        self.offset = offset
         
         backgroundColor = UIColor.white
         self.items = items
@@ -64,7 +74,7 @@ class DropBoxView: UIView {
         
         self.boxTitle = UILabel(frame: frame)
         self.boxTitle.text = title
-        self.boxTitle.font = UIFont.systemFont(ofSize: TGDropBoxTitleHoldFontSize)
+        //self.boxTitle.font = UIFont.systemFont(ofSize: TGDropBoxTitleHoldFontSize)
         self.boxTitle.textAlignment = .left
         self.boxTitle.textColor = TGDropBoxDefaultColor
         self.boxButton.addSubview(self.boxTitle)
@@ -76,7 +86,8 @@ class DropBoxView: UIView {
         self.boxArrow = UIImageView(image: UIImage(named: "ic_more_down"))
         self.boxButton.addSubview(self.boxArrow)
         
-        let parentFrame = parentVC.view.frame
+        
+        let parentFrame = rootView.frame
         
         self.boxWrapperView = UIView(frame: parentFrame)
         self.boxWrapperView.backgroundColor = UIColor.clear
@@ -99,7 +110,7 @@ class DropBoxView: UIView {
         
         self.boxWrapperView.addSubview(self.backgroundView)
         self.boxWrapperView.addSubview(self.listTableView)
-        parentView.addSubview(self.boxWrapperView)
+        rootView.addSubview(self.boxWrapperView)
         self.boxWrapperView.isHidden = true
     }
     
@@ -118,7 +129,7 @@ class DropBoxView: UIView {
 
         self.boxTitle = UILabel(frame: frame)
         self.boxTitle.text = title
-        self.boxTitle.font = UIFont.systemFont(ofSize: TGDropBoxTitleHoldFontSize)
+        //self.boxTitle.font = UIFont.systemFont(ofSize: TGDropBoxTitleHoldFontSize)
         self.boxTitle.textAlignment = .left
         self.boxTitle.textColor = TGDropBoxDefaultColor
         self.boxButton.addSubview(self.boxTitle)
@@ -174,7 +185,7 @@ class DropBoxView: UIView {
         self.boxArrow.sizeToFit()
         self.boxArrow.center = CGPoint(x: self.frame.size.width - 21, y: self.frame.size.height * 0.5)
         
-        self.listTableView.frame.origin = CGPoint(x: self.frame.origin.x, y: self.frame.origin.y + self.frame.size.height)
+        self.listTableView.frame.origin = CGPoint(x: self.offset.x + self.frame.origin.x, y: self.offset.y + self.frame.origin.y + self.frame.size.height)
         self.listTableView.frame.size = CGSize(width: self.frame.size.width, height: CGFloat(self.items.count) * TGDropBoxListCellHeight)
     }
     
@@ -265,7 +276,9 @@ class DropBoxView: UIView {
     fileprivate func didSelectItem(row: Int) {
         if currentIndex == -1 {
             self.boxTitle.textColor = TGDropBoxTitleColor
-            self.boxTitle.font = UIFont.systemFont(ofSize: TGDropBoxTitleFontSize)
+            self.boxTitle.adjustsFontSizeToFitWidth = true
+            self.boxTitle.adjustsFontForContentSizeCategory = true
+            //self.boxTitle.font = UIFont.systemFont(ofSize: TGDropBoxTitleFontSize)
         }
         
         currentIndex = row
@@ -273,6 +286,19 @@ class DropBoxView: UIView {
         self.hideBoxList()
         
         self.didSelectBoxItemHandler?(row)
+    }
+}
+
+extension DropBoxView{
+    func setBoxTitle(title:String?) {
+        self.boxTitle.textColor = TGDropBoxTitleColor
+        //self.boxTitle.adjustsFontForContentSizeCategory = true
+        self.boxTitle.text = title
+    }
+    
+    func refreshContentList(itemNames: [String]){
+        self.items = itemNames
+        self.listTableView.reloadData()
     }
 }
 

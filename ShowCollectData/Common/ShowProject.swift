@@ -43,6 +43,7 @@ class ShowProject: BaseData{
     var type:Int!
     var workerName:String!
     var workerPhone:String!
+    var locationName: String!
     
     override func fromDictionary(dic: NSDictionary) {
         super.fromDictionary(dic: dic)
@@ -75,6 +76,9 @@ class ShowProject: BaseData{
         }
         if let workerPhone = dic["workerPhone"] {
             self.workerPhone = workerPhone as! String
+        }
+        if let street = dic["street"] {
+            self.street = street as! String
         }
     }
 }

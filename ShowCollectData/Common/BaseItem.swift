@@ -16,6 +16,7 @@ class BaseItem {
     var isExpand: Bool!
     var childrenSize: Int!
     var children: [BaseItem]!
+    weak var parent: BaseItem!
     
     init() {
         self.isLeaf = false
