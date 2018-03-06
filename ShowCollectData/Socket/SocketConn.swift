@@ -181,6 +181,7 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
             }
         }else{
             print("Failed")
+            
             readCount = 0
             unreadCount = 0
             
