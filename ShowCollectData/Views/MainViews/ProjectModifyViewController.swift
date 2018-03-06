@@ -22,6 +22,8 @@ class ProjectModifyViewController: BasePageViewController {
     
     var projectNames:[String] = []
     
+    var mProject: ShowProject = ShowProject()
+    
     let titles = ["项目名称","项目类别","项目地址","街道","设计处理量","设备列表","排放标准","运维人员姓名","运维人员联系方式"]
     let capcityListNames = listToNames(list: capcityList)
     let emissionStdNames = listToNames(list: emissionStd)
@@ -49,6 +51,8 @@ class ProjectModifyViewController: BasePageViewController {
         guard let project = self.selectedProject else {
             return
         }
+        
+        self.mProject = project
         
         self.tableItemViews[0].contentText.text = project.projectName
         var projectType:String = ""
@@ -174,6 +178,11 @@ class ProjectModifyViewController: BasePageViewController {
     }
     
     @objc func onConfirm(_ sender: UIButton){
+        
+        mProject.street = self.tableItemViews[3].contentText.text
+        mProject.workerName = self.tableItemViews[7].contentText.text
+        mProject.workerPhone = self.tableItemViews[8].contentText.text
+        print("projectJSON = \(mProject.toJSON())")
         print("确认修改")
         
     }
@@ -182,7 +191,7 @@ class ProjectModifyViewController: BasePageViewController {
         guard let projects = self.allProjects else {
             return
         }
-        
+        mProject = projects[row]
         print(projects[row].projectName + "已被选择")
         if let projectItem = AddressUtils.projectItemDic[projects[row].id]{
             self.addressNames = AddressUtils.queryLocationNames(itemNode: projectItem)
@@ -191,12 +200,24 @@ class ProjectModifyViewController: BasePageViewController {
     }
     
     func onCapcityListSelected(row: Int){
+        guard row >= 0 && row <= capcityList.count - 1 else{
+            return
+        }
+        print("capability = \(capcityList[row])")
+        mProject.capability = capcityList[row]
+        //计算设备列表
         let deviceListMsg = getDeviceCountMsg(index: row)
         self.tableItemViews[5].contentText.text = deviceListMsg
+        
     }
     
     func onEmissionStdSelected(row: Int){
+        guard row >= 0 && row <= emissionStd.count - 1 else {
+            return
+        }
         
+        print("std = \(emissionStd[row])")
+        mProject.emissionStandards = emissionStd[row]
     }
 
 }

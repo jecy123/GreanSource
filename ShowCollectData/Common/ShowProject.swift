@@ -45,6 +45,51 @@ class ShowProject: BaseData{
     var workerPhone:String!
     var locationName: String!
     
+    func toJSON() -> String{
+        var dic = [String : Any]()
+        if let capability = self.capability {
+            dic["capability"] = capability
+        }
+        if let emissionStandards = self.emissionStandards {
+            dic["emissionStandards"] = emissionStandards
+        }
+        if let id = self.id {
+            dic["id"] = id
+        }
+        
+        if let locationId = self.locationId {
+            dic["locationId"] = locationId
+        }
+        if let msg = self.msg {
+            dic["msg"] = msg
+        }
+        if let projectName = self.projectName {
+            dic["projectName"] = projectName
+        }
+        if let street = self.street {
+            dic["street"] = street
+        }
+        if let state = self.state {
+            dic["state"] = state
+        }
+        if let type = self.type {
+            dic["type"] = type
+        }
+        if let workerName = self.workerName {
+            dic["workName"] = workerName
+        }
+        if let workerPhone = self.workerPhone {
+            dic["workerPhone"] = workerPhone
+        }
+        if let retCode = self.retCode {
+            dic["retCode"] = retCode
+        }
+        
+        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
+        print("JSONData = \(str)")
+        return str
+    }
+    
     override func fromDictionary(dic: NSDictionary) {
         super.fromDictionary(dic: dic)
         if let capability = dic["capability"] {

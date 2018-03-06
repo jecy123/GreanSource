@@ -65,7 +65,41 @@ class ClientRequest {
     }
     
     //项目修改
-    public static func modifyProject(){
+    public static func modifyProject(project: ShowProject, completeHandler: @escaping ((ShowAccount?) -> Void)){
         
+        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.PROJECT_UPDATE_COMMAND, msgBody: project.toJSON(), msgId: 0){
+            res in
+            switch res{
+            case .failed(let code):
+                if code == socketErrorCode.jsonStringFormatError{
+                    print("Json字符串格式错误！")
+                }else if code == socketErrorCode.responseFormatError{
+                    print("服务器响应字符串格式错误！")
+                }
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
+            case .success(let msg):
+                if msg.msgCode == ConnectAPI.PROJECT_UPDATE_RESPONSE{
+                    print(msg.msgStr)
+                    print("成功收到服务器响应！")
+//
+//                    let resAccount = ShowAccount()
+//                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
+//                    resAccount.fromDictionary(dic: dic)
+//
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }else{
+                    print("服务器消息响应码不符合条件！")
+                    
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }
+            }
+        }
     }
 }
