@@ -65,7 +65,7 @@ class ClientRequest {
     }
     
     //项目修改
-    public static func modifyProject(project: ShowProject, completeHandler: @escaping ((ShowAccount?) -> Void)){
+    public static func modifyProject(project: ShowProject, completeHandler: @escaping ((ShowProject?) -> Void)){
         
         SocketConn.Instance.sendMessage(commondCode: ConnectAPI.PROJECT_UPDATE_COMMAND, msgBody: project.toJSON(), msgId: 0){
             res in
@@ -84,13 +84,16 @@ class ClientRequest {
                 if msg.msgCode == ConnectAPI.PROJECT_UPDATE_RESPONSE{
                     print(msg.msgStr)
                     print("成功收到服务器响应！")
-//
+                    
+                    let resProject = ShowProject()
+                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
+                    resProject.fromDictionary(dic: dic)
 //                    let resAccount = ShowAccount()
 //                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
 //                    resAccount.fromDictionary(dic: dic)
 //
                     DispatchQueue.main.async {
-                        completeHandler(nil)
+                        completeHandler(resProject)
                     }
                 }else{
                     print("服务器消息响应码不符合条件！")

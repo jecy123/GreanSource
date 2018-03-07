@@ -26,6 +26,7 @@
 		513D7B0B2018703800F6DA4C /* MsgProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0A2018703800F6DA4C /* MsgProtocol.swift */; };
 		513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0C2018790C00F6DA4C /* ClientRequest.swift */; };
 		513D7B0F2018831A00F6DA4C /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513D7B0E2018831A00F6DA4C /* StringUtils.swift */; };
+		513E7985204F8A32009E799F /* AddressPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513E7984204F8A32009E799F /* AddressPickerView.swift */; };
 		513EEE07203FA64200F49CDB /* RuningStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE06203FA64200F49CDB /* RuningStateViewController.swift */; };
 		513EEE09203FAB0C00F49CDB /* RunningDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE08203FAB0C00F49CDB /* RunningDataViewController.swift */; };
 		513EEE0B203FAB9800F49CDB /* ProjectAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE0A203FAB9800F49CDB /* ProjectAddViewController.swift */; };
@@ -99,6 +100,7 @@
 		513D7B0A2018703800F6DA4C /* MsgProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MsgProtocol.swift; sourceTree = "<group>"; };
 		513D7B0C2018790C00F6DA4C /* ClientRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClientRequest.swift; sourceTree = "<group>"; };
 		513D7B0E2018831A00F6DA4C /* StringUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
+		513E7984204F8A32009E799F /* AddressPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerView.swift; sourceTree = "<group>"; };
 		513EEE06203FA64200F49CDB /* RuningStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuningStateViewController.swift; sourceTree = "<group>"; };
 		513EEE08203FAB0C00F49CDB /* RunningDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningDataViewController.swift; sourceTree = "<group>"; };
 		513EEE0A203FAB9800F49CDB /* ProjectAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 				512578212045317800344B60 /* TreeTableViewCell.swift */,
 				512578222045317900344B60 /* TreeTableViewCell.xib */,
 				51E3EDD220490118003F8903 /* InfoView.swift */,
+				513E7984204F8A32009E799F /* AddressPickerView.swift */,
 			);
 			path = CustomWidgets;
 			sourceTree = "<group>";
@@ -522,6 +525,7 @@
 				516D8ACB201EC2A40030B4A2 /* ToastHelper.swift in Sources */,
 				51D205662005F255008763B9 /* LoginViewController.swift in Sources */,
 				5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */,
+				513E7985204F8A32009E799F /* AddressPickerView.swift in Sources */,
 				516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */,
 				513D7B0F2018831A00F6DA4C /* StringUtils.swift in Sources */,
 				513EEE0B203FAB9800F49CDB /* ProjectAddViewController.swift in Sources */,

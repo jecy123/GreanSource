@@ -76,7 +76,7 @@ class ShowProject: BaseData{
             dic["type"] = type
         }
         if let workerName = self.workerName {
-            dic["workName"] = workerName
+            dic["workerName"] = workerName
         }
         if let workerPhone = self.workerPhone {
             dic["workerPhone"] = workerPhone

@@ -13,7 +13,7 @@ class ProjectAddViewController: BasePageViewController {
 
     let titles = ["项目名称","项目类别","项目地址","街道","设计处理量","设备列表","排放标准","运维人员姓名","运维人员联系方式"]
     let projectTypeNames = systemNames
-    let capcityListNames = ["5D/T", "10D/T", "20D/T", "30D/T", "50D/T", "100D/T"]
+    let capcityListNames = listToNames(list: capcityList)
     let emissionStdNames = ["10D/T", "20D/T"]
     
     var newProject: ShowProject!
@@ -105,10 +105,12 @@ class ProjectAddViewController: BasePageViewController {
     }
     
     @objc func onConfirm(_ sender: UIButton){
+        
         print("确认添加")
     }
     
     func onProjectTypeSelected(row: Int){
+        
         print("row = \(row)")
         
     }

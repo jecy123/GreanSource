@@ -20,6 +20,8 @@ class ProjectModifyViewController: BasePageViewController {
         }
     }
     
+    var isDataInit: Bool = false
+    
     var projectNames:[String] = []
     
     var mProject: ShowProject = ShowProject()
@@ -45,9 +47,11 @@ class ProjectModifyViewController: BasePageViewController {
         initTableItemView()
     }
     
-    
-    
     override func refreshProject() {
+        if !self.isDataInit {
+            self.isDataInit = true
+            
+        }
         guard let project = self.selectedProject else {
             return
         }
@@ -178,10 +182,50 @@ class ProjectModifyViewController: BasePageViewController {
     }
     
     @objc func onConfirm(_ sender: UIButton){
+        if !isDataInit {
+            ToastHelper.showGlobalToast(message: "请选择要修改的项目！")
+            return
+        }
+        if let text = self.tableItemViews[3].contentText.text, text.isEmpty {
+            ToastHelper.showGlobalToast(message: "请填写街道！")
+            return
+        }
+        
+        if let text = self.tableItemViews[7].contentText.text, text.isEmpty {
+            ToastHelper.showGlobalToast(message: "请填写运维人员姓名！")
+            return
+        }
+        
+        if let text = self.tableItemViews[8].contentText.text, text.isEmpty {
+            ToastHelper.showGlobalToast(message: "请填写运维人员联系方式！")
+            return
+        }
+        
         
         mProject.street = self.tableItemViews[3].contentText.text
         mProject.workerName = self.tableItemViews[7].contentText.text
         mProject.workerPhone = self.tableItemViews[8].contentText.text
+        ClientRequest.modifyProject(project: mProject){
+            resProject in
+            if let project = resProject{
+                if project.retCode == 1 {
+                    let error:String = project.msg
+                    let errorMsg:String = "修改失败：" + error
+                    print(errorMsg)
+                    ToastHelper.showGlobalToast(message: errorMsg)
+                    return
+                }
+                print("修改成功！")
+                ToastHelper.showGlobalToast(message: "项目修改成功！")
+                
+            }else{
+                print("修改失败！")
+                ToastHelper.showGlobalToast(message: "数据获取失败，修改失败！")
+            }
+        
+        
+        }
+        
         print("projectJSON = \(mProject.toJSON())")
         print("确认修改")
         
