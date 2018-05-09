@@ -10,8 +10,8 @@ import UIKit
 
 class UserBaseController: UIViewController {
 
-    public var tabelItemViews:[TableItemView]!
-    public var tabelItems:[TableItem]!{
+    public var tableItemViews:[TableItemView] = []
+    public var tableItems:[TableItem]!{
         didSet{
             addItemViews()
         }
@@ -94,6 +94,68 @@ class UserBaseController: UIViewController {
     public var identiCodeConfirm:UIButton!
     public var userTypeDropBox:DropBoxView!
     
+    public var showVCode: ShowVCode!
+    
+    var timer: DispatchSourceTimer!
+    var tickCnt: Int = 120
+    var repeateCnts: Int!
+    
+    func startTimer(repeateCnts: Int){
+        self.repeateCnts = repeateCnts
+        self.tickCnt = repeateCnts
+        self.identiCodeConfirm.isEnabled = false
+        timer = DispatchSource.makeTimerSource(flags: .strict, queue: DispatchQueue.global())
+        timer.schedule(deadline: .now(), repeating: .seconds(1))
+        timer.setEventHandler(handler: {
+            self.onTickDown()
+        })
+        timer.resume()
+    }
+    
+    @objc func onTickDown(){
+        DispatchQueue.main.async {
+            self.identiCodeConfirm.setTitle(String(self.tickCnt)+"秒后重试", for: .disabled)
+        }
+        
+        self.tickCnt -= 1
+        if tickCnt == 0 {
+            tickCnt = repeateCnts
+            DispatchQueue.main.async {
+                self.identiCodeConfirm.isEnabled = true
+                self.identiCodeConfirm.setTitle("获取验证码", for: .normal)
+            }
+            timer.cancel()
+        }
+    }
+    
+    func getVCode(phoneNumber:String, type: ShowVCodeType){
+        ClientRequest.getVertifyCode(phoneNumber: phoneNumber, type: type){
+            resVCode in
+            if let resVCode = resVCode{
+                //登陆失败的返回码是1
+                if resVCode.retCode == 1{
+                    
+                    let error:String = resVCode.msg
+                    let errorMsg:String = "获取验证码失败：" + error
+                    print(errorMsg)
+                    ToastHelper.showGlobalToast(message: errorMsg)
+                    //self.view.tgc_makeToast(message: errorMsg)
+                    return
+                }
+                print("获取验证码成功")
+                self.showVCode = resVCode
+                if let code = resVCode.vcode{
+                    ToastHelper.showGlobalToast(message: "获取验证码成功，验证码是" + code)
+                }
+            }else{
+                
+                print("获取验证码失败！")
+                ToastHelper.showGlobalToast(message: "获取验证码失败！")
+            }
+            
+        }
+    }
+    
     func addDropBox(frame: CGRect, userTypeMenus:[String]){
         //let choice:[String] = ["类型1","类型2"]
         
@@ -165,7 +227,7 @@ class UserBaseController: UIViewController {
     
     public func addItemViews()
     {
-        for item in tabelItems {
+        for item in tableItems {
             addTabelItem(item: item)
         }
     }
@@ -181,7 +243,7 @@ class UserBaseController: UIViewController {
         confirm.setTitleColor(UIColor.brown, for: .highlighted)
         confirm.setTitle("提交审核", for: .normal)
         self.view.addSubview(confirm)
-        confirm.addTarget(self, action: #selector(onConfirmButtonTapped(_:)), for: .touchDragInside)
+        confirm.addTarget(self, action: #selector(onConfirmButtonTapped(_:)), for: .touchUpInside)
         
         buttonX += buttonWidth + buttonPadding
         back = UIButton(frame: CGRect(x: buttonX, y: buttonY, width: buttonWidth, height: buttonHeight))
@@ -216,7 +278,7 @@ class UserBaseController: UIViewController {
     }
     
     @objc public func onConfirmButtonTapped(_ sender: Any){
-        
+        //print("确认")
     }
     @objc public func onIdentiCodeObtain(_ sender: Any){
         print("获取验证码")
@@ -235,17 +297,21 @@ class UserBaseController: UIViewController {
     func addTabelItem(item: TableItem)
     {
         let itemView = TableItemView(parentVC: self, item: item)
+        self.tableItemViews.append(itemView)
         self.view.addSubview(itemView)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func checkVCode(vcode: String) -> Bool{
+        guard let code = self.showVCode else {
+            print("未获取验证码！")
+            ToastHelper.showGlobalToast(message: "未获取验证码！")
+            return false
+        }
+        guard code.vcode == vcode else {
+            print("验证码不一致！")
+            ToastHelper.showGlobalToast(message: "验证码不一致！")
+            return false
+        }
+        return true
     }
-    */
-
 }

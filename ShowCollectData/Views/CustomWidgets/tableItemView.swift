@@ -8,9 +8,14 @@
 
 import UIKit
 
+@objc protocol TableItemViewDelegate{
+    @objc optional func onDeleteBtnClicked(sender tableItem: TableItemView)
+}
+
 enum TableItemType{
     case typeText
     case typePopup
+    case typeRemovableText
 }
 
 class TableItem
@@ -19,11 +24,16 @@ class TableItem
     var itemType:TableItemType!
     var itemFrame: CGRect!
     var itemLabelRatio: CGFloat!
-    init(name: String, type: TableItemType, frame:CGRect, ratio:CGFloat) {
+    var withBottomLine: Bool!
+    var isHidden: Bool!
+    
+    init(name: String, type: TableItemType, frame:CGRect, ratio:CGFloat, withBottomLine: Bool = false, isHidden:  Bool = false) {
         self.itemName = name
         self.itemType = type
         self.itemFrame = frame
         self.itemLabelRatio = ratio
+        self.withBottomLine = withBottomLine
+        self.isHidden = isHidden
     }
 }
 
@@ -31,17 +41,33 @@ class TableItemView: UIView {
     var nameLabel:UILabel!
     var contentText:UITextField!
     var contentPopup:DropBoxView!
+    var deleteButton: UIButton!
+    var bottomLine: UIView!
+
+    var itemHeight: CGFloat!
+    
+    var delegate: TableItemViewDelegate?
+    
+    var extraMsg: String!
     
     ///constructor
     convenience init(parentVC:UIViewController, item: TableItem)
     {
         let type = item.itemType
-        let frame = item.itemFrame!
+        let itemFrame = item.itemFrame!
+        
+        var frame = CGRect(x: itemFrame.origin.x, y: itemFrame.origin.y, width: itemFrame.size.width, height: itemFrame.size.height)
+        
         let labelRatio = item.itemLabelRatio!
+        let withBottomLine = item.withBottomLine!
         
-        self.init(frame: frame)
+        self.init(frame: itemFrame)
+        self.itemHeight = itemFrame.height
         
-        let rect = CGRect(x: 0, y: 0, width: frame.width * labelRatio - 5, height: frame.height)
+        if withBottomLine {
+            frame.size.height -= 1
+        }
+        let rect = CGRect(x: 0, y: 0, width: frame.width * labelRatio - 5, height: frame.height - 1)
         nameLabel = UILabel(frame: rect)
         nameLabel.textAlignment = .right
         nameLabel.adjustsFontSizeToFitWidth = true
@@ -53,11 +79,53 @@ class TableItemView: UIView {
         
         if type == TableItemType.typeText {
             
-            let rect2 = CGRect(x:frame.width * labelRatio + 5, y:0, width:frame.width*(1 - labelRatio) - 5, height:frame.height)
+            let rect2 = CGRect(x: frame.width * labelRatio + 5, y: 0, width: frame.width*(1 - labelRatio) - 5,
+                               height: frame.height)
+            
             contentText = UITextField(frame: rect2)
             contentText.layer.masksToBounds = true
             contentText.layer.backgroundColor = UIColor.white.cgColor
             self.addSubview(contentText)
+        }else if type == TableItemType.typeRemovableText {
+            let deleteButtonPadding: CGFloat = 10
+            let deleteButtonHeight: CGFloat = frame.height - deleteButtonPadding * 2
+            let deleteButtonWidth: CGFloat = 60
+            
+            let rect2 = CGRect(x:frame.width * labelRatio + 5, y:0, width:frame.width*(1 - labelRatio) - 5 - deleteButtonPadding * 2 - deleteButtonWidth, height:frame.height)
+            contentText = UITextField(frame: rect2)
+            contentText.layer.masksToBounds = true
+            contentText.layer.backgroundColor = UIColor.white.cgColor
+            self.addSubview(contentText)
+            
+            
+            let rect3 = CGRect(x:frame.width * labelRatio + 5 + rect2.width + deleteButtonPadding, y:deleteButtonPadding, width: deleteButtonWidth, height: deleteButtonHeight)
+            deleteButton = UIButton(frame: rect3)
+            deleteButton.layer.cornerRadius = 4
+            deleteButton.layer.masksToBounds = true
+            deleteButton.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor
+            deleteButton.setTitle("删除", for: .normal)
+            deleteButton.setTitleColor(UIColor.white, for: .normal)
+            deleteButton.setTitleColor(ColorUtils.itemTitleViewBgColor, for: .highlighted)
+            deleteButton.addTarget(self, action: #selector(onDeleteBtnClicked(_:)), for: .touchUpInside)
+            
+            self.addSubview(deleteButton)
+            setIsHidden(isHidden: item.isHidden)
+        }
+        
+        if withBottomLine {
+            let rect4 = CGRect(x: 0, y: frame.height, width: frame.width, height: 1)
+            bottomLine = UIView(frame: rect4)
+            bottomLine.backgroundColor = ColorUtils.itemTitleViewBgColor
+            self.addSubview(bottomLine)
+            
+        }
+    }
+    
+    func setIsHidden(isHidden: Bool) {
+        if isHidden {
+            self.frame.size.height = 0
+        }else{
+            self.frame.size.height = self.itemHeight
         }
     }
     
@@ -69,12 +137,9 @@ class TableItemView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+    
+    @objc func onDeleteBtnClicked(_ sender: UIButton){
+        self.delegate?.onDeleteBtnClicked?(sender: self)
     }
-    */
 
 }

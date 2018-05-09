@@ -115,44 +115,44 @@ class ProjectModifyViewController: BasePageViewController {
         var dropBoxY3: CGFloat = 0
         
         var tableItemFrame: CGRect!
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[0], type: .typeText, withBottomLine: true)
         dropBoxY1 = y
         
         y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[1], type: .typeText, withBottomLine: true)
         
         y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[2], type: .typeText, withBottomLine: true)
         
         y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[3], type: .typeText, withBottomLine: true)
         
         y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[4], type: .typeText, withBottomLine: true)
         
         dropBoxY2 = y
         
         y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[5], type: .typeText, withBottomLine: true)
         
         y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[6], type: .typeText, withBottomLine: true)
         
         dropBoxY3 = y
         
         y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[7], type: .typeText, withBottomLine: true)
         
         y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h - 1)
+        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.4, title: titles[8], type: .typeText, withBottomLine: true)
         
         let btnWidth: CGFloat = 100
@@ -226,7 +226,7 @@ class ProjectModifyViewController: BasePageViewController {
         
         }
         
-        print("projectJSON = \(mProject.toJSON())")
+        //print("projectJSON = \(mProject.toJSON())")
         print("确认修改")
         
     }

@@ -198,6 +198,26 @@ class DropBoxView: UIView {
         return self.boxTitle.text!
     }
     
+    func getIndex() -> Int{
+        return self.currentIndex
+    }
+    
+    func setIndex(index: Int) {
+        guard index >= 0 && index <= self.items.count - 1 else {
+            return
+        }
+        
+        if currentIndex == -1 {
+            self.boxTitle.textColor = TGDropBoxTitleColor
+            self.boxTitle.adjustsFontSizeToFitWidth = true
+            self.boxTitle.adjustsFontForContentSizeCategory = true
+            //self.boxTitle.font = UIFont.systemFont(ofSize: TGDropBoxTitleFontSize)
+        }
+        
+        self.currentIndex = index
+        self.boxTitle.text = self.items[index]
+    }
+    
     // MARK: - Private Methods
     @objc fileprivate func onboxButtonAction(_ sender: UIButton) {
         (self.isShow == true) ? self.hideBoxList() : self.showBoxList()

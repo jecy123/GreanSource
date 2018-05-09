@@ -172,10 +172,10 @@
             </objects>
             <point key="canvasLocation" x="608.79999999999995" y="-520.38980509745136"/>
         </scene>
-        <!--Use Retrieve View Controller-->
+        <!--User Retrieve View Controller-->
         <scene sceneID="jLE-fM-QLh">
             <objects>
-                <viewController id="Z8m-cX-IMg" customClass="UseRetrieveViewController" customModule="ShowCollectData" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Z8m-cX-IMg" customClass="UserRetrieveViewController" customModule="ShowCollectData" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yuK-eR-gJ7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

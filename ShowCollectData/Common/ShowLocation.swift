@@ -10,6 +10,7 @@ import Foundation
 
 class ShowLocation : BaseData{
     var locationId: String!
+    var accountId: Int16!
     
     override init() {
         super.init()
@@ -20,10 +21,13 @@ class ShowLocation : BaseData{
         self.locationId = locationId
     }
     
+
+    
     override func fromDictionary(dic: NSDictionary) {
         super.fromDictionary(dic: dic)
         if let locationId = dic["locationId"] {
             self.locationId = locationId as! String
         }
+
     }
 }

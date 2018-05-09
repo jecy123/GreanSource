@@ -3,34 +3,15 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "GLOBAL">
+         contextName = "TableItemView.isHidden.didset:tableItemView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "AddressUtils.sunPowerItem">
+               value = "self.nameLabel.isHidden">
             </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "static AddressUtils.queryLocationId(locationId:):AddressUtils.swift">
-      </ContextState>
-      <ContextState
-         contextName = "ViewController.gotoMainView():LoginViewController.swift">
-         <PersistentStrings>
             <PersistentString
-               value = "AddressUtils.smartSysItem">
+               value = "isHidden">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "TableItemView.init(parentVC:item:):tableItemView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "contentPopup">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "DropBoxView.init(parentView:title:items:frame:):DropBoxView.swift">
       </ContextState>
       <ContextState
          contextName = "ProjectAddViewController.initTableItemView():ProjectAddViewController.swift">
@@ -44,7 +25,44 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "BasePageViewController.selectedProject.didset:BasePageViewController.swift">
+         contextName = "DropBoxView.init(parentVC:title:items:frame:):DropBoxView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "parentVC.view">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "DropBoxView.refreshContentList(itemNames:):DropBoxView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.items">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ViewController.gotoMainView():LoginViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "AddressUtils.smartSysItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BasePageViewController.viewDidLoad():BasePageViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.view.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RegisterViewController.onDropBoxDidSelect(row:):RegisterViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tableItemViews[8].nameLabel.text">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ISViewPagerContainer.layoutUIElement(width:height:):ISViewPager.swift">
@@ -55,7 +73,13 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ISViewPagerContainer.viewDidLoad():ISViewPager.swift">
+         contextName = "static AddressUtils.buildItems(projects:):AddressUtils.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MainViewController.initPopover():MainViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DropBoxView.init(parentView:title:items:frame:):DropBoxView.swift">
       </ContextState>
       <ContextState
          contextName = "ShowAccount.fromDictionary(dic:):ShowAccount.swift">
@@ -77,20 +101,26 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "BasePageViewController.viewDidLoad():BasePageViewController.swift">
+         contextName = "DeviceModifyViewController.refreshNames():DeviceModifyViewController.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.view.frame">
+               value = "self.dropBoxViews">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "DropBoxView.refreshContentList(itemNames:):DropBoxView.swift">
+         contextName = "static AddressUtils.queryLocationId(locationId:):AddressUtils.swift">
+      </ContextState>
+      <ContextState
+         contextName = "TableItemView.init(parentVC:item:):tableItemView.swift">
          <PersistentStrings>
             <PersistentString
-               value = "self.items">
+               value = "contentPopup">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "BasePageViewController.selectedProject.didset:BasePageViewController.swift">
       </ContextState>
       <ContextState
          contextName = "ProjectModifyViewController.allProjects.didset:ProjectModifyViewController.swift">
@@ -99,6 +129,17 @@
                value = "allProjects">
             </PersistentString>
          </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "GLOBAL">
+         <PersistentStrings>
+            <PersistentString
+               value = "AddressUtils.sunPowerItem">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "ISViewPagerContainer.viewDidLoad():ISViewPager.swift">
       </ContextState>
       <ContextState
          contextName = "ProjectModifyViewController.refreshNames():ProjectModifyViewController.swift">
@@ -110,20 +151,6 @@
                value = "dropBoxViews">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "static AddressUtils.buildItems(projects:):AddressUtils.swift">
-      </ContextState>
-      <ContextState
-         contextName = "DropBoxView.init(parentVC:title:items:frame:):DropBoxView.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "parentVC.view">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "MainViewController.initPopover():MainViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

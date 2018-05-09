@@ -28,6 +28,7 @@ class ShowProject: BaseData{
     static let PROJ_TYPE_SUNPOWER = 10
     static let PROJ_TYPE_SMART = 20
     
+    static let projectType = [ShowProject.PROJ_TYPE_SUNPOWER, ShowProject.PROJ_TYPE_SMART]
     override init() {
         super.init()
     }

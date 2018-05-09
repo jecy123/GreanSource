@@ -23,5 +23,26 @@ class RunningDataViewController: BasePageViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         addTitleView(titleHeight: 40)
+        initSelectedButtons()
+    }
+    
+    func initSelectedButtons(){
+        
+        guard let type = self.viewType else {
+            return
+        }
+        
+        switch type {
+        case .adminitor:
+            addSelectedButtons(buttonTitles: ["设备信息", "定时运行", "紧急启停"], buttonWidth: 80, buttonHeight: 30)
+        case .EP:
+            addSelectedButtons(buttonTitles: ["设备信息"], buttonWidth: 80, buttonHeight: 30)
+        case .mantainer:
+            addSelectedButtons(buttonTitles: ["设备信息", "紧急启停"], buttonWidth: 80, buttonHeight: 30)
+        }
+    }
+    
+    override func onSelectedButtonClicked(_ sender: UIButton) {
+        super.onSelectedButtonClicked(sender)
     }
 }

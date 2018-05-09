@@ -8,6 +8,13 @@
 
 import Foundation
 
+//三种用户的类型
+enum AccountType: Int {
+    case adminitor = 10 //管理员
+    case mantainer = 20 //维护员
+    case EP = 30        //环保部门人员
+}
+
 class ShowAccount: BaseData {
     var account: String!
     var password: String!
@@ -17,10 +24,11 @@ class ShowAccount: BaseData {
     var email:String!
     var type: Int!
     var savePwd: Bool!
-    var id:Int!
-    var role:Int!
-    var locations:[ShowLocation]!
-    var projects:[ShowProject]!
+    var id: Int!
+    var role: Int!
+    var locations: [ShowLocation]!
+    var projects: [ShowProject]!
+    var status: Int!
     
     var vcode: String!
     var createTime: String!
@@ -38,22 +46,46 @@ class ShowAccount: BaseData {
         if let msg = self.msg {
             dic["msg"] = msg
         }
-        
         if let password = self.password {
             dic["password"] = password
         }
-        
         if let retCode = self.retCode {
             dic["retCode"] = retCode
         }
-        if let savePwd = self.savePwd {
-            dic["savePwd"] = savePwd
-        }
-        
         if let type = self.type {
             dic["type"] = type
         }
-        
+        if let role = self.role {
+            dic["role"] = role
+        }
+        if let name = self.name {
+            dic["name"] = name
+        }
+        if let vcode = self.vcode {
+            dic["vcode"] = vcode
+        }
+        if let email = self.email {
+            dic["email"] = email
+        }
+        if let status = self.status {
+            dic["status"] = status
+        }
+        if let phone = self.phone {
+            dic["phone"] = phone
+        }
+        if let oldPhone = self.oldPhone {
+            dic["oldPhone"] = oldPhone
+        }
+        if let locations = self.locations {
+            var locationDics = [NSDictionary]()
+            for location in locations {
+                var locationDic = [String : Any]()
+                locationDic["locationId"] = location.locationId
+                locationDic["retCode"] = location.retCode
+                locationDics.append(locationDic as NSDictionary)
+            }
+            dic["locations"] = locationDics
+        }
         let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
         print("JSONData = \(str)")
         return str

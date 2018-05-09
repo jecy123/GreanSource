@@ -120,7 +120,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func gotoMainView(projects: [ShowProject]){
+    func gotoMainView(accountType: AccountType, projects: [ShowProject]){
         
         let pagesOptions:[UIViewPagerOption] = [
             .TitleBarHeight(50),
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         let rootView:MainViewController = MainViewController()
         let baseVc = UINavigationController(rootViewController: rootView)
         rootView.options = pagesOptions
-        rootView.viewType = MainViewType.typeAdmin
+        rootView.viewType = accountType
         rootView.projects = projects
         
         //baseVc.navigationBar.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
@@ -199,11 +199,11 @@ class ViewController: UIViewController {
                 }
                 
                 self.doRecordNameAndPwd(isRecord: self.btnRememberPwdFlag, name: accountName, password: password)
-                print("\(resAccount.account) 已经登录")
                 
+                print("\(resAccount.account) 已经登录")
                 AddressUtils.getItems(projects: resAccount.projects)
                 //print("projects = \(resAccount.projects)")
-                self.gotoMainView(projects: resAccount.projects)
+                self.gotoMainView(accountType: AccountType(rawValue: resAccount.role!)!, projects: resAccount.projects)
             }else{
                 
                 print("登录失败！")

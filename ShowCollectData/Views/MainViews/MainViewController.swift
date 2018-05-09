@@ -8,12 +8,7 @@
 
 import UIKit
 
-enum MainViewType{
-    case typeAdmin      //管理员
-    case typeMaintainer //维护员
-    case typeEP         //环保部门人员
-    case typeNormalUser //普通用户
-}
+
 
 protocol MainViewTitleItemDelegate {
     func onBack(_ sender: UIButton)
@@ -21,13 +16,13 @@ protocol MainViewTitleItemDelegate {
 }
 
 class MainViewController: ISViewPagerContainer, TreeTableDelegate {
-    let titlesAdmin = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","维护人员修改","找回信息审核"]
+    let titlesAdmin = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","注册找回审核"]
     let titlesEp = ["项目信息", "运行状态","运行数据"]
     
     var delegate:MainViewTitleItemDelegate?
     
     var pages:[BasePageViewController]!
-    var viewType: MainViewType!{
+    var viewType: AccountType!{
         didSet{
             initViewPages(type: viewType)
         }
@@ -63,42 +58,54 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         }
     }
     
+    var systemName:String!
     
-    func initViewPages(type: MainViewType){
+    
+    func initViewPages(type: AccountType){
         switch type {
-        case MainViewType.typeAdmin:
+        case .adminitor:
             self.titles = titlesAdmin
         default:
-            //self.titles = titlesEp
+            self.titles = titlesEp
             break
         }
         
         pages = [BasePageViewController]()
+        if type == .adminitor {
+            let projectInfoView = ProjectInfoViewController(title:titles[0])
+            pages.append(projectInfoView)
         
-        let projectInfoView = ProjectInfoViewController(title:titles[0])
-        pages.append(projectInfoView)
+            let runningStateView = RunningStateViewController(title:titles[1])
+            pages.append(runningStateView)
         
-        let runningStateView = RunningStateViewController(title:titles[1])
-        pages.append(runningStateView)
+            let runningDataView = RunningDataViewController(title:titles[2])
+            runningDataView.viewType = type
+            pages.append(runningDataView)
         
-        let runningDataView = RunningDataViewController(title:titles[2])
-        pages.append(runningDataView)
+            let projectAddView = ProjectAddViewController(title:titles[3])
+            pages.append(projectAddView)
         
-        let projectAddView = ProjectAddViewController(title:titles[3])
-        pages.append(projectAddView)
+            let projectModifyView = ProjectModifyViewController(title:titles[4])
+            pages.append(projectModifyView)
         
-        let projectModifyView = ProjectModifyViewController(title:titles[4])
-        pages.append(projectModifyView)
+            let deviceModifyView = DeviceModifyViewController(title:titles[5])
+            pages.append(deviceModifyView)
         
-        let deviceModifyView = DeviceModifyViewController(title:titles[5])
-        pages.append(deviceModifyView)
+            let infoRefindView = InfoRefindViewController(title:titles[6])
+            pages.append(infoRefindView)
+        }else{
+            let projectInfoView = ProjectInfoViewController(title:titles[0])
+            pages.append(projectInfoView)
+            
+            let runningStateView = RunningStateViewController(title:titles[1])
+            pages.append(runningStateView)
+            
+            let runningDataView = RunningDataViewController(title:titles[2])
+            runningDataView.viewType = type
+            pages.append(runningDataView)
+        }
         
-        let maintainerView = MaintainerModifyViewController(title:titles[6])
-        pages.append(maintainerView)
-        
-        let infoRefindView = InfoRefindViewController(title:titles[7])
-        pages.append(infoRefindView)
-        
+        self.systemName = "太阳能污水处理系统"
         self.titleName = "太阳能污水处理系统"
         self.viewPages = pages
         self.yOffset = MainViewController.topImageHeight
@@ -107,7 +114,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         
     }
     
-    init(options: [UIViewPagerOption], type: MainViewType) {
+    init(options: [UIViewPagerOption], type: AccountType) {
         super.init(nibName: nil, bundle: nil)
         self.options = options
         initViewPages(type: type)
@@ -199,6 +206,15 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func didScrollToPage(index: UInt) {
+        if self.viewType == AccountType.adminitor {
+            if index > 2 {
+                self.titleName = self.titlesAdmin[Int(index)]
+            }else{
+                self.titleName = self.systemName
+            }
+        }
+    }
     func TreeTable(_ treeTableView: TreeTableView, section: Int, addressNames: [String], didSelectProject id: Int) {
         projectListPopover.dismiss()
         
@@ -207,6 +223,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         }
         
         self.titleName = systemNames[section]
+        self.systemName = systemNames[section]
         print(section)
         print(id)
         print(addressNames)

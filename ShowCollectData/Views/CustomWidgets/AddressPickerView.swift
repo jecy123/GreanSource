@@ -9,9 +9,11 @@
 import UIKit
 
 @objc protocol AddressPickerViewDelegate {
-    @objc optional func onPickerViewShow()
-    @objc optional func onPickerViewHide()
-    @objc optional func onPickerViewSelected(locationId: String, locationName: String)
+    @objc optional func onPickerViewWillShow(addressPickerView: AddressPickerView, sender: Any?)
+    @objc optional func onPickerViewDidShow(addressPickerView: AddressPickerView, sender: Any?)
+    @objc optional func onPickerViewWillHide(addressPickerView: AddressPickerView, sender: Any?)
+    @objc optional func onPickerViewDidHide(addressPickerView: AddressPickerView, sender: Any?)
+    @objc optional func onPickerViewSelected(addressPickerView: AddressPickerView, sender: Any?, locationId: String, locationName: String)
 }
 
 class AddressPickerView: UIView {
@@ -40,8 +42,7 @@ class AddressPickerView: UIView {
     var locationId: String = ""
     var locationName: String = ""
     
-    fileprivate var isCityEmpty: Bool = false
-    fileprivate var isAreaEmpty: Bool = false
+    var sender: Any?
     
     var delegate: AddressPickerViewDelegate?
     
@@ -118,8 +119,11 @@ class AddressPickerView: UIView {
     }
     
     func show() {
+        self.delegate?.onPickerViewWillShow?(addressPickerView: self, sender: self.sender)
         self.isHidden = false
         self.backgroundCover.alpha = 0
+        
+        self.contentView.superview?.bringSubview(toFront: self.contentView)
         
         UIView.animate(
             withDuration: animateTime,
@@ -132,12 +136,13 @@ class AddressPickerView: UIView {
                 self.contentView.frame.origin.y = self.contentViewY
                 //self.pickerView.frame.size.height = self.pickerViewHeight
         }, completion: { _ in
-            self.delegate?.onPickerViewShow?()
+            self.delegate?.onPickerViewDidShow?(addressPickerView: self, sender: self.sender)
         })
         //self.backgroundCover.superview?.bringSubview(toFront: self.backgroundCover)
     }
     
     @objc func dismiss(){
+        self.delegate?.onPickerViewWillHide?(addressPickerView: self, sender: self.sender)
         self.backgroundCover.alpha = self.backgroudAlpha
         
         UIView.animate(
@@ -151,7 +156,7 @@ class AddressPickerView: UIView {
                 self.contentView.frame.origin.y = self.screenHeight!
         },completion: { _ in
             self.isHidden = true
-            self.delegate?.onPickerViewHide?()
+            self.delegate?.onPickerViewDidHide?(addressPickerView: self, sender: self.sender)
         }
         )
     }
@@ -228,20 +233,25 @@ extension AddressPickerView: UIPickerViewDelegate, UIPickerViewDataSource{
         default:
             break
         }
+    }
+}
+
+extension AddressPickerView {
+    @objc func onCancelBtnClicked(_ sender: UIButton){
+        self.dismiss()
+    }
+    
+    @objc func onConfirmBtnClicked(_ sender: UIButton){
+        self.locationName = ""
+        self.locationId = ""
         
         let p = pickerView.selectedRow(inComponent: 0)
         let c = pickerView.selectedRow(inComponent: 1)
         let a = pickerView.selectedRow(inComponent: 2)
         
-        self.locationName = ""
-        self.locationId = ""
-        self.isCityEmpty = false
-        self.isAreaEmpty = false
-        
         let province = self.provinceItems[p]
         self.locationName.append(province.name)
         self.locationId = province.id
-        
         
         if province.childrenSize != 0 {
             
@@ -254,24 +264,17 @@ extension AddressPickerView: UIPickerViewDelegate, UIPickerViewDataSource{
                 self.locationName.append(area.name)
                 self.locationId = area.id
             }else{
-                isCityEmpty = true
-                print("不存在地区")
+                print("请选择地区")
+                ToastHelper.showGlobalToast(message: "请选择地区！")
+                return
             }
         }else{
-            isAreaEmpty = true
-            print("不存在市")
+            print("请选择市")
+            ToastHelper.showGlobalToast(message: "请选择市！")
+            return
         }
-    }
-}
-
-extension AddressPickerView {
-    @objc func onCancelBtnClicked(_ sender: UIButton){
         self.dismiss()
-    }
-    
-    @objc func onConfirmBtnClicked(_ sender: UIButton){
-        self.dismiss()
-        delegate?.onPickerViewSelected?(locationId: self.locationId, locationName: self.locationId)
+        delegate?.onPickerViewSelected?(addressPickerView: self, sender: self.sender, locationId: self.locationId, locationName: self.locationName)
     }
 }
 

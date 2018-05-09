@@ -103,6 +103,7 @@ class StringUtils {
         return str
     }
     
+    //返回string中下标from到to之间的子字符串
     public static func subString(of string: String, from: Int, to: Int) -> String?{
         guard from <= to else{
             return nil
@@ -111,5 +112,38 @@ class StringUtils {
         let end = string.index(string.startIndex, offsetBy: to)
         return String(string[start...end])
     
+    }
+    
+    //检查字符串是否是手机号
+    public static func isPhone(number: String) -> Bool {
+        guard !number.isEmpty else{
+            return false
+        }
+        var inputNumber = number.trimmingCharacters(in: .whitespaces)
+        
+        
+        if inputNumber.hasPrefix("+86") && inputNumber != "+86" {
+            inputNumber = subString(of: inputNumber, from: 3, to: inputNumber.count - 1)!
+        }
+        
+        guard inputNumber.count == 11 else{
+            return false
+        }
+        //利用正则表达式判断是不是全部都是数字
+        let regex = "^[-\\+]?[\\d]*$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        let isValid = predicate.evaluate(with: inputNumber)
+        
+        guard isValid else {
+            return false
+        }
+        return true
+    }
+    
+    //检查字符串是否email
+    public static func isEmail(email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        let emailTest:NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        return emailTest.evaluate(with: email)
     }
 }

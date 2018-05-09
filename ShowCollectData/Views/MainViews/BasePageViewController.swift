@@ -29,6 +29,10 @@ class BasePageViewController: UIViewController{
     var mainTitleLabel: UILabel!
     var subTitleLabel: UILabel!
     
+    var viewType: AccountType!
+    
+    var tableItemTag: Int  = 0
+    
     
     public var infomationView: InfoView!
     
@@ -70,6 +74,22 @@ class BasePageViewController: UIViewController{
     public var tableItemViews: [TableItemView] = []
     //保存下拉列表
     public var dropBoxViews: [DropBoxView] = []
+    //保存选择按钮
+    public var selectedButtons: [UIButton] = []
+    public var selectedButtonIndex: Int = 0{
+        didSet{
+            guard selectedButtonIndex >= 0 && selectedButtonIndex <= selectedButtons.count - 1 else {
+                return
+            }
+            for i in 0...self.selectedButtons.count - 1{
+                if i == selectedButtonIndex {
+                    self.selectedButtons[i].layer.backgroundColor = ColorUtils.selectedBtnColor.cgColor
+                }else {
+                    self.selectedButtons[i].layer.backgroundColor = ColorUtils.mainThemeColor.cgColor
+                }
+            }
+        }
+    }
     
     init(title: String) {
         super.init(nibName: nil, bundle: nil)
@@ -97,22 +117,43 @@ class BasePageViewController: UIViewController{
         self.itemBgView.addSubview(infomationView)
     }
     
-    func addTableItemView(tableFrame: CGRect, titleRatio: CGFloat, title: String, type: TableItemType, withBottomLine: Bool){
-        let tableItem = TableItem(name: title, type: type, frame: tableFrame, ratio: titleRatio)
+    func addTableItemView(tableFrame: CGRect, titleRatio: CGFloat, title: String, type: TableItemType, withBottomLine: Bool, delegate: TableItemViewDelegate? = nil){
+        let tableItem = TableItem(name: title, type: type, frame: tableFrame, ratio: titleRatio,withBottomLine: withBottomLine)
         let tableItemView = TableItemView(parentVC: self, item: tableItem)
+        tableItemView.delegate = delegate
+        
+        tableItemView.tag = self.tableItemTag
+        self.tableItemTag += 1
+        
         self.itemBgView.addSubview(tableItemView)
         self.tableItemViews.append(tableItemView)
-        
-        if withBottomLine {
-            let x: CGFloat = tableFrame.minX
-            let y: CGFloat = tableFrame.maxY
-            let w: CGFloat = tableFrame.width
-            let h: CGFloat = 1
-            let bottomLineFrame = CGRect(x: x, y: y, width: w, height: h)
-            let bottomLine = UIView(frame: bottomLineFrame)
-            bottomLine.backgroundColor = ColorUtils.itemTitleViewBgColor
-            self.itemBgView.addSubview(bottomLine)
+    }
+    
+    func removeTableItemView(at tag: Int){
+        guard tag >= 0 && tag < self.tableItemTag else {
+            return
         }
+        var tableItem: TableItemView? = nil
+        var i = 0
+        for item in self.tableItemViews {
+            if item.tag == tag {
+                tableItem = item
+                break
+            }
+            i += 1
+        }
+        
+        if tableItem != nil {
+            let h = tableItem?.frame.height
+            tableItem?.frame.size.height = 0
+            tableItem?.isHidden = true
+            
+            for index in (i+1)..<self.tableItemViews.count {
+                self.tableItemViews[index].frame.origin.y -= h!
+            }
+            self.tableItemViews.remove(at: i)
+        }
+        
     }
     
     func addTitleView(titleHeight: CGFloat)
@@ -158,6 +199,48 @@ class BasePageViewController: UIViewController{
         self.itemBgView.addSubview(dropBox)
         self.dropBoxViews.append(dropBox)
     }
+    
+    func addSelectedButtons(buttonTitles: [String], buttonWidth:CGFloat, buttonHeight: CGFloat){
+        let count: CGFloat = CGFloat(buttonTitles.count)
+        let bottomPadding: CGFloat = 10
+        var width: CGFloat = 0
+        var padding: CGFloat = 0
+        if buttonWidth * count >= itemBgView.frame.width{
+            padding = 4
+            width = itemBgView.frame.width / count - padding
+        }else{
+            padding = itemBgView.frame.width / count - buttonWidth
+            width = buttonWidth
+        }
+        
+        var x = padding / 2
+        let y = self.itemBgView.frame.height - bottomPadding - buttonHeight
+        var index = 0
+        for title in buttonTitles {
+            let frame = CGRect(x: x, y: y, width: width, height: buttonHeight)
+            let button = UIButton(frame: frame)
+            
+            button.setTitle(title, for: .normal)
+            button.setTitleColor(UIColor.white, for: .normal)
+            button.layer.cornerRadius = 4
+            button.tag = index
+            button.addTarget(self, action: #selector(onSelectedButtonClicked(_:)), for: .touchUpInside)
+            
+            x += (padding + width)
+            index += 1
+            
+            self.selectedButtons.append(button)
+            self.itemBgView.addSubview(button)
+        }
+        self.selectedButtonIndex = 0
+        
+    }
+    
+    @objc func onSelectedButtonClicked(_ sender: UIButton){
+        self.selectedButtonIndex = sender.tag
+        
+    }
+    
     
     func generateDeviceInfo(index: Int) -> String{
         return ""

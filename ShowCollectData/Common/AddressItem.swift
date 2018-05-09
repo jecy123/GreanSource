@@ -59,6 +59,7 @@ class ProvinceItem : BaseItem{
                 cityItem.fromDictionary(dic: cityDic)
                 cityItem.parent = self
                 self.children.append(cityItem)
+                self.childrenSize = self.childrenSize + 1
             }
         }
     }
@@ -83,6 +84,7 @@ class CityItem : BaseItem{
                 area.fromDictionary(dic: areaDic)
                 area.parent = self
                 self.children.append(area)
+                self.childrenSize = self.childrenSize + 1
             }
         }
     }
