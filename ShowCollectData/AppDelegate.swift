@@ -9,14 +9,24 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, BMKGeneralDelegate {
 
     var window: UIWindow?
+    
+    var mapManager:BMKMapManager?
 
 
+    //百度地图的Key：l0zeALWqTN52yNxaMi4RCxaz8LunUwXZ
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         AddressUtils.initAddress()
+        mapManager = BMKMapManager()
+        let ret = mapManager?.start("l0zeALWqTN52yNxaMi4RCxaz8LunUwXZ", generalDelegate: self)
+        if ret == false {
+            NSLog("manager start failed!")
+        }else {
+            NSLog("manager start success")
+        }
         return true
     }
 

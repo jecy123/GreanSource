@@ -13,4 +13,23 @@ class ShowDevConfig: BaseData {
     var projectId: Int!
     var devType: Int!
     var config: String!
+    
+    func toJSON() -> String {
+        var dic = [String : Any]()
+        if let id = self.id {
+            dic["id"] = id
+        }
+        if let projectId = self.projectId {
+            dic["projectId"] = projectId
+        }
+        if let devType = self.devType {
+            dic["devType"] = devType
+        }
+        if let config = self.config {
+            dic["config"] = config
+        }
+        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
+        return str
+    }
+    
 }
