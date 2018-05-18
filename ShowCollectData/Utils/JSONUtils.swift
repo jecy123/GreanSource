@@ -35,4 +35,14 @@ class JSONUtils{
         return NSDictionary()
     }
     
+    static func getDicsFromJSONString(jsonString: String)->Array<NSDictionary>{
+        let jsonData:Data = jsonString.data(using: .utf8)!
+        
+        let dict = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers)
+        if dict != nil {
+            return dict as! Array<NSDictionary>
+        }
+        return Array<NSDictionary>()
+    }
+    
 }

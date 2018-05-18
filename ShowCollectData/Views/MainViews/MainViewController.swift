@@ -18,6 +18,8 @@ protocol MainViewTitleItemDelegate {
 class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     let titlesAdmin = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","注册找回审核"]
     let titlesEp = ["项目信息", "运行状态","运行数据"]
+    //当前页面的索引值
+    var pageIndex: Int = -1
     
     var delegate:MainViewTitleItemDelegate?
     
@@ -28,8 +30,10 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         }
     }
     
+    public var addressNames: [String]!
     
     public var selectedProject: ShowProject!
+    
     var projects:[ShowProject]!{
         didSet{
             guard let pages = self.pages else {
@@ -104,6 +108,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
             runningDataView.viewType = type
             pages.append(runningDataView)
         }
+        self.pageIndex = 0
         
         self.systemName = "太阳能污水处理系统"
         self.titleName = "太阳能污水处理系统"
@@ -214,6 +219,11 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
                 self.titleName = self.systemName
             }
         }
+        pageIndex = Int(index)
+        
+        pages[pageIndex].addressNames = self.addressNames
+        pages[pageIndex].selectedProject = self.selectedProject
+        
     }
     func TreeTable(_ treeTableView: TreeTableView, section: Int, addressNames: [String], didSelectProject id: Int) {
         projectListPopover.dismiss()
@@ -234,11 +244,14 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
                 break
             }
         }
+        self.addressNames = addressNames
         
-        for page in self.pages {
-            page.addressNames = addressNames
-            page.selectedProject = self.selectedProject
-        }
+        pages[pageIndex].addressNames = self.addressNames
+        pages[pageIndex].selectedProject = self.selectedProject
+//        for page in self.pages {
+//            page.addressNames = addressNames
+//            page.selectedProject = self.selectedProject
+//        }
 
     }
 }

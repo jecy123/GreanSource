@@ -54,10 +54,12 @@ class InfoView: UIView {
         titleLabel.text = title
         contentLabel.text = content
         
-        titleLabel.adjustsFontSizeToFitWidth = true
-        contentLabel.adjustsFontSizeToFitWidth = true
+        //titleLabel.adjustsFontSizeToFitWidth = true
+        //contentLabel.adjustsFontSizeToFitWidth = true
+        titleLabel.numberOfLines = 2
+        contentLabel.numberOfLines = 2
         
-        titleLabel.textAlignment = .right
+        titleLabel.textAlignment = .left
         contentLabel.textAlignment = .left
     }
     

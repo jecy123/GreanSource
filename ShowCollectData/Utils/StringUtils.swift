@@ -146,4 +146,32 @@ class StringUtils {
         let emailTest:NSPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailTest.evaluate(with: email)
     }
+    
+    public static func StringToIntArray(value: String) -> [UInt32]?{
+        //利用正则表达式判断是不是全部都是数字
+        let regex = "^[-\\+]?[\\d]*$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        let isValid = predicate.evaluate(with: value)
+        
+        guard isValid else {
+            return nil
+        }
+        
+        var code = [UInt32]()
+        for char in value {
+            code.append(char.toNumber())
+        }
+        return code
+    }
+}
+
+extension Character{
+    func toNumber() -> UInt32{
+        let str = String(self)
+        var number: UInt32 = 0
+        for code in str.unicodeScalars {
+            number = code.value
+        }
+        return number - 48
+    }
 }

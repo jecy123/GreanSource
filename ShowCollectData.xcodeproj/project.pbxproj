@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5103808C20ABFFE1007345B4 /* ShowDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103808B20ABFFE1007345B4 /* ShowDevice.swift */; };
+		5103808F20AC1443007345B4 /* DevicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103808D20AC1443007345B4 /* DevicesTableViewCell.swift */; };
+		5103809020AC1443007345B4 /* DevicesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5103808E20AC1443007345B4 /* DevicesTableViewCell.xib */; };
+		5103809220AC15C8007345B4 /* DevicesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103809120AC15C8007345B4 /* DevicesTableView.swift */; };
 		5109A49A2045478300986733 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109A4992045478300986733 /* Popover.swift */; };
 		5115DA3020AA74E600AF5445 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F2C1E820A5882A006F1A29 /* libstdc++.tbd */; };
-		5115DA3520AA779B00AF5445 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5115DA3120AA779B00AF5445 /* BaiduMapAPI_Location.framework */; };
-		5115DA3620AA779B00AF5445 /* BaiduMapAPI_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5115DA3220AA779B00AF5445 /* BaiduMapAPI_Map.framework */; };
-		5115DA3720AA779B00AF5445 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5115DA3320AA779B00AF5445 /* mapapi.bundle */; };
-		5115DA3820AA779B00AF5445 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5115DA3420AA779B00AF5445 /* BaiduMapAPI_Base.framework */; };
 		511F6AA62015724800C47096 /* ShowAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F6AA52015724800C47096 /* ShowAccount.swift */; };
 		511F85E820075291008CA05A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F85E720075291008CA05A /* RegisterViewController.swift */; };
 		511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F85E920078CA9008CA05A /* tableItemView.swift */; };
@@ -34,7 +34,7 @@
 		513E7985204F8A32009E799F /* AddressPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513E7984204F8A32009E799F /* AddressPickerView.swift */; };
 		513E798720514BF9009E799F /* ShowVCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513E798620514BF9009E799F /* ShowVCode.swift */; };
 		513E7989205628DA009E799F /* ShowResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513E7988205628DA009E799F /* ShowResponse.swift */; };
-		513EEE07203FA64200F49CDB /* RuningStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE06203FA64200F49CDB /* RuningStateViewController.swift */; };
+		513EEE07203FA64200F49CDB /* RunningStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE06203FA64200F49CDB /* RunningStateViewController.swift */; };
 		513EEE09203FAB0C00F49CDB /* RunningDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE08203FAB0C00F49CDB /* RunningDataViewController.swift */; };
 		513EEE0B203FAB9800F49CDB /* ProjectAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE0A203FAB9800F49CDB /* ProjectAddViewController.swift */; };
 		513EEE0D203FAE2100F49CDB /* ProjectModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE0C203FAE2100F49CDB /* ProjectModifyViewController.swift */; };
@@ -46,6 +46,7 @@
 		513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE1920439F8D00F49CDB /* AddressItem.swift */; };
 		513EEE1C2043A4DE00F49CDB /* address.txt in Resources */ = {isa = PBXBuildFile; fileRef = 513EEE1B2043A4DE00F49CDB /* address.txt */; };
 		5141864120A2EB0700EBC67B /* ShowDevConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5141864020A2EB0700EBC67B /* ShowDevConfig.swift */; };
+		516322AD20AD2CD3009FFCA4 /* ShowDeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516322AC20AD2CD3009FFCA4 /* ShowDeviceData.swift */; };
 		516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC22019ADF10030B4A2 /* ShowMessage.swift */; };
 		516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC42019BFA90030B4A2 /* ShowLocation.swift */; };
 		516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC62019C07E0030B4A2 /* ShowProject.swift */; };
@@ -55,6 +56,7 @@
 		5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D16C20118C0A005BA9C8 /* ISViewPager.swift */; };
 		5170D1702011CD88005BA9C8 /* SocketConn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D16F2011CD88005BA9C8 /* SocketConn.swift */; };
 		5170D17C2014CF9E005BA9C8 /* ProjectInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5170D17B2014CF9E005BA9C8 /* ProjectInfoViewController.swift */; };
+		517E7F1720AAEBB300158D0B /* ShowProjectInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 517E7F1620AAEBB300158D0B /* ShowProjectInfo.swift */; };
 		519FF144204E7E7A000934C6 /* ProjectWorkingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 519FF143204E7E7A000934C6 /* ProjectWorkingMode.swift */; };
 		51A68BA7200C9CB60046A5E6 /* UserRetrieveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A68BA6200C9CB60046A5E6 /* UserRetrieveViewController.swift */; };
 		51A68BA9200CA7130046A5E6 /* DropBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51A68BA8200CA7120046A5E6 /* DropBoxView.swift */; };
@@ -77,6 +79,10 @@
 		51F2C1E520A58662006F1A29 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CC789B20A55EAB00D055FB /* libssl.a */; };
 		51F2C1E620A58690006F1A29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F2C1CB20A583CB006F1A29 /* QuartzCore.framework */; };
 		51F2C1E720A5869F006F1A29 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51CC788920A5496A00D055FB /* OpenGLES.framework */; };
+		51F5E1BA20AA81A100C69EC6 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F5E1B620AA81A100C69EC6 /* BaiduMapAPI_Location.framework */; };
+		51F5E1BB20AA81A100C69EC6 /* BaiduMapAPI_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F5E1B720AA81A100C69EC6 /* BaiduMapAPI_Map.framework */; };
+		51F5E1BC20AA81A100C69EC6 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 51F5E1B820AA81A100C69EC6 /* mapapi.bundle */; };
+		51F5E1BD20AA81A100C69EC6 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F5E1B920AA81A100C69EC6 /* BaiduMapAPI_Base.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,11 +103,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5103808B20ABFFE1007345B4 /* ShowDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDevice.swift; sourceTree = "<group>"; };
+		5103808D20AC1443007345B4 /* DevicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesTableViewCell.swift; sourceTree = "<group>"; };
+		5103808E20AC1443007345B4 /* DevicesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DevicesTableViewCell.xib; sourceTree = "<group>"; };
+		5103809120AC15C8007345B4 /* DevicesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesTableView.swift; sourceTree = "<group>"; };
 		5109A4992045478300986733 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
-		5115DA3120AA779B00AF5445 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
-		5115DA3220AA779B00AF5445 /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
-		5115DA3320AA779B00AF5445 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
-		5115DA3420AA779B00AF5445 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		511F6AA52015724800C47096 /* ShowAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAccount.swift; sourceTree = "<group>"; };
 		511F85E720075291008CA05A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		511F85E920078CA9008CA05A /* tableItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableItemView.swift; sourceTree = "<group>"; };
@@ -125,7 +131,7 @@
 		513E7984204F8A32009E799F /* AddressPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressPickerView.swift; sourceTree = "<group>"; };
 		513E798620514BF9009E799F /* ShowVCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowVCode.swift; sourceTree = "<group>"; };
 		513E7988205628DA009E799F /* ShowResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowResponse.swift; sourceTree = "<group>"; };
-		513EEE06203FA64200F49CDB /* RuningStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RuningStateViewController.swift; sourceTree = "<group>"; };
+		513EEE06203FA64200F49CDB /* RunningStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningStateViewController.swift; sourceTree = "<group>"; };
 		513EEE08203FAB0C00F49CDB /* RunningDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningDataViewController.swift; sourceTree = "<group>"; };
 		513EEE0A203FAB9800F49CDB /* ProjectAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectAddViewController.swift; sourceTree = "<group>"; };
 		513EEE0C203FAE2100F49CDB /* ProjectModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModifyViewController.swift; sourceTree = "<group>"; };
@@ -137,6 +143,7 @@
 		513EEE1920439F8D00F49CDB /* AddressItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressItem.swift; sourceTree = "<group>"; };
 		513EEE1B2043A4DE00F49CDB /* address.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = address.txt; sourceTree = "<group>"; };
 		5141864020A2EB0700EBC67B /* ShowDevConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDevConfig.swift; sourceTree = "<group>"; };
+		516322AC20AD2CD3009FFCA4 /* ShowDeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDeviceData.swift; sourceTree = "<group>"; };
 		516D8AC22019ADF10030B4A2 /* ShowMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMessage.swift; sourceTree = "<group>"; };
 		516D8AC42019BFA90030B4A2 /* ShowLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocation.swift; sourceTree = "<group>"; };
 		516D8AC62019C07E0030B4A2 /* ShowProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProject.swift; sourceTree = "<group>"; };
@@ -146,6 +153,7 @@
 		5170D16C20118C0A005BA9C8 /* ISViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISViewPager.swift; sourceTree = "<group>"; };
 		5170D16F2011CD88005BA9C8 /* SocketConn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketConn.swift; sourceTree = "<group>"; };
 		5170D17B2014CF9E005BA9C8 /* ProjectInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectInfoViewController.swift; sourceTree = "<group>"; };
+		517E7F1620AAEBB300158D0B /* ShowProjectInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowProjectInfo.swift; sourceTree = "<group>"; };
 		519FF143204E7E7A000934C6 /* ProjectWorkingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectWorkingMode.swift; sourceTree = "<group>"; };
 		51A68BA6200C9CB60046A5E6 /* UserRetrieveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRetrieveViewController.swift; sourceTree = "<group>"; };
 		51A68BA8200CA7120046A5E6 /* DropBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropBoxView.swift; sourceTree = "<group>"; };
@@ -178,6 +186,10 @@
 		51F2C1C920A583B9006F1A29 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		51F2C1CB20A583CB006F1A29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		51F2C1E820A5882A006F1A29 /* libstdc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.tbd"; path = "usr/lib/libstdc++.tbd"; sourceTree = SDKROOT; };
+		51F5E1B620AA81A100C69EC6 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
+		51F5E1B720AA81A100C69EC6 /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
+		51F5E1B820AA81A100C69EC6 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
+		51F5E1B920AA81A100C69EC6 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,7 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5115DA3620AA779B00AF5445 /* BaiduMapAPI_Map.framework in Frameworks */,
+				51F5E1BB20AA81A100C69EC6 /* BaiduMapAPI_Map.framework in Frameworks */,
 				5115DA3020AA74E600AF5445 /* libstdc++.tbd in Frameworks */,
 				51F2C1E720A5869F006F1A29 /* OpenGLES.framework in Frameworks */,
 				51F2C1E620A58690006F1A29 /* QuartzCore.framework in Frameworks */,
@@ -193,10 +205,10 @@
 				51F2C1E520A58662006F1A29 /* libssl.a in Frameworks */,
 				51F2C1D220A58423006F1A29 /* CoreTelephony.framework in Frameworks */,
 				51F2C1D120A58418006F1A29 /* libsqlite3.0.tbd in Frameworks */,
-				5115DA3520AA779B00AF5445 /* BaiduMapAPI_Location.framework in Frameworks */,
+				51F5E1BA20AA81A100C69EC6 /* BaiduMapAPI_Location.framework in Frameworks */,
 				51F2C1D020A5840A006F1A29 /* Security.framework in Frameworks */,
 				51F2C1CF20A58400006F1A29 /* CoreGraphics.framework in Frameworks */,
-				5115DA3820AA779B00AF5445 /* BaiduMapAPI_Base.framework in Frameworks */,
+				51F5E1BD20AA81A100C69EC6 /* BaiduMapAPI_Base.framework in Frameworks */,
 				51F2C1CE20A583F4006F1A29 /* SystemConfiguration.framework in Frameworks */,
 				51F2C1CA20A583BA006F1A29 /* CoreLocation.framework in Frameworks */,
 			);
@@ -223,15 +235,18 @@
 			isa = PBXGroup;
 			children = (
 				513EEE1620439F2F00F49CDB /* Address */,
-				511F6AA52015724800C47096 /* ShowAccount.swift */,
-				513E798620514BF9009E799F /* ShowVCode.swift */,
-				516D8AC22019ADF10030B4A2 /* ShowMessage.swift */,
-				516D8AC42019BFA90030B4A2 /* ShowLocation.swift */,
 				513D7B0320186CD700F6DA4C /* BaseData.swift */,
-				516D8AC62019C07E0030B4A2 /* ShowProject.swift */,
 				519FF143204E7E7A000934C6 /* ProjectWorkingMode.swift */,
-				513E7988205628DA009E799F /* ShowResponse.swift */,
+				511F6AA52015724800C47096 /* ShowAccount.swift */,
 				5141864020A2EB0700EBC67B /* ShowDevConfig.swift */,
+				5103808B20ABFFE1007345B4 /* ShowDevice.swift */,
+				516D8AC42019BFA90030B4A2 /* ShowLocation.swift */,
+				516D8AC22019ADF10030B4A2 /* ShowMessage.swift */,
+				516D8AC62019C07E0030B4A2 /* ShowProject.swift */,
+				517E7F1620AAEBB300158D0B /* ShowProjectInfo.swift */,
+				513E7988205628DA009E799F /* ShowResponse.swift */,
+				513E798620514BF9009E799F /* ShowVCode.swift */,
+				516322AC20AD2CD3009FFCA4 /* ShowDeviceData.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -269,8 +284,8 @@
 			children = (
 				512E654B2009D47500478420 /* ColorUtils.swift */,
 				513D7B0520186E2A00F6DA4C /* JSONUtils.swift */,
-				513D7B0E2018831A00F6DA4C /* StringUtils.swift */,
 				516D8ACA201EC2A40030B4A2 /* ToastHelper.swift */,
+				513D7B0E2018831A00F6DA4C /* StringUtils.swift */,
 				51E3EDD4204E66FC003F8903 /* GlobalVar.swift */,
 			);
 			path = Utils;
@@ -303,7 +318,7 @@
 				513EEE1420410CF000F49CDB /* MainViewController.swift */,
 				5170D15D201022C1005BA9C8 /* BasePageViewController.swift */,
 				5170D17B2014CF9E005BA9C8 /* ProjectInfoViewController.swift */,
-				513EEE06203FA64200F49CDB /* RuningStateViewController.swift */,
+				513EEE06203FA64200F49CDB /* RunningStateViewController.swift */,
 				513EEE08203FAB0C00F49CDB /* RunningDataViewController.swift */,
 				513EEE0A203FAB9800F49CDB /* ProjectAddViewController.swift */,
 				513EEE0C203FAE2100F49CDB /* ProjectModifyViewController.swift */,
@@ -317,16 +332,19 @@
 		513D7B0920186FB800F6DA4C /* CustomWidgets */ = {
 			isa = PBXGroup;
 			children = (
+				513E7984204F8A32009E799F /* AddressPickerView.swift */,
+				5103809120AC15C8007345B4 /* DevicesTableView.swift */,
+				5103808D20AC1443007345B4 /* DevicesTableViewCell.swift */,
+				5103808E20AC1443007345B4 /* DevicesTableViewCell.xib */,
+				51A68BA8200CA7120046A5E6 /* DropBoxView.swift */,
+				51E3EDD220490118003F8903 /* InfoView.swift */,
+				5170D16C20118C0A005BA9C8 /* ISViewPager.swift */,
 				5109A4992045478300986733 /* Popover.swift */,
 				511F85E920078CA9008CA05A /* tableItemView.swift */,
-				51A68BA8200CA7120046A5E6 /* DropBoxView.swift */,
-				5170D16C20118C0A005BA9C8 /* ISViewPager.swift */,
 				516D8AC8201B09EF0030B4A2 /* TGCToastView.swift */,
 				5125781F2045315B00344B60 /* TreeTableView.swift */,
 				512578212045317800344B60 /* TreeTableViewCell.swift */,
 				512578222045317900344B60 /* TreeTableViewCell.xib */,
-				51E3EDD220490118003F8903 /* InfoView.swift */,
-				513E7984204F8A32009E799F /* AddressPickerView.swift */,
 			);
 			path = CustomWidgets;
 			sourceTree = "<group>";
@@ -378,11 +396,11 @@
 			isa = PBXGroup;
 			children = (
 				51F2C1EA20A58D6B006F1A29 /* BaiduMapAPI */,
+				51CC788820A5496900D055FB /* Frameworks */,
+				51D205612005F255008763B9 /* Products */,
 				51D205622005F255008763B9 /* ShowCollectData */,
 				51D205772005F255008763B9 /* ShowCollectDataTests */,
 				51D205822005F255008763B9 /* ShowCollectDataUITests */,
-				51D205612005F255008763B9 /* Products */,
-				51CC788820A5496900D055FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -399,16 +417,16 @@
 		51D205622005F255008763B9 /* ShowCollectData */ = {
 			isa = PBXGroup;
 			children = (
+				513EEE1B2043A4DE00F49CDB /* address.txt */,
+				51D205632005F255008763B9 /* AppDelegate.swift */,
 				512578252045352700344B60 /* Asserts */,
-				5170D16E2011CD4D005BA9C8 /* Socket */,
+				51D2056A2005F255008763B9 /* Assets.xcassets */,
 				511F6AA42015722500C47096 /* Common */,
+				51D2056F2005F255008763B9 /* Info.plist */,
+				5170D16E2011CD4D005BA9C8 /* Socket */,
+				511F85E620075141008CA05A /* StoryBoards */,
 				512E65482008986300478420 /* Utils */,
 				511F85E5200750F3008CA05A /* Views */,
-				511F85E620075141008CA05A /* StoryBoards */,
-				51D205632005F255008763B9 /* AppDelegate.swift */,
-				513EEE1B2043A4DE00F49CDB /* address.txt */,
-				51D2056F2005F255008763B9 /* Info.plist */,
-				51D2056A2005F255008763B9 /* Assets.xcassets */,
 			);
 			path = ShowCollectData;
 			sourceTree = "<group>";
@@ -434,10 +452,10 @@
 		51F2C1EA20A58D6B006F1A29 /* BaiduMapAPI */ = {
 			isa = PBXGroup;
 			children = (
-				5115DA3420AA779B00AF5445 /* BaiduMapAPI_Base.framework */,
-				5115DA3120AA779B00AF5445 /* BaiduMapAPI_Location.framework */,
-				5115DA3220AA779B00AF5445 /* BaiduMapAPI_Map.framework */,
-				5115DA3320AA779B00AF5445 /* mapapi.bundle */,
+				51F5E1B920AA81A100C69EC6 /* BaiduMapAPI_Base.framework */,
+				51F5E1B620AA81A100C69EC6 /* BaiduMapAPI_Location.framework */,
+				51F5E1B720AA81A100C69EC6 /* BaiduMapAPI_Map.framework */,
+				51F5E1B820AA81A100C69EC6 /* mapapi.bundle */,
 			);
 			name = BaiduMapAPI;
 			sourceTree = "<group>";
@@ -555,7 +573,8 @@
 				51D2056B2005F255008763B9 /* Assets.xcassets in Resources */,
 				512578292045354F00344B60 /* tree_ex.png in Resources */,
 				51D205692005F255008763B9 /* Main.storyboard in Resources */,
-				5115DA3720AA779B00AF5445 /* mapapi.bundle in Resources */,
+				5103809020AC1443007345B4 /* DevicesTableViewCell.xib in Resources */,
+				51F5E1BC20AA81A100C69EC6 /* mapapi.bundle in Resources */,
 				513EEE1C2043A4DE00F49CDB /* address.txt in Resources */,
 				512578242045317900344B60 /* TreeTableViewCell.xib in Resources */,
 			);
@@ -583,11 +602,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				513D7AF0201836A600F6DA4C /* ConnectAPI.swift in Sources */,
+				5103808F20AC1443007345B4 /* DevicesTableViewCell.swift in Sources */,
 				516D8AC9201B09EF0030B4A2 /* TGCToastView.swift in Sources */,
 				513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */,
 				513EEE11203FAF7100F49CDB /* MaintainerModifyViewController.swift in Sources */,
 				5141864120A2EB0700EBC67B /* ShowDevConfig.swift in Sources */,
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
+				5103809220AC15C8007345B4 /* DevicesTableView.swift in Sources */,
 				512578202045315B00344B60 /* TreeTableView.swift in Sources */,
 				513EEE0D203FAE2100F49CDB /* ProjectModifyViewController.swift in Sources */,
 				513E7989205628DA009E799F /* ShowResponse.swift in Sources */,
@@ -600,7 +621,7 @@
 				512E654C2009D47500478420 /* ColorUtils.swift in Sources */,
 				513D7B0B2018703800F6DA4C /* MsgProtocol.swift in Sources */,
 				511F85E820075291008CA05A /* RegisterViewController.swift in Sources */,
-				513EEE07203FA64200F49CDB /* RuningStateViewController.swift in Sources */,
+				513EEE07203FA64200F49CDB /* RunningStateViewController.swift in Sources */,
 				513EEE1520410CF000F49CDB /* MainViewController.swift in Sources */,
 				512578232045317900344B60 /* TreeTableViewCell.swift in Sources */,
 				516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */,
@@ -619,13 +640,16 @@
 				51D205662005F255008763B9 /* LoginViewController.swift in Sources */,
 				5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */,
 				513E7985204F8A32009E799F /* AddressPickerView.swift in Sources */,
+				517E7F1720AAEBB300158D0B /* ShowProjectInfo.swift in Sources */,
 				516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */,
 				513E798720514BF9009E799F /* ShowVCode.swift in Sources */,
 				513D7B0F2018831A00F6DA4C /* StringUtils.swift in Sources */,
 				513EEE0B203FAB9800F49CDB /* ProjectAddViewController.swift in Sources */,
 				513EEE0F203FAE4200F49CDB /* DeviceModifyViewController.swift in Sources */,
 				513EEE13203FAF9500F49CDB /* InfoRefindViewController.swift in Sources */,
+				5103808C20ABFFE1007345B4 /* ShowDevice.swift in Sources */,
 				5170D1702011CD88005BA9C8 /* SocketConn.swift in Sources */,
+				516322AD20AD2CD3009FFCA4 /* ShowDeviceData.swift in Sources */,
 				513D7B0420186CD700F6DA4C /* BaseData.swift in Sources */,
 				51D205642005F255008763B9 /* AppDelegate.swift in Sources */,
 			);

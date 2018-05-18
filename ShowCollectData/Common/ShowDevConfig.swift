@@ -14,6 +14,17 @@ class ShowDevConfig: BaseData {
     var devType: Int!
     var config: String!
     
+    override init() {
+        super.init()
+        self.retCode = 0
+        self.msg = "Success"
+    }
+    
+    convenience init(projectId: Int) {
+        self.init()
+        self.projectId = projectId
+    }
+    
     func toJSON() -> String {
         var dic = [String : Any]()
         if let id = self.id {
@@ -32,4 +43,8 @@ class ShowDevConfig: BaseData {
         return str
     }
     
+    override func fromDictionary(dic: NSDictionary){
+        super.fromDictionary(dic: dic)
+        
+    }
 }

@@ -29,6 +29,9 @@ class BasePageViewController: UIViewController{
     var mainTitleLabel: UILabel!
     var subTitleLabel: UILabel!
     
+    //设备列表
+    var devicesTableView: DevicesTableView!
+    
     var viewType: AccountType!
     
     var tableItemTag: Int  = 0
@@ -36,10 +39,15 @@ class BasePageViewController: UIViewController{
     
     public var infomationView: InfoView!
     
+    //所有的项目
     public var allProjects: [ShowProject]!
     
+    //选中的项目
     public var selectedProject: ShowProject!{
         didSet{
+            guard let selectedProject = self.selectedProject, let addressNames = self.addressNames else {
+                return
+            }
             selectedProject.locationName = "" + addressNames[3] + addressNames[2] +  addressNames[1]
             print(self.selectedProject.projectName)
             self.refreshProject()
@@ -49,6 +57,9 @@ class BasePageViewController: UIViewController{
     
     public var addressNames: [String]!{
         didSet{
+            guard let addressNames = self.addressNames else {
+                return
+            }
             guard  addressNames.count == 4 else {
                 ToastHelper.showGlobalToast(message: "数据返回出错！")
                 return
@@ -127,6 +138,11 @@ class BasePageViewController: UIViewController{
         
         self.itemBgView.addSubview(tableItemView)
         self.tableItemViews.append(tableItemView)
+    }
+    
+    func addDeviceListView(deviceListFrame: CGRect, devices: [ShowDevice]){
+        self.devicesTableView = DevicesTableView(frame: deviceListFrame, devices: devices)
+        self.itemBgView.addSubview(self.devicesTableView)
     }
     
     func removeTableItemView(at tag: Int){
@@ -234,6 +250,21 @@ class BasePageViewController: UIViewController{
         }
         self.selectedButtonIndex = 0
         
+    }
+    
+    func addInfoTitleLabel(frame: CGRect, title: String) -> UILabel{
+        let label = UILabel(frame: frame)
+        label.text = title
+        self.itemBgView.addSubview(label)
+        return label
+    }
+    
+    func addInfoContentImage(frame: CGRect, image: UIImage) -> UIImageView{
+        let imageView = UIImageView(frame: frame)
+        imageView.image = image
+        self.itemBgView.addSubview(imageView)
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }
     
     @objc func onSelectedButtonClicked(_ sender: UIButton){
