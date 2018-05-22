@@ -149,7 +149,7 @@ extension RunningStateViewController: UITableViewDelegate{
     }
     
     func isStateRight(state: String) -> Bool {
-        let numbers = StringUtils.StringToIntArray(value: state)
+        let numbers = StringUtils.stringToIntArray(value: state)
         guard let nums = numbers else { return false }
         let stateCode = nums[nums.count - 1]
         var res = false

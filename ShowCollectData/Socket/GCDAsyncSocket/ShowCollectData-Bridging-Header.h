@@ -16,5 +16,7 @@
 #import <BaiduMapAPI_Map/BMKMapView.h> //只引入所需的单个头文件
 #import <BaiduMapAPI_Location/BMKLocationComponent.h>//引入定位功能所有的头文件
 
+#import <CommonCrypto/CommonCrypto.h>
+
 
 #endif /* GreanSourceManeger_Bridging_Header_h */

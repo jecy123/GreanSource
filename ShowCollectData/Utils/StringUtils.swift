@@ -147,7 +147,7 @@ class StringUtils {
         return emailTest.evaluate(with: email)
     }
     
-    public static func StringToIntArray(value: String) -> [UInt32]?{
+    public static func stringToIntArray(value: String) -> [UInt32]?{
         //利用正则表达式判断是不是全部都是数字
         let regex = "^[-\\+]?[\\d]*$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
@@ -162,6 +162,58 @@ class StringUtils {
             code.append(char.toNumber())
         }
         return code
+    }
+    
+    //16位的16位进制整数数据字符串转换成UInt16
+    public static func hexStringToUInt16(value: String) -> UInt16? {
+        //判断数字是否满足16进制的条件
+        let regex = "^[0-9a-zA-Z]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        let isValid = predicate.evaluate(with: value)
+        guard isValid else {
+            NSLog("Convert error: this string is not a hexadecimal string!")
+            return nil
+        }
+        var sum: UInt16 = 0
+        for i in value.utf8 {
+            //a-f
+            var codeValue: UInt8
+            if i >= 97 && i <= 102 {
+                codeValue = i - 87
+            }else if i >= 65 && i <= 70 {
+                codeValue = i - 55
+            }else {
+                codeValue = i - 48
+            }
+            sum = sum * 16 + UInt16(codeValue)
+        }
+        return sum
+    }
+    
+    //32位的16位进制整数数据字符串转换成UInt16
+    public static func hexStringToUInt32(value: String) -> UInt32? {
+        //判断数字是否满足16进制的条件
+        let regex = "^[0-9a-zA-Z]+$"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        let isValid = predicate.evaluate(with: value)
+        guard isValid else {
+            NSLog("Convert error: this string is not a hexadecimal string!")
+            return nil
+        }
+        var sum: UInt32 = 0
+        for i in value.utf8 {
+            //a-f
+            var codeValue: UInt8
+            if i >= 97 && i <= 102 {
+                codeValue = i - 87
+            }else if i >= 65 && i <= 70 {
+                codeValue = i - 55
+            }else {
+                codeValue = i - 48
+            }
+            sum = sum * 16 + UInt32(codeValue)
+        }
+        return sum
     }
 }
 

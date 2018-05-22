@@ -73,10 +73,37 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "MyGifView.creatKeyFrame():MyGifView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.layer.animation(forKey: &quot;MyGifView&quot;)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "MyGifView.showGIFImageWithLocalName(name:):MyGifView.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.layer.animationKeys()">
+            </PersistentString>
+            <PersistentString
+               value = "gifurl">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "static AddressUtils.buildItems(projects:):AddressUtils.swift">
       </ContextState>
       <ContextState
          contextName = "MainViewController.initPopover():MainViewController.swift">
+      </ContextState>
+      <ContextState
+         contextName = "DeviceModifyViewController.refreshNames():DeviceModifyViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.dropBoxViews">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "DropBoxView.init(parentView:title:items:frame:):DropBoxView.swift">
@@ -97,14 +124,6 @@
             </PersistentString>
             <PersistentString
                value = "unreadCount">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "DeviceModifyViewController.refreshNames():DeviceModifyViewController.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "self.dropBoxViews">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -149,6 +168,14 @@
             </PersistentString>
             <PersistentString
                value = "dropBoxViews">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RunningDataViewController.onDeviceListSelected(_:didSelectRowAt:):RunningDataViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.devicesTableView">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
