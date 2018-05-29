@@ -99,7 +99,7 @@ class StringUtils {
             stringBytes.append(bytes[index])
         }
         
-        let str = String(bytes: stringBytes, encoding: .utf8)!
+        let str = String(bytes: stringBytes, encoding: .utf8)
         return str
     }
     

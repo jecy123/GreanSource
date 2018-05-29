@@ -257,31 +257,6 @@ class ShowDeviceData: BaseData{
             self.vssun = vssun as! String
         }
     }
-    
-    
 }
 
-extension Date {
-    func getDate()->(year: Int, month: Int, day: Int, hour: Int){
-        let calender = Calendar.current
-        
-        let year = calender.component(.year, from: self)
-        let month = calender.component(.month, from: self)
-        let day = calender.component(.day, from: self)
-        let hour = calender.component(.hour, from: self)
-        
-        return (year, month, day, hour)
-    }
-    
-    //java长整形日期数据格式转换成swift的Date
-    init(javaDateLongFormat: Int64) {
-        let interval = Double(javaDateLongFormat / 1000)
-        self.init(timeIntervalSince1970: interval)
-    }
-    
-    func toJavaDateLongFormat() ->  Int64{
-        let inteval = self.timeIntervalSince1970
-        let longFormat = Int64(inteval * 1000)
-        return longFormat
-    }
-}
+

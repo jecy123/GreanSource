@@ -54,6 +54,11 @@
 		513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513EEE1920439F8D00F49CDB /* AddressItem.swift */; };
 		513EEE1C2043A4DE00F49CDB /* address.txt in Resources */ = {isa = PBXBuildFile; fileRef = 513EEE1B2043A4DE00F49CDB /* address.txt */; };
 		5141864120A2EB0700EBC67B /* ShowDevConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5141864020A2EB0700EBC67B /* ShowDevConfig.swift */; };
+		51594DC720B3C13C00BBD7D0 /* TimeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51594DC520B3C13C00BBD7D0 /* TimeCollectionViewCell.swift */; };
+		51594DC820B3C13C00BBD7D0 /* TimeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51594DC620B3C13C00BBD7D0 /* TimeCollectionViewCell.xib */; };
+		51594DCA20B3C48A00BBD7D0 /* TimingRunFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51594DC920B3C48A00BBD7D0 /* TimingRunFragment.swift */; };
+		51594DCC20B3F58100BBD7D0 /* EmergencyFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51594DCB20B3F58100BBD7D0 /* EmergencyFragment.swift */; };
+		51594DCE20B428B100BBD7D0 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51594DCD20B428B100BBD7D0 /* DateUtils.swift */; };
 		516322AD20AD2CD3009FFCA4 /* ShowDeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516322AC20AD2CD3009FFCA4 /* ShowDeviceData.swift */; };
 		516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC22019ADF10030B4A2 /* ShowMessage.swift */; };
 		516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 516D8AC42019BFA90030B4A2 /* ShowLocation.swift */; };
@@ -187,6 +192,11 @@
 		513EEE1920439F8D00F49CDB /* AddressItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressItem.swift; sourceTree = "<group>"; };
 		513EEE1B2043A4DE00F49CDB /* address.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = address.txt; sourceTree = "<group>"; };
 		5141864020A2EB0700EBC67B /* ShowDevConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDevConfig.swift; sourceTree = "<group>"; };
+		51594DC520B3C13C00BBD7D0 /* TimeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeCollectionViewCell.swift; sourceTree = "<group>"; };
+		51594DC620B3C13C00BBD7D0 /* TimeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeCollectionViewCell.xib; sourceTree = "<group>"; };
+		51594DC920B3C48A00BBD7D0 /* TimingRunFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimingRunFragment.swift; sourceTree = "<group>"; };
+		51594DCB20B3F58100BBD7D0 /* EmergencyFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyFragment.swift; sourceTree = "<group>"; };
+		51594DCD20B428B100BBD7D0 /* DateUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtils.swift; sourceTree = "<group>"; };
 		516322AC20AD2CD3009FFCA4 /* ShowDeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDeviceData.swift; sourceTree = "<group>"; };
 		516D8AC22019ADF10030B4A2 /* ShowMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowMessage.swift; sourceTree = "<group>"; };
 		516D8AC42019BFA90030B4A2 /* ShowLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowLocation.swift; sourceTree = "<group>"; };
@@ -356,10 +366,11 @@
 			isa = PBXGroup;
 			children = (
 				512E654B2009D47500478420 /* ColorUtils.swift */,
-				513D7B0520186E2A00F6DA4C /* JSONUtils.swift */,
 				516D8ACA201EC2A40030B4A2 /* ToastHelper.swift */,
 				513D7B0E2018831A00F6DA4C /* StringUtils.swift */,
 				51E3EDD4204E66FC003F8903 /* GlobalVar.swift */,
+				513D7B0520186E2A00F6DA4C /* JSONUtils.swift */,
+				51594DCD20B428B100BBD7D0 /* DateUtils.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -406,7 +417,6 @@
 		513D7B0920186FB800F6DA4C /* CustomWidgets */ = {
 			isa = PBXGroup;
 			children = (
-				51E3215620AFC63C00B650C0 /* MyGifView.swift */,
 				513E7984204F8A32009E799F /* AddressPickerView.swift */,
 				5103809120AC15C8007345B4 /* DevicesTableView.swift */,
 				5103808D20AC1443007345B4 /* DevicesTableViewCell.swift */,
@@ -414,12 +424,15 @@
 				51A68BA8200CA7120046A5E6 /* DropBoxView.swift */,
 				51E3EDD220490118003F8903 /* InfoView.swift */,
 				5170D16C20118C0A005BA9C8 /* ISViewPager.swift */,
+				51E3215620AFC63C00B650C0 /* MyGifView.swift */,
 				5109A4992045478300986733 /* Popover.swift */,
 				511F85E920078CA9008CA05A /* tableItemView.swift */,
 				516D8AC8201B09EF0030B4A2 /* TGCToastView.swift */,
 				5125781F2045315B00344B60 /* TreeTableView.swift */,
 				512578212045317800344B60 /* TreeTableViewCell.swift */,
 				512578222045317900344B60 /* TreeTableViewCell.xib */,
+				51594DC520B3C13C00BBD7D0 /* TimeCollectionViewCell.swift */,
+				51594DC620B3C13C00BBD7D0 /* TimeCollectionViewCell.xib */,
 			);
 			path = CustomWidgets;
 			sourceTree = "<group>";
@@ -451,6 +464,8 @@
 			children = (
 				51BB0C9F20AEB009001A99D4 /* DeviceListFragment.swift */,
 				51BB0CA120AEB711001A99D4 /* RunningDataFragment.swift */,
+				51594DC920B3C48A00BBD7D0 /* TimingRunFragment.swift */,
+				51594DCB20B3F58100BBD7D0 /* EmergencyFragment.swift */,
 			);
 			name = RunningDataFragments;
 			sourceTree = "<group>";
@@ -479,12 +494,12 @@
 		51D205572005F254008763B9 = {
 			isa = PBXGroup;
 			children = (
-				51F2C1EA20A58D6B006F1A29 /* BaiduMapAPI */,
-				51CC788820A5496900D055FB /* Frameworks */,
-				51D205612005F255008763B9 /* Products */,
 				51D205622005F255008763B9 /* ShowCollectData */,
 				51D205772005F255008763B9 /* ShowCollectDataTests */,
 				51D205822005F255008763B9 /* ShowCollectDataUITests */,
+				51F2C1EA20A58D6B006F1A29 /* BaiduMapAPI */,
+				51CC788820A5496900D055FB /* Frameworks */,
+				51D205612005F255008763B9 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -501,12 +516,12 @@
 		51D205622005F255008763B9 /* ShowCollectData */ = {
 			isa = PBXGroup;
 			children = (
-				513EEE1B2043A4DE00F49CDB /* address.txt */,
-				51D205632005F255008763B9 /* AppDelegate.swift */,
-				512578252045352700344B60 /* Asserts */,
-				51D2056A2005F255008763B9 /* Assets.xcassets */,
-				511F6AA42015722500C47096 /* Common */,
 				51D2056F2005F255008763B9 /* Info.plist */,
+				51D205632005F255008763B9 /* AppDelegate.swift */,
+				513EEE1B2043A4DE00F49CDB /* address.txt */,
+				51D2056A2005F255008763B9 /* Assets.xcassets */,
+				512578252045352700344B60 /* Asserts */,
+				511F6AA42015722500C47096 /* Common */,
 				5170D16E2011CD4D005BA9C8 /* Socket */,
 				511F85E620075141008CA05A /* StoryBoards */,
 				512E65482008986300478420 /* Utils */,
@@ -726,6 +741,7 @@
 				513A458620B26AAA008FB23B /* battery4.gif in Resources */,
 				51F5E1BC20AA81A100C69EC6 /* mapapi.bundle in Resources */,
 				51E3217F20AFC81900B650C0 /* ic_passwd.gif in Resources */,
+				51594DC820B3C13C00BBD7D0 /* TimeCollectionViewCell.xib in Resources */,
 				513EEE1C2043A4DE00F49CDB /* address.txt in Resources */,
 				512578242045317900344B60 /* TreeTableViewCell.xib in Resources */,
 				51E3217520AFC81900B650C0 /* arrownew_right.png in Resources */,
@@ -767,12 +783,14 @@
 				5141864120A2EB0700EBC67B /* ShowDevConfig.swift in Sources */,
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
 				5103809220AC15C8007345B4 /* DevicesTableView.swift in Sources */,
+				51594DC720B3C13C00BBD7D0 /* TimeCollectionViewCell.swift in Sources */,
 				512578202045315B00344B60 /* TreeTableView.swift in Sources */,
 				513EEE0D203FAE2100F49CDB /* ProjectModifyViewController.swift in Sources */,
 				513E7989205628DA009E799F /* ShowResponse.swift in Sources */,
 				51E3EDD5204E66FC003F8903 /* GlobalVar.swift in Sources */,
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,
 				51E3EDD320490118003F8903 /* InfoView.swift in Sources */,
+				51594DCC20B3F58100BBD7D0 /* EmergencyFragment.swift in Sources */,
 				513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */,
 				51A68BA7200C9CB60046A5E6 /* UserRetrieveViewController.swift in Sources */,
 				5109A49A2045478300986733 /* Popover.swift in Sources */,
@@ -781,9 +799,11 @@
 				511F85E820075291008CA05A /* RegisterViewController.swift in Sources */,
 				51E3215720AFC63C00B650C0 /* MyGifView.swift in Sources */,
 				513EEE07203FA64200F49CDB /* RunningStateViewController.swift in Sources */,
+				51594DCE20B428B100BBD7D0 /* DateUtils.swift in Sources */,
 				513EEE1520410CF000F49CDB /* MainViewController.swift in Sources */,
 				512578232045317900344B60 /* TreeTableViewCell.swift in Sources */,
 				516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */,
+				51594DCA20B3C48A00BBD7D0 /* TimingRunFragment.swift in Sources */,
 				513D7B002018628000F6DA4C /* GCDAsyncSocket.m in Sources */,
 				5170D15E201022C1005BA9C8 /* BasePageViewController.swift in Sources */,
 				51A68BA9200CA7130046A5E6 /* DropBoxView.swift in Sources */,
@@ -978,6 +998,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3743T2J7NU;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -991,8 +1012,9 @@
 					"$(PROJECT_DIR)/ShowCollectData/thirdlibs",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.greensource.ShowCollectData;
+				PRODUCT_BUNDLE_IDENTIFIER = com.greensource.ShowCollectDatah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShowCollectData/Socket/GCDAsyncSocket/ShowCollectData-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
@@ -1005,6 +1027,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 3743T2J7NU;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1018,8 +1041,9 @@
 					"$(PROJECT_DIR)/ShowCollectData/thirdlibs",
 				);
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.greensource.ShowCollectData;
+				PRODUCT_BUNDLE_IDENTIFIER = com.greensource.ShowCollectDatah;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShowCollectData/Socket/GCDAsyncSocket/ShowCollectData-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

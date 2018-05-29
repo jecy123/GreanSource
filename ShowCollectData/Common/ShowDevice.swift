@@ -170,3 +170,14 @@ class ShowDevice: BaseData {
     }
     
 }
+
+extension ShowDevice {
+    public static func arrayToJSON(list: [ShowDevice]) -> String{
+        var json = "["
+        for i in 0..<list.count - 1 {
+            json += list[i].toJSON() + ","
+        }
+        json += list[list.count-1].toJSON()+"]"
+        return json
+    }
+}

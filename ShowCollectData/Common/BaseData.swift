@@ -14,7 +14,7 @@ class BaseData {
     init() {
         
     }
-    
+
     init(retCode:Int, msg:String) {
         self.retCode = retCode
         self.msg = msg
@@ -30,3 +30,5 @@ class BaseData {
         }
     }
 }
+
+

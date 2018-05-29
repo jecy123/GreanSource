@@ -385,6 +385,131 @@ class ClientRequest {
         }
         
     }
+   
+    public static func getTimingRunData(projectId: Int, completeHandler: @escaping (ProjectWorkingMode?) -> Void){
+        let workingMode = ProjectWorkingMode(projectId: projectId)
+        let workingJsonData = workingMode.toJSON()
+        print("获取定时数据："+workingJsonData)
+        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.GET_WORKING_MODE_COMMAND, msgBody: workingJsonData, msgId: 0) {
+            res in
+            switch res {
+            case .failed(let code):
+                if code == socketErrorCode.jsonStringFormatError {
+                    print("Json字符串格式错误！")
+                }else if code == socketErrorCode.responseFormatError {
+                    print("服务器响应字符串格式错误！")
+                }
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
+            case .success(let msg):
+                if msg.msgCode == ConnectAPI.GET_WORKING_MODE_RESPONSE {
+                    print("JSON_STRING=" + msg.msgStr)
+                    print("成功收到服务器响应！")
+                    
+                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
+                    
+                    let resWorkingMode = ProjectWorkingMode()
+                    resWorkingMode.fromDictionary(dic: dic)
+                    DispatchQueue.main.async {
+                        completeHandler(resWorkingMode)
+                    }
+                }else {
+                    print("服务器消息响应码不符合条件！")
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }
+            }
+            
+        }
+    }
+    
+    ///更新定时运行配置数据
+    public static func updateTimingRunData(workingMode: ProjectWorkingMode, completeHandler: @escaping (BaseData?) -> Void){
+        
+        let workingJsonData = workingMode.toJSON()
+        print("更新定时数据："+workingJsonData)
+        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.WORKING_MODE_UPDATE_COMMAND, msgBody: workingJsonData, msgId: 0) {
+            res in
+            switch res {
+            case .failed(let code):
+                if code == socketErrorCode.jsonStringFormatError {
+                    print("Json字符串格式错误！")
+                }else if code == socketErrorCode.responseFormatError {
+                    print("服务器响应字符串格式错误！")
+                }
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
+            case .success(let msg):
+                if msg.msgCode == ConnectAPI.WORKING_MODE_UPDATE_RESPONSE {
+                    print("JSON_STRING=" + msg.msgStr)
+                    print("成功收到服务器响应！")
+                    
+                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
+                    
+                    let resData = BaseData()
+                    resData.fromDictionary(dic: dic)
+                    DispatchQueue.main.async {
+                        completeHandler(resData)
+                    }
+                }else {
+                    print("服务器消息响应码不符合条件！")
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }
+            }
+            
+        }
+    
+    }
+    
+    //项目紧急启停：
+    public static func setProjectEmergencyStartOrStop(devicelistJson: String, completeHandler: @escaping ([ShowDevice]?) -> Void){
+        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.PROJECT_DEVICES_CTRL_COMMAND, msgBody: devicelistJson, msgId: 0){
+            res in
+            switch res {
+            case .failed(let code):
+                if code == socketErrorCode.jsonStringFormatError {
+                    print("Json字符串格式错误！")
+                }else if code == socketErrorCode.responseFormatError {
+                    print("服务器响应字符串格式错误！")
+                }
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
+            case .success(let msg):
+                if msg.msgCode == ConnectAPI.PROJECT_DEVICES_CTRL_RESPONSE {
+                    print("JSON_STRING=" + msg.msgStr)
+                    print("成功收到服务器响应！")
+                    
+                    let dics = JSONUtils.getDicsFromJSONString(jsonString: msg.msgStr)
+                    
+                    var devices = [ShowDevice]()
+                    for dic in dics{
+                        let device = ShowDevice()
+                        device.fromDictionary(dic: dic)
+                        devices.append(device)
+                    }
+                    DispatchQueue.main.async {
+                        completeHandler(devices)
+                    }
+                }
+                else {
+                    print("服务器消息响应码不符合条件！")
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }
+            }
+            
+        }
+    }
     
     
     
