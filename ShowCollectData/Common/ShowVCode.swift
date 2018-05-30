@@ -24,15 +24,8 @@ class ShowVCode: BaseData{
         self.retCode = 0
     }
     
-    func toJSON() -> String {
-        var dic = [ String: Any ]()
-        
-        if let msg = self.msg {
-            dic["msg"] = msg
-        }
-        if let retCode = self.retCode {
-            dic["retCode"] = retCode
-        }
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
         if let type = self.type {
             dic["type"] = type
         }
@@ -43,12 +36,8 @@ class ShowVCode: BaseData{
         if let vcode = self.vcode {
             dic["vcode"] = vcode
         }
-        
-        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
-        print("JSONData = \(str)")
-        return str
+        return dic
     }
-    
     
     override func fromDictionary(dic: NSDictionary){
         super.fromDictionary(dic: dic)

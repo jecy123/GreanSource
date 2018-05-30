@@ -56,20 +56,13 @@ class ProjectWorkingMode: BaseData {
         }
     }
     
-    func toJSON() -> String{
-        var dic = [ String: Any ]()
-        
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
         if let id = self.id {
             dic["id"] = id
         }
         if let projectId = self.projectId {
             dic["projectId"] = projectId
-        }
-        if let retCode = self.retCode {
-            dic["retCode"] = retCode
-        }
-        if let msg = self.msg {
-            dic["msg"] = msg
         }
         if let updateTime = self.updateTime {
             dic["updateTime"] = updateTime
@@ -85,9 +78,7 @@ class ProjectWorkingMode: BaseData {
                 }
             }
         }
-        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
-        print("JSONData = \(str)")
-        return str
+        return dic
     }
     
     override func fromDictionary(dic: NSDictionary) {

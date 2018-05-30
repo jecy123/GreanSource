@@ -41,8 +41,8 @@ class ShowProjectInfo: BaseData{
         
     }
     
-    func toJSON() -> String{
-        var dic = [String : Any]()
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
         if let id = self.id {
             dic["id"] = id
         }
@@ -70,10 +70,8 @@ class ShowProjectInfo: BaseData{
         if let longtitude = self.longtitude {
             dic["longtitude"] = longtitude
         }
-        
-        
-        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
-        return str
+        return dic
+
     }
     
     override func fromDictionary(dic: NSDictionary) {

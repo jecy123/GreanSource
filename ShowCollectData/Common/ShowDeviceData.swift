@@ -58,9 +58,8 @@ class ShowDeviceData: BaseData{
         self.uuid = uuid
     }
     
-    func toJSON() -> String {
-        var dic = [ String: Any ]()
-        
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
         if let ain1 = self.ain1 {
             dic["ain1"] = ain1
         }
@@ -154,9 +153,7 @@ class ShowDeviceData: BaseData{
             dic["vssun"] = vssun
         }
         
-        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
-        print("JSONData = \(str)")
-        return str
+        return dic
     }
     
     override func fromDictionary(dic: NSDictionary) {

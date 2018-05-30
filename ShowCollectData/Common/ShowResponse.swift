@@ -11,6 +11,14 @@ import Foundation
 class ShowResponse: BaseData {
     var type: Int!
     
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
+        if let type = self.type {
+            dic["type"] = type
+        }
+        return dic
+    }
+    
     override func fromDictionary(dic: NSDictionary) {
         super.fromDictionary(dic: dic)
         

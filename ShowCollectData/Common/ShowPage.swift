@@ -1,0 +1,62 @@
+//
+//  ShowPage.swift
+//  ShowCollectData
+//
+//  Created by 星空 on 2018/5/30.
+//  Copyright © 2018年 星空. All rights reserved.
+//
+
+import Foundation
+
+class ShowPage: BaseData {
+    var start: Int!
+    var pageNum: Int!
+    var count: Int!
+    var total: Int!
+    
+    var condition: BaseData! //条件
+    var resList: [ShowAccount]! //结果
+    
+    override init() {
+        super.init()
+        self.start = 0
+        self.pageNum = 1
+        self.count = 1000
+        self.total = 0
+    }
+    
+    convenience init(c: BaseData) {
+        self.init()
+        self.condition = c
+    }
+    
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
+        if let start = self.start {
+            dic["start"] = start
+        }
+        
+        if let pageNum = self.pageNum {
+            dic["pageNum"] = pageNum
+        }
+        
+        if let count = self.count {
+            dic["count"] = count
+        }
+        if let total = self.total {
+            dic["total"] = total
+        }
+        
+        if let condition = self.condition {
+            dic["c"] = condition.toDic() as NSDictionary
+        }
+        return dic
+    }
+    
+//    override func toJSON() -> String {
+//        let dic = toDic()
+//        let str = JSONUtils.toJSONString(dic: dic)
+//        print("JSONData = \(str)")
+//        return str
+//    }
+}

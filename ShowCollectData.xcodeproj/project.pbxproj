@@ -11,6 +11,10 @@
 		5103808F20AC1443007345B4 /* DevicesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103808D20AC1443007345B4 /* DevicesTableViewCell.swift */; };
 		5103809020AC1443007345B4 /* DevicesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5103808E20AC1443007345B4 /* DevicesTableViewCell.xib */; };
 		5103809220AC15C8007345B4 /* DevicesTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103809120AC15C8007345B4 /* DevicesTableView.swift */; };
+		5103BEFE20BD3AE100F6B26A /* AuditingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103BEFC20BD3AE100F6B26A /* AuditingCell.swift */; };
+		5103BEFF20BD3AE100F6B26A /* AuditingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5103BEFD20BD3AE100F6B26A /* AuditingCell.xib */; };
+		5103BF0120BD4B8D00F6B26A /* AuditingFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103BF0020BD4B8D00F6B26A /* AuditingFragment.swift */; };
+		5103BF0320BE4AC300F6B26A /* ShowPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103BF0220BE4AC300F6B26A /* ShowPage.swift */; };
 		5106FCB820B186EE009BAB2C /* solar_panel_good.png in Resources */ = {isa = PBXBuildFile; fileRef = 5106FCB620B186ED009BAB2C /* solar_panel_good.png */; };
 		5106FCB920B186EE009BAB2C /* solar_panel_bad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5106FCB720B186ED009BAB2C /* solar_panel_bad.png */; };
 		5109A49A2045478300986733 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109A4992045478300986733 /* Popover.swift */; };
@@ -148,6 +152,10 @@
 		5103808D20AC1443007345B4 /* DevicesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesTableViewCell.swift; sourceTree = "<group>"; };
 		5103808E20AC1443007345B4 /* DevicesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DevicesTableViewCell.xib; sourceTree = "<group>"; };
 		5103809120AC15C8007345B4 /* DevicesTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesTableView.swift; sourceTree = "<group>"; };
+		5103BEFC20BD3AE100F6B26A /* AuditingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditingCell.swift; sourceTree = "<group>"; };
+		5103BEFD20BD3AE100F6B26A /* AuditingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuditingCell.xib; sourceTree = "<group>"; };
+		5103BF0020BD4B8D00F6B26A /* AuditingFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditingFragment.swift; sourceTree = "<group>"; };
+		5103BF0220BE4AC300F6B26A /* ShowPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPage.swift; sourceTree = "<group>"; };
 		5106FCB620B186ED009BAB2C /* solar_panel_good.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solar_panel_good.png; sourceTree = "<group>"; };
 		5106FCB720B186ED009BAB2C /* solar_panel_bad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solar_panel_bad.png; sourceTree = "<group>"; };
 		5109A4992045478300986733 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
@@ -313,6 +321,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5103BEFB20BD362400F6B26A /* InfoAuditFragments */ = {
+			isa = PBXGroup;
+			children = (
+				5103BEFC20BD3AE100F6B26A /* AuditingCell.swift */,
+				5103BEFD20BD3AE100F6B26A /* AuditingCell.xib */,
+				5103BF0020BD4B8D00F6B26A /* AuditingFragment.swift */,
+			);
+			name = InfoAuditFragments;
+			sourceTree = "<group>";
+		};
 		511F6AA42015722500C47096 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +347,7 @@
 				513E7988205628DA009E799F /* ShowResponse.swift */,
 				513E798620514BF9009E799F /* ShowVCode.swift */,
 				516322AC20AD2CD3009FFCA4 /* ShowDeviceData.swift */,
+				5103BF0220BE4AC300F6B26A /* ShowPage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -399,6 +418,7 @@
 		513D7B0820186F8200F6DA4C /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				5103BEFB20BD362400F6B26A /* InfoAuditFragments */,
 				51BB0C9E20AEAF97001A99D4 /* RunningDataFragments */,
 				513EEE1420410CF000F49CDB /* MainViewController.swift */,
 				5170D15D201022C1005BA9C8 /* BasePageViewController.swift */,
@@ -733,6 +753,7 @@
 				51E3218720AFC81900B650C0 /* solar_sewage_controller_bad.gif in Resources */,
 				51D205692005F255008763B9 /* Main.storyboard in Resources */,
 				51E3217E20AFC81900B650C0 /* battery_bad.gif in Resources */,
+				5103BEFF20BD3AE100F6B26A /* AuditingCell.xib in Resources */,
 				5103809020AC1443007345B4 /* DevicesTableViewCell.xib in Resources */,
 				51E3217C20AFC81900B650C0 /* solar_sewage_controller.gif in Resources */,
 				51E3218920AFC81900B650C0 /* solar_sewage_controller_good.gif in Resources */,
@@ -780,6 +801,7 @@
 				516D8AC9201B09EF0030B4A2 /* TGCToastView.swift in Sources */,
 				513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */,
 				513EEE11203FAF7100F49CDB /* MaintainerModifyViewController.swift in Sources */,
+				5103BF0120BD4B8D00F6B26A /* AuditingFragment.swift in Sources */,
 				5141864120A2EB0700EBC67B /* ShowDevConfig.swift in Sources */,
 				511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */,
 				5103809220AC15C8007345B4 /* DevicesTableView.swift in Sources */,
@@ -827,7 +849,9 @@
 				513EEE0B203FAB9800F49CDB /* ProjectAddViewController.swift in Sources */,
 				513EEE0F203FAE4200F49CDB /* DeviceModifyViewController.swift in Sources */,
 				513EEE13203FAF9500F49CDB /* InfoRefindViewController.swift in Sources */,
+				5103BEFE20BD3AE100F6B26A /* AuditingCell.swift in Sources */,
 				5103808C20ABFFE1007345B4 /* ShowDevice.swift in Sources */,
+				5103BF0320BE4AC300F6B26A /* ShowPage.swift in Sources */,
 				5170D1702011CD88005BA9C8 /* SocketConn.swift in Sources */,
 				516322AD20AD2CD3009FFCA4 /* ShowDeviceData.swift in Sources */,
 				513D7B0420186CD700F6DA4C /* BaseData.swift in Sources */,

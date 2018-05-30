@@ -37,20 +37,14 @@ class ShowAccount: BaseData {
         super.init()
     }
     
-    func toJSON() -> String {
-        var dic = [ String: Any ]()
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
         
         if let account = self.account {
             dic["account"] = account
         }
-        if let msg = self.msg {
-            dic["msg"] = msg
-        }
         if let password = self.password {
             dic["password"] = password
-        }
-        if let retCode = self.retCode {
-            dic["retCode"] = retCode
         }
         if let type = self.type {
             dic["type"] = type
@@ -86,9 +80,7 @@ class ShowAccount: BaseData {
             }
             dic["locations"] = locationDics
         }
-        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
-        print("JSONData = \(str)")
-        return str
+        return dic
     }
     
     override func fromDictionary(dic: NSDictionary){

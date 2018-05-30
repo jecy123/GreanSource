@@ -46,8 +46,8 @@ class ShowProject: BaseData{
     var workerPhone:String!
     var locationName: String!
     
-    func toJSON() -> String{
-        var dic = [String : Any]()
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
         if let capability = self.capability {
             dic["capability"] = capability
         }
@@ -60,9 +60,6 @@ class ShowProject: BaseData{
         
         if let locationId = self.locationId {
             dic["locationId"] = locationId
-        }
-        if let msg = self.msg {
-            dic["msg"] = msg
         }
         if let projectName = self.projectName {
             dic["projectName"] = projectName
@@ -82,13 +79,7 @@ class ShowProject: BaseData{
         if let workerPhone = self.workerPhone {
             dic["workerPhone"] = workerPhone
         }
-        if let retCode = self.retCode {
-            dic["retCode"] = retCode
-        }
-        
-        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
-        print("JSONData = \(str)")
-        return str
+        return dic
     }
     
     override func fromDictionary(dic: NSDictionary) {

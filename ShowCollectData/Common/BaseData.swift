@@ -20,6 +20,24 @@ class BaseData {
         self.msg = msg
     }
     
+    func toDic() -> [String: Any]{
+        var dic = [ String: Any ]()
+        if let retCode = self.retCode {
+            dic["retCode"] = retCode
+        }
+        if let msg = self.msg {
+            dic["msg"] = msg
+        }
+        return dic
+    }
+    
+    func toJSON() -> String {
+        let dic = toDic()
+        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
+        print("JSONData = \(str)")
+        return str
+    }
+    
     func fromDictionary(dic: NSDictionary){
         
         if let msg = dic["msg"] {

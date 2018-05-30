@@ -21,7 +21,16 @@ class ShowLocation : BaseData{
         self.locationId = locationId
     }
     
-
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
+        if let locationId = self.locationId {
+            dic["locationId"] = locationId
+        }
+        if let accountId = self.accountId {
+            dic["accountId"] = accountId
+        }
+        return dic
+    }
     
     override func fromDictionary(dic: NSDictionary) {
         super.fromDictionary(dic: dic)

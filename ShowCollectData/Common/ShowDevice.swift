@@ -36,17 +36,10 @@ class ShowDevice: BaseData {
     var dataServerIp: Int!
     var createTime: String!
     
-    func toJSON() -> String {
-        var dic = [String : Any]()
+    override func toDic() -> [String : Any] {
+        var dic = super.toDic()
         if let id = self.id {
             dic["id"] = id
-        }
-        if let retCode = self.retCode {
-            dic["retCode"] = retCode
-        }
-        
-        if let msg = self.msg {
-            dic["msg"] = msg
         }
         
         if let devNo = self.devNo {
@@ -100,9 +93,9 @@ class ShowDevice: BaseData {
         if let sw7 = self.sw7 {
             dic["sw7"] = sw7
         }
-        let str = JSONUtils.toJSONString(dic: dic as NSDictionary)
-        return str
+        return dic
     }
+    
     
     override func fromDictionary(dic: NSDictionary) {
         super.fromDictionary(dic: dic)
