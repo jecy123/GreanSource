@@ -19,6 +19,7 @@
 		5106FCB920B186EE009BAB2C /* solar_panel_bad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5106FCB720B186ED009BAB2C /* solar_panel_bad.png */; };
 		5109A49A2045478300986733 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109A4992045478300986733 /* Popover.swift */; };
 		5115DA3020AA74E600AF5445 /* libstdc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F2C1E820A5882A006F1A29 /* libstdc++.tbd */; };
+		5119DFA820BFC6FE0073C105 /* ShowCommitBatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5119DFA720BFC6FE0073C105 /* ShowCommitBatch.swift */; };
 		511F6AA62015724800C47096 /* ShowAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F6AA52015724800C47096 /* ShowAccount.swift */; };
 		511F85E820075291008CA05A /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F85E720075291008CA05A /* RegisterViewController.swift */; };
 		511F85EA20078CA9008CA05A /* tableItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F85E920078CA9008CA05A /* tableItemView.swift */; };
@@ -162,6 +163,7 @@
 		5106FCB620B186ED009BAB2C /* solar_panel_good.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solar_panel_good.png; sourceTree = "<group>"; };
 		5106FCB720B186ED009BAB2C /* solar_panel_bad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solar_panel_bad.png; sourceTree = "<group>"; };
 		5109A4992045478300986733 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
+		5119DFA720BFC6FE0073C105 /* ShowCommitBatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowCommitBatch.swift; sourceTree = "<group>"; };
 		511F6AA52015724800C47096 /* ShowAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowAccount.swift; sourceTree = "<group>"; };
 		511F85E720075291008CA05A /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		511F85E920078CA9008CA05A /* tableItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tableItemView.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				519FF143204E7E7A000934C6 /* ProjectWorkingMode.swift */,
 				511F6AA52015724800C47096 /* ShowAccount.swift */,
 				5141864020A2EB0700EBC67B /* ShowDevConfig.swift */,
+				5119DFA720BFC6FE0073C105 /* ShowCommitBatch.swift */,
 				5103808B20ABFFE1007345B4 /* ShowDevice.swift */,
 				516D8AC42019BFA90030B4A2 /* ShowLocation.swift */,
 				516D8AC22019ADF10030B4A2 /* ShowMessage.swift */,
@@ -841,6 +844,7 @@
 				51E3215720AFC63C00B650C0 /* MyGifView.swift in Sources */,
 				513EEE07203FA64200F49CDB /* RunningStateViewController.swift in Sources */,
 				51594DCE20B428B100BBD7D0 /* DateUtils.swift in Sources */,
+				5119DFA820BFC6FE0073C105 /* ShowCommitBatch.swift in Sources */,
 				513EEE1520410CF000F49CDB /* MainViewController.swift in Sources */,
 				512578232045317900344B60 /* TreeTableViewCell.swift in Sources */,
 				516D8AC32019ADF10030B4A2 /* ShowMessage.swift in Sources */,

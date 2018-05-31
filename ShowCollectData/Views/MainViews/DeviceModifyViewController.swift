@@ -178,6 +178,7 @@ class DeviceModifyViewController: BasePageViewController {
         self.dropBoxViews[0].setBoxTitle(title: project.projectName)
         
         self.doGetDevicesInfoList()
+        self.deviceInfoListFragment.resetDeviceList()
     }
     
     func doGetDevicesInfoList() {
@@ -195,12 +196,38 @@ class DeviceModifyViewController: BasePageViewController {
     @objc func onConfirm(_ sender: UIButton){
         print("修改设备")
         
-        
-        if self.deviceInfoListFragment.refreshDevices() {
-            print("Add Count = \(self.deviceInfoListFragment.mAddDevices.count)")
-            print("Del Count = \(self.deviceInfoListFragment.mDelDevices.count)")
+        guard let projcet = self.selectedProject else {
+            ToastHelper.showGlobalToast(message: "未选中项目！")
+            return
+        }
+        if self.deviceInfoListFragment.refreshDevices(projectId: projcet.id, locationId: projcet.locationId) {
+            //print("Add Count = \(self.deviceInfoListFragment.mAddDevices.count)")
+            //print("Del Count = \(self.deviceInfoListFragment.mDelDevices.count)")
             
+            let commitBatch = ShowCommitBatch(retCode: 0, msg: "success")
+            commitBatch.batchAdds = self.deviceInfoListFragment.mAddDevices
+            commitBatch.batchDels = self.deviceInfoListFragment.mDelDevices
             
+            ClientRequest.modifyDevices(jsonData: commitBatch.toJSON()) { (resData) in
+                if let data = resData {
+                    if data.retCode == 1 {
+                        let error:String = data.msg
+                        let errorMsg:String = "修改失败：" + error
+                        print(errorMsg)
+                        ToastHelper.showGlobalToast(message: errorMsg)
+                        return
+                    }
+                    print("修改成功！")
+                    ToastHelper.showGlobalToast(message: "设备信息修改成功！")
+                    //修改完成后刷新界面
+                    self.refreshProject()
+                    
+                    
+                }else{
+                    print("设备信息修改失败！")
+                    ToastHelper.showGlobalToast(message: "获取数据失败，设备信息修改失败！")
+                }
+            }
             
             
         } else {

@@ -34,7 +34,9 @@ class DeviceInfoListFragment: UIView {
     }
     
     ///重新刷新设备信息，以方便提交，同时对数据完整性进行检查，若正确返回true，错误返回false
-    func refreshDevices() -> Bool {
+    ///projcetId--项目id
+    ///locationId--项目位置
+    func refreshDevices(projectId: Int = 0, locationId: String = "") -> Bool {
         
         for index in 0..<mDevices.count {
             let indexPath = IndexPath(row: index, section: 0)
@@ -53,13 +55,11 @@ class DeviceInfoListFragment: UIView {
             resDevice.flag != 0
         })
         
+        //新添加的项目应该重置数据
         for device in mAddDevices {
-            device.resetData()
+            device.resetData(projectId: projectId, locationId: locationId)
         }
         
-        for device in mDelDevices {
-            device.resetData()
-        }
         return true
     }
     
@@ -162,7 +162,7 @@ extension DeviceInfoListFragment: DeviceInfoListCellDelegate {
     
     ///删除设备信息
     func onDelButtonClick(at index: Int) {
-        //只添加已经存在的信息
+        //只删除已经默认存在的信息（默认存在的项目flag为0，添加的项目的flag为1，因此如果将flag-1后就可以判断是否为-1就可以判断其是否是默认存在的项目还是添加的项目）
         mDevices[index].flag -= 1
         if mDevices[index].flag == -1 {
             self.mDelDevices.append(mDevices[index])

@@ -162,7 +162,7 @@ class ShowDevice: BaseData {
         }
     }
     
-    func resetData()  {
+    func resetData(projectId: Int, locationId: String)  {
         self.sw0 = 0
         self.sw1 = 0
         self.sw2 = 0
@@ -173,6 +173,8 @@ class ShowDevice: BaseData {
         self.sw7 = 0
         self.msg = "success"
         self.retCode = 0
+        self.projectId = projectId
+        self.locationId = locationId
     }
     override init() {
         flag = 0

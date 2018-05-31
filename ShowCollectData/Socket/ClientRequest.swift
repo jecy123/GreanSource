@@ -550,6 +550,7 @@ class ClientRequest {
     
     
     public static func sendAcceptAndRejectAudit(commandCode: Int32, responseCode:Int32, pageJson: String, completeHandler: @escaping (ShowResponse?) -> Void) {
+        
         SocketConn.Instance.sendMessage(commandCode: commandCode, msgBody: pageJson, msgId: 0) {
             res in
             switch res {
@@ -585,6 +586,41 @@ class ClientRequest {
             }
         }
         
+    }
+    
+    public static func modifyDevices(jsonData: String, completeHandler: @escaping (BaseData?) -> Void){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.DEVICES_BATCH_COMMAND, msgBody: jsonData, msgId: 0) { (res) in
+            switch res {
+            case .failed(let code):
+                if code == socketErrorCode.jsonStringFormatError {
+                    print("Json字符串格式错误！")
+                }else if code == socketErrorCode.responseFormatError {
+                    print("服务器响应字符串格式错误！")
+                }
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
+            case .success(let msg):
+                if msg.msgCode == ConnectAPI.DEVICES_BATCH_RESPONSE {
+                    print("JSON_STRING=" + msg.msgStr)
+                    print("成功收到服务器响应！")
+                    
+                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
+                    let data = BaseData()
+                    data.fromDictionary(dic: dic)
+                    DispatchQueue.main.async {
+                        completeHandler(data)
+                    }
+                }
+                else {
+                    print("服务器消息响应码不符合条件！")
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }
+            }
+        }
     }
     
     
