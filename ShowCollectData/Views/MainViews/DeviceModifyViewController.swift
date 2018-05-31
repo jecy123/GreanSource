@@ -56,6 +56,10 @@ class DeviceModifyViewController: BasePageViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+    }
+    
+    override func initUI() {
         initTableItems()
         //initAddButton()
         addDeviceInfoListFragment()
@@ -193,7 +197,12 @@ class DeviceModifyViewController: BasePageViewController {
     
     @objc func onConfirm(_ sender: UIButton){
         print("修改设备")
+        
+        
         if self.deviceInfoListFragment.refreshDevices() {
+            print("Add Count = \(self.deviceInfoListFragment.mAddDevices.count)")
+            print("Del Count = \(self.deviceInfoListFragment.mDelDevices.count)")
+            
             
             
             
@@ -216,7 +225,7 @@ class DeviceModifyViewController: BasePageViewController {
         self.addButtonY = self.addButtonY + self.itemH
         self.addButton.frame.origin.y = self.addButtonY
     }
-
+    
 }
 
 extension DeviceModifyViewController: TableItemViewDelegate {
