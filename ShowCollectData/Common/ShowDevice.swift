@@ -37,7 +37,7 @@ class ShowDevice: BaseData {
     var createTime: String!
     
     ///标记删除还是增加：0=未更改，-1=删除，1=增加
-    var flag: Int!
+    var flag: Int
     
     
     override func toDic() -> [String : Any] {
@@ -162,9 +162,21 @@ class ShowDevice: BaseData {
         }
     }
     
+    func resetData()  {
+        self.sw0 = 0
+        self.sw1 = 0
+        self.sw2 = 0
+        self.sw3 = 0
+        self.sw4 = 0
+        self.sw5 = 0
+        self.sw6 = 0
+        self.sw7 = 0
+        self.msg = "success"
+        self.retCode = 0
+    }
     override init() {
-        super.init()
         flag = 0
+        super.init()
     }
     
 }

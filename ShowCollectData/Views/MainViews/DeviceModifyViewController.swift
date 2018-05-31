@@ -56,14 +56,11 @@ class DeviceModifyViewController: BasePageViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-    }
-    
-    override func initUI() {
         initTableItems()
         //initAddButton()
         addDeviceInfoListFragment()
     }
+    
     
     func addDeviceInfoListFragment() {
         let fragmentY: CGFloat = CGFloat(self.titles.count) * self.itemH
