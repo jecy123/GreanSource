@@ -39,7 +39,7 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
         connect()
     }
     
-    func sendMessage(commondCode:Int32, msgBody:String, msgId:Int, completeHandler:@escaping ((RequestRet) -> Void)) {
+    func sendMessage(commandCode:Int32, msgBody:String, msgId:Int, completeHandler:@escaping ((RequestRet) -> Void)) {
         self.tag = msgId
         
         if let socket = self.socket {
@@ -54,7 +54,7 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
             
             let flag:UInt8 = MsgProtocol.defaultFlag
             let msgTotalLength: [UInt8] = StringUtils.conventUint32ToUint8(value: length, bigDean: true)
-            let msgCode: [UInt8] = StringUtils.conventUint32ToUint8(value: UInt32(commondCode), bigDean: true)
+            let msgCode: [UInt8] = StringUtils.conventUint32ToUint8(value: UInt32(commandCode), bigDean: true)
             let msgLength: [UInt8] = StringUtils.conventUint16ToUin8(value: msgLen, bigDean: true)
             
             print("msgFlag = \(flag)")

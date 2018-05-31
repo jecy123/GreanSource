@@ -25,6 +25,8 @@ class DeviceModifyViewController: BasePageViewController {
     
     var isDataInit: Bool = false
     
+    var deviceInfoListFragment: DeviceInfoListFragment!
+    
     var projectNames:[String] = []
     let titles = ["项目名称","项目类别","项目地址"]
     let maxTitleCnt: CGFloat = 9
@@ -55,21 +57,33 @@ class DeviceModifyViewController: BasePageViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         initTableItems()
-        initAddButton()
+        //initAddButton()
+        addDeviceInfoListFragment()
     }
     
-    func initAddButton(){
-        addButtonY =  CGFloat(self.titles.count) * self.itemH + self.addButtonYOffset
-        let addButtonFrame = CGRect(x: addButtonX, y: addButtonY, width: addButtonWidth, height: addButtonHeight)
-        addButton = UIButton(frame: addButtonFrame)
-        addButton.setTitle("新增", for: .normal)
-        addButton.setTitleColor(UIColor.white, for: .normal)
-        addButton.setTitleColor(ColorUtils.itemTitleViewBgColor, for: .highlighted)
-        addButton.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor
-        addButton.layer.cornerRadius = 4
-        addButton.addTarget(self, action: #selector(onAddButtonClicked(_:)), for: .touchUpInside)
-        self.itemBgView.addSubview(addButton)
+    func addDeviceInfoListFragment() {
+        let fragmentY: CGFloat = CGFloat(self.titles.count) * self.itemH
+        let fragmentX: CGFloat = 0
+        let fragmentH: CGFloat = itemBgHeight - fragmentY - 50
+        let fragmetnW: CGFloat = itemBgWidth
+
+        let fragmentFrame = CGRect(x: fragmentX, y: fragmentY, width: fragmetnW, height: fragmentH)
+        self.deviceInfoListFragment = DeviceInfoListFragment(frame: fragmentFrame, tableItemHeight: itemH)
+        self.itemBgView.addSubview(deviceInfoListFragment)
     }
+    
+//    func initAddButton(){
+//        addButtonY =  CGFloat(self.titles.count) * self.itemH + self.addButtonYOffset
+//        let addButtonFrame = CGRect(x: addButtonX, y: addButtonY, width: addButtonWidth, height: addButtonHeight)
+//        addButton = UIButton(frame: addButtonFrame)
+//        addButton.setTitle("新增", for: .normal)
+//        addButton.setTitleColor(UIColor.white, for: .normal)
+//        addButton.setTitleColor(ColorUtils.itemTitleViewBgColor, for: .highlighted)
+//        addButton.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor
+//        addButton.layer.cornerRadius = 4
+//        addButton.addTarget(self, action: #selector(onAddButtonClicked(_:)), for: .touchUpInside)
+//        self.itemBgView.addSubview(addButton)
+//    }
     
     func initTableItems(){
         let x: CGFloat = 0
@@ -162,10 +176,32 @@ class DeviceModifyViewController: BasePageViewController {
         
         self.dropBoxViews[0].setBoxTitle(title: project.projectName)
         
+        self.doGetDevicesInfoList()
+    }
+    
+    func doGetDevicesInfoList() {
+        ClientRequest.getDeviceList(projectId: self.mProject.id) {
+            resDevices in
+            if let resDevices = resDevices{
+                self.deviceInfoListFragment.mDevices = resDevices
+            }else{
+                ToastHelper.showGlobalToast(message: "获取数据失败！")
+            }
+            
+        }
     }
     
     @objc func onConfirm(_ sender: UIButton){
         print("修改设备")
+        if self.deviceInfoListFragment.refreshDevices() {
+            
+            
+            
+        } else {
+            print("修改失败！")
+            ToastHelper.showGlobalToast(message: "请填写完整的信息！")
+        }
+        
     }
     
     @objc func onAddButtonClicked(_ sender: UIButton){

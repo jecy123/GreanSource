@@ -8,6 +8,11 @@
 
 import UIKit
 
+@objc protocol AuditingCellDelegate {
+    @objc optional func doAuditingAccept(cellId: Int)
+    @objc optional func doAuditingReject(cellId: Int)
+}
+
 class AuditingCell: UITableViewCell {
 
     @IBOutlet weak var userName: UILabel!
@@ -19,6 +24,9 @@ class AuditingCell: UITableViewCell {
     @IBOutlet weak var auditAcceptSwitch: UISwitch!
     @IBOutlet weak var auditRejectSwitch: UISwitch!
     
+    var cellIdNo: Int!
+    var delegate: AuditingCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -29,5 +37,25 @@ class AuditingCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    //审核通过
+    @IBAction func onAuditAccept(_ sender: UISwitch) {
+        guard let cellIdNo = self.cellIdNo else {
+            return
+        }
+        if sender.isOn {
+            delegate?.doAuditingAccept?(cellId: cellIdNo)
+        }
+    }
+    
+    //审核驳回
+    @IBAction func onAuditReject(_ sender: UISwitch) {
+        guard let cellIdNo = self.cellIdNo else {
+            return
+        }
+        if sender.isOn {
+            delegate?.doAuditingReject?(cellId: cellIdNo)
+        }
+    }
+    
     
 }

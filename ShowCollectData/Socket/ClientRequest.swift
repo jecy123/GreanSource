@@ -26,7 +26,7 @@ class ClientRequest {
         account.retCode = 0
         account.type = 0
         
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.LOGIN_COMMAND, msgBody: account.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.LOGIN_COMMAND, msgBody: account.toJSON(), msgId: 0){
             res in
             switch res{
             case .failed(let code):
@@ -65,7 +65,7 @@ class ClientRequest {
     }
     //项目新增
     public static func addProject(project: ShowProject, completeHandler: @escaping ((ShowProject?) -> Void)){
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.PROJECT_ADD_COMMAND, msgBody: project.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.PROJECT_ADD_COMMAND, msgBody: project.toJSON(), msgId: 0){
             res in
             switch res{case .failed(let code):
                 if code == socketErrorCode.jsonStringFormatError{
@@ -104,7 +104,7 @@ class ClientRequest {
     //项目修改
     public static func modifyProject(project: ShowProject, completeHandler: @escaping ((ShowProject?) -> Void)){
         
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.PROJECT_UPDATE_COMMAND, msgBody: project.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.PROJECT_UPDATE_COMMAND, msgBody: project.toJSON(), msgId: 0){
             res in
             switch res{
             case .failed(let code):
@@ -150,7 +150,7 @@ class ClientRequest {
         vcode.phone = phoneNumber
         vcode.type = type.rawValue
         
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.VCODE_GET_COMMAND, msgBody: vcode.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.VCODE_GET_COMMAND, msgBody: vcode.toJSON(), msgId: 0){
             res in
             switch res{
             case .failed(let code):
@@ -186,7 +186,7 @@ class ClientRequest {
     }
     
     public static func registerAccount(showAccount: ShowAccount, completeHandler: @escaping ((ShowResponse?) -> Void)){
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.ACCOUNT_ADD_COMMAND, msgBody: showAccount.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.ACCOUNT_ADD_COMMAND, msgBody: showAccount.toJSON(), msgId: 0){
             res in
             switch res{
             case .failed(let code):
@@ -223,7 +223,7 @@ class ClientRequest {
     //找回用户
     public static func refindAccount(showAccount: ShowAccount, completeHandler: @escaping ((ShowResponse?) -> Void)){
         
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.ACCOUNT_FINDBACK_COMMAND, msgBody: showAccount.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.ACCOUNT_FINDBACK_COMMAND, msgBody: showAccount.toJSON(), msgId: 0){
             res in
             switch res{
             case .failed(let code):
@@ -266,7 +266,7 @@ class ClientRequest {
         
         let projectInfo = ShowProjectInfo(projectId: projectId)
         
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.PROJECT_CALC_PCHG_COMMAND, msgBody: projectInfo.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.PROJECT_CALC_PCHG_COMMAND, msgBody: projectInfo.toJSON(), msgId: 0){
         res in
             switch res{
             case .failed(let code):
@@ -304,7 +304,7 @@ class ClientRequest {
     //获取设备列表
     public static func getDeviceList(projectId: Int, completeHandler: @escaping ([ShowDevice]?) -> Void){
         let deviceConfig = ShowDevConfig(projectId: projectId)
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.DEVICES_IN_PROJECT_COMMAND, msgBody: deviceConfig.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.DEVICES_IN_PROJECT_COMMAND, msgBody: deviceConfig.toJSON(), msgId: 0){
             res in
             switch res {
             case .failed(let code):
@@ -346,7 +346,7 @@ class ClientRequest {
     //获取设备运行信息
     public static func getDeviceData(uuid: String, completeHandler: @escaping ([ShowDeviceData]?) -> Void){
         let deviceData = ShowDeviceData(uuid: uuid)
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.DEVICES_RUNNINGDATA_COMMAND, msgBody: deviceData.toJSON(), msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.DEVICES_RUNNINGDATA_COMMAND, msgBody: deviceData.toJSON(), msgId: 0){
             res in
             switch res {
             case .failed(let code):
@@ -390,7 +390,7 @@ class ClientRequest {
         let workingMode = ProjectWorkingMode(projectId: projectId)
         let workingJsonData = workingMode.toJSON()
         print("获取定时数据："+workingJsonData)
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.GET_WORKING_MODE_COMMAND, msgBody: workingJsonData, msgId: 0) {
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.GET_WORKING_MODE_COMMAND, msgBody: workingJsonData, msgId: 0) {
             res in
             switch res {
             case .failed(let code):
@@ -431,7 +431,7 @@ class ClientRequest {
         
         let workingJsonData = workingMode.toJSON()
         print("更新定时数据："+workingJsonData)
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.WORKING_MODE_UPDATE_COMMAND, msgBody: workingJsonData, msgId: 0) {
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.WORKING_MODE_UPDATE_COMMAND, msgBody: workingJsonData, msgId: 0) {
             res in
             switch res {
             case .failed(let code):
@@ -470,7 +470,7 @@ class ClientRequest {
     
     //项目紧急启停：
     public static func setProjectEmergencyStartOrStop(devicelistJson: String, completeHandler: @escaping ([ShowDevice]?) -> Void){
-        SocketConn.Instance.sendMessage(commondCode: ConnectAPI.PROJECT_DEVICES_CTRL_COMMAND, msgBody: devicelistJson, msgId: 0){
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.PROJECT_DEVICES_CTRL_COMMAND, msgBody: devicelistJson, msgId: 0){
             res in
             switch res {
             case .failed(let code):
@@ -511,6 +511,81 @@ class ClientRequest {
         }
     }
     
+    public static func getAuditList(commandCode: Int32, responseCode:Int32, pageJson: String, completeHandler: @escaping (ShowPage?) -> Void){
+        SocketConn.Instance.sendMessage(commandCode: commandCode, msgBody: pageJson, msgId: 0) {
+            res in
+            switch res {
+            case .failed(let code):
+                if code == socketErrorCode.jsonStringFormatError {
+                    print("Json字符串格式错误！")
+                }else if code == socketErrorCode.responseFormatError {
+                    print("服务器响应字符串格式错误！")
+                }
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
+            case .success(let msg):
+                if msg.msgCode == responseCode {
+                    print("JSON_STRING=" + msg.msgStr)
+                    print("成功收到服务器响应！")
+                    
+                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
+                    let page = ShowPage()
+                    page.fromDictionary(dic: dic)
+                    
+                    DispatchQueue.main.async {
+                        completeHandler(page)
+                    }
+                }
+                else {
+                    print("服务器消息响应码不符合条件！")
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }
+            }
+        }
+    }
+    
+    
+    public static func sendAcceptAndRejectAudit(commandCode: Int32, responseCode:Int32, pageJson: String, completeHandler: @escaping (ShowResponse?) -> Void) {
+        SocketConn.Instance.sendMessage(commandCode: commandCode, msgBody: pageJson, msgId: 0) {
+            res in
+            switch res {
+            case .failed(let code):
+                if code == socketErrorCode.jsonStringFormatError {
+                    print("Json字符串格式错误！")
+                }else if code == socketErrorCode.responseFormatError {
+                    print("服务器响应字符串格式错误！")
+                }
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
+            case .success(let msg):
+                if msg.msgCode == responseCode {
+                    print("JSON_STRING=" + msg.msgStr)
+                    print("成功收到服务器响应！")
+                    
+                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
+                    let response = ShowResponse()
+                    response.fromDictionary(dic: dic)
+                    
+                    DispatchQueue.main.async {
+                        completeHandler(response)
+                    }
+                }
+                else {
+                    print("服务器消息响应码不符合条件！")
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }
+            }
+        }
+        
+    }
     
     
 }

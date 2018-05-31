@@ -128,6 +128,9 @@
 		51F5E1BB20AA81A100C69EC6 /* BaiduMapAPI_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F5E1B720AA81A100C69EC6 /* BaiduMapAPI_Map.framework */; };
 		51F5E1BC20AA81A100C69EC6 /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 51F5E1B820AA81A100C69EC6 /* mapapi.bundle */; };
 		51F5E1BD20AA81A100C69EC6 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51F5E1B920AA81A100C69EC6 /* BaiduMapAPI_Base.framework */; };
+		51FD8E9420BED37E003EE1F0 /* DeviceInfoListFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FD8E9320BED37E003EE1F0 /* DeviceInfoListFragment.swift */; };
+		51FD8E9720BED420003EE1F0 /* DeviceInfoListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51FD8E9520BED41F003EE1F0 /* DeviceInfoListCell.swift */; };
+		51FD8E9820BED420003EE1F0 /* DeviceInfoListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51FD8E9620BED41F003EE1F0 /* DeviceInfoListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -280,6 +283,9 @@
 		51F5E1B720AA81A100C69EC6 /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
 		51F5E1B820AA81A100C69EC6 /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		51F5E1B920AA81A100C69EC6 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
+		51FD8E9320BED37E003EE1F0 /* DeviceInfoListFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoListFragment.swift; sourceTree = "<group>"; };
+		51FD8E9520BED41F003EE1F0 /* DeviceInfoListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInfoListCell.swift; sourceTree = "<group>"; };
+		51FD8E9620BED41F003EE1F0 /* DeviceInfoListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeviceInfoListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,6 +424,7 @@
 		513D7B0820186F8200F6DA4C /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				5179D13020BEC1F700203C9C /* DeviceModifyFragmentList */,
 				5103BEFB20BD362400F6B26A /* InfoAuditFragments */,
 				51BB0C9E20AEAF97001A99D4 /* RunningDataFragments */,
 				513EEE1420410CF000F49CDB /* MainViewController.swift */,
@@ -477,6 +484,16 @@
 				513D7B0C2018790C00F6DA4C /* ClientRequest.swift */,
 			);
 			path = Socket;
+			sourceTree = "<group>";
+		};
+		5179D13020BEC1F700203C9C /* DeviceModifyFragmentList */ = {
+			isa = PBXGroup;
+			children = (
+				51FD8E9320BED37E003EE1F0 /* DeviceInfoListFragment.swift */,
+				51FD8E9520BED41F003EE1F0 /* DeviceInfoListCell.swift */,
+				51FD8E9620BED41F003EE1F0 /* DeviceInfoListCell.xib */,
+			);
+			name = DeviceModifyFragmentList;
 			sourceTree = "<group>";
 		};
 		51BB0C9E20AEAF97001A99D4 /* RunningDataFragments */ = {
@@ -733,6 +750,7 @@
 				51D2056E2005F255008763B9 /* LaunchScreen.storyboard in Resources */,
 				51E3218620AFC81900B650C0 /* waterpump_stop.gif in Resources */,
 				51E3217920AFC81900B650C0 /* bakwaterpump_bad.gif in Resources */,
+				51FD8E9820BED420003EE1F0 /* DeviceInfoListCell.xib in Resources */,
 				5106FCB920B186EE009BAB2C /* solar_panel_bad.png in Resources */,
 				51E3217620AFC81900B650C0 /* ic_name.gif in Resources */,
 				51E3217320AFC81900B650C0 /* arrowdown.png in Resources */,
@@ -813,6 +831,7 @@
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,
 				51E3EDD320490118003F8903 /* InfoView.swift in Sources */,
 				51594DCC20B3F58100BBD7D0 /* EmergencyFragment.swift in Sources */,
+				51FD8E9420BED37E003EE1F0 /* DeviceInfoListFragment.swift in Sources */,
 				513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */,
 				51A68BA7200C9CB60046A5E6 /* UserRetrieveViewController.swift in Sources */,
 				5109A49A2045478300986733 /* Popover.swift in Sources */,
@@ -831,6 +850,7 @@
 				51A68BA9200CA7130046A5E6 /* DropBoxView.swift in Sources */,
 				516D8AC72019C07E0030B4A2 /* ShowProject.swift in Sources */,
 				5125781E20452E7800344B60 /* BaseItem.swift in Sources */,
+				51FD8E9720BED420003EE1F0 /* DeviceInfoListCell.swift in Sources */,
 				513D7B0620186E2A00F6DA4C /* JSONUtils.swift in Sources */,
 				519FF144204E7E7A000934C6 /* ProjectWorkingMode.swift in Sources */,
 				5170D17C2014CF9E005BA9C8 /* ProjectInfoViewController.swift in Sources */,

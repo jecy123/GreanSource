@@ -8,11 +8,18 @@
 
 import Foundation
 
-//三种用户的类型
+///三种用户的类型
 enum AccountType: Int {
     case adminitor = 10 //管理员
     case mantainer = 20 //维护员
     case EP = 30        //环保部门人员
+}
+
+///审核状态：
+enum AuditStatus: Int {
+    case waitForAudit = 10
+    case agree = 50
+    case reject = 60
 }
 
 class ShowAccount: BaseData {
@@ -32,6 +39,8 @@ class ShowAccount: BaseData {
     
     var vcode: String!
     var createTime: String!
+    
+    var locationIds: String!
     
     override init() {
         super.init()
@@ -121,6 +130,10 @@ class ShowAccount: BaseData {
             }
             print("locationSize  = \(self.locations.count)")
             //print("jsonLen = \(jsonString.count)")
+        }
+        
+        if let locationIds = dic["locationIds"] {
+            self.locationIds = locationIds as! String
         }
         
         if let projects = dic["projects"] {

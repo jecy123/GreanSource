@@ -36,6 +36,10 @@ class ShowDevice: BaseData {
     var dataServerIp: Int!
     var createTime: String!
     
+    ///标记删除还是增加：0=未更改，-1=删除，1=增加
+    var flag: Int!
+    
+    
     override func toDic() -> [String : Any] {
         var dic = super.toDic()
         if let id = self.id {
@@ -160,6 +164,7 @@ class ShowDevice: BaseData {
     
     override init() {
         super.init()
+        flag = 0
     }
     
 }

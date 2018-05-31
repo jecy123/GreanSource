@@ -133,7 +133,7 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         self.infomationView.refreshOneContent(at: 3, content: String(selectedProject.emissionStandards) + "D/T")
         
         
-        self.infomationView.refreshOneContent(at: 4, content: String(selectedProject.emissionStandards) + "D/T")
+        self.infomationView.refreshOneContent(at: 4, content: String(selectedProject.state) + "D/T")
         
         let totalPchg:Float = Float(projectInfo.projectTotalPChg) / 100
         self.infomationView.refreshOneContent(at: 5, content: String(totalPchg)+"KWh")

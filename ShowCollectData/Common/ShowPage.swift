@@ -43,6 +43,7 @@ class ShowPage: BaseData {
         if let count = self.count {
             dic["count"] = count
         }
+        
         if let total = self.total {
             dic["total"] = total
         }
@@ -53,10 +54,33 @@ class ShowPage: BaseData {
         return dic
     }
     
-//    override func toJSON() -> String {
-//        let dic = toDic()
-//        let str = JSONUtils.toJSONString(dic: dic)
-//        print("JSONData = \(str)")
-//        return str
-//    }
+    override func fromDictionary(dic: NSDictionary) {
+        super.fromDictionary(dic: dic)
+        
+        if let start = dic["start"] {
+            self.start = start as! Int
+        }
+        
+        if let pageNum = dic["start"] {
+            self.pageNum = pageNum as! Int
+        }
+        
+        if let  count = dic["count"] {
+            self.count = count as! Int
+        }
+        
+        if let total = dic["total"] {
+            self.total = total as! Int
+        }
+        
+        if let resList = dic["t"] {
+            let resDics = resList as! Array<NSDictionary>
+            self.resList = []
+            for dic in resDics {
+                let account = ShowAccount()
+                account.fromDictionary(dic: dic)
+                self.resList.append(account)
+            }
+        }
+    }
 }

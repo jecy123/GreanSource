@@ -8,25 +8,76 @@
 
 import UIKit
 
+@objc protocol AuditingFragmentDelegate {
+    @objc optional func doAcceptAudit(cell id: Int)
+    @objc optional func doRejectAudit(cell id: Int)
+}
+
 class AuditingFragment: UIView {
+    
+    var delegate: AuditingFragmentDelegate?
     
     let nodeCellId = "AuditingCell"
     
     var mAccounts: [ShowAccount]!{
         didSet{
-            guard let userList = self.userListTableView else { return }
-            userList.reloadData()
+            guard let userList = self.userListTableView else {
+                showTableOrNot(isShow: false)
+                return
+            }
+            if let accounts = mAccounts {
+                userList.reloadData()
+                if accounts.count > 0 {
+                    showTableOrNot(isShow: true)
+                } else {
+                    showTableOrNot(isShow: false)
+                }
+            }
         }
+        
     }
     
     var userListTableView: UITableView!
+    var emptyTipView: UILabel!
+    
+    
+    func addTableView() {
+        let tableFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        userListTableView = UITableView(frame: tableFrame)
+        self.addSubview(userListTableView)
+        
+        userListTableView.tableFooterView = UIView(frame: CGRect.zero)
+        userListTableView.rowHeight = 230
+        userListTableView.dataSource = self
+    }
+    
+    func showTableOrNot(isShow: Bool) {
+        if isShow {
+            self.emptyTipView.isHidden = true
+            self.userListTableView.isHidden = false
+        }else {
+            self.emptyTipView.isHidden = false
+            self.userListTableView.isHidden = true
+        }
+    }
+    
+    func addEmptyTipView(){
+        let tipViewH: CGFloat = 40
+        let tipViewW: CGFloat = 120
+        let tipViewX: CGFloat = (self.frame.width - tipViewW) / 2
+        let tipViewY: CGFloat = (self.frame.height - tipViewH) / 2
+        
+        let tipViewFrame = CGRect(x: tipViewX, y: tipViewY, width: tipViewW, height: tipViewH)
+        emptyTipView = UILabel(frame: tipViewFrame)
+        emptyTipView.text = "没有需要审核"
+        self.addSubview(emptyTipView)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        let tableFrame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
-        userListTableView = UITableView(frame: tableFrame)
-        userListTableView.dataSource = self
+        addTableView()
+        addEmptyTipView()
+        showTableOrNot(isShow: false)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -36,9 +87,8 @@ class AuditingFragment: UIView {
 
 extension AuditingFragment: UITableViewDataSource {
     
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return 230
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,6 +106,9 @@ extension AuditingFragment: UITableViewDataSource {
         let nib = UINib(nibName: "AuditingCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: self.nodeCellId)
         let cell = tableView.dequeueReusableCell(withIdentifier: nodeCellId) as! AuditingCell
+        cell.delegate = self
+        
+        cell.cellIdNo = indexPath.row
         
         let account = mAccounts[indexPath.row]
         if let name = account.name {
@@ -80,8 +133,10 @@ extension AuditingFragment: UITableViewDataSource {
             }
         }
         
-        if let _ = account.locations {
-            
+        if let locationIds = account.locationIds{
+            let res = AddressUtils.queryAddressNames(by: locationIds)
+            let locationName = res.province + res.city + res.area
+            cell.projectAddress.text = locationName
         }
         if let time = account.createTime{
             cell.applyTime.text = time
@@ -95,6 +150,16 @@ extension AuditingFragment: UITableViewDataSource {
         
     }
     
+}
+
+extension AuditingFragment: AuditingCellDelegate {
+    func doAuditingAccept(cellId: Int) {
+        delegate?.doAcceptAudit?(cell: cellId)
+    }
+    
+    func doAuditingReject(cellId: Int) {
+        delegate?.doRejectAudit?(cell: cellId)
+    }
 }
 
 

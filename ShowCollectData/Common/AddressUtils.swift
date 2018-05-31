@@ -204,8 +204,11 @@ class AddressUtils {
         return resItem
     }
     
-    public static func queryAddressNames(by locationId: String) -> [String]{
-        var res:[String] = []
+    public static func queryAddressNames(by locationId: String) -> (province: String, city: String, area: String){
+        
+        var province = ""
+        var city = ""
+        var area = ""
         
         let range1 = locationId.startIndex..<locationId.index(locationId.startIndex, offsetBy: 2)
         let range2 = locationId.startIndex..<locationId.index(locationId.startIndex, offsetBy: 4)
@@ -217,7 +220,7 @@ class AddressUtils {
         for item in self.addressItem.provinceItem {
             if item.id == provinceId {
                 //找到省
-                res.append(item.name)
+                province = item.name
                 break
             }
             i += 1
@@ -228,7 +231,7 @@ class AddressUtils {
             for item in province.children{
                 //找到市
                 if item.id == cityId {
-                    res.append(item.name)
+                    city = item.name
                     break
                 }
                 j += 1
@@ -239,7 +242,7 @@ class AddressUtils {
                     
                     //找到地区
                     if item.id == locationId {
-                        res.append(item.name)
+                        area = item.name
                         break
                     }
                 }
@@ -247,7 +250,7 @@ class AddressUtils {
             
         }
         
-        return res
+        return (province, city, area)
     }
     
     private static func queryLocationId(locationId: String) -> [String : String]{
