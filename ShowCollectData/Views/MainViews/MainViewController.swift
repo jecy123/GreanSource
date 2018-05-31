@@ -21,6 +21,8 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     //当前页面的索引值
     var pageIndex: Int = -1
     
+    var isFirstScroll: Bool = true
+    
     var delegate:MainViewTitleItemDelegate?
     
     var pages:[BasePageViewController]!
@@ -41,6 +43,12 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
             }
             for page in pages {
                 page.allProjects = self.projects
+            }
+            //程序约束
+            if let projects = self.projects {
+                if projects.count > 0 {
+                    self.selectedProject = projects[0]
+                }
             }
         }
     }
@@ -223,6 +231,8 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         
         pages[pageIndex].addressNames = self.addressNames
         pages[pageIndex].selectedProject = self.selectedProject
+        
+        isFirstScroll = false
         
     }
     func TreeTable(_ treeTableView: TreeTableView, section: Int, addressNames: [String], didSelectProject id: Int) {

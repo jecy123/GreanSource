@@ -91,6 +91,12 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         addButton(buttonframe: mapBtnFrame, title: "地图", target: self, action: #selector(onBtnMapClicked(_:)), for: .touchUpInside)
         
         refreshMapView()
+       
+        if let projects = self.allProjects {
+            if projects.count > 0 {
+                self.selectedProject = projects[0]
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

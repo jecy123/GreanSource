@@ -45,10 +45,20 @@ class BasePageViewController: UIViewController{
     //选中的项目
     public var selectedProject: ShowProject!{
         didSet{
-            guard let selectedProject = self.selectedProject, let addressNames = self.addressNames else {
+            guard let selectedProject = self.selectedProject
+                //, let addressNames = self.addressNames
+                else {
                 return
             }
-            selectedProject.locationName = "" + addressNames[3] + addressNames[2] +  addressNames[1]
+            
+            let resAddress = AddressUtils.queryAddressNames(by: selectedProject.locationId)
+            selectedProject.locationName = resAddress.province + resAddress.city + resAddress.area
+            self.addressNames = []
+            self.addressNames.append(selectedProject.projectName)
+            self.addressNames.append(resAddress.area)
+            self.addressNames.append(resAddress.city)
+            self.addressNames.append(resAddress.province)
+            //selectedProject.locationName = "" + addressNames[3] + addressNames[2] +  addressNames[1]
             print(self.selectedProject.projectName)
             self.refreshProject()
             
@@ -61,7 +71,7 @@ class BasePageViewController: UIViewController{
                 return
             }
             guard  addressNames.count == 4 else {
-                ToastHelper.showGlobalToast(message: "数据返回出错！")
+                //ToastHelper.showGlobalToast(message: "数据返回出错！")
                 return
             }
             self.mainTitleName = addressNames[3] + "-" + addressNames[2] + "-" + addressNames[1] + "-" + addressNames[0]
