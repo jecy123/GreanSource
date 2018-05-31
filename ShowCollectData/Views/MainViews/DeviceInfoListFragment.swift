@@ -14,17 +14,29 @@ class DeviceInfoListFragment: UIView {
     
     var deviceListTable: UITableView!
     
-    var mDevices:[ShowDevice]!{
+    var mDevices:[ShowDevice]! = []{
         didSet{
             guard let listTable = deviceListTable else { return }
             listTable.reloadData()
         }
     }
     
+    ///记录新增的设备信息
+    var mAddDevices: [ShowDevice] = []
+    
+    ///记录删除的设备信息
+    var mDelDevices: [ShowDevice] = []
+    
+    ///将新增的设备列表和删除的设备列表信息重置为空
+    func resetDeviceList() {
+        self.mAddDevices.removeAll()
+        self.mDelDevices.removeAll()
+    }
+    
     ///重新刷新设备信息，以方便提交，同时对数据完整性进行检查，若正确返回true，错误返回false
     func refreshDevices() -> Bool {
         
-        for index in 0...mDevices.count-1 {
+        for index in 0..<mDevices.count {
             let indexPath = IndexPath(row: index, section: 0)
             let cell = self.deviceListTable.cellForRow(at: indexPath) as! DeviceInfoListCell
             guard let devNo = cell.tfDeviceNo.text, let boxNo = cell.tfTag.text else{
@@ -35,6 +47,18 @@ class DeviceInfoListFragment: UIView {
             }
             mDevices[index].devNo = devNo
             mDevices[index].boxNo = Int(boxNo)
+        }
+        
+        mAddDevices = mAddDevices.filter({ (resDevice) -> Bool in
+            resDevice.flag != 0
+        })
+        
+        for device in mAddDevices {
+            device.resetData()
+        }
+        
+        for device in mDelDevices {
+            device.resetData()
         }
         return true
     }
@@ -70,15 +94,6 @@ class DeviceInfoListFragment: UIView {
         self.addSubview(deviceListTable)
     }
     
-    @objc func onAddButtonClick(_ sender: UIButton) {
-        let device = ShowDevice()
-        self.mDevices.append(device)
-        
-        let latestIndex = IndexPath(row: mDevices.count - 1, section: 0)
-        //self.deviceListTable.rectForRow(at: latestIndex)
-        self.deviceListTable.scrollToRow(at: latestIndex, at: .top, animated: true)
-        
-    }
     
     init(frame: CGRect, tableItemHeight: CGFloat) {
         super.init(frame: frame)
@@ -129,8 +144,29 @@ extension DeviceInfoListFragment: UITableViewDataSource {
     
 }
 extension DeviceInfoListFragment: DeviceInfoListCellDelegate {
-    func onDelButtonClick(at index: Int) {
-        self.mDevices.remove(at: index)
+    
+    ///添加设备信息
+    @objc func onAddButtonClick(_ sender: UIButton) {
+        let device = ShowDevice()
+        device.flag = 1
+        self.mDevices.append(device)
+        self.mAddDevices.append(device)
         
+        device.flag = 1
+        
+        let latestIndex = IndexPath(row: mDevices.count - 1, section: 0)
+        //self.deviceListTable.rectForRow(at: latestIndex)
+        self.deviceListTable.scrollToRow(at: latestIndex, at: .top, animated: true)
+        
+    }
+    
+    ///删除设备信息
+    func onDelButtonClick(at index: Int) {
+        //只添加已经存在的信息
+        mDevices[index].flag -= 1
+        if mDevices[index].flag == -1 {
+            self.mDelDevices.append(mDevices[index])
+        }
+        self.mDevices.remove(at: index)
     }
 }
