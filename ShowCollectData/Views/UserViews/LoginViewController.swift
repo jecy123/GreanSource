@@ -14,6 +14,7 @@ struct UIButtonCheckState {
 }
 
 struct Keys {
+    static let selectedProjectId = "selectedProjectId"
     static let isAutoLogin = "isAutoLogin"
     static let isRemberPwd = "isRemberPwb"
     static let username = "userName"
@@ -120,7 +121,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func gotoMainView(accountType: AccountType, projects: [ShowProject]){
+    func gotoMainView(accountType: AccountType, projects: [ShowProject], account: String){
         
         let pagesOptions:[UIViewPagerOption] = [
             .TitleBarHeight(50),
@@ -143,6 +144,12 @@ class ViewController: UIViewController {
         rootView.options = pagesOptions
         rootView.viewType = accountType
         rootView.projects = projects
+        rootView.account = account
+        
+        let accountDefaults = UserDefaults.standard
+        if let projectId = accountDefaults.value(forKey: account+"_"+Keys.selectedProjectId) {
+            rootView.selectedProjectId = projectId as! Int
+        }        
         
         //baseVc.navigationBar.backgroundColor = #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
         baseVc.isNavigationBarHidden = true
@@ -199,11 +206,12 @@ class ViewController: UIViewController {
                 }
                 
                 self.doRecordNameAndPwd(isRecord: self.btnRememberPwdFlag, name: accountName, password: password)
-                
                 print("\(resAccount.account) 已经登录")
+                loginAccount = resAccount.account
+                
                 AddressUtils.getItems(projects: resAccount.projects)
                 //print("projects = \(resAccount.projects)")
-                self.gotoMainView(accountType: AccountType(rawValue: resAccount.role!)!, projects: resAccount.projects)
+                self.gotoMainView(accountType: AccountType(rawValue: resAccount.role!)!, projects: resAccount.projects, account: resAccount.account)
             }else{
                 
                 print("登录失败！")

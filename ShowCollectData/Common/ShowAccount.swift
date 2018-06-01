@@ -49,6 +49,10 @@ class ShowAccount: BaseData {
     override func toDic() -> [String : Any] {
         var dic = super.toDic()
         
+        if let id = self.id {
+            dic["id"] = id
+        }
+        
         if let account = self.account {
             dic["account"] = account
         }

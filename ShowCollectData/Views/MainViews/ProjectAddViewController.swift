@@ -14,7 +14,6 @@ class ProjectAddViewController: BasePageViewController{
     let titles = ["项目名称","项目类别","项目地址","街道","设计处理量","设备列表","排放标准","运维人员姓名","运维人员联系方式"]
     let projectTypeNames = systemNames
     let capcityListNames = listToNames(list: capcityList)
-    let emissionStdNames = ["10D/T", "20D/T"]
     
     var newProject: ShowProject = ShowProject()
     
@@ -99,7 +98,7 @@ class ProjectAddViewController: BasePageViewController{
         
         addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY1, width: w * 0.7, height: h - 1), names: self.projectTypeNames, dropBoxOffset: offset, dropBoxDidSelected: self.onProjectTypeSelected)
         addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY2, width: w * 0.7, height: h - 1), names: self.capcityListNames, dropBoxOffset: offset, dropBoxDidSelected: self.onCapcityListSelected)
-        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY3, width: w * 0.7, height: h - 1), names:self.emissionStdNames, dropBoxOffset: offset, dropBoxDidSelected: self.onEmissionStdSelected)
+        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY3, width: w * 0.7, height: h - 1), names:emissionStdNames, dropBoxOffset: offset, dropBoxDidSelected: self.onEmissionStdSelected)
         
         self.tableItemViews[2].contentText.addTarget(self, action: #selector(onAddressItemClicked(_:)), for: UIControlEvents.editingDidBegin)
         self.tableItemViews[5].contentText.isEnabled = false

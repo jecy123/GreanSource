@@ -14,6 +14,7 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
     let titles: [String] = ["项目名称：", "项目位置：", "设计处理量：", "排放标准：", "达标排放量：", "太阳能发电电能："]
     let contents: [String] = ["", "", "", "", "", ""]
     
+    
     var mapView: BMKMapView!
     var btnBack: UIButton!
     var locService: BMKLocationService!
@@ -92,11 +93,23 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         
         refreshMapView()
        
-        if let projects = self.allProjects {
-            if projects.count > 0 {
-                self.selectedProject = projects[0]
+        
+        guard let projects = self.allProjects else { return }
+        if projects.count > 0 {
+            self.selectedProject = projects[0]
+        }
+        
+        //获取保存的数据
+        let accountDefaults = UserDefaults.standard
+        guard let projectId = accountDefaults.value(forKey: loginAccount+"_"+Keys.selectedProjectId) else{ return }
+        let id = projectId as! Int
+        for project in projects {
+            if id == project.id {
+                self.selectedProject = project
+                    break
             }
         }
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -136,7 +149,7 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         self.infomationView.refreshOneContent(at: 0, content: selectedProject.projectName)
         self.infomationView.refreshOneContent(at: 1, content: selectedProject.locationName+selectedProject.street)
         self.infomationView.refreshOneContent(at: 2, content: String(selectedProject.capability) + "D/T")
-        self.infomationView.refreshOneContent(at: 3, content: String(selectedProject.emissionStandards) + "D/T")
+        self.infomationView.refreshOneContent(at: 3, content: emissionStdAccessment[selectedProject.emissionStandards])
         
         
         self.infomationView.refreshOneContent(at: 4, content: String(selectedProject.state) + "D/T")

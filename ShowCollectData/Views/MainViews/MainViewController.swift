@@ -15,6 +15,8 @@ protocol MainViewTitleItemDelegate {
     func onMenu(_ sender: UIButton)
 }
 
+
+
 class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     let titlesAdmin = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","注册找回审核"]
     let titlesEp = ["项目信息", "运行状态","运行数据"]
@@ -36,19 +38,42 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     
     public var selectedProject: ShowProject!
     
-    var projects:[ShowProject]!{
-        didSet{
-            guard let pages = self.pages else {
+    //如果保存了项目id，就获取选择保存的项目id对应的项目
+    var selectedProjectId: Int!{
+        didSet {
+            guard let id = self.selectedProjectId else { return }
+            guard let projects = self.projects else { return }
+            for project in projects {
+                if id == project.id {
+                    self.selectedProject = project
+                    break
+                }
+            }
+        }
+    }
+    
+    var account: String = ""
+    
+    var projects:[ShowProject]!
+    {
+        didSet
+        {
+            guard let pages = self.pages else
+            {
                 return
             }
-            for page in pages {
+            for page in pages
+            {
                 page.allProjects = self.projects
             }
             //程序约束
-            if let projects = self.projects {
-                if projects.count > 0 {
+            if let projects = self.projects
+            {
+                if projects.count > 0
+                {
                     self.selectedProject = projects[0]
                 }
+                
             }
         }
     }
@@ -254,6 +279,11 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
                 break
             }
         }
+        
+        //保存项目id
+        let accountDefaults = UserDefaults.standard
+        accountDefaults.set(id, forKey: account + "_" + Keys.selectedProjectId)
+        
         self.addressNames = addressNames
         
         pages[pageIndex].addressNames = self.addressNames

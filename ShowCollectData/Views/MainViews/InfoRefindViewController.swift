@@ -153,7 +153,7 @@ extension InfoRefindViewController: AuditingFragmentDelegate {
                 }
                 print("审核成功")
                 ToastHelper.showGlobalToast(message: response.msg)
-                //self.refreshProject()
+                self.refreshProject()
             }else{
                 print("审核失败！")
                 ToastHelper.showGlobalToast(message: "数据获取失败！")

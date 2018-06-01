@@ -28,7 +28,7 @@ class ProjectModifyViewController: BasePageViewController {
     
     let titles = ["项目名称","项目类别","项目地址","街道","设计处理量","设备列表","排放标准","运维人员姓名","运维人员联系方式"]
     let capcityListNames = listToNames(list: capcityList)
-    let emissionStdNames = listToNames(list: emissionStd)
+    //let emissionStdNames = listToNames(list: emissionStd)
     
     
     override func viewDidLoad() {
@@ -92,14 +92,14 @@ class ProjectModifyViewController: BasePageViewController {
         self.tableItemViews[5].contentText.adjustsFontForContentSizeCategory = true
         
         
-        self.tableItemViews[6].contentText.text = String(project.emissionStandards)+"D/T"
+        self.tableItemViews[6].contentText.text = emissionStdAccessment[project.emissionStandards]
         
         self.tableItemViews[7].contentText.text = project.workerName
         self.tableItemViews[8].contentText.text = project.workerPhone
         
         self.dropBoxViews[0].setBoxTitle(title: project.projectName)
         self.dropBoxViews[1].setBoxTitle(title: String(project.capability)+"D/T")
-        self.dropBoxViews[2].setBoxTitle(title: String(project.emissionStandards)+"D/T")
+        self.dropBoxViews[2].setBoxTitle(title: emissionStdAccessment[project.emissionStandards])
         
     }
     
@@ -168,7 +168,7 @@ class ProjectModifyViewController: BasePageViewController {
         
         addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY1, width: w * 0.7, height: h - 1), names: self.projectNames, dropBoxOffset: offset, dropBoxDidSelected: self.onProjectSelected)
         addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY2, width: w * 0.7, height: h - 1), names: self.capcityListNames, dropBoxOffset: offset, dropBoxDidSelected: self.onCapcityListSelected)
-        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY3, width: w * 0.7, height: h - 1), names:self.emissionStdNames, dropBoxOffset: offset, dropBoxDidSelected: self.onEmissionStdSelected)
+        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY3, width: w * 0.7, height: h - 1), names:emissionStdNames, dropBoxOffset: offset, dropBoxDidSelected: self.onEmissionStdSelected)
         
         
         
