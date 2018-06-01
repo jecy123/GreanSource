@@ -23,7 +23,7 @@ class UserRetrieveViewController: UserBaseController {
         self.itemSize = CGFloat(tableItemNames.count)
         
         let startX: CGFloat = self.itemStartX
-        var startY: CGFloat = self.itemStartY
+        var startY: CGFloat = self.topImageHeight + self.titleMarginTop + self.titleHeight + 30
         
         let identiCodeY:CGFloat = startY + (itemHeight + itemPadding) * 5
         

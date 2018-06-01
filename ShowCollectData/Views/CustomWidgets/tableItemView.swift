@@ -83,6 +83,8 @@ class TableItemView: UIView {
                                height: frame.height)
             
             contentText = UITextField(frame: rect2)
+            contentText.returnKeyType = .done
+            contentText.delegate = self
             contentText.layer.masksToBounds = true
             contentText.layer.backgroundColor = UIColor.white.cgColor
             self.addSubview(contentText)
@@ -93,6 +95,8 @@ class TableItemView: UIView {
             
             let rect2 = CGRect(x:frame.width * labelRatio + 5, y:0, width:frame.width*(1 - labelRatio) - 5 - deleteButtonPadding * 2 - deleteButtonWidth, height:frame.height)
             contentText = UITextField(frame: rect2)
+            contentText.returnKeyType = .done
+            contentText.delegate = self
             contentText.layer.masksToBounds = true
             contentText.layer.backgroundColor = UIColor.white.cgColor
             self.addSubview(contentText)
@@ -142,4 +146,10 @@ class TableItemView: UIView {
         self.delegate?.onDeleteBtnClicked?(sender: self)
     }
 
+}
+
+extension TableItemView : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
 }

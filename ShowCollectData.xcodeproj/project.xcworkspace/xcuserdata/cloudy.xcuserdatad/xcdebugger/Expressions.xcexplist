@@ -98,6 +98,23 @@
          contextName = "MainViewController.initPopover():MainViewController.swift">
       </ContextState>
       <ContextState
+         contextName = "ISViewPagerContainer.scrollIndicator(index:):ISViewPager.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "curIndex">
+            </PersistentString>
+            <PersistentString
+               value = "titleBar.contentOffset.x + titleBar.frame.width">
+            </PersistentString>
+            <PersistentString
+               value = "indicator.frame.origin.x + 2 * titleItemWidth">
+            </PersistentString>
+            <PersistentString
+               value = "indicator.frame">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "DeviceModifyViewController.refreshNames():DeviceModifyViewController.swift">
          <PersistentStrings>
             <PersistentString

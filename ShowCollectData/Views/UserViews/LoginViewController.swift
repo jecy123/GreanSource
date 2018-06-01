@@ -130,9 +130,12 @@ class ViewController: UIViewController {
             .TitleFont(UIFont.systemFont(ofSize: 15)),
             .TitleColor(UIColor.black),
             .TitleSelectedColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
+            .TitleSelectedBgColor(ColorUtils.selectedBtnColor),
             .TitleItemWidth(self.view.frame.width / 3),
-            .IndicatorColor(ColorUtils.mainThemeColor/*#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)*/),
+            .IndicatorColor(ColorUtils.selectedBtnColor),
             .IndicatorHeight(5),
+            .IsIndicatorScrollAnimated(false),
+            .IsIndicatorArrow(true),
             .BottomlineColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
             .BottomlineHeight(1),
             .TitleBarPosition(UIViewPageTitlePosition.bottom)

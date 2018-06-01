@@ -30,6 +30,9 @@ class DeviceInfoListCell: UITableViewCell {
         btnDelete.layer.cornerRadius = 4
         btnDelete.addTarget(self, action: #selector(onDeleteBtnClick(_:)), for: .touchUpInside)
         
+        tfDeviceNo.delegate = self
+        tfTag.delegate = self
+        
         
     }
 
@@ -44,4 +47,10 @@ class DeviceInfoListCell: UITableViewCell {
         delegate?.onDelButtonClick?(at: sender.tag)
     }
     
+}
+
+extension DeviceInfoListCell: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return textField.resignFirstResponder()
+    }
 }

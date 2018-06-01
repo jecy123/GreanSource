@@ -26,7 +26,10 @@ public enum UIViewPagerOption {
     case TitleFont(UIFont)
     case TitleColor(UIColor)
     case TitleSelectedColor(UIColor)
+    case TitleSelectedBgColor(UIColor)
     case TitleItemWidth(CGFloat)
+    case IsIndicatorScrollAnimated(Bool)
+    case IsIndicatorArrow(Bool)
     case IndicatorColor(UIColor)
     case IndicatorHeight(CGFloat)
     case BottomlineColor(UIColor)
@@ -54,7 +57,7 @@ class InnderScrollViewDelegate:NSObject, UIScrollViewDelegate{
     }
     func didScorllToRightEdage(){
         if let scrollToRightRightEdageFun = scrollToRightRightEdageFun{
-            scrollToRightRightEdageFun();
+            scrollToRightRightEdageFun()
         }
     }
     func onScrollToPage(page:Int){
@@ -95,6 +98,7 @@ open class ISViewPagerContainer:UIViewController{
     var titleItemWidth:CGFloat = 100.0
     var titleColor = UIColor.black
     var titleSelectedColor = UIColor.blue
+    var titleSelectedBgColor = UIColor.brown
     var indicatorColor = UIColor.gray
     var indicatorHeight:CGFloat = 8.0
     var bottomlineColor  = UIColor.blue
@@ -104,14 +108,17 @@ open class ISViewPagerContainer:UIViewController{
     var xOffset: CGFloat = 0
     var yOffset: CGFloat = 0
     
+    var isIndicatorScrollAnimated: Bool = true
+    var isIndicatorArrow: Bool  = false
+    
     private var titleLables = [UIButton]()
     private let contentView = UIScrollView()
     private let titleBar = UIScrollView()
-    private let indicator = UIView();
+    private var indicator = UIView();
     private let bottomline = UIView();
     private let scrollDelegate = InnderScrollViewDelegate()
     
-    private var curIndex=0
+    private var curIndex = 0
     
     static var cnt: Int = 0
     
@@ -129,6 +136,8 @@ open class ISViewPagerContainer:UIViewController{
                     titleFont = value
                 case  let .TitleColor(value):
                     titleColor = value
+                case let .TitleSelectedBgColor(value):
+                    titleSelectedBgColor = value
                 case  let .TitleSelectedColor(value):
                     titleSelectedColor = value
                 case  let .TitleItemWidth(value):
@@ -147,6 +156,10 @@ open class ISViewPagerContainer:UIViewController{
                     xOffset = value
                 case let .yOffset(value):
                     yOffset = value
+                case let .IsIndicatorScrollAnimated(value):
+                    isIndicatorScrollAnimated = value
+                case let .IsIndicatorArrow(value):
+                    isIndicatorArrow = value
                 }
             }
         }
@@ -237,12 +250,13 @@ open class ISViewPagerContainer:UIViewController{
     }
     @objc func onClickTitle(_ title:UIControl){
         scrollIndicator(index:title.tag)
-        contentView.contentOffset = CGPoint(x:CGFloat(title.tag)*contentView.frame.width, y: contentView.contentOffset.y)
+        contentView.contentOffset = CGPoint(x: CGFloat(title.tag)*contentView.frame.width, y: contentView.contentOffset.y)
     }
     
     func setupUIElement(){
         //print("navigationcontroller = \(self.navigationController)")
-        titleBar.backgroundColor = titleBarBackgroudColor
+        titleBar.backgroundColor = UIColor.white
+        //titleBarBackgroudColor
         titleBar.isPagingEnabled = true;
         titleBar.bounces = false
         titleBar.showsHorizontalScrollIndicator = false;
@@ -267,7 +281,13 @@ open class ISViewPagerContainer:UIViewController{
         }else{
             indicatorFrame = CGRect(x: 0, y: titleBarHeight-indicatorHeight, width: titleItemWidth, height: indicatorHeight)
         }
-        indicator.frame = indicatorFrame
+        
+        if isIndicatorArrow {
+            indicator = IndicatorArrowView(frame: indicatorFrame, arrowBgColor: indicatorColor)
+        }else{
+            indicator.frame = indicatorFrame
+        }
+        
         indicator.backgroundColor = indicatorColor
         titleBar.addSubview(indicator)
         
@@ -307,7 +327,8 @@ open class ISViewPagerContainer:UIViewController{
         
         for i in 0 ..< titleLables.count{
             let titleLabel = titleLables[i]
-            titleLabel.frame =  CGRect(x:CGFloat(i)*titleItemWidth,y:0,width:titleItemWidth,height:titleBarHeight)
+            titleLabel.frame =  CGRect(x: CGFloat(i)*titleItemWidth, y:indicatorHeight, width:titleItemWidth, height:titleBarHeight-indicatorHeight)
+            titleLabel.backgroundColor = titleBarBackgroudColor
         }
         bottomline.frame = bottomLineFrame
         /*CGRect(x: 0, y: titleBarHeight-bottomlineHeight, width: titleBar.contentSize.width, height: bottomlineHeight)*/
@@ -333,33 +354,47 @@ open class ISViewPagerContainer:UIViewController{
         self.didScrollToPage(index: UInt(index))
         
         if curIndex > index{
-            if indicator.frame.origin.x-titleItemWidth<titleBar.contentOffset.x {
-                titleBar.scrollRectToVisible(CGRect(x: CGFloat(index)*self.titleItemWidth, y:0, width:titleBar.frame.width,height:titleBar.frame.height), animated: true)
+            if indicator.frame.origin.x - titleItemWidth < titleBar.contentOffset.x {
+                titleBar.scrollRectToVisible(CGRect(x: CGFloat(index) * self.titleItemWidth, y:0, width:titleBar.frame.width, height:titleBar.frame.height), animated: true)
             }
         }else if curIndex <= index{
-            if indicator.frame.origin.x+2*titleItemWidth>titleBar.contentOffset.x + titleBar.frame.width {
-                titleBar.scrollRectToVisible(CGRect(x: CGFloat(index)*self.titleItemWidth, y:0, width:titleBar.frame.width,height:titleBar.frame.height), animated: true)
+            if indicator.frame.origin.x + 2 * titleItemWidth > titleBar.contentOffset.x + titleBar.frame.width {
+                titleBar.scrollRectToVisible(CGRect(x: CGFloat(index) * self.titleItemWidth, y: 0, width: titleBar.frame.width, height: titleBar.frame.height), animated: true)
             }
         }
+        let cntPerPage: Int = Int(titleBar.frame.width / titleItemWidth)
+        if index == viewPages.count - 1 {
+            titleBar.setContentOffset(CGPoint(x: CGFloat(index - (cntPerPage - 1)) * self.titleItemWidth, y: 0), animated: true)
+        }
+        
+        
         let curLabel = titleLables[curIndex]
         curLabel.setTitleColor(titleColor, for: UIControlState.normal)
         curIndex = index;
         let lable = titleLables[curIndex]
+        
+        for titleLable in titleLables {
+            titleLable.layer.backgroundColor = titleBarBackgroudColor.cgColor
+        }
         lable.setTitleColor(titleSelectedColor, for: UIControlState.normal)
-        UIView.animate(withDuration: 0.2, animations: { () -> Void in
-            
-            let indicatorFrame:CGRect
-            switch self.titleBarPosition{
-            case .bottom:
-                indicatorFrame = CGRect(x: CGFloat(index)*self.titleItemWidth, y: 0, width: self.titleItemWidth, height: self.indicatorHeight)
-            case .top:
-                indicatorFrame = CGRect(x: CGFloat(index)*self.titleItemWidth, y: self.titleBarHeight-self.indicatorHeight, width: self.titleItemWidth, height: self.indicatorHeight)
-            }
-            
-            
+        lable.layer.backgroundColor = titleSelectedBgColor.cgColor
+
+        let indicatorFrame:CGRect
+        switch self.titleBarPosition{
+        case .bottom:
+            indicatorFrame = CGRect(x: CGFloat(index)*self.titleItemWidth, y: 0, width: self.titleItemWidth, height: self.indicatorHeight)
+        case .top:
+            indicatorFrame = CGRect(x: CGFloat(index)*self.titleItemWidth, y: self.titleBarHeight - self.indicatorHeight, width: self.titleItemWidth, height: self.indicatorHeight)
+        }
+
+        if isIndicatorScrollAnimated {
+            UIView.animate(withDuration: 0.2, animations: { () -> Void in
+                self.indicator.frame = indicatorFrame
+            })
+        }else{
             self.indicator.frame = indicatorFrame
-            /*CGRect(x: CGFloat(index)*self.titleItemWidth, y:self.titleBarHeight-self.indicatorHeight, width: self.titleItemWidth, height: self.indicatorHeight)*/
-        })
+        }
+        
         
     }
     
@@ -371,6 +406,46 @@ open class ISViewPagerContainer:UIViewController{
     }
     public func didScorllToRightEdage(){
     }
+}
+
+
+class IndicatorArrowView: UIView {
     
+    var arrowBgColor: UIColor = UIColor.brown
+    
+    convenience init(frame: CGRect, arrowBgColor: UIColor) {
+        self.init(frame: frame)
+        self.arrowBgColor = arrowBgColor
+    }
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
+        
+        let arrowWidth: CGFloat = 10
+        //设置背景颜色
+        UIColor.white.set()
+        UIRectFill(self.bounds)
+        
+        //拿到当前视图准备好的画板
+        let context = UIGraphicsGetCurrentContext()!
+        //利用path进行绘制三角形
+        context.beginPath()//标记
+        context.move(to: CGPoint(x: bounds.width / 2, y: 0))
+        context.addLine(to: CGPoint(x: bounds.width / 2 - arrowWidth / 2, y: bounds.height))
+        context.addLine(to: CGPoint(x: bounds.width / 2 + arrowWidth / 2, y: bounds.height))
+        context.closePath()//路径结束标志，不写默认封闭
+        self.arrowBgColor.setFill()//设置填充色
+        self.arrowBgColor.setStroke()//设置边框颜色
+        context.drawPath(using: .fillStroke)//绘制路径path
+    }
 }
 
