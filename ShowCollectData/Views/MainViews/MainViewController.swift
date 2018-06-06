@@ -284,6 +284,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         let accountDefaults = UserDefaults.standard
         accountDefaults.set(id, forKey: account + "_" + Keys.selectedProjectId)
         
+        self.doScrollToPage(index: 0)
         self.addressNames = addressNames
         
         pages[pageIndex].addressNames = self.addressNames

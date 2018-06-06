@@ -3,109 +3,109 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "ic_launcher40_40.png",
+      "filename" : "图标40.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "ic_launcher60_60.png",
+      "filename" : "图标60.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "ic_launcher58_58.png",
+      "filename" : "图标58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "ic_launcher87_87.png",
+      "filename" : "图标87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "ic_launcher80_80.png",
+      "filename" : "图标80.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "ic_launcher120_120.png",
+      "filename" : "图标120.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "ic_launcher120_120-1.png",
+      "filename" : "图标120-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "ic_launcher180_180.png",
+      "filename" : "图标180.png",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "ic_launcher20_20.png",
+      "filename" : "图标20.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "ic_launcher40_40-1.png",
+      "filename" : "图标40-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "ic_launcher29_29.png",
+      "filename" : "图标29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "ic_launcher58_58-1.png",
+      "filename" : "图标58-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "ic_launcher40_40-2.png",
+      "filename" : "图标40-2.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "ic_launcher80_80-1.png",
+      "filename" : "图标80-1.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "ic_launcher76_76.png",
+      "filename" : "图标76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "ic_launcher152_152.png",
+      "filename" : "图标152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "ic_launcher167_167.png",
+      "filename" : "图标167.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "ic_launcher1024_1024.png",
+      "filename" : "图标1024.png",
       "scale" : "1x"
     }
   ],

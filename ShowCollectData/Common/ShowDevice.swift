@@ -185,6 +185,9 @@ class ShowDevice: BaseData {
 
 extension ShowDevice {
     public static func arrayToJSON(list: [ShowDevice]) -> String{
+        if list.count == 0 {
+            return "[]"
+        }
         var json = "["
         for i in 0..<list.count - 1 {
             json += list[i].toJSON() + ","

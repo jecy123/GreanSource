@@ -125,7 +125,8 @@ class ViewController: UIViewController {
         
         let pagesOptions:[UIViewPagerOption] = [
             .TitleBarHeight(50),
-            .TitleBarBackgroudColor(ColorUtils.mainThemeColor),
+            .TitleBarBackgroundColor(ColorUtils.mainViewBackgroudColor),
+            .TitleViewBackgroundColor(ColorUtils.mainThemeColor),
             .TitleBarScrollType(UIViewPagerTitleBarScrollType.UIViewControllerMenuScroll),
             .TitleFont(UIFont.systemFont(ofSize: 15)),
             .TitleColor(UIColor.black),

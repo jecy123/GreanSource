@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.228984"
+            timestampString = "549945631.272993"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "98"
@@ -58,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.229075"
+            timestampString = "549945631.273103"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "100"
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.229221"
+            timestampString = "549945631.273187"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -90,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.229296"
+            timestampString = "549945631.2732641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "93"
@@ -106,23 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.2293561"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
-            landmarkName = "doRecordNameAndPwd(isRecord:name:password:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.229412"
+            timestampString = "549945631.273371"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "238"
@@ -134,15 +118,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.229546"
+            timestampString = "549945631.273478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "doRecordNameAndPwd(isRecord:name:password:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -154,11 +138,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.229749"
+            timestampString = "549945631.273563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "234"
             endingLineNumber = "234"
+            landmarkName = "doRecordNameAndPwd(isRecord:name:password:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
+            timestampString = "549945631.2737091"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "doRecordNameAndPwd(isRecord:name:password:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.230574"
+            timestampString = "549945631.274354"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "215"
-            endingLineNumber = "215"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "doLogin(accountName:password:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/LoginViewController.swift"
-            timestampString = "549532254.230893"
+            timestampString = "549945631.2745219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
             landmarkName = "gotoMainView(accountType:projects:account:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231011"
+            timestampString = "549952204.963989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "322"
+            endingLineNumber = "322"
             landmarkName = "layoutUIElement(width:height:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,27 +378,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231101"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
-            landmarkName = "layoutUIElement(width:height:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231174"
+            timestampString = "549952204.964079"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "324"
             endingLineNumber = "324"
+            landmarkName = "layoutUIElement(width:height:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
+            timestampString = "549952204.9641351"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "layoutUIElement(width:height:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231315"
+            timestampString = "549952204.964275"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "267"
-            endingLineNumber = "267"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "setupUIElement()"
             landmarkType = "7">
          </BreakpointContent>
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231402"
+            timestampString = "549952204.964358"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "268"
-            endingLineNumber = "268"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "setupUIElement()"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231479"
+            timestampString = "549952204.96442"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "setupUIElement()"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.2315609"
+            timestampString = "549952204.964469"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "287"
+            endingLineNumber = "287"
             landmarkName = "setupUIElement()"
             landmarkType = "7">
          </BreakpointContent>
@@ -506,11 +506,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231648"
+            timestampString = "549952204.964516"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "viewWillTransition(to:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -522,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231735"
+            timestampString = "549952204.964563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "viewWillTransition(to:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231874"
+            timestampString = "549952204.96461"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "viewWillTransition(to:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -554,11 +554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.231963"
+            timestampString = "549952204.964656"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "viewWillTransition(to:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -570,11 +570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.2320499"
+            timestampString = "549952204.964702"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.2321351"
+            timestampString = "549952204.964748"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "247"
-            endingLineNumber = "247"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "setupUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.232219"
+            timestampString = "549952204.964794"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "248"
-            endingLineNumber = "248"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "setupUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -618,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.232309"
+            timestampString = "549952204.964839"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "282"
-            endingLineNumber = "282"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "setupUIElement()"
             landmarkType = "7">
          </BreakpointContent>
@@ -634,27 +634,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.232403"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "setupUIElement()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.2325"
+            timestampString = "549952204.964886"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "291"
             endingLineNumber = "291"
+            landmarkName = "setupUIElement()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
+            timestampString = "549952204.964933"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "setupUIElement()"
             landmarkType = "7">
          </BreakpointContent>
@@ -794,7 +794,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/MainViewController.swift"
-            timestampString = "549527311.5562609"
+            timestampString = "549952204.965156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
@@ -810,7 +810,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/MainViewController.swift"
-            timestampString = "549527311.556378"
+            timestampString = "549952204.96556"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "177"
@@ -826,11 +826,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.233047"
+            timestampString = "549952204.965807"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "281"
-            endingLineNumber = "281"
+            startingLineNumber = "288"
+            endingLineNumber = "288"
             landmarkName = "setupUIElement()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1242,7 +1242,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectAddViewController.swift"
-            timestampString = "549532254.234043"
+            timestampString = "549534228.818872"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "95"
@@ -1258,7 +1258,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectAddViewController.swift"
-            timestampString = "549532254.234144"
+            timestampString = "549534228.819171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -1274,7 +1274,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectAddViewController.swift"
-            timestampString = "549532254.234218"
+            timestampString = "549534228.819375"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -1674,7 +1674,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectModifyViewController.swift"
-            timestampString = "549532254.234935"
+            timestampString = "549534228.8203321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
@@ -1690,7 +1690,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectModifyViewController.swift"
-            timestampString = "549532254.235006"
+            timestampString = "549534228.8204499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "181"
@@ -1722,7 +1722,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectAddViewController.swift"
-            timestampString = "549532254.235103"
+            timestampString = "549534228.820559"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "110"
@@ -1738,7 +1738,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectAddViewController.swift"
-            timestampString = "549532254.235163"
+            timestampString = "549534228.820635"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "111"
@@ -1754,7 +1754,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectAddViewController.swift"
-            timestampString = "549532254.235221"
+            timestampString = "549534228.82069"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "112"
@@ -1770,7 +1770,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/ProjectAddViewController.swift"
-            timestampString = "549532254.235276"
+            timestampString = "549534228.82075"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "222"
@@ -1818,7 +1818,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/UserViews/RegisterViewController.swift"
-            timestampString = "549532254.235397"
+            timestampString = "549534228.820875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "247"
@@ -1882,12 +1882,12 @@
                   moduleName = "ShowCollectData"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cloudy/Public/Xcode%E9%A1%B9%E7%9B%AE/ShowCollectData/ShowCollectData/Socket/ClientRequest.swift"
-                  timestampString = "549532254.540301"
+                  timestampString = "549532501.4608901"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "317"
                   endingLineNumber = "317"
-                  offsetFromSymbolStart = "639">
+                  offsetFromSymbolStart = "496">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -1897,12 +1897,12 @@
                   moduleName = "ShowCollectData"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cloudy/Public/Xcode%E9%A1%B9%E7%9B%AE/ShowCollectData/ShowCollectData/Socket/ClientRequest.swift"
-                  timestampString = "549532254.543933"
+                  timestampString = "549532501.4662139"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "318"
                   endingLineNumber = "318"
-                  offsetFromSymbolStart = "18">
+                  offsetFromSymbolStart = "24">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2314,7 +2314,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/MainViewController.swift"
-            timestampString = "549527311.560693"
+            timestampString = "549952204.968048"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "257"
@@ -2330,7 +2330,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/MainViews/MainViewController.swift"
-            timestampString = "549527311.5607899"
+            timestampString = "549952204.968346"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "258"
@@ -2506,55 +2506,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.23654"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "scrollIndicator(index:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.2366281"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
-            landmarkName = "scrollIndicator(index:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.236704"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "374"
-            endingLineNumber = "374"
-            landmarkName = "scrollIndicator(index:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.2367769"
+            timestampString = "549952204.96881"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "379"
@@ -2570,11 +2522,59 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.236848"
+            timestampString = "549952204.968869"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "397"
-            endingLineNumber = "397"
+            startingLineNumber = "380"
+            endingLineNumber = "380"
+            landmarkName = "scrollIndicator(index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
+            timestampString = "549952204.968917"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "381"
+            endingLineNumber = "381"
+            landmarkName = "scrollIndicator(index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
+            timestampString = "549952204.9689651"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "scrollIndicator(index:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
+            timestampString = "549952204.969012"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "404"
+            endingLineNumber = "404"
             landmarkName = "scrollIndicator(index:)"
             landmarkType = "7">
             <Locations>
@@ -2618,11 +2618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ShowCollectData/Views/CustomWidgets/ISViewPager.swift"
-            timestampString = "549532254.236917"
+            timestampString = "549952204.969057"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "371"
-            endingLineNumber = "371"
+            startingLineNumber = "378"
+            endingLineNumber = "378"
             landmarkName = "scrollIndicator(index:)"
             landmarkType = "7">
          </BreakpointContent>
