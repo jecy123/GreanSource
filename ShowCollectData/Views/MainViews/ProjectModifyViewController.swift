@@ -84,12 +84,7 @@ class ProjectModifyViewController: BasePageViewController {
         let c = project.capability
         let index = getIndexOfCapcity(capcity: c!)
         let deviceInfoStr = getDeviceCountMsg(index: index)
-        self.tableItemViews[5].contentText.text = deviceInfoStr
-        self.tableItemViews[5].contentText.isEnabled = false
-        self.tableItemViews[5].contentText.textColor = UIColor.gray
-        self.tableItemViews[5].contentText.adjustsFontSizeToFitWidth = true
-        self.tableItemViews[5].contentText.autoresizingMask = .flexibleWidth
-        self.tableItemViews[5].contentText.adjustsFontForContentSizeCategory = true
+        self.tableItemViews[5].contentTextView.text = deviceInfoStr
         
         
         self.tableItemViews[6].contentText.text = emissionStdAccessment[project.emissionStandards]
@@ -139,7 +134,7 @@ class ProjectModifyViewController: BasePageViewController {
         
         y += h
         tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[5], type: .typeText, withBottomLine: true)
+        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[5], type: .typeMultiLineText, withBottomLine: true)
         
         y += h
         tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
@@ -154,6 +149,8 @@ class ProjectModifyViewController: BasePageViewController {
         y += h
         tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.4, title: titles[8], type: .typeText, withBottomLine: true)
+        
+        
         
         let btnWidth: CGFloat = 100
         let btnHeight: CGFloat = 40
@@ -171,7 +168,11 @@ class ProjectModifyViewController: BasePageViewController {
         addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY3, width: w * 0.7, height: h - 1), names:emissionStdNames, dropBoxOffset: offset, dropBoxDidSelected: self.onEmissionStdSelected)
         
         
-        
+        self.tableItemViews[5].contentTextView.isEditable = false
+        self.tableItemViews[5].contentTextView.textColor = UIColor.gray
+        self.tableItemViews[5].contentTextView.font = UIFont.systemFont(ofSize: h / 4)
+        self.tableItemViews[5].contentTextView.autoresizingMask = .flexibleWidth
+        self.tableItemViews[5].contentTextView.adjustsFontForContentSizeCategory = true
     }
     
     func refreshNames() {
@@ -251,7 +252,7 @@ class ProjectModifyViewController: BasePageViewController {
         mProject.capability = capcityList[row]
         //计算设备列表
         let deviceListMsg = getDeviceCountMsg(index: row)
-        self.tableItemViews[5].contentText.text = deviceListMsg
+        self.tableItemViews[5].contentTextView.text = deviceListMsg
         
     }
     

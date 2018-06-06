@@ -53,12 +53,14 @@ class RunningStateViewController: BasePageViewController{
         let originY: CGFloat = 140
         
         runningNormalLabel = self.addInfoTitleLabel(frame: CGRect(x: 20, y: originY, width: labelW, height: labelH), title: "运行正常：")
+        runningNormalLabel.adjustsFontSizeToFitWidth = true
         
         let imageRight:UIImage = UIImage(named: "goodstatus")!
         runningNormalImage = self.addInfoContentImage(frame: CGRect(x: 20 + labelW, y: originY, width: imageW, height: imageH), image: imageRight)
         
         
         runningErrorLabel = self.addInfoTitleLabel(frame: CGRect(x: 20 + labelW + imageW, y: originY, width: labelW, height: labelH), title: "故障报警：")
+        runningErrorLabel.adjustsFontSizeToFitWidth = true
         
         let imageError:UIImage = UIImage(named: "errorstatus")!
         runningErrorImage = self.addInfoContentImage(frame: CGRect(x: 20 + labelW + imageW + labelW, y: originY, width: imageW, height: imageH), image: imageError)
