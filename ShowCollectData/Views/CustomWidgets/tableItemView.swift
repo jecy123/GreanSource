@@ -52,6 +52,8 @@ class TableItemView: UIView {
     
     var extraMsg: String!
     
+    var parentVC: UIViewController!
+    
     ///constructor
     convenience init(parentVC:UIViewController, item: TableItem)
     {
@@ -135,6 +137,8 @@ class TableItemView: UIView {
             self.addSubview(bottomLine)
             
         }
+
+        self.parentVC = parentVC
     }
     
     func setIsHidden(isHidden: Bool) {
@@ -147,7 +151,6 @@ class TableItemView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -162,7 +165,46 @@ class TableItemView: UIView {
 
 extension TableItemView : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let vc = self.parentVC else { return textField.resignFirstResponder() }
+        
+        if textField.tag == -2 {
+            let animationDuration : TimeInterval = 0.10
+            UIView.beginAnimations("ResizeForKeyboard", context:nil)
+            UIView.setAnimationDuration(animationDuration)
+            let width = UIScreen.main.bounds.width
+            let height = UIScreen.main.bounds.height
+            
+            let x = vc.view.frame.origin.x
+            let rect = CGRect(x: x, y: 0, width: width, height: height)
+            vc.view.frame = rect
+            UIView.commitAnimations()
+            textField.tag = 0
+        }
+        
         return textField.resignFirstResponder()
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        guard let vc = self.parentVC else { return true }
+
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+        
+        if textField.superview!.frame.origin.y + 400 > height{
+            let animationDuration: TimeInterval = 0.2
+            UIView.beginAnimations("ResizeForKeyboard", context: nil)
+            UIView.setAnimationDuration(animationDuration)
+        
+            textField.tag = -2
+            //上移100个单位，按实际情况设置
+            let x = vc.view.frame.origin.x
+            let rect = CGRect(x: x, y: -130, width: width, height: height)
+            vc.view.frame = rect
+            UIView.commitAnimations()
+            
+        }
+        return true
     }
 }
 
