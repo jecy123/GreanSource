@@ -26,6 +26,16 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         // Dispose of any resources that can be recreated.
     }
     
+    func hideMapLogo()  {
+        guard let view = mapView.subviews.first else { return }
+        for logoView in view.subviews {
+            if logoView.isKind(of: UIImageView.classForCoder()) {
+                let logoImage = logoView as! UIImageView
+                logoImage.isHidden = true
+            }
+        }
+    }
+    
     func initViews(){
         mapView = BMKMapView()
         self.view.addSubview(mapView)
@@ -50,6 +60,8 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         mapView.compassPosition = CGPoint(x: 10, y: 10)
         mapView.userTrackingMode = BMKUserTrackingModeHeading
         mapView.zoomLevel = 18
+        
+        hideMapLogo()
     }
     
     override func viewDidLoad() {
