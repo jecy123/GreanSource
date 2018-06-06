@@ -16,6 +16,7 @@ enum TableItemType{
     case typeText
     case typePopup
     case typeRemovableText
+    case typeMultiLineText
 }
 
 class TableItem
@@ -40,6 +41,7 @@ class TableItem
 class TableItemView: UIView {
     var nameLabel:UILabel!
     var contentText:UITextField!
+    var contentTextView: UITextView!
     var contentPopup:DropBoxView!
     var deleteButton: UIButton!
     var bottomLine: UIView!
@@ -114,6 +116,16 @@ class TableItemView: UIView {
             
             self.addSubview(deleteButton)
             setIsHidden(isHidden: item.isHidden)
+        }else if type == TableItemType.typeMultiLineText {
+            
+            let rect2 = CGRect(x: frame.width * labelRatio + 5, y: 0, width: frame.width*(1 - labelRatio) - 5,
+                               height: frame.height)
+            contentTextView = UITextView(frame: rect2)
+            contentTextView.returnKeyType = .done
+            contentTextView.layer.masksToBounds = true
+            contentTextView.layer.backgroundColor = UIColor.white.cgColor
+            contentTextView.delegate = self
+            self.addSubview(contentTextView)
         }
         
         if withBottomLine {
@@ -152,4 +164,21 @@ extension TableItemView : UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return textField.resignFirstResponder()
     }
+}
+
+extension TableItemView: UITextViewDelegate {
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        return textView.resignFirstResponder()
+    }
+    
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+//        var textWidth = UIEdgeInsetsInsetRect(textView.frame, textView.textContainerInset).width
+//        textWidth -= 2.0 * textView.textContainer.lineFragmentPadding;
+//        
+//        let boundingRect = textView.bounds
+//        let numberOfLines = boundingRect.height / textView.font!.lineHeight;
+//        
+//        return numberOfLines <= 2;
+//    }
 }
