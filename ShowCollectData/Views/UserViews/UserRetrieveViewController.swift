@@ -10,7 +10,8 @@ import UIKit
 
 class UserRetrieveViewController: UserBaseController {
     
-    let tableItemNames:[String] = ["用户姓名","用户类型","项目区域","输入原号码","输入新号码","验证码"]
+    //let tableItemNames:[String] = ["用户姓名","用户类型","项目区域","输入原号码","输入新号码","验证码"]
+    let tableItemNames: [String] = ["手机号码","用户姓名", "验证码" ]
     let userTypes: [String] = ["环保部门人员","系统运维维人员"]
     
     var locationDic: [String : String] = [:]
@@ -25,7 +26,7 @@ class UserRetrieveViewController: UserBaseController {
         let startX: CGFloat = self.itemStartX
         var startY: CGFloat = self.topImageHeight + self.titleMarginTop + self.titleHeight + 30
         
-        let identiCodeY:CGFloat = startY + (itemHeight + itemPadding) * 5
+        let identiCodeY:CGFloat = startY + (itemHeight + itemPadding) * 2
         
         var items:[TableItem] = [TableItem]()
         
@@ -33,32 +34,21 @@ class UserRetrieveViewController: UserBaseController {
         
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
         items.append(TableItem(name: tableItemNames[0], type: .typeText, frame: rect, ratio: 0.4))
+        
         startY += itemHeight + itemPadding
-        let dropBoxY = startY
+        //let dropBoxY = startY
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
         items.append(TableItem(name: tableItemNames[1], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[2], type: .typeText, frame: rect, ratio: 0.4))
-        
-        startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[3], type: .typeText, frame: rect, ratio: 0.4))
-        
-        startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[4], type: .typeText, frame: rect, ratio: 0.4))
-        
-        startY += itemHeight + itemPadding
         rect = CGRect(x: startX + 100, y: startY, width: itemWidth - 100, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[5], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: tableItemNames[2], type: .typeText, frame: rect, ratio: 0.4))
         
         self.tableItems = items
         
-        let dropBoxFrame = CGRect(x: startX + itemWidth * 0.4 + 5, y: dropBoxY, width: itemWidth * 0.6 - 5, height: itemHeight)
-        
-        addDropBox(frame: dropBoxFrame, userTypeMenus: userTypes)
+//        let dropBoxFrame = CGRect(x: startX + itemWidth * 0.4 + 5, y: dropBoxY, width: itemWidth * 0.6 - 5, height: itemHeight)
+//
+//        addDropBox(frame: dropBoxFrame, userTypeMenus: userTypes)
         
         addIdentiCodeButton(frame: CGRect(x: startX, y: identiCodeY, width: 100, height: itemHeight))
     }
@@ -71,33 +61,22 @@ class UserRetrieveViewController: UserBaseController {
     }
     
     func checkContent() -> Bool {
-        guard let userName = self.tableItemViews[0].contentText.text, !userName.isEmpty else {
+        
+        guard let phone = self.tableItemViews[0].contentText.text, !phone.isEmpty else {
+            ToastHelper.showGlobalToast(message: "手机号码不能为空！")
+            return false
+        }
+        guard StringUtils.isPhone(number: phone) else {
+            ToastHelper.showGlobalToast(message: "手机号格式错误！")
+            return false
+        }
+        
+        guard let userName = self.tableItemViews[1].contentText.text, !userName.isEmpty else {
             ToastHelper.showGlobalToast(message: "用户名不能为空！")
             return false
         }
-        let index = self.userTypeDropBox.getIndex()
         
-        guard let address = self.tableItemViews[2].contentText.text, !address.isEmpty else {
-            ToastHelper.showGlobalToast(message: "请选择项目地址！")
-            return false
-        }
-        guard let oldPhone = self.tableItemViews[3].contentText.text, !oldPhone.isEmpty else {
-            ToastHelper.showGlobalToast(message: "原手机号码不能为空！")
-            return false
-        }
-        guard StringUtils.isPhone(number: oldPhone) else {
-            ToastHelper.showGlobalToast(message: "原手机号格式错误！")
-            return false
-        }
-        guard let newPhone = self.tableItemViews[4].contentText.text, !newPhone.isEmpty else {
-            ToastHelper.showGlobalToast(message: "新手机号码不能为空！")
-            return false
-        }
-        guard StringUtils.isPhone(number: newPhone) else {
-            ToastHelper.showGlobalToast(message: "新手机号格式错误！")
-            return false
-        }
-        guard let vcode = self.tableItemViews[5].contentText.text, !vcode.isEmpty else {
+        guard let vcode = self.tableItemViews[2].contentText.text, !vcode.isEmpty else {
             ToastHelper.showGlobalToast(message: "验证码不能为空！")
             return false
         }
@@ -107,21 +86,22 @@ class UserRetrieveViewController: UserBaseController {
         
         refindAccount = ShowAccount()
         refindAccount.name = userName
-        refindAccount.oldPhone = oldPhone
-        refindAccount.phone = newPhone
+        refindAccount.oldPhone = phone
+        refindAccount.phone = phone
         refindAccount.vcode = vcode
         refindAccount.status = 0
-        if index == 0 {
-            refindAccount.type = AccountType.EP.rawValue
-        }else if index == 1 {
-            refindAccount.type = AccountType.mantainer.rawValue
-        }
+//        if index == 0 {
+//            refindAccount.type = AccountType.EP.rawValue
+//        }else if index == 1 {
+//            refindAccount.type = AccountType.mantainer.rawValue
+//        }
         
+//
         refindAccount.locations = []
-        if let locationId = locationDic[address] {
-            let location = ShowLocation(locationId: locationId, retCode: 0, msg: "")
-            refindAccount.locations.append(location)
-        }
+//        if let locationId = locationDic[address] {
+//            let location = ShowLocation(locationId: locationId, retCode: 0, msg: "")
+//            refindAccount.locations.append(location)
+//        }
         return true
     }
     
@@ -180,8 +160,8 @@ class UserRetrieveViewController: UserBaseController {
     }
     
     func initTableViews(){
-        self.tableItemViews[2].contentText.addTarget(self, action: #selector(onAddressChoosed(_:)) , for: .editingDidBegin)
-        self.userTypeDropBox.setIndex(index: 0)
+//        self.tableItemViews[2].contentText.addTarget(self, action: #selector(onAddressChoosed(_:)) , for: .editingDidBegin)
+//        self.userTypeDropBox.setIndex(index: 0)
     }
     
     override func onDropBoxDidSelect(row: Int) {

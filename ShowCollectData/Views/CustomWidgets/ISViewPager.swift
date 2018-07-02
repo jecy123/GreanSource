@@ -31,6 +31,7 @@ public enum UIViewPagerOption {
     case TitleItemWidth(CGFloat)
     case IsIndicatorScrollAnimated(Bool)
     case IsIndicatorArrow(Bool)
+    case IsTitleBarHidden(Bool)
     case IndicatorColor(UIColor)
     case IndicatorHeight(CGFloat)
     case BottomlineColor(UIColor)
@@ -111,7 +112,8 @@ open class ISViewPagerContainer:UIViewController{
     var yOffset: CGFloat = 0
     
     var isIndicatorScrollAnimated: Bool = true
-    var isIndicatorArrow: Bool  = false
+    var isIndicatorArrow: Bool = false
+    var isTitleBarHidden: Bool = false
     
     private var titleLables = [UIButton]()
     private let contentView = UIScrollView()
@@ -164,6 +166,8 @@ open class ISViewPagerContainer:UIViewController{
                     isIndicatorScrollAnimated = value
                 case let .IsIndicatorArrow(value):
                     isIndicatorArrow = value
+                case let .IsTitleBarHidden(value):
+                    isTitleBarHidden = value
                 }
             }
         }
@@ -299,6 +303,8 @@ open class ISViewPagerContainer:UIViewController{
         titleBar.addSubview(indicator)
         
         self.view.addSubview(titleBar)
+        
+        titleBar.isHidden = isTitleBarHidden
         
         viewPages.forEach({  contentView.addSubview($0.view) ;self.addChildViewController($0)})
         contentView.delegate = scrollDelegate;

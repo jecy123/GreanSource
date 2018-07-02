@@ -32,7 +32,7 @@ class RunningDataViewController: BasePageViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addTitleView(titleHeight: 40)
+        addTitleView()
         
         addDeviceFragment()
         addRunningDataFragment()
@@ -44,9 +44,9 @@ class RunningDataViewController: BasePageViewController {
     
     func addDeviceFragment()  {
         let x: CGFloat = 0
-        let y: CGFloat = 100
+        let y: CGFloat = itemBgTitleHeight + itemBgTitleHeight
         let w: CGFloat = itemBgWidth
-        let h: CGFloat = itemBgHeight - 140
+        let h: CGFloat = itemBgHeight - y - 20
         deviceListFragment = DeviceListFragment(frame: CGRect(x: x, y: y, width: w, height: h))
         deviceListFragment.delegate = self
         self.itemBgView.addSubview(deviceListFragment)
@@ -56,9 +56,9 @@ class RunningDataViewController: BasePageViewController {
     func addRunningDataFragment(){
         
         let x: CGFloat = 0
-        let y: CGFloat = 100
+        let y: CGFloat = itemBgTitleHeight + itemBgTitleHeight + 10
         let w: CGFloat = itemBgWidth
-        let h: CGFloat = itemBgHeight - 140
+        let h: CGFloat = itemBgHeight - y - 40
         runningDataFragment = RunningDataFragment(frame: CGRect(x: x, y: y, width: w, height: h), target: self, onBackBtnClickAction: #selector(onBack(_:)))
         self.itemBgView.addSubview(runningDataFragment)
         self.runningDataFragment.isHidden = true
@@ -66,9 +66,9 @@ class RunningDataViewController: BasePageViewController {
     //添加定时运行界面
     func addTimingRunFragment() {
         let x: CGFloat = 0
-        let y: CGFloat = 100
+        let y: CGFloat = itemBgTitleHeight + itemBgTitleHeight + 10
         let w: CGFloat = itemBgWidth
-        let h: CGFloat = itemBgHeight - 140
+        let h: CGFloat = itemBgHeight - y - 40
         timingRunFragment = TimingRunFragment(frame: CGRect(x: x, y: y, width: w, height: h), target: self, action: #selector(onSubmmit(_:)), events: .touchUpInside)
         self.itemBgView.addSubview(timingRunFragment)
         self.timingRunFragment.isHidden = true
@@ -77,9 +77,9 @@ class RunningDataViewController: BasePageViewController {
     //添加紧急启停界面
     func addEmergencyFragment(){
         let x: CGFloat = 0
-        let y: CGFloat = 90
+        let y: CGFloat = itemBgTitleHeight + itemBgTitleHeight + 10
         let w: CGFloat = itemBgWidth
-        let h: CGFloat = itemBgHeight - 130
+        let h: CGFloat = itemBgHeight - y - 40
         
         emergencyFragment = EmergencyFragment(frame: CGRect(x: x, y: y, width: w, height: h))
         emergencyFragment.delegate = self
@@ -132,20 +132,42 @@ class RunningDataViewController: BasePageViewController {
             return
         }
         
+        let screenH = UIScreen.main.bounds.height
+        var buttonW: CGFloat = 0
+        var buttonH: CGFloat = 0
+        
+        //屏幕适配
+        if screenH >= 568.0 && screenH < 667 {
+            buttonW = 70
+            buttonH = 26
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            buttonW = 75
+            buttonH = 28
+        } else if screenH >= 736.0{
+            buttonW = 80
+            buttonH = 30
+        }
+        
+        
         switch type {
         case .adminitor:
-            addSelectedButtons(buttonTitles: ["设备信息", "定时运行", "紧急启停"], buttonWidth: 80, buttonHeight: 30)
+            addSelectedButtons(buttonTitles: ["设备信息", "定时运行", "紧急启停"], buttonWidth: buttonW, buttonHeight: buttonH)
         case .EP:
-            addSelectedButtons(buttonTitles: ["设备信息"], buttonWidth: 80, buttonHeight: 30)
+            addSelectedButtons(buttonTitles: ["设备信息"], buttonWidth: buttonW, buttonHeight: buttonH)
         case .mantainer:
-            addSelectedButtons(buttonTitles: ["设备信息", "紧急启停"], buttonWidth: 80, buttonHeight: 30)
+            addSelectedButtons(buttonTitles: ["设备信息", "紧急启停"], buttonWidth: buttonW, buttonHeight: buttonH)
+        default:
+            break
         }
     }
     
     override func refreshProject() {
+        self.runningDataFragment.projectType = self.selectedProject.type
+        self.deviceListFragment.projectType = self.selectedProject.type
         guard let type = self.viewType else {
             return
         }
+        
         switch type {
         //管理员
         case .adminitor:
@@ -177,6 +199,8 @@ class RunningDataViewController: BasePageViewController {
             default:
                 break
             }
+        default:
+            break
         }
         
     }
@@ -263,6 +287,7 @@ extension RunningDataViewController: DeviceListFragmentDelegate {
         
         self.deviceListFragment.isHidden = true
         self.runningDataFragment.isHidden = false
+        self.runningDataFragment.projectType = self.selectedProject.type
         
         self.runningDataFragment.resetDeviceData()
         

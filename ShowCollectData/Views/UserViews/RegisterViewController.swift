@@ -10,12 +10,16 @@ import UIKit
 
 class RegisterViewController: UserBaseController {
     
-    var menuNames:[String] = ["手机号：","验证码：","账  号：","邮箱地址：","用户姓名：","密  码：","确认密码：","用户类型：","环保局地址：","项目地址1：", "项目地址2：", "项目地址3："]
-    let userTypes: [String] = ["环保部门人员","系统运维维人员"]
+    //var menuNames:[String] = ["手机号：","验证码：","账  号：","邮箱地址：","用户姓名：","密  码：","确认密码：","用户类型：","环保局地址：","项目地址1：", "项目地址2：", "项目地址3："]
+    var menuNames:[String] = ["*账  号：","*密  码：","*确认密码：","*用户姓名：","*用户类型：","*项目地址：","*项目地址1：", "*项目地址2：", "*项目地址3：","*手机号：","*验证码："]
+    let userTypes: [String] = ["环保监督人员","系统运维维人员"]
     
     var addressDic: [String : String] = [:]
     
     var newAccount: ShowAccount!
+    
+    var telY1: CGFloat!
+    var telY2: CGFloat!
     
     func initViews(){
         self.titleString = "用户注册"
@@ -27,7 +31,6 @@ class RegisterViewController: UserBaseController {
         let startX: CGFloat = itemStartX
         var startY: CGFloat = self.topImageHeight + self.titleMarginTop + self.titleHeight + 10
         
-        let identiCodeY = startY + itemHeight + itemPadding
         
         var items: [TableItem] = [TableItem]()
         
@@ -37,8 +40,8 @@ class RegisterViewController: UserBaseController {
         items.append(TableItem(name: menuNames[0], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX + 100, y: startY, width: itemWidth - 100, height: itemHeight)
-        items.append(TableItem(name: menuNames[1], type: .typeText, frame: rect, ratio: 0.5))
+        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[1], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
@@ -48,37 +51,46 @@ class RegisterViewController: UserBaseController {
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
         items.append(TableItem(name: menuNames[3], type: .typeText, frame: rect, ratio: 0.4))
         
+        //用户类型
         startY += itemHeight + itemPadding
+        let userTypeY = startY
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[4], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[4], type: .typePopup, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
         items.append(TableItem(name: menuNames[5], type: .typeText, frame: rect, ratio: 0.4))
+        //“项目地址”和“项目地址1”共用同一个y
+        //startY += itemHeight + itemPadding
+        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[6], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        
+        startY += itemHeight + itemPadding
+        
+        self.telY1 = startY
+        
+        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[7], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[6], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[8], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        
+//        startY += itemHeight + itemPadding
+//        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
+//        items.append(TableItem(name: menuNames[9], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
-        let userTypeY = startY
+        self.telY2 = startY
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[7], type: .typePopup, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[9], type: .typeText, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[8], type: .typeText, frame: rect, ratio: 0.4))
+        let identiCodeY = startY
         
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[9], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
-        
-        startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[10], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
-        
-        startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[11], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        rect = CGRect(x: startX + 100, y: startY, width: itemWidth - 100, height: itemHeight)
+        //rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[10], type: .typeText, frame: rect, ratio: 0.4))
         
         self.tableItems = items
         
@@ -94,14 +106,19 @@ class RegisterViewController: UserBaseController {
     }
     
     func initTableViews(){
+        self.tableItemViews[0].contentText.placeholder = "英文或数字不超过12个字符"
         //密码和确认密码输入框小圆点加密显示
-        self.tableItemViews[5].contentText.isSecureTextEntry = true
-        self.tableItemViews[6].contentText.isSecureTextEntry = true
+        self.tableItemViews[1].contentText.isSecureTextEntry = true
+        self.tableItemViews[1].contentText.placeholder = "英文或数字6-12个字符"
         
+        self.tableItemViews[2].contentText.isSecureTextEntry = true
+        
+        self.tableItemViews[3].contentText.placeholder = "务必填写真实姓名"
+        
+        self.tableItemViews[5].contentText.addTarget(self, action: #selector(onAddressSelected(_:)), for: .editingDidBegin)
+        self.tableItemViews[6].contentText.addTarget(self, action: #selector(onAddressSelected(_:)), for: .editingDidBegin)
+        self.tableItemViews[7].contentText.addTarget(self, action: #selector(onAddressSelected(_:)), for: .editingDidBegin)
         self.tableItemViews[8].contentText.addTarget(self, action: #selector(onAddressSelected(_:)), for: .editingDidBegin)
-        self.tableItemViews[9].contentText.addTarget(self, action: #selector(onAddressSelected(_:)), for: .editingDidBegin)
-        self.tableItemViews[10].contentText.addTarget(self, action: #selector(onAddressSelected(_:)), for: .editingDidBegin)
-        self.tableItemViews[11].contentText.addTarget(self, action: #selector(onAddressSelected(_:)), for: .editingDidBegin)
         
     }
     
@@ -113,10 +130,34 @@ class RegisterViewController: UserBaseController {
         // Do any additional setup after loading the view.
     }
     
+    func adjustLayout(userType: AccountType){
+        //环境监督人员
+        if userType == .EP {
+            self.tableItemViews[5].isHidden = false
+            self.tableItemViews[6].isHidden = true
+            self.tableItemViews[7].isHidden = true
+            self.tableItemViews[8].isHidden = true
+            
+            //修改第9、10项（手机号，验证码）选项以及获取验证码按钮的高度
+            self.tableItemViews[9].frame.origin.y = telY1
+            self.tableItemViews[10].frame.origin.y = telY1 + itemHeight + itemPadding
+            self.identiCodeConfirm.frame.origin.y = telY1 + itemHeight + itemPadding
+        }
+        else if userType == .mantainer {
+            self.tableItemViews[5].isHidden = true
+            self.tableItemViews[6].isHidden = false
+            self.tableItemViews[7].isHidden = false
+            self.tableItemViews[8].isHidden = false
+            
+            //修改第9、10项（手机号，验证码）选项以及获取验证码按钮的高度
+            self.tableItemViews[9].frame.origin.y = telY2
+            self.tableItemViews[10].frame.origin.y = telY2 + itemHeight + itemPadding
+            self.identiCodeConfirm.frame.origin.y = telY2 + itemHeight + itemPadding
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        self.tableItemViews[9].isHidden = true
-        self.tableItemViews[10].isHidden = true
-        self.tableItemViews[11].isHidden = true
+        adjustLayout(userType: .EP)
     }
 
     override func didReceiveMemoryWarning() {
@@ -126,43 +167,26 @@ class RegisterViewController: UserBaseController {
     
     func checkContent() -> Bool{
         
-        guard let phone = self.tableItemViews[0].contentText.text, !phone.isEmpty else {
-            ToastHelper.showGlobalToast(message: "手机号不能为空！")
-            return false
-        }
-        guard StringUtils.isPhone(number: phone) else {
-            ToastHelper.showGlobalToast(message: "手机号格式错误！")
-            return false
-        }
-        guard let vcode = self.tableItemViews[1].contentText.text, !vcode.isEmpty else {
-            ToastHelper.showGlobalToast(message: "验证码不能为空！")
-            return false
-        }
-        guard self.checkVCode(vcode: vcode) else {
-            return false
-        }
         
-        guard let account = self.tableItemViews[2].contentText.text, !account.isEmpty else {
+        guard let account = self.tableItemViews[0].contentText.text, !account.isEmpty else {
             ToastHelper.showGlobalToast(message: "账号不能为空！")
             return false
         }
-        guard let email = self.tableItemViews[3].contentText.text, !email.isEmpty else {
-            ToastHelper.showGlobalToast(message: "邮箱地址不能为空！")
+        guard StringUtils.isCharacterAndNumber(string: account, minLen: 1, maxLen: 12) else {
+            ToastHelper.showGlobalToast(message: "账号格式错误！")
             return false
         }
-        guard StringUtils.isEmail(email: email) else {
-            ToastHelper.showGlobalToast(message: "邮箱地址格式错误！")
-            return false
-        }
-        guard let userName = self.tableItemViews[4].contentText.text, !userName.isEmpty else {
-            ToastHelper.showGlobalToast(message: "用户名不能为空！")
-            return false
-        }
-        guard let password = self.tableItemViews[5].contentText.text, !password.isEmpty else {
+        guard let password = self.tableItemViews[1].contentText.text, !password.isEmpty else {
             ToastHelper.showGlobalToast(message: "请输入密码!")
             return false
         }
-        guard let rePassword = self.tableItemViews[6].contentText.text, !rePassword.isEmpty else {
+        
+        guard StringUtils.isCharacterAndNumber(string: password, minLen: 6, maxLen: 12) else {
+            ToastHelper.showGlobalToast(message: "密码格式错误！")
+            return false
+        }
+        
+        guard let rePassword = self.tableItemViews[2].contentText.text, !rePassword.isEmpty else {
             ToastHelper.showGlobalToast(message: "请再次输入密码!")
             return false
         }
@@ -170,8 +194,28 @@ class RegisterViewController: UserBaseController {
             ToastHelper.showGlobalToast(message: "两次输入的密码不一致！")
             return false
         }
+        guard let userName = self.tableItemViews[3].contentText.text, !userName.isEmpty else {
+            ToastHelper.showGlobalToast(message: "用户名不能为空！")
+            return false
+        }
         guard self.userTypeDropBox.getIndex() != -1 else {
             ToastHelper.showGlobalToast(message: "请选择用户类型！")
+            return false
+        }
+        
+        guard let phone = self.tableItemViews[9].contentText.text, !phone.isEmpty else {
+            ToastHelper.showGlobalToast(message: "手机号不能为空！")
+            return false
+        }
+        guard StringUtils.isPhone(number: phone) else {
+            ToastHelper.showGlobalToast(message: "手机号格式错误！")
+            return false
+        }
+        guard let vcode = self.tableItemViews[10].contentText.text, !vcode.isEmpty else {
+            ToastHelper.showGlobalToast(message: "验证码不能为空！")
+            return false
+        }
+        guard self.checkVCode(vcode: vcode) else {
             return false
         }
         
@@ -179,7 +223,6 @@ class RegisterViewController: UserBaseController {
         newAccount.retCode = 0
         newAccount.status = 0
         newAccount.account = account
-        newAccount.email = email
         newAccount.name = userName
         newAccount.password = password
         newAccount.vcode = vcode
@@ -191,7 +234,7 @@ class RegisterViewController: UserBaseController {
             
             newAccount.type = AccountType.EP.rawValue
             
-            guard let address = self.tableItemViews[8].contentText.text, !address.isEmpty else {
+            guard let address = self.tableItemViews[5].contentText.text, !address.isEmpty else {
                 ToastHelper.showGlobalToast(message: "请选择环保地址！")
                 return false
             }
@@ -204,16 +247,16 @@ class RegisterViewController: UserBaseController {
             
             newAccount.type = AccountType.mantainer.rawValue
             
-            guard let address1 = self.tableItemViews[9].contentText.text, !address1.isEmpty else{
+            guard let address1 = self.tableItemViews[6].contentText.text, !address1.isEmpty else{
                 ToastHelper.showGlobalToast(message: "请选择项目地址1！")
                 return false
             }
             
-            guard let address2 = self.tableItemViews[10].contentText.text, !address2.isEmpty else{
+            guard let address2 = self.tableItemViews[7].contentText.text, !address2.isEmpty else{
                 ToastHelper.showGlobalToast(message: "请选择项目地址2！")
                 return false
             }
-            guard let address3 = self.tableItemViews[11].contentText.text, !address3.isEmpty else{
+            guard let address3 = self.tableItemViews[8].contentText.text, !address3.isEmpty else{
                 ToastHelper.showGlobalToast(message: "请选择项目地址3！")
                 return false
             }
@@ -290,16 +333,13 @@ class RegisterViewController: UserBaseController {
     }
     
     override func onDropBoxDidSelect(row: Int) {
+        //环保人员
         if row == 0 {
-            self.tableItemViews[8].isHidden = false
-            self.tableItemViews[9].isHidden = true
-            self.tableItemViews[10].isHidden = true
-            self.tableItemViews[11].isHidden = true
-        }else if row == 1{
-            self.tableItemViews[8].isHidden = true
-            self.tableItemViews[9].isHidden = false
-            self.tableItemViews[10].isHidden = false
-            self.tableItemViews[11].isHidden = false
+            adjustLayout(userType: .EP)
+        }
+        //维护人员
+        else if row == 1{
+            adjustLayout(userType: .mantainer)
         }
         
     }

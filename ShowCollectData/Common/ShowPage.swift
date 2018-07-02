@@ -8,16 +8,17 @@
 
 import Foundation
 
-class ShowPage: BaseData {
+
+class ShowPage<T:BaseData>: BaseData {
     var start: Int!
     var pageNum: Int!
     var count: Int!
     var total: Int!
     
     var condition: BaseData! //条件
-    var resList: [ShowAccount]! //结果
+    var resList: [T]! //结果
     
-    override init() {
+    required init() {
         super.init()
         self.start = 0
         self.pageNum = 1
@@ -77,9 +78,9 @@ class ShowPage: BaseData {
             let resDics = resList as! Array<NSDictionary>
             self.resList = []
             for dic in resDics {
-                let account = ShowAccount()
-                account.fromDictionary(dic: dic)
-                self.resList.append(account)
+                let resListItem = T()
+                resListItem.fromDictionary(dic: dic)
+                self.resList.append(resListItem)
             }
         }
     }

@@ -19,7 +19,7 @@ class ShowVCode: BaseData{
     var phone: String!
     var vcode: String!
     
-    override init() {
+    required init() {
         super.init()
         self.retCode = 0
     }

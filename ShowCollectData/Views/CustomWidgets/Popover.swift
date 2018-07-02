@@ -185,6 +185,12 @@ open class Popover: UIView {
         return true
     }
     
+    open func dismissWithOutAnimation(){
+        //self.contentView.removeFromSuperview()
+        self.blackOverlay.removeFromSuperview()
+        self.removeFromSuperview()
+    }
+    
     @objc open func dismiss() {
         if self.superview != nil {
             self.willDismissHandler?()

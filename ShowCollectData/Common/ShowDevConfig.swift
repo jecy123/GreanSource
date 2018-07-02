@@ -14,7 +14,7 @@ class ShowDevConfig: BaseData {
     var devType: Int!
     var config: String!
     
-    override init() {
+    required init() {
         super.init()
         self.retCode = 0
         self.msg = "Success"

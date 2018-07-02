@@ -20,6 +20,8 @@ class DeviceListFragment: UIView {
     
     var delegate: DeviceListFragmentDelegate?
     
+    var projectType: Int!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -37,6 +39,7 @@ class DeviceListFragment: UIView {
         guard let tableView = self.deviceListTableView else { return }
         
         tableView.mDevices = devices
+        tableView.projectType = self.projectType
         tableView.reloadData()
     }
     

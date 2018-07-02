@@ -29,7 +29,7 @@ class DeviceModifyViewController: BasePageViewController {
     
     var projectNames:[String] = []
     let titles = ["项目名称","项目类别","项目地址"]
-    let maxTitleCnt: CGFloat = 9
+    let maxTitleCnt: CGFloat = 11
     var itemH: CGFloat{
         return (self.itemBgView.frame.height - 60) / self.maxTitleCnt
     }
@@ -110,8 +110,21 @@ class DeviceModifyViewController: BasePageViewController {
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[2], type: .typeText, withBottomLine: true)
         
         //添加按钮
-        let btnWidth: CGFloat = 100
-        let btnHeight: CGFloat = 40
+        var btnWidth: CGFloat = 100
+        var btnHeight: CGFloat = 40
+        
+        let screenH = UIScreen.main.bounds.height
+        if screenH >= 568.0 && screenH < 667 {
+            btnWidth = 67.5
+            btnHeight = 27
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            btnWidth = 82.5
+            btnHeight = 33
+        } else if screenH >= 736.0{
+            btnWidth = 100
+            btnHeight = 40
+        }
+        
         let rect = CGRect(x: (self.itemBgView.frame.width - btnWidth) / 2, y: self.itemBgView.frame.height - btnHeight - 10, width: btnWidth, height: btnHeight)
         addButton(buttonframe: rect, title: "确认修改", target: self, action: #selector(onConfirm(_:)), for: UIControlEvents.touchUpInside)
         

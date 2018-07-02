@@ -48,7 +48,7 @@ class ShowDeviceData: BaseData{
     
     var offline: Bool!  //污水控制器是否在线
     
-    override init() {
+    required init() {
         super.init()
     }
     

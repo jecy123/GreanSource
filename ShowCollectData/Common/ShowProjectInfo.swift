@@ -26,7 +26,7 @@ class ShowProjectInfo: BaseData{
     //状态
     var state: Int!
     
-    override init() {
+    required init() {
         super.init()
         self.type = 0
         self.projectTotalPChg = 0

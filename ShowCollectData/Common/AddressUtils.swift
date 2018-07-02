@@ -13,6 +13,7 @@ class AddressUtils {
     static var addressItem: AddressItem!
     static var sunPowerItem: AddressItem!
     static var smartSysItem: AddressItem!
+    static var waterSysItem: AddressItem!
     
     //存储项目id和项目节点类的映射字典
     static var projectItemDic: [Int: ProjectNameItem]!
@@ -20,8 +21,18 @@ class AddressUtils {
     static func getVisibleItems(section: Int) -> [BaseItem]{
         
         var res:[BaseItem] = []
-        let sectionProvince = section == 0 ? sunPowerItem.provinceItem : smartSysItem.provinceItem
-        for item in sectionProvince! {
+        
+        var sectionProvince: [ProvinceItem] = []
+        
+        if section == 0 {
+            sectionProvince = sunPowerItem.provinceItem
+        } else if section == 1 {
+            sectionProvince = smartSysItem.provinceItem
+        } else {
+            sectionProvince = waterSysItem.provinceItem
+        }
+
+        for item in sectionProvince {
             res.append(item)
             if item.isExpand {
                 for child in item.children{
@@ -65,6 +76,7 @@ class AddressUtils {
         
         var sunPowerProjects: [ShowProject] = []
         var smartSysProjects: [ShowProject] = []
+        var waterSysProjects: [ShowProject] = []
         
         for project in projects {
             if project.type == ShowProject.PROJ_TYPE_SMART {
@@ -73,15 +85,20 @@ class AddressUtils {
             else if project.type == ShowProject.PROJ_TYPE_SUNPOWER {
                 sunPowerProjects.append(project)
             }
+            else if project.type == ShowProject.PROJ_TYPE_WATER {
+                waterSysProjects.append(project)
+            }
             
         }
         
         sunPowerProjects.sort(by: { $0.locationId < $1.locationId })
         smartSysProjects.sort(by: { $0.locationId < $1.locationId })
+        waterSysProjects.sort(by: { $0.locationId < $1.locationId })
         
         projectItemDic = [Int : ProjectNameItem]()
         sunPowerItem = buildItems(projects: sunPowerProjects)
         smartSysItem = buildItems(projects: smartSysProjects)
+        waterSysItem = buildItems(projects: waterSysProjects)
         
     }
     

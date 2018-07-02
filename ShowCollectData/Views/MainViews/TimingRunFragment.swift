@@ -76,13 +76,29 @@ class TimingRunFragment: UIView {
     
     func initSubmitButton(target: Any?, action: Selector, events: UIControlEvents) {
         
-        let w: CGFloat = 100
-        let h: CGFloat = 30
+        
+        var w: CGFloat = 0
+        var h: CGFloat = 0
+        
+        let screenH = UIScreen.main.bounds.height
+        if screenH >= 568.0 && screenH < 667 {
+            w = 60
+            h = 20
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            w = 80
+            h = 25
+        } else if screenH >= 736.0{
+            w = 100
+            h = 30
+        }
+        
         let x: CGFloat = (frame.width - w) / 2
         let y: CGFloat = frame.height - h - 5
         
         self.submitButton = UIButton(frame: CGRect(x: x, y: y, width: w, height: h))
         self.submitButton.setTitle("提交配置", for: .normal)
+        self.submitButton.titleLabel?.adjustFontByScreenHeight()
+        self.submitButton.titleLabel?.adjustsFontSizeToFitWidth = true
         self.submitButton.setTitleColor(UIColor.white, for: .normal)
         self.submitButton.layer.cornerRadius = 5
         self.submitButton.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor
@@ -149,7 +165,6 @@ extension TimingRunFragment: UICollectionViewDataSource {
         let cell: TimeCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: nodeCellId, for: indexPath) as! TimeCollectionViewCell
 
         cell.data = TimeCellData(title: self.timeTitles[indexPath.row], checked: self.checked[indexPath.row])
-        cell.labelTime.adjustsFontSizeToFitWidth = true
         return cell
 
     }

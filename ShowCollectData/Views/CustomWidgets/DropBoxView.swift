@@ -42,6 +42,9 @@ class DropBoxView: UIView {
     
     //下拉列表和button的偏移量
     var offset: CGPoint = CGPoint.zero
+    //显示下拉列表时的原点偏移量
+    var showOffset: CGPoint = CGPoint.zero
+    var showOrigin: CGPoint = CGPoint.zero
     
     fileprivate var currentIndex = -1
     fileprivate var items: [String]!
@@ -74,7 +77,8 @@ class DropBoxView: UIView {
         
         self.boxTitle = UILabel(frame: frame)
         self.boxTitle.text = title
-        //self.boxTitle.font = UIFont.systemFont(ofSize: TGDropBoxTitleHoldFontSize)
+        
+        self.boxTitle.adjustFontByScreenHeight()
         self.boxTitle.textAlignment = .left
         self.boxTitle.textColor = TGDropBoxDefaultColor
         self.boxButton.addSubview(self.boxTitle)
@@ -185,7 +189,8 @@ class DropBoxView: UIView {
         self.boxArrow.sizeToFit()
         self.boxArrow.center = CGPoint(x: self.frame.size.width - 21, y: self.frame.size.height * 0.5)
         
-        self.listTableView.frame.origin = CGPoint(x: self.offset.x + self.frame.origin.x, y: self.offset.y + self.frame.origin.y + self.frame.size.height)
+        self.showOrigin = CGPoint(x: self.offset.x + self.frame.origin.x, y: self.offset.y + self.frame.origin.y + self.frame.size.height)
+        self.listTableView.frame.origin = showOrigin
         self.listTableView.frame.size = CGSize(width: self.frame.size.width, height: CGFloat(self.items.count) * TGDropBoxListCellHeight)
     }
     
@@ -251,6 +256,7 @@ class DropBoxView: UIView {
                 if self.isHightWhenShowList == true {
                     self.backgroundView.alpha = TGDropBoxBackgroundAlpha
                 }
+                self.listTableView.frame.origin = CGPoint(x: self.showOrigin.x + self.showOffset.x, y: self.showOrigin.y + self.showOffset.y)
                 self.listTableView.frame.size.height = CGFloat(self.items.count) * TGDropBoxListCellHeight
         }, completion: { _ in
             self.didShowOrHideBoxListHandler?(true)

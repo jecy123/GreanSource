@@ -176,7 +176,7 @@ class ShowDevice: BaseData {
         self.projectId = projectId
         self.locationId = locationId
     }
-    override init() {
+    required init() {
         flag = 0
         super.init()
     }

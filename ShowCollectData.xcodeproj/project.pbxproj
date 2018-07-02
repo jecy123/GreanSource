@@ -15,9 +15,13 @@
 		5103BEFF20BD3AE100F6B26A /* AuditingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5103BEFD20BD3AE100F6B26A /* AuditingCell.xib */; };
 		5103BF0120BD4B8D00F6B26A /* AuditingFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103BF0020BD4B8D00F6B26A /* AuditingFragment.swift */; };
 		5103BF0320BE4AC300F6B26A /* ShowPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5103BF0220BE4AC300F6B26A /* ShowPage.swift */; };
+		51051EF620E1B75800EFC375 /* UserInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51051EF520E1B75800EFC375 /* UserInfoView.swift */; };
 		5106FCB820B186EE009BAB2C /* solar_panel_good.png in Resources */ = {isa = PBXBuildFile; fileRef = 5106FCB620B186ED009BAB2C /* solar_panel_good.png */; };
 		5106FCB920B186EE009BAB2C /* solar_panel_bad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5106FCB720B186ED009BAB2C /* solar_panel_bad.png */; };
 		5109A49A2045478300986733 /* Popover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5109A4992045478300986733 /* Popover.swift */; };
+		5110E02720E3EC2200AD01DB /* SolarSysFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110E02620E3EC2200AD01DB /* SolarSysFragment.swift */; };
+		5110E02920E3EC3C00AD01DB /* WaterSysFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110E02820E3EC3C00AD01DB /* WaterSysFragment.swift */; };
+		5110E02B20E3F04500AD01DB /* BaseFragment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5110E02A20E3F04500AD01DB /* BaseFragment.swift */; };
 		5115331720C7FEC3007CA602 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5115331320C7FEC2007CA602 /* BaiduMapAPI_Base.framework */; };
 		5115331820C7FEC3007CA602 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5115331420C7FEC2007CA602 /* BaiduMapAPI_Location.framework */; };
 		5115331920C7FEC3007CA602 /* BaiduMapAPI_Map.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5115331520C7FEC2007CA602 /* BaiduMapAPI_Map.framework */; };
@@ -160,9 +164,13 @@
 		5103BEFD20BD3AE100F6B26A /* AuditingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuditingCell.xib; sourceTree = "<group>"; };
 		5103BF0020BD4B8D00F6B26A /* AuditingFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuditingFragment.swift; sourceTree = "<group>"; };
 		5103BF0220BE4AC300F6B26A /* ShowPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPage.swift; sourceTree = "<group>"; };
+		51051EF520E1B75800EFC375 /* UserInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInfoView.swift; sourceTree = "<group>"; };
 		5106FCB620B186ED009BAB2C /* solar_panel_good.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solar_panel_good.png; sourceTree = "<group>"; };
 		5106FCB720B186ED009BAB2C /* solar_panel_bad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = solar_panel_bad.png; sourceTree = "<group>"; };
 		5109A4992045478300986733 /* Popover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popover.swift; sourceTree = "<group>"; };
+		5110E02620E3EC2200AD01DB /* SolarSysFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolarSysFragment.swift; sourceTree = "<group>"; };
+		5110E02820E3EC3C00AD01DB /* WaterSysFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterSysFragment.swift; sourceTree = "<group>"; };
+		5110E02A20E3F04500AD01DB /* BaseFragment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseFragment.swift; sourceTree = "<group>"; };
 		5115331320C7FEC2007CA602 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		5115331420C7FEC2007CA602 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
 		5115331520C7FEC2007CA602 /* BaiduMapAPI_Map.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BaiduMapAPI_Map.framework; sourceTree = "<group>"; };
@@ -339,6 +347,16 @@
 			name = InfoAuditFragments;
 			sourceTree = "<group>";
 		};
+		5110E02520E3E9C200AD01DB /* ProjectAddFragments */ = {
+			isa = PBXGroup;
+			children = (
+				5110E02620E3EC2200AD01DB /* SolarSysFragment.swift */,
+				5110E02820E3EC3C00AD01DB /* WaterSysFragment.swift */,
+				5110E02A20E3F04500AD01DB /* BaseFragment.swift */,
+			);
+			name = ProjectAddFragments;
+			sourceTree = "<group>";
+		};
 		5115331220C7FE81007CA602 /* BaiduMap */ = {
 			isa = PBXGroup;
 			children = (
@@ -357,17 +375,17 @@
 				513D7B0320186CD700F6DA4C /* BaseData.swift */,
 				519FF143204E7E7A000934C6 /* ProjectWorkingMode.swift */,
 				511F6AA52015724800C47096 /* ShowAccount.swift */,
-				5141864020A2EB0700EBC67B /* ShowDevConfig.swift */,
 				5119DFA720BFC6FE0073C105 /* ShowCommitBatch.swift */,
+				5141864020A2EB0700EBC67B /* ShowDevConfig.swift */,
 				5103808B20ABFFE1007345B4 /* ShowDevice.swift */,
+				516322AC20AD2CD3009FFCA4 /* ShowDeviceData.swift */,
 				516D8AC42019BFA90030B4A2 /* ShowLocation.swift */,
 				516D8AC22019ADF10030B4A2 /* ShowMessage.swift */,
+				5103BF0220BE4AC300F6B26A /* ShowPage.swift */,
 				516D8AC62019C07E0030B4A2 /* ShowProject.swift */,
 				517E7F1620AAEBB300158D0B /* ShowProjectInfo.swift */,
 				513E7988205628DA009E799F /* ShowResponse.swift */,
 				513E798620514BF9009E799F /* ShowVCode.swift */,
-				516322AC20AD2CD3009FFCA4 /* ShowDeviceData.swift */,
-				5103BF0220BE4AC300F6B26A /* ShowPage.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -438,6 +456,7 @@
 		513D7B0820186F8200F6DA4C /* MainViews */ = {
 			isa = PBXGroup;
 			children = (
+				5110E02520E3E9C200AD01DB /* ProjectAddFragments */,
 				5179D13020BEC1F700203C9C /* DeviceModifyFragmentList */,
 				5103BEFB20BD362400F6B26A /* InfoAuditFragments */,
 				51BB0C9E20AEAF97001A99D4 /* RunningDataFragments */,
@@ -474,6 +493,7 @@
 				512578222045317900344B60 /* TreeTableViewCell.xib */,
 				51594DC520B3C13C00BBD7D0 /* TimeCollectionViewCell.swift */,
 				51594DC620B3C13C00BBD7D0 /* TimeCollectionViewCell.xib */,
+				51051EF520E1B75800EFC375 /* UserInfoView.swift */,
 			);
 			path = CustomWidgets;
 			sourceTree = "<group>";
@@ -481,8 +501,8 @@
 		513EEE1620439F2F00F49CDB /* Address */ = {
 			isa = PBXGroup;
 			children = (
-				513EEE1720439F5100F49CDB /* AddressUtils.swift */,
 				513EEE1920439F8D00F49CDB /* AddressItem.swift */,
+				513EEE1720439F5100F49CDB /* AddressUtils.swift */,
 				5125781D20452E7800344B60 /* BaseItem.swift */,
 			);
 			name = Address;
@@ -820,7 +840,9 @@
 				513D7AF0201836A600F6DA4C /* ConnectAPI.swift in Sources */,
 				5103808F20AC1443007345B4 /* DevicesTableViewCell.swift in Sources */,
 				516D8AC9201B09EF0030B4A2 /* TGCToastView.swift in Sources */,
+				5110E02920E3EC3C00AD01DB /* WaterSysFragment.swift in Sources */,
 				513D7B0D2018790C00F6DA4C /* ClientRequest.swift in Sources */,
+				5110E02720E3EC2200AD01DB /* SolarSysFragment.swift in Sources */,
 				513EEE11203FAF7100F49CDB /* MaintainerModifyViewController.swift in Sources */,
 				5103BF0120BD4B8D00F6B26A /* AuditingFragment.swift in Sources */,
 				5141864120A2EB0700EBC67B /* ShowDevConfig.swift in Sources */,
@@ -834,6 +856,7 @@
 				512E654E2009F3F800478420 /* UserBaseController.swift in Sources */,
 				51E3EDD320490118003F8903 /* InfoView.swift in Sources */,
 				51594DCC20B3F58100BBD7D0 /* EmergencyFragment.swift in Sources */,
+				5110E02B20E3F04500AD01DB /* BaseFragment.swift in Sources */,
 				51FD8E9420BED37E003EE1F0 /* DeviceInfoListFragment.swift in Sources */,
 				513EEE1A20439F8D00F49CDB /* AddressItem.swift in Sources */,
 				51A68BA7200C9CB60046A5E6 /* UserRetrieveViewController.swift in Sources */,
@@ -865,6 +888,7 @@
 				51D205662005F255008763B9 /* LoginViewController.swift in Sources */,
 				5170D16D20118C0A005BA9C8 /* ISViewPager.swift in Sources */,
 				513E7985204F8A32009E799F /* AddressPickerView.swift in Sources */,
+				51051EF620E1B75800EFC375 /* UserInfoView.swift in Sources */,
 				517E7F1720AAEBB300158D0B /* ShowProjectInfo.swift in Sources */,
 				516D8AC52019BFA90030B4A2 /* ShowLocation.swift in Sources */,
 				513E798720514BF9009E799F /* ShowVCode.swift in Sources */,
@@ -1056,6 +1080,7 @@
 					"$(PROJECT_DIR)/ShowCollectData",
 				);
 				INFOPLIST_FILE = ShowCollectData/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1064,11 +1089,12 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lszyhb.ShowCollectData;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShowCollectData/Socket/GCDAsyncSocket/ShowCollectData-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1087,6 +1113,7 @@
 					"$(PROJECT_DIR)/ShowCollectData",
 				);
 				INFOPLIST_FILE = ShowCollectData/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1098,7 +1125,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShowCollectData/Socket/GCDAsyncSocket/ShowCollectData-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

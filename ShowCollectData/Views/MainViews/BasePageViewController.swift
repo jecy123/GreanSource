@@ -10,12 +10,27 @@ import UIKit
 
 class BasePageViewController: UIViewController{
     
+    ///主容器视图类
+    public weak var viewContainer: ISViewPagerContainer!
     
     var topViewHeight: CGFloat = 120
     var bottomViewHeight: CGFloat = 50
     
     var itemLeftPadding: CGFloat = 20
     var itemTopPadding:CGFloat = 20
+    
+    var itemBgTitleHeight: CGFloat {
+        let screenH = UIScreen.main.bounds.height
+        var size: CGFloat = 0
+        if screenH >= 568.0 && screenH < 667.0 {
+            size = 30
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            size = 35
+        } else if screenH >= 736.0 {
+            size = 40
+        }
+        return size
+    }
     
     var itemBgHeight: CGFloat {
         return self.view.frame.height - itemTopPadding - itemTopPadding
@@ -112,9 +127,10 @@ class BasePageViewController: UIViewController{
         }
     }
     
-    init(title: String) {
+    init(title: String, container: ISViewPagerContainer? = nil) {
         super.init(nibName: nil, bundle: nil)
         self.subTitleName = title
+        self.viewContainer = container
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -182,11 +198,12 @@ class BasePageViewController: UIViewController{
         
     }
     
-    func addTitleView(titleHeight: CGFloat)
+    func addTitleView()
     {
+        let height: CGFloat = itemBgTitleHeight
         
-        let mainTitleFrame: CGRect = CGRect(x: 0, y: 0, width: self.itemBgView.frame.width, height: titleHeight)
-        let subTitleFrame: CGRect = CGRect(x: 0, y: titleHeight, width: self.itemBgView.frame.width, height: titleHeight)
+        let mainTitleFrame: CGRect = CGRect(x: 0, y: 0, width: self.itemBgView.frame.width, height: height)
+        let subTitleFrame: CGRect = CGRect(x: 0, y: height, width: self.itemBgView.frame.width, height: height)
         
         mainTitleLabel = UILabel(frame: mainTitleFrame)
         subTitleLabel = UILabel(frame: subTitleFrame)
@@ -195,12 +212,14 @@ class BasePageViewController: UIViewController{
         mainTitleLabel.textColor = UIColor.white
         mainTitleLabel.textAlignment = .center
         mainTitleLabel.text = self.mainTitleName
+        mainTitleLabel.adjustFontByScreenHeight()
         mainTitleLabel.adjustsFontSizeToFitWidth = true
         
         subTitleLabel.backgroundColor = ColorUtils.itemTitleViewBgColor
         subTitleLabel.textColor = UIColor.white
         subTitleLabel.textAlignment = .center
         subTitleLabel.text = self.subTitleName
+        subTitleLabel.adjustFontByScreenHeight()
         
         self.itemBgView.addSubview(mainTitleLabel)
         self.itemBgView.addSubview(subTitleLabel)
@@ -212,12 +231,14 @@ class BasePageViewController: UIViewController{
         //button.setTitleColor(UIColor.white, for: .normal)
         button.setTitleColor(UIColor.gray, for: .highlighted)
         button.layer.cornerRadius = 5
+        button.titleLabel?.font = UIFont.systemFont(ofSize: buttonframe.height / 2)
+        button.titleLabel?.adjustsFontSizeToFitWidth = true
         button.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor
         button.addTarget(target, action: action, for: event)
         self.itemBgView.addSubview(button)
     }
     
-    func addDropBox(dropBoxFrame: CGRect, names: [String], dropBoxOffset: CGPoint, dropBoxDidSelected: @escaping (Int) -> Void){
+    public func addDropBox(dropBoxFrame: CGRect, names: [String], dropBoxOffset: CGPoint, dropBoxDidSelected: @escaping (Int) -> Void){
         
         let dropBox = DropBoxView(title: "请选择", items: names, frame: dropBoxFrame, offset: dropBoxOffset)
         dropBox.isHightWhenShowList = true
@@ -248,6 +269,8 @@ class BasePageViewController: UIViewController{
             
             button.setTitle(title, for: .normal)
             button.setTitleColor(UIColor.white, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: buttonHeight/2)
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
             button.layer.cornerRadius = 4
             button.tag = index
             button.addTarget(self, action: #selector(onSelectedButtonClicked(_:)), for: .touchUpInside)
@@ -300,6 +323,31 @@ class BasePageViewController: UIViewController{
         self.itemBgView.frame = itemBgFrame
     }
     
+    ///从服务器更新项目
+    public func doRefreshProjectListFromNet() {
+        let project = ShowProject()
+        project.capability = 0
+        project.emissionStandards = 0
+        project.msg = "success"
+        project.retCode = 0
+        project.type = 0
+        project.state = 0
+        
+        let page = ShowPage<ShowProject>(c: project)
+        let jsonData = page.toJSON()
+        ClientRequest.getProjectList(json: jsonData) { (resProjects) in
+            if let projects = resProjects{
+                AddressUtils.getItems(projects: projects)
+                //print("projects = \(resAccount.projects)")
+                let mainView = self.viewContainer as! MainViewController
+                mainView.projects = projects
+            }else{
+                print("失败！")
+                ToastHelper.showGlobalToast(message: "数据获取失败，登录失败！")
+            }
+        }
+    }
+    
     //子类继承
     public func refreshProject(){
     }
@@ -319,6 +367,54 @@ class BasePageViewController: UIViewController{
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+}
+
+extension UILabel {
+    func adjustFontByScreenHeight(isTitle: Bool = false) {
+        var fontSize: CGFloat {
+            let screenH = UIScreen.main.bounds.height
+            var size: CGFloat = 0
+            if screenH >= 568.0 && screenH < 667.0 {
+                if isTitle {
+                    size = 15
+                } else {
+                    size = 12
+                }
+            } else if screenH >= 667.0 && screenH < 736.0 {
+                if isTitle {
+                    size = 18
+                } else {
+                    size = 15
+                }
+            } else if screenH >= 736.0 {
+                if isTitle {
+                    size = 20
+                } else {
+                    size = 17
+                }
+            }
+            return size
+        }
+        self.font = UIFont.systemFont(ofSize: fontSize)
+    }
+}
+
+extension UITextField {
+    func adjustFontByScreenHeight() {
+        var fontSize: CGFloat {
+            let screenH = UIScreen.main.bounds.height
+            var size: CGFloat = 0
+            if screenH >= 568.0 && screenH < 667.0 {
+                size = 12
+            } else if screenH >= 667.0 && screenH < 736.0 {
+                size = 15
+            } else if screenH >= 736.0 {
+                size = 17
+            }
+            return size
+        }
+        self.font = UIFont.systemFont(ofSize: fontSize)
     }
 }
 

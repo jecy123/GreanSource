@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,10 +20,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="374" height="52.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lVy-FS-EUl">
-                        <rect key="frame" x="35" y="16" width="52" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设备名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lVy-FS-EUl">
+                        <rect key="frame" x="20" y="16" width="52" height="20.5"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="52" id="PXp-P4-b0s"/>
                             <constraint firstAttribute="height" constant="20" id="xrx-RA-bkX"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -33,16 +33,7 @@
                         <rect key="frame" x="268" y="7" width="68" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </stackView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="标号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODq-3V-clj">
-                        <rect key="frame" x="229" y="16" width="36" height="20.5"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="36" id="jkz-PQ-yfL"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EES-ek-Yaj">
+                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EES-ek-Yaj">
                         <rect key="frame" x="270" y="18" width="34" height="17"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -51,19 +42,22 @@
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6h-UB-QRL">
                         <rect key="frame" x="309" y="11.5" width="60" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="60" id="WAs-wk-oTQ"/>
+                            <constraint firstAttribute="width" secondItem="U6h-UB-QRL" secondAttribute="height" multiplier="2:1" id="P2I-wT-BTF"/>
                         </constraints>
                         <state key="normal" title="删除"/>
                     </button>
-                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdQ-ec-IOS">
-                        <rect key="frame" x="99" y="18" width="110" height="17"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="110" id="iVe-fh-Uqm"/>
-                        </constraints>
+                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rdQ-ec-IOS">
+                        <rect key="frame" x="84" y="18" width="126" height="17"/>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                     </textField>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="标号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ODq-3V-clj">
+                        <rect key="frame" x="230" y="16" width="35" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="rdQ-ec-IOS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="HJq-sa-bUY"/>
@@ -74,7 +68,7 @@
                     <constraint firstItem="EES-ek-Yaj" firstAttribute="leading" secondItem="ODq-3V-clj" secondAttribute="trailing" constant="5" id="jDR-D6-Mf6"/>
                     <constraint firstItem="ODq-3V-clj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="koT-pS-18d"/>
                     <constraint firstItem="lVy-FS-EUl" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="n58-lu-YbR"/>
-                    <constraint firstItem="lVy-FS-EUl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="35" id="uJk-VR-vYj"/>
+                    <constraint firstItem="lVy-FS-EUl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="uJk-VR-vYj"/>
                     <constraint firstItem="rdQ-ec-IOS" firstAttribute="leading" secondItem="lVy-FS-EUl" secondAttribute="trailing" constant="12" id="vZR-09-1Kw"/>
                     <constraint firstItem="U6h-UB-QRL" firstAttribute="leading" secondItem="EES-ek-Yaj" secondAttribute="trailing" constant="5" id="zgH-75-fOq"/>
                 </constraints>
@@ -82,6 +76,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnDelete" destination="U6h-UB-QRL" id="IC7-7r-F9t"/>
+                <outlet property="labelDeviceName" destination="lVy-FS-EUl" id="xKM-3s-ro4"/>
+                <outlet property="labelDeviceTag" destination="ODq-3V-clj" id="BLg-HU-hhq"/>
                 <outlet property="tfDeviceNo" destination="rdQ-ec-IOS" id="Vmj-hN-tcY"/>
                 <outlet property="tfTag" destination="EES-ek-Yaj" id="Oiy-hC-2wI"/>
             </connections>

@@ -54,6 +54,9 @@ class InfoView: UIView {
         titleLabel.text = title
         contentLabel.text = content
         
+        titleLabel.adjustFontByScreenHeight()
+        contentLabel.adjustFontByScreenHeight()
+        
         //titleLabel.adjustsFontSizeToFitWidth = true
         //contentLabel.adjustsFontSizeToFitWidth = true
         titleLabel.numberOfLines = 2

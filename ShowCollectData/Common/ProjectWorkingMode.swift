@@ -15,7 +15,7 @@ class ProjectWorkingMode: BaseData {
     var createBy: Int!
     var updateTime: String!
     
-    override init() {
+    required init() {
         super.init()
     }
     

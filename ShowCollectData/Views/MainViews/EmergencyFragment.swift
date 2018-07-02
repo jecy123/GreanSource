@@ -52,12 +52,14 @@ class OnOrOffButton {
         
         labelOn = UILabel(frame: frameOnLabel)
         labelOn.text = "开"
+        labelOn.adjustFontByScreenHeight()
         labelOn.textAlignment = .center
         switchOn = UISwitch(frame: frameOnSwitch)
         switchOn.center = CGPoint(x: onX + onW + onW / 2 + 1, y: onY + onH/2)
         
         labelOff = UILabel(frame: frameOffLabel)
         labelOff.text = "关"
+        labelOff.adjustFontByScreenHeight()
         labelOff.textAlignment = .center
         switchOff = UISwitch(frame: frameOffSwitch)
         switchOff.center = CGPoint(x: offX + offW + offW / 2 + 1, y: offY + offH/2)
@@ -155,9 +157,27 @@ class EmergencyFragment: UIView {
         
         let itemSize = CGFloat(titles.count)
         
-        let itemH: CGFloat = 50
-        let titleW: CGFloat = 100
-        let buttonW: CGFloat = 80
+        
+        
+        var itemH: CGFloat = 50
+        var titleW: CGFloat = 100
+        var buttonW: CGFloat = 80
+        
+        let screenH = UIScreen.main.bounds.height
+        
+        if screenH >= 568.0 && screenH < 667.0 {
+            itemH = 40
+            titleW = 80
+            buttonW = 70
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            itemH = 45
+            titleW = 90
+            buttonW = 75
+        } else if screenH >= 736.0 {
+            itemH = 50
+            titleW = 100
+            buttonW = 80
+        }
         
         let paddingH: CGFloat = 10
         let paddingW: CGFloat = 10
@@ -177,6 +197,7 @@ class EmergencyFragment: UIView {
             let label = UILabel(frame: labelFrame)
             label.text = title
             label.textAlignment = .right
+            label.adjustFontByScreenHeight()
             self.verticalScrollView.addSubview(label)
             
             let buttonOnFrame = CGRect(x: ox + titleW + paddingW, y: oy, width: buttonW, height: itemH)

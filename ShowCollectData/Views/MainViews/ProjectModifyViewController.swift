@@ -26,7 +26,13 @@ class ProjectModifyViewController: BasePageViewController {
     
     var mProject: ShowProject = ShowProject()
     
-    let titles = ["项目名称","项目类别","项目地址","街道","设计处理量","设备列表","排放标准","运维人员姓名","运维人员联系方式"]
+    let titles = ["项目名称","项目类别","项目地址","运维人员姓名","运维人员联系方式"]
+    
+    let maxTitleCnt: CGFloat = 11
+    var itemH: CGFloat{
+        return (self.itemBgView.frame.height - 60) / self.maxTitleCnt
+    }
+    
     let capcityListNames = listToNames(list: capcityList)
     //let emissionStdNames = listToNames(list: emissionStd)
     
@@ -62,7 +68,7 @@ class ProjectModifyViewController: BasePageViewController {
         var projectType:String = ""
         switch project.type {
         case ShowProject.PROJ_TYPE_SMART:
-            projectType = "智能运维系统"
+            projectType = "智慧运维系统"
         case ShowProject.PROJ_TYPE_SUNPOWER:
             projectType = "太阳能污水处理系统"
         default:
@@ -75,26 +81,26 @@ class ProjectModifyViewController: BasePageViewController {
         self.tableItemViews[2].contentText.text = project.locationName
         self.tableItemViews[2].contentText.isEnabled = false
         self.tableItemViews[2].contentText.textColor = UIColor.gray
+//
+//        self.tableItemViews[3].contentText.text = project.street
+//
+//
+//        self.tableItemViews[4].contentText.text = String(project.capability)+"D/T"
+//
+//        let c = project.capability
+//        let index = getIndexOfCapcity(capcity: c!)
+//        let deviceInfoStr = getDeviceCountMsg(index: index)
+//        self.tableItemViews[5].contentTextView.text = deviceInfoStr
+//
+//
+//        self.tableItemViews[6].contentText.text = emissionStdAccessment[project.emissionStandards]
         
-        self.tableItemViews[3].contentText.text = project.street
-  
-
-        self.tableItemViews[4].contentText.text = String(project.capability)+"D/T"
-        
-        let c = project.capability
-        let index = getIndexOfCapcity(capcity: c!)
-        let deviceInfoStr = getDeviceCountMsg(index: index)
-        self.tableItemViews[5].contentTextView.text = deviceInfoStr
-        
-        
-        self.tableItemViews[6].contentText.text = emissionStdAccessment[project.emissionStandards]
-        
-        self.tableItemViews[7].contentText.text = project.workerName
-        self.tableItemViews[8].contentText.text = project.workerPhone
+        self.tableItemViews[3].contentText.text = project.workerName
+        self.tableItemViews[4].contentText.text = project.workerPhone
         
         self.dropBoxViews[0].setBoxTitle(title: project.projectName)
-        self.dropBoxViews[1].setBoxTitle(title: String(project.capability)+"D/T")
-        self.dropBoxViews[2].setBoxTitle(title: emissionStdAccessment[project.emissionStandards])
+        //self.dropBoxViews[1].setBoxTitle(title: String(project.capability)+"D/T")
+        //self.dropBoxViews[2].setBoxTitle(title: emissionStdAccessment[project.emissionStandards])
         
     }
     
@@ -103,11 +109,9 @@ class ProjectModifyViewController: BasePageViewController {
         let x: CGFloat = 0
         var y: CGFloat = 0
         let w: CGFloat = self.itemBgView.frame.width
-        let h: CGFloat = (self.itemBgView.frame.height - 60) / CGFloat(self.titles.count)
+        let h: CGFloat = self.itemH
         
         var dropBoxY1: CGFloat = 0
-        var dropBoxY2: CGFloat = 0
-        var dropBoxY3: CGFloat = 0
         
         var tableItemFrame: CGRect!
         tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
@@ -122,38 +126,50 @@ class ProjectModifyViewController: BasePageViewController {
         tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[2], type: .typeText, withBottomLine: true)
         
+//        y += h
+//        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
+//        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[3], type: .typeText, withBottomLine: true)
+//
+//        y += h
+//        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
+//        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[4], type: .typeText, withBottomLine: true)
+//
+//        dropBoxY2 = y
+//
+//        y += h
+//        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
+//        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[5], type: .typeMultiLineText, withBottomLine: true)
+//
+//        y += h
+//        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
+//        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[6], type: .typeText, withBottomLine: true)
+//
+//        dropBoxY3 = y
+        
         y += h
         tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
         addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[3], type: .typeText, withBottomLine: true)
         
         y += h
         tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[4], type: .typeText, withBottomLine: true)
-        
-        dropBoxY2 = y
-        
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[5], type: .typeMultiLineText, withBottomLine: true)
-        
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[6], type: .typeText, withBottomLine: true)
-        
-        dropBoxY3 = y
-        
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[7], type: .typeText, withBottomLine: true)
-        
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.4, title: titles[8], type: .typeText, withBottomLine: true)
+        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.4, title: titles[4], type: .typeText, withBottomLine: true)
         
         
         
-        let btnWidth: CGFloat = 100
-        let btnHeight: CGFloat = 40
+        var btnWidth: CGFloat = 100
+        var btnHeight: CGFloat = 40
+        
+        let screenH = UIScreen.main.bounds.height
+        if screenH >= 568.0 && screenH < 667 {
+            btnWidth = 67.5
+            btnHeight = 27
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            btnWidth = 82.5
+            btnHeight = 33
+        } else if screenH >= 736.0{
+            btnWidth = 100
+            btnHeight = 40
+        }
         let rect = CGRect(x: (self.itemBgView.frame.width - btnWidth) / 2, y: self.itemBgView.frame.height - btnHeight - 10, width: btnWidth, height: btnHeight)
         addButton(buttonframe: rect, title: "确认修改", target: self, action: #selector(onConfirm(_:)), for: UIControlEvents.touchUpInside)
         
@@ -164,19 +180,11 @@ class ProjectModifyViewController: BasePageViewController {
         let offset = CGPoint(x: offSetX, y: offSetY)
         
         addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY1, width: w * 0.7, height: h - 1), names: self.projectNames, dropBoxOffset: offset, dropBoxDidSelected: self.onProjectSelected)
-        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY2, width: w * 0.7, height: h - 1), names: self.capcityListNames, dropBoxOffset: offset, dropBoxDidSelected: self.onCapcityListSelected)
-        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY3, width: w * 0.7, height: h - 1), names:emissionStdNames, dropBoxOffset: offset, dropBoxDidSelected: self.onEmissionStdSelected)
         
-        
-        self.tableItemViews[5].contentTextView.isEditable = false
-        self.tableItemViews[5].contentTextView.textColor = UIColor.gray
-        self.tableItemViews[5].contentTextView.font = UIFont.systemFont(ofSize: h / 4)
-        self.tableItemViews[5].contentTextView.autoresizingMask = .flexibleWidth
-        self.tableItemViews[5].contentTextView.adjustsFontForContentSizeCategory = true
     }
     
     func refreshNames() {
-        guard dropBoxViews.count >= 3 else {
+        guard dropBoxViews.count >= 1 else {
             return
         }
         self.dropBoxViews[0].refreshContentList(itemNames: self.projectNames)
@@ -187,25 +195,25 @@ class ProjectModifyViewController: BasePageViewController {
             ToastHelper.showGlobalToast(message: "请选择要修改的项目！")
             return
         }
-        if let text = self.tableItemViews[3].contentText.text, text.isEmpty {
-            ToastHelper.showGlobalToast(message: "请填写街道！")
-            return
-        }
+//        if let text = self.tableItemViews[3].contentText.text, text.isEmpty {
+//            ToastHelper.showGlobalToast(message: "请填写街道！")
+//            return
+//        }
         
-        if let text = self.tableItemViews[7].contentText.text, text.isEmpty {
+        if let text = self.tableItemViews[3].contentText.text, text.isEmpty {
             ToastHelper.showGlobalToast(message: "请填写运维人员姓名！")
             return
         }
         
-        if let text = self.tableItemViews[8].contentText.text, text.isEmpty {
+        if let text = self.tableItemViews[4].contentText.text, text.isEmpty {
             ToastHelper.showGlobalToast(message: "请填写运维人员联系方式！")
             return
         }
         
         
-        mProject.street = self.tableItemViews[3].contentText.text
-        mProject.workerName = self.tableItemViews[7].contentText.text
-        mProject.workerPhone = self.tableItemViews[8].contentText.text
+        //mProject.street = self.tableItemViews[3].contentText.text
+        mProject.workerName = self.tableItemViews[3].contentText.text
+        mProject.workerPhone = self.tableItemViews[4].contentText.text
         ClientRequest.modifyProject(project: mProject){
             resProject in
             if let project = resProject{
@@ -217,7 +225,7 @@ class ProjectModifyViewController: BasePageViewController {
                     return
                 }
                 print("修改成功！")
-                ToastHelper.showGlobalToast(message: "项目修改成功！")
+                ToastHelper.showGlobalToast(message: "运维人员更变成功！")
                 
             }else{
                 print("修改失败！")

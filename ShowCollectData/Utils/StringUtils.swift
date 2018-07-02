@@ -147,6 +147,12 @@ class StringUtils {
         return emailTest.evaluate(with: email)
     }
     
+    public static func isCharacterAndNumber(string: String, minLen: Int, maxLen: Int) -> Bool {
+        let regex = "[A-Za-z0-9]{" + String(minLen) + "," + String(maxLen) + "}"
+        let predicate: NSPredicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        return predicate.evaluate(with: string)
+    }
+    
     public static func stringToIntArray(value: String) -> [UInt32]?{
         //利用正则表达式判断是不是全部都是数字
         let regex = "^[-\\+]?[\\d]*$"

@@ -129,6 +129,8 @@ extension AuditingFragment: UITableViewDataSource {
                     cell.userType.text = "环保人员"
                 case .mantainer:
                     cell.userType.text = "运维人员"
+                default:
+                    break
                 }
             }
         }

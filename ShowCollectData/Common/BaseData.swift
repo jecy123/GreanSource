@@ -11,7 +11,7 @@ class BaseData {
     public var retCode: Int!
     public var msg:String!
     
-    init() {
+    required init() {
         
     }
 

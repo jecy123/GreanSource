@@ -11,6 +11,7 @@ import UIKit
 
 
 protocol MainViewTitleItemDelegate {
+    func onUser(_ sender: UIButton)
     func onBack(_ sender: UIButton)
     func onMenu(_ sender: UIButton)
 }
@@ -18,7 +19,8 @@ protocol MainViewTitleItemDelegate {
 
 
 class MainViewController: ISViewPagerContainer, TreeTableDelegate {
-    let titlesAdmin = ["项目信息","运行状态","运行数据","项目添加","项目信息修改","设备信息修改","注册找回审核"]
+    let titlesGuest = ["项目信息"]
+    let titlesAdmin = ["项目信息","运行状态","运行数据","项目添加","运维人员更变","设备信息修改","注册信息审核"]
     let titlesEp = ["项目信息", "运行状态","运行数据"]
     //当前页面的索引值
     var pageIndex: Int = -1
@@ -52,9 +54,16 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         }
     }
     
-    var account: String = ""
+    var account: ShowAccount! {
+        didSet{
+            guard let userInfoView = self.userInfoView else { return }
+            userInfoView.labelUserType.text = AccountTypeHashMap[account.role]
+            userInfoView.labelTelephone.text = "手机号：" + account.phone
+            userInfoView.labelUserName.text = "姓名：" + account.name
+        }
+    }
     
-    var projects:[ShowProject]!
+    public var projects:[ShowProject]!
     {
         didSet
         {
@@ -79,8 +88,31 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     }
     
     public let screenWidth: CGFloat = UIScreen.main.bounds.width
-    public static let topImageHeight: CGFloat = 120
-    public static let titleViewHeight: CGFloat = 40
+    public static let topImageHeight: CGFloat = {
+        let screenH = UIScreen.main.bounds.height
+        var size: CGFloat = 0
+        if screenH >= 568.0 && screenH < 667.0 {
+            size = 110
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            size = 115
+        } else if screenH >= 736.0 {
+            size = 120
+        }
+        return size
+    }()
+    
+    public static let titleViewHeight: CGFloat = {
+        let screenH = UIScreen.main.bounds.height
+        var size: CGFloat = 0
+        if screenH >= 568.0 && screenH < 667.0 {
+            size = 37
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            size = 38
+        } else if screenH >= 736.0 {
+            size = 40
+        }
+        return size
+    }()
     
     public var imageTop: UIImageView!
     public var titleView: UIView!
@@ -88,6 +120,9 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
 
     public var projectListTreeView: TreeTableView!
     public var projectListPopover: Popover!
+    
+    public var userInfoView: UserInfoView!
+    public var userInfoPopover: Popover!
     
     public var titleName:String!{
         didSet{
@@ -100,6 +135,8 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     
     func initViewPages(type: AccountType){
         switch type {
+        case .guest:
+            self.titles = titlesGuest
         case .adminitor:
             self.titles = titlesAdmin
         default:
@@ -108,36 +145,40 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         }
         
         pages = [BasePageViewController]()
-        if type == .adminitor {
-            let projectInfoView = ProjectInfoViewController(title:titles[0])
+        if type == .guest {
+            let projectInfoView = ProjectInfoViewController(title:titles[0], container: self)
+            pages.append(projectInfoView)
+        }else if type == .adminitor {
+            let projectInfoView = ProjectInfoViewController(title:titles[0], container: self)
             pages.append(projectInfoView)
         
-            let runningStateView = RunningStateViewController(title:titles[1])
+            let runningStateView = RunningStateViewController(title:titles[1], container: self)
             pages.append(runningStateView)
         
-            let runningDataView = RunningDataViewController(title:titles[2])
+            let runningDataView = RunningDataViewController(title:titles[2], container: self)
             runningDataView.viewType = type
             pages.append(runningDataView)
         
-            let projectAddView = ProjectAddViewController(title:titles[3])
+            let projectAddView = ProjectAddViewController(title:titles[3], container: self)
             pages.append(projectAddView)
         
-            let projectModifyView = ProjectModifyViewController(title:titles[4])
+            let projectModifyView = ProjectModifyViewController(title:titles[4], container: self)
             pages.append(projectModifyView)
         
-            let deviceModifyView = DeviceModifyViewController(title:titles[5])
+            let deviceModifyView = DeviceModifyViewController(title:titles[5], container: self)
             pages.append(deviceModifyView)
         
-            let infoRefindView = InfoRefindViewController(title:titles[6])
+            let infoRefindView = InfoRefindViewController(title:titles[6], container: self)
             pages.append(infoRefindView)
+            
         }else{
-            let projectInfoView = ProjectInfoViewController(title:titles[0])
+            let projectInfoView = ProjectInfoViewController(title:titles[0], container: self)
             pages.append(projectInfoView)
             
-            let runningStateView = RunningStateViewController(title:titles[1])
+            let runningStateView = RunningStateViewController(title:titles[1], container: self)
             pages.append(runningStateView)
             
-            let runningDataView = RunningDataViewController(title:titles[2])
+            let runningDataView = RunningDataViewController(title:titles[2], container: self)
             runningDataView.viewType = type
             pages.append(runningDataView)
         }
@@ -148,8 +189,6 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         self.viewPages = pages
         self.yOffset = MainViewController.topImageHeight
         self.view.backgroundColor = UIColor.white
-        
-        
     }
     
     init(options: [UIViewPagerOption], type: AccountType) {
@@ -166,16 +205,33 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    ///更新项目列表
+    func refreshProjectTreeView() {
+        self.projectListTreeView.mNodes1 = AddressUtils.sunPowerItem.provinceItem
+        self.projectListTreeView.mNodes2 = AddressUtils.smartSysItem.provinceItem
+        self.projectListTreeView.reloadData()
+    }
+    
+    func popoverWillShow(){
+        self.refreshProjectTreeView()
+    }
+    
     func initPopover(){
         
         let options: [PopoverOption] = []
         
         projectListPopover = Popover(options: options, showHandler: nil, dismissHandler: nil)
         projectListPopover.arrowSize.height = 0
-        
+        projectListPopover.willShowHandler = self.popoverWillShow
         let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 3 * 2, height: self.view.frame.height * 0.75)
-        projectListTreeView = TreeTableView(frame: frame, data1: AddressUtils.sunPowerItem.provinceItem, data2:AddressUtils.smartSysItem.provinceItem)
+        projectListTreeView = TreeTableView(frame: frame, data1: AddressUtils.sunPowerItem.provinceItem, data2:AddressUtils.smartSysItem.provinceItem, data3: AddressUtils.waterSysItem.provinceItem)
         projectListTreeView.treeTableDelegate = self
+        
+        userInfoPopover = Popover(options: [], showHandler: nil, dismissHandler: nil)
+        userInfoPopover.arrowSize.height = 0
+        let frame2 = CGRect(x: 0, y: 0, width: self.view.bounds.width / 3 * 2, height: self.view.frame.height * 0.75)
+        userInfoView = UserInfoView(frame: frame2)
+        userInfoView.delegate = self
         
     }
     
@@ -186,10 +242,16 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         
         self.titleView = UIView(frame: CGRect(x: 0, y: MainViewController.topImageHeight - MainViewController.titleViewHeight, width: screenWidth, height: MainViewController.titleViewHeight))
         
-        let backBtn:UIButton = UIButton(frame: CGRect(x: 0, y: 5, width: 40, height: 30))
-        backBtn.setImage(UIImage(named: "arrow_back"), for: .normal)
-        backBtn.addTarget(self, action: #selector(onBack(_:)), for: .touchUpInside)
-        self.titleView.addSubview(backBtn)
+//        let backBtn:UIButton = UIButton(frame: CGRect(x: 0, y: 5, width: 40, height: 30))
+//        backBtn.setImage(UIImage(named: "arrow_back2"), for: .normal)
+//        backBtn.addTarget(self, action: #selector(onBack(_:)), for: .touchUpInside)
+//        self.titleView.addSubview(backBtn)
+        
+        
+        let userBtn:UIButton = UIButton(frame: CGRect(x: 0, y: 5, width: 40, height: 30))
+        userBtn.setImage(UIImage(named: "arrow_back2"), for: .normal)
+        userBtn.addTarget(self, action: #selector(onUser(_:)), for: .touchUpInside)
+        self.titleView.addSubview(userBtn)
         
         
         let menuBtn:UIButton = UIButton(frame: CGRect(x: screenWidth - 40, y: 5, width: 40, height: 30))
@@ -200,7 +262,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         let titleLabelWidth = screenWidth - 80
         self.titleLabel = UILabel(frame: CGRect(x: 40, y: 0, width: titleLabelWidth, height: MainViewController.titleViewHeight))
         titleLabel.text = titleName
-        titleLabel.font = UIFont.systemFont(ofSize: 20)
+        titleLabel.adjustFontByScreenHeight(isTitle: true)
         titleLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         titleLabel.textAlignment = .center
         self.titleView.addSubview(titleLabel)
@@ -209,8 +271,17 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         self.view.addSubview(titleView)
     }
     
+    @objc public func onUser(_ sender: UIButton) {
+        print("MainView onUser调用")
+        let startPoint = CGPoint(x: 20, y: 120)
+        userInfoPopover.show(userInfoView, point: startPoint)
+        delegate?.onUser(sender)
+        
+    }
+    
     @objc public func onBack(_ sender: UIButton){
         print("MainView onBack调用")
+        
         self.dismiss(animated: true, completion: nil)
         delegate?.onBack(sender)
     }
@@ -282,7 +353,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         
         //保存项目id
         let accountDefaults = UserDefaults.standard
-        accountDefaults.set(id, forKey: account + "_" + Keys.selectedProjectId)
+        accountDefaults.set(id, forKey: account.account + "_" + Keys.selectedProjectId)
         
         self.doScrollToPage(index: 0)
         self.addressNames = addressNames
@@ -294,5 +365,15 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
 //            page.selectedProject = self.selectedProject
 //        }
 
+    }
+}
+
+extension MainViewController: UserInfoDelegate {
+    func onSignOut(button: UIButton) {
+        //self.dismiss(animated: true, completion: nil)
+        print("sign out")
+        self.userInfoPopover.dismiss()
+        onBack(button)
+        
     }
 }

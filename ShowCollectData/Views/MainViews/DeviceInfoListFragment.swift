@@ -68,14 +68,34 @@ class DeviceInfoListFragment: UIView {
         
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 50))
         
-        let addButtonW: CGFloat = 60
-        let addButtonH: CGFloat = 30
+        let screenH = UIScreen.main.bounds.height
+        var labelFontSize: CGFloat = 0
+        var btnWidth: CGFloat = 0
+        var btnHeight: CGFloat = 0
+        
+        if screenH >= 568.0 && screenH < 667.0 {
+            labelFontSize = 13
+            btnWidth = 58
+            btnHeight = 27
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            labelFontSize = 16
+            btnWidth = 66
+            btnHeight = 33
+        } else if screenH >= 736.0 {
+            labelFontSize = 18
+            btnWidth = 80
+            btnHeight = 40
+        }
+        
+        let addButtonW: CGFloat = btnWidth
+        let addButtonH: CGFloat = btnHeight
         let addButtonX: CGFloat = (frame.width - addButtonW) / 2
         let addButtonY: CGFloat =  10
         
         let addButtonFrame = CGRect(x: addButtonX, y: addButtonY, width: addButtonW, height: addButtonH)
         let addButton = UIButton(frame: addButtonFrame)
         addButton.addTarget(self, action: #selector(onAddButtonClick(_:)), for: .touchUpInside)
+        addButton.titleLabel?.font = UIFont.systemFont(ofSize: labelFontSize)
         addButton.setTitle("新增", for: .normal)
         addButton.setTitleColor(UIColor.white, for: .normal)
         addButton.setTitleColor(ColorUtils.itemTitleViewBgColor, for: .highlighted)

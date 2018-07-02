@@ -12,8 +12,10 @@ class ConnectAPI{
     init() {
     }
     
-    //public static let serverIp: String = "39.107.24.81"
-    public static let serverIp: String = "123.56.76.77"
+    ///测试平台ip地址
+    public static let serverIp: String = "39.107.24.81"
+    ///正式平台ip地址
+    //public static let serverIp: String = "123.56.76.77"
     public static let serverPort: UInt16 = 10122
     /**
      * 指令码

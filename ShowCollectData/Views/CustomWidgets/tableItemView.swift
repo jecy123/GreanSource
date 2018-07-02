@@ -71,11 +71,13 @@ class TableItemView: UIView {
         if withBottomLine {
             frame.size.height -= 1
         }
+        
         let rect = CGRect(x: 0, y: 0, width: frame.width * labelRatio - 5, height: frame.height - 1)
         nameLabel = UILabel(frame: rect)
         nameLabel.textAlignment = .right
         nameLabel.adjustsFontSizeToFitWidth = true
         //nameLabel.font = UIFont.systemFont(ofSize: frame.height * 0.57)
+        nameLabel.adjustFontByScreenHeight()
         nameLabel.text = item.itemName
         
         
@@ -89,6 +91,7 @@ class TableItemView: UIView {
             contentText = UITextField(frame: rect2)
             contentText.returnKeyType = .done
             contentText.delegate = self
+            contentText.adjustFontByScreenHeight()
             contentText.layer.masksToBounds = true
             contentText.layer.backgroundColor = UIColor.white.cgColor
             self.addSubview(contentText)
@@ -101,6 +104,7 @@ class TableItemView: UIView {
             contentText = UITextField(frame: rect2)
             contentText.returnKeyType = .done
             contentText.delegate = self
+            contentText.adjustFontByScreenHeight()
             contentText.layer.masksToBounds = true
             contentText.layer.backgroundColor = UIColor.white.cgColor
             self.addSubview(contentText)

@@ -175,6 +175,14 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
+         contextName = "SolarSysFragment.onCapcityListSelected(row:):SolarSysFragment.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.tableItemViews[5].contentTextView">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ISViewPagerContainer.viewDidLoad():ISViewPager.swift">
       </ContextState>
       <ContextState
@@ -185,6 +193,14 @@
             </PersistentString>
             <PersistentString
                value = "dropBoxViews">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "RunningDataViewController.refreshProject():RunningDataViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.selectedProject.type">
             </PersistentString>
          </PersistentStrings>
       </ContextState>

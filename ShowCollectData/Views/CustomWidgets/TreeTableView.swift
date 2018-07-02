@@ -17,6 +17,7 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     
     var mNodes1: [BaseItem]!
     var mNodes2: [BaseItem]!
+    var mNodes3: [BaseItem]!
     
     var treeTableDelegate: TreeTableDelegate?
     
@@ -26,10 +27,11 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     //选项未展开的图标
     let image_ec = "tree_ec.png"
     
-    init(frame: CGRect, data1: [BaseItem], data2: [BaseItem]) {
+    init(frame: CGRect, data1: [BaseItem], data2: [BaseItem], data3: [BaseItem]) {
         super.init(frame: frame, style: .plain)
         self.mNodes1 = data1
         self.mNodes2 = data2
+        self.mNodes3 = data3
         
         self.delegate = self
         self.dataSource = self
@@ -40,7 +42,7 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return 3
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,6 +50,8 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
             return mNodes1.count
         }else if section == 1{
             return mNodes2.count
+        }else if section == 2 {
+            return mNodes3.count
         }
         return 0
     }
@@ -65,8 +69,10 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         
         if indexPath.section == 0 {
             node = mNodes1[indexPath.row]
-        }else{
+        }else if indexPath.section == 1{
             node = mNodes2[indexPath.row]
+        }else {
+            node = mNodes3[indexPath.row]
         }
         
         //cell缩进
@@ -110,8 +116,12 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         switch indexPath.section {
         case 0:
             selectedNode = mNodes1[indexPath.row]
-        default:
+        case 1:
             selectedNode = mNodes2[indexPath.row]
+        case 2:
+            selectedNode = mNodes3[indexPath.row]
+        default:
+            break
             
         }
         
@@ -150,6 +160,8 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
             mNodes1 = AddressUtils.getVisibleItems(section: indexPath.section)
         case 1:
             mNodes2 = AddressUtils.getVisibleItems(section: indexPath.section)
+        case 2:
+            mNodes3 = AddressUtils.getVisibleItems(section: indexPath.section)
         default:
             break
         }

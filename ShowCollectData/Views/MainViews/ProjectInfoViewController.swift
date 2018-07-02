@@ -11,8 +11,12 @@ import UIKit
 //项目信息界面
 class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMKLocationServiceDelegate{
 
-    let titles: [String] = ["项目名称：", "项目位置：", "设计处理量：", "排放标准：", "达标排放量：", "太阳能发电电能："]
-    let contents: [String] = ["", "", "", "", "", ""]
+    let titles: [String] = ["项目名称：", "项目位置：", "设计处理量：", "排放标准：", "达标排放量：", "太阳能发电电能：", "污染物总削减量：","运维人员：","运维人员联系方式：",""]
+    
+    let titles2: [String] = ["项目名称：", "项目位置：", "增氧设备功率(W)：", "增氧能力(KGO₂/H)：", "动力效率(KGO₂/H)：", "循环通量(M³/H)：","辐射面积(M²)：", "太阳能发电量：", "运维人员：","运维人员联系方式："];
+    let contents: [String] = ["", "", "", "", "", "", "", "", "",""]
+    
+    
     
     
     var mapView: BMKMapView!
@@ -57,9 +61,11 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         btnBack.frame = CGRect(x: itemLeftPadding + itemBgWidth / 2 - 25, y: itemTopPadding + itemBgHeight - 40, width: 50, height: 30)
         mapView.showsUserLocation = true
         mapView.showMapScaleBar = true
+        
         mapView.compassPosition = CGPoint(x: 10, y: 10)
         mapView.userTrackingMode = BMKUserTrackingModeHeading
         mapView.zoomLevel = 18
+        
         
         hideMapLogo()
     }
@@ -80,10 +86,10 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        addTitleView(titleHeight: 40)
+        addTitleView()
         
-        let infoOffsetX: CGFloat = 50
-        let infoOffsetY: CGFloat = 100
+        let infoOffsetX: CGFloat = 40
+        let infoOffsetY: CGFloat = itemBgTitleHeight + itemBgTitleHeight + 10
         let infoFrameW: CGFloat = itemBgWidth - infoOffsetX - infoOffsetX
         let infoFrameH: CGFloat = itemBgHeight - infoOffsetY - 20
         
@@ -95,8 +101,8 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         //信息框的一排的高度
         let infoFrameItemH:CGFloat = infoFrameH / CGFloat(titles.count)
         
-        let mapBtnW:CGFloat = 45
-        let mapBtnH:CGFloat = 30
+        let mapBtnW:CGFloat = 35
+        let mapBtnH:CGFloat = 25
         let mapBtnOffsetX: CGFloat = itemBgWidth - infoOffsetX
         let mapBtnOffsetY: CGFloat = infoOffsetY + mapBtnIndex * infoFrameItemH + (infoFrameItemH - mapBtnH) / 2
         
@@ -158,16 +164,48 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
     
     func refreshInfomation(projectInfo: ShowProjectInfo!){
         
-        self.infomationView.refreshOneContent(at: 0, content: selectedProject.projectName)
-        self.infomationView.refreshOneContent(at: 1, content: selectedProject.locationName+selectedProject.street)
-        self.infomationView.refreshOneContent(at: 2, content: String(selectedProject.capability) + "D/T")
-        self.infomationView.refreshOneContent(at: 3, content: emissionStdAccessment[selectedProject.emissionStandards])
-        
-        
-        self.infomationView.refreshOneContent(at: 4, content: String(selectedProject.state) + "D/T")
-        
-        let totalPchg:Float = Float(projectInfo.projectTotalPChg) / 100
-        self.infomationView.refreshOneContent(at: 5, content: String(totalPchg)+"KWh")
+        if selectedProject.type == ShowProject.PROJ_TYPE_SMART || selectedProject.type == ShowProject.PROJ_TYPE_SUNPOWER{
+            var index = 0
+            for title in titles {
+                self.infomationView.refreshOnTitle(at: index, title: title)
+                index += 1
+            }
+            
+            self.infomationView.refreshOneContent(at: 0, content: selectedProject.projectName)
+            self.infomationView.refreshOneContent(at: 1, content: selectedProject.locationName+selectedProject.street)
+            self.infomationView.refreshOneContent(at: 2, content: String(selectedProject.capability) + "D/T")
+            self.infomationView.refreshOneContent(at: 3, content: emissionStdAccessment[selectedProject.emissionStandards])
+            
+            
+            self.infomationView.refreshOneContent(at: 4, content: String(selectedProject.state) + "D/T")
+            
+            let totalPchg:Float = Float(projectInfo.projectTotalPChg) / 100
+            self.infomationView.refreshOneContent(at: 5, content: String(totalPchg)+"KWh")
+            self.infomationView.refreshOneContent(at: 7, content: selectedProject.workerName)
+            self.infomationView.refreshOneContent(at: 8, content: selectedProject.workerPhone)
+            
+            
+            
+        }else if selectedProject.type == ShowProject.PROJ_TYPE_WATER{
+            var index = 0
+            for title in titles2 {
+                self.infomationView.refreshOnTitle(at: index, title: title)
+                index += 1
+            }
+            
+            
+            self.infomationView.refreshOneContent(at: 0, content: selectedProject.projectName)
+            self.infomationView.refreshOneContent(at: 1, content: selectedProject.locationName+selectedProject.street)
+            self.infomationView.refreshOneContent(at: 2, content: selectedProject.waterOxyenW)
+            self.infomationView.refreshOneContent(at: 3, content: selectedProject.waterOxyenKgoh)
+            self.infomationView.refreshOneContent(at: 4, content: selectedProject.waterOxyenKgokwh)
+            self.infomationView.refreshOneContent(at: 5, content: selectedProject.waterCycleMh)
+            self.infomationView.refreshOneContent(at: 6, content: selectedProject.wateFuseArea)
+            let totalPchg:Float = Float(projectInfo.projectTotalPChg) / 100
+            self.infomationView.refreshOneContent(at: 7, content: String(totalPchg)+"KWh")
+            self.infomationView.refreshOneContent(at: 8, content: selectedProject.workerName)
+            self.infomationView.refreshOneContent(at: 9, content: selectedProject.workerPhone)
+        }
         
         if let longtitude = projectInfo.longtitude, let altitude = projectInfo.altitude {
             self.isLocAvaliable  = true
@@ -210,6 +248,9 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         self.itemBgView.isHidden = true
         self.mapView.isHidden = false
         self.btnBack.isHidden = false
+        //
+        let mainScrollView = self.view.superview as! UIScrollView
+        mainScrollView.isScrollEnabled = false
         
         //mapLocation()
     }
@@ -218,6 +259,9 @@ class ProjectInfoViewController: BasePageViewController, BMKMapViewDelegate, BMK
         self.btnBack.isHidden = true
         self.mapView.isHidden = true
         self.itemBgView.isHidden = false
+        
+        let mainScrollView = self.view.superview as! UIScrollView
+        mainScrollView.isScrollEnabled = true
     }
     
     //获取到位置变化

@@ -10,7 +10,17 @@ import UIKit
 
 class RunningDataFragment: UIView {
     
-    
+    var projectType: Int! {
+        didSet{
+            guard let deviceInfoText = self.deviceInfoText else { return }
+            if projectType == ShowProject.PROJ_TYPE_SUNPOWER || projectType == ShowProject.PROJ_TYPE_SMART {
+                deviceInfoText.text = "太阳能污水处理控制器"
+            } else if projectType == ShowProject.PROJ_TYPE_WATER {
+                deviceInfoText.text = "水体太阳能控制器"
+            }
+            
+        }
+    }
     var btnBack:    UIButton!
     
     var solarGif:   UIImageView!
@@ -31,8 +41,11 @@ class RunningDataFragment: UIView {
     var stat4InfoText: UITextView!
     
     func initGifViews(){
-        var gifWidth: CGFloat = 60
-        var gifHeight: CGFloat = 60
+        
+        print("屏幕高度 = \(UIScreen.main.bounds.height)")
+        let scaleRate: CGFloat = 35 / 568
+        var gifHeight: CGFloat = scaleRate * UIScreen.main.bounds.height
+        var gifWidth: CGFloat = gifHeight
         var padding: CGFloat = 0
         let statGifCount: CGFloat = 4
         
@@ -48,6 +61,7 @@ class RunningDataFragment: UIView {
         }else{
             padding = contentWidth / statGifCount - gifWidth
         }
+        
         
         //单排文本的高度
         let singleLineTextHeight:CGFloat = gifHeight / 3
@@ -66,6 +80,7 @@ class RunningDataFragment: UIView {
         solarInfoText = UITextView(frame: CGRect(x: startX + gifWidth + margin, y: startY, width: gifWidth * 3 / 2, height: gifHeight))
         solarInfoText.backgroundColor = ColorUtils.selectedBtnColor
         solarInfoText.textColor = UIColor.white
+        solarInfoText.contentInset = UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0)
         self.addSubview(solarInfoText)
         
         let arrowDownImageH: CGFloat = singleLineTextHeight * 2 - 4
@@ -112,7 +127,7 @@ class RunningDataFragment: UIView {
         batteryInfoText = UITextView(frame: CGRect(x: batteryX + gifWidth + margin, y: batteryY, width: gifWidth - 5, height: gifHeight))
         batteryInfoText.backgroundColor = ColorUtils.selectedBtnColor
         batteryInfoText.textColor = UIColor.white
-        
+        batteryInfoText.contentInset = UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0)
         self.addSubview(batteryInfoText)
         
         
@@ -127,7 +142,7 @@ class RunningDataFragment: UIView {
         deviceInfoText.textColor = UIColor.white
         
         deviceInfoText.textAlignment = .center
-        deviceInfoText.contentInset = UIEdgeInsets(top: -5, left: 0, bottom: 0, right: 0)
+        deviceInfoText.contentInset = UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0)
         self.addSubview(deviceInfoText)
 
         let verticalLineW: CGFloat = 4
@@ -202,24 +217,28 @@ class RunningDataFragment: UIView {
         stat1InfoText = UITextView(frame: CGRect(x: deviceStateTextX, y: deviceStateTextY, width: deviceStateTextW, height: deviceStateTextH))
         stat1InfoText.backgroundColor = ColorUtils.selectedBtnColor
         stat1InfoText.textColor = UIColor.white
+        stat1InfoText.contentInset = UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0)
         self.addSubview(stat1InfoText)
         
         deviceStateTextX += (deviceStateTextW + 2)
         stat2InfoText = UITextView(frame: CGRect(x: deviceStateTextX, y: deviceStateTextY, width: deviceStateTextW, height: deviceStateTextH))
         stat2InfoText.backgroundColor = ColorUtils.selectedBtnColor
         stat2InfoText.textColor = UIColor.white
+        stat2InfoText.contentInset = UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0)
         self.addSubview(stat2InfoText)
         
         deviceStateTextX += (deviceStateTextW + 2)
         stat3InfoText = UITextView(frame: CGRect(x: deviceStateTextX, y: deviceStateTextY, width: deviceStateTextW, height: deviceStateTextH))
         stat3InfoText.backgroundColor = ColorUtils.selectedBtnColor
         stat3InfoText.textColor = UIColor.white
+        stat3InfoText.contentInset = UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0)
         self.addSubview(stat3InfoText)
         
         deviceStateTextX += (deviceStateTextW + 2)
         stat4InfoText = UITextView(frame: CGRect(x: deviceStateTextX, y: deviceStateTextY, width: deviceStateTextW, height: deviceStateTextH))
         stat4InfoText.backgroundColor = ColorUtils.selectedBtnColor
         stat4InfoText.textColor = UIColor.white
+        stat4InfoText.contentInset = UIEdgeInsets(top: -8, left: 0, bottom: 0, right: 0)
         self.addSubview(stat4InfoText)
         
        // let marginLeft: CGFloat = self.frame.width - 
@@ -239,16 +258,60 @@ class RunningDataFragment: UIView {
         
         guard let solarInfoText = self.solarInfoText, let deviceInfoText = self.deviceInfoText, let batteryInfoText = self.batteryInfoText, let stat1InfoText = self.stat1InfoText, let stat2InfoText = self.stat2InfoText, let stat3InfoText = self.stat3InfoText, let stat4InfoText = self.stat4InfoText else { return }
         
+        
+        //根据屏幕高度设定字体大小
+        let screenH = UIScreen.main.bounds.height
+        var fontSize: CGFloat = 0
+        if screenH >= 568.0 && screenH < 667 {
+            fontSize = 9
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            fontSize = 10
+        } else if screenH >= 736.0{
+            fontSize = 11
+        }
+        
+        solarInfoText.font = UIFont.systemFont(ofSize: fontSize)
+        deviceInfoText.font = UIFont.systemFont(ofSize: fontSize)
+        batteryInfoText.font = UIFont.systemFont(ofSize: fontSize)
+        stat1InfoText.font = UIFont.systemFont(ofSize: fontSize)
+        stat2InfoText.font = UIFont.systemFont(ofSize: fontSize)
+        stat3InfoText.font = UIFont.systemFont(ofSize: fontSize)
+        stat4InfoText.font = UIFont.systemFont(ofSize: fontSize)
+        
+        
+        
+        solarInfoText.isEditable = false
+        deviceInfoText.isEditable = false
+        batteryInfoText.isEditable = false
+        stat1InfoText.isEditable = false
+        stat2InfoText.isEditable = false
+        stat3InfoText.isEditable = false
+        stat4InfoText.isEditable = false
+        
         solarInfoText.text = ""
-        deviceInfoText.text = "太阳能污水处理控制器"
+        deviceInfoText.text = ""
         batteryInfoText.text = ""
         stat1InfoText.text = ""
         stat2InfoText.text = ""
         stat3InfoText.text = ""
         stat4InfoText.text = ""
+        
+        if projectType == ShowProject.PROJ_TYPE_SMART || projectType == ShowProject.PROJ_TYPE_SUNPOWER {
+            deviceInfoText.text = "太阳污水处理控制器"
+        }else if projectType == ShowProject.PROJ_TYPE_WATER {
+            deviceInfoText.text = "水体太阳能控制器"
+        }
     }
     
     func refreshDeviceData(deviceData: ShowDeviceData){
+        
+        if projectType == ShowProject.PROJ_TYPE_SMART || projectType == ShowProject.PROJ_TYPE_SUNPOWER {
+            self.deviceInfoText.text = "太阳污水处理控制器"
+        }else if projectType == ShowProject.PROJ_TYPE_WATER {
+            self.deviceInfoText.text = "水体太阳能控制器"
+        }
+        
+        
         if let isOffline = deviceData.offline {
             if isOffline {
                 self.solarInfoText.text = "无法获取数据"
@@ -414,14 +477,33 @@ class RunningDataFragment: UIView {
         super.init(frame: frame)
         
         initGifViews()
+       
         
-        let w: CGFloat = 50
-        let h: CGFloat = 30
+        var w: CGFloat = 30
+        var h: CGFloat = 20
+        var backBtnFontSize: CGFloat = 0
+        
+        let screenH = UIScreen.main.bounds.height
+        if screenH >= 568.0 && screenH < 667 {
+            w = 30
+            h = 20
+            backBtnFontSize = 12
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            w = 40
+            h = 25
+            backBtnFontSize = 14
+        } else if screenH >= 736.0{
+            w = 50
+            h = 30
+            backBtnFontSize = 16
+        }
+        
         let x: CGFloat = (frame.width - w) / 2
         let y: CGFloat = frame.height - h - 5
         
         self.btnBack = UIButton(frame: CGRect(x: x, y: y, width: w, height: h))
         self.btnBack.setTitle("返回", for: .normal)
+        self.btnBack.titleLabel?.font = UIFont.systemFont(ofSize: backBtnFontSize)
         self.btnBack.setTitleColor(UIColor.white, for: .normal)
         self.btnBack.layer.cornerRadius = 5
         self.btnBack.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor

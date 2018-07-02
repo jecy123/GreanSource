@@ -8,12 +8,16 @@
 
 import Foundation
 
-///三种用户的类型
+///四种用户的类型
 enum AccountType: Int {
     case adminitor = 10 //管理员
     case mantainer = 20 //维护员
     case EP = 30        //环保部门人员
+    case guest = 50     //客户模式
 }
+
+///四种用户的类型对应的中文名称
+let AccountTypeHashMap : [Int : String] = [ 10 : "管理员", 20 : "运维人员", 30 : "环保监督人员", 50 : "访客",]
 
 ///审核状态：
 enum AuditStatus: Int {
@@ -42,7 +46,7 @@ class ShowAccount: BaseData {
     
     var locationIds: String!
     
-    override init() {
+    required init() {
         super.init()
     }
     

@@ -8,12 +8,28 @@
 
 import UIKit
 
+enum ProjectAddFragmentType {
+    case solar
+    case water
+}
+
 //项目添加界面
 class ProjectAddViewController: BasePageViewController{
 
     let titles = ["项目名称","项目类别","项目地址","街道","设计处理量","设备列表","排放标准","运维人员姓名","运维人员联系方式"]
     let projectTypeNames = systemNames
     let capcityListNames = listToNames(list: capcityList)
+    
+    var scrollBgView: UIScrollView!
+    var confirmButton: UIButton!
+    
+    var solarSysFragment: SolarSysFragment!
+    var waterSysFragment: WaterSysFragment!
+    
+    let maxTitleCnt: CGFloat = 11
+    var itemH: CGFloat{
+        return (self.itemBgView.frame.height - 60) / self.maxTitleCnt
+    }
     
     var newProject: ShowProject = ShowProject()
     
@@ -30,132 +46,307 @@ class ProjectAddViewController: BasePageViewController{
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        initTableItemView()
+        initScrollView()
+        
+        //initTableItemView()
         
     }
     
-    func initTableItemView(){
+    func initScrollView() {
         let x: CGFloat = 0
-        var y: CGFloat = 0
+        let y: CGFloat = 0
         let w: CGFloat = self.itemBgView.frame.width
-        let h: CGFloat = (self.itemBgView.frame.height - 60) / CGFloat(self.titles.count)
+        let h: CGFloat = self.itemBgView.frame.height
         
-        var dropBoxY1: CGFloat = 0
-        var dropBoxY2: CGFloat = 0
-        var dropBoxY3: CGFloat = 0
+        scrollBgView = UIScrollView(frame: CGRect(x: x, y: y, width: w, height: h))
+        self.itemBgView.addSubview(scrollBgView)
         
-        var tableItemFrame: CGRect!
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[0], type: .typeText, withBottomLine: true)
+        addSolarSysFrgment()
+        addWaterSysFrgment()
         
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[1], type: .typeText, withBottomLine: true)
-        dropBoxY1 = y
+        addConfirmButton()
         
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[2], type: .typeText, withBottomLine: true)
+        addProjectTypeList()
         
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[3], type: .typeText, withBottomLine: true)
         
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[4], type: .typeText, withBottomLine: true)
+        switchView(type: .solar)
+    }
+    
+    func dropBoxWillShowOrHide(isShow: Bool) {
+        if isShow {
+            let offset = CGPoint(x: self.scrollBgView.contentOffset.x, y: -self.scrollBgView.contentOffset.y)
+            for dropBoxView in solarSysFragment.dropBoxViews {
+                dropBoxView.showOffset = offset
+            }
+            self.dropBoxViews[0].showOffset = offset
+        }
+    }
+    
+    func addSolarSysFrgment()  {
+        let height = (itemH + 1) * 16
         
-        dropBoxY2 = y
-        
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[5], type: .typeMultiLineText, withBottomLine: true)
-        
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[6], type: .typeText, withBottomLine: true)
-        
-        dropBoxY3 = y
-        
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.3, title: titles[7], type: .typeText, withBottomLine: true)
-        
-        y += h
-        tableItemFrame = CGRect(x: x, y: y, width: w, height: h)
-        addTableItemView(tableFrame: tableItemFrame, titleRatio: 0.4, title: titles[8], type: .typeText, withBottomLine: true)
-        
-        let btnWidth: CGFloat = 100
-        let btnHeight: CGFloat = 40
-        let rect = CGRect(x: (self.itemBgView.frame.width - btnWidth) / 2, y: self.itemBgView.frame.height - btnHeight - 10, width: btnWidth, height: btnHeight)
-        addButton(buttonframe: rect, title: "确认添加", target: self, action: #selector(onConfirm(_:)), for: UIControlEvents.touchUpInside)
-        
-
         //下拉列表和下拉按钮之间的偏移量计算
         let offSetX = self.itemBgView.frame.origin.x
         let offSetY = MainViewController.topImageHeight + self.itemBgView.frame.origin.y + 1
         let offset = CGPoint(x: offSetX, y: offSetY)
+        solarSysFragment = SolarSysFragment(parentVC: self, frame: CGRect(x: 0, y: 0, width: self.itemBgWidth, height: height), itemH: itemH, dropBoxOffset: offset)
         
-        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY1, width: w * 0.7, height: h - 1), names: self.projectTypeNames, dropBoxOffset: offset, dropBoxDidSelected: self.onProjectTypeSelected)
-        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY2, width: w * 0.7, height: h - 1), names: self.capcityListNames, dropBoxOffset: offset, dropBoxDidSelected: self.onCapcityListSelected)
-        addDropBox(dropBoxFrame: CGRect(x: x + w * 0.3, y: dropBoxY3, width: w * 0.7, height: h - 1), names:emissionStdNames, dropBoxOffset: offset, dropBoxDidSelected: self.onEmissionStdSelected)
+        for dropBoxView in solarSysFragment.dropBoxViews {
+            dropBoxView.willShowOrHideBoxListHandler = dropBoxWillShowOrHide
+        }
         
-        self.tableItemViews[2].contentText.addTarget(self, action: #selector(onAddressItemClicked(_:)), for: UIControlEvents.editingDidBegin)
-        self.tableItemViews[5].contentTextView.isEditable = false
-        
-        self.tableItemViews[5].contentTextView.font = UIFont.systemFont(ofSize: h / 4)
-        self.tableItemViews[5].contentTextView.textColor = UIColor.gray
+        scrollBgView.addSubview(solarSysFragment)
     }
     
-    @objc func onAddressItemClicked(_ sender: UITextField){
-        let addressPickerView = AddressPickerView(provinceItems: AddressUtils.addressItem.provinceItem, height: 200)
-        addressPickerView.delegate = self
-        addressPickerView.show()
+    
+    
+    func addWaterSysFrgment()  {
+        let height = (itemH + 1) * 12
+        waterSysFragment = WaterSysFragment(parentVC: self, frame: CGRect(x: 0, y: 0, width: self.itemBgWidth, height: height), itemH: itemH)
+        scrollBgView.addSubview(waterSysFragment)
+    }
+    
+    func addProjectTypeList(){
+        //下拉列表和下拉按钮之间的偏移量计算
+        let x = itemBgWidth * 0.4
+        let w = itemBgWidth * 0.6
+        let offSetX = self.itemBgView.frame.origin.x
+        let offSetY = MainViewController.topImageHeight + self.itemBgView.frame.origin.y + 1
+        let offset = CGPoint(x: offSetX, y: offSetY)
+        addDropBox(dropBoxFrame: CGRect(x: x, y: itemH + 1, width: w, height: itemH - 1), names: self.projectTypeNames, dropBoxOffset: offset, dropBoxDidSelected: self.onProjectTypeSelected)
+        
+        self.dropBoxViews[0].willShowOrHideBoxListHandler = self.dropBoxWillShowOrHide
+    }
+    
+    func addConfirmButton()  {
+        
+        var btnWidth: CGFloat = 100
+        var btnHeight: CGFloat = 40
+        
+        let screenH = UIScreen.main.bounds.height
+        if screenH >= 568.0 && screenH < 667 {
+            btnWidth = 67.5
+            btnHeight = 27
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            btnWidth = 82.5
+            btnHeight = 33
+        } else if screenH >= 736.0{
+            btnWidth = 100
+            btnHeight = 40
+        }
+        
+        let paddingBottom = itemH - btnHeight / 2
+        let x = (itemBgWidth - btnWidth) / 2
+        let y = self.scrollBgView.contentSize.height - paddingBottom - btnHeight
+        confirmButton = UIButton(frame: CGRect(x: x, y: y, width: btnWidth, height: btnHeight))
+        confirmButton.setTitle("确认添加", for: .normal)
+        //button.setTitleColor(UIColor.white, for: .normal)
+        confirmButton.setTitleColor(UIColor.gray, for: .highlighted)
+        confirmButton.layer.cornerRadius = 5
+        confirmButton.titleLabel?.adjustFontByScreenHeight()
+        confirmButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        confirmButton.layer.backgroundColor = ColorUtils.mainThemeColor.cgColor
+        confirmButton.addTarget(self, action: #selector(onConfirm(_:)), for: .touchUpInside)
+        self.scrollBgView.addSubview(confirmButton)
+        
+    }
+    
+    func switchView(type: ProjectAddFragmentType) {
+        
+        let buttonH = self.confirmButton.bounds.height
+        let padding = itemH - buttonH / 2
+        
+        switch type {
+        case .solar:
+            let contentH = (itemH + 1) * 18
+            self.solarSysFragment.isHidden = false
+            self.waterSysFragment.isHidden = true
+            scrollBgView.contentSize = CGSize(width: 0, height: contentH)
+            let y = contentH - padding - buttonH
+            self.confirmButton.frame.origin.y = y
+        case .water:
+            let contentH = (itemH + 1) * 14
+            self.solarSysFragment.isHidden = true
+            self.waterSysFragment.isHidden = false
+            scrollBgView.contentSize = CGSize(width: 0, height: contentH)
+            let y = contentH - padding - buttonH
+            self.confirmButton.frame.origin.y = y
+            
+        }
+    }
+    
+    override func addDropBox(dropBoxFrame: CGRect, names: [String], dropBoxOffset: CGPoint, dropBoxDidSelected: @escaping (Int) -> Void){
+        
+        let dropBox = DropBoxView(title: "请选择", items: names, frame: dropBoxFrame, offset: dropBoxOffset)
+        dropBox.isHightWhenShowList = true
+        dropBox.didSelectBoxItemHandler = dropBoxDidSelected
+        self.scrollBgView.addSubview(dropBox)
+        self.dropBoxViews.append(dropBox)
     }
     
     @objc func onConfirm(_ sender: UIButton){
-        if let text = self.tableItemViews[0].contentText.text, text.isEmpty {
-            ToastHelper.showGlobalToast(message: "请填写项目名！")
+        //获取项目类型
+        let projectTypeIndex = self.dropBoxViews[0].getIndex()
+        guard projectTypeIndex != -1 else {
+            ToastHelper.showGlobalToast(message: "请选择项目类型！")
             return
         }
-        if self.dropBoxViews[0].getIndex() == -1 {
-            ToastHelper.showGlobalToast(message: "请选择项目类型")
-            return
-        }
+        newProject = ShowProject()
+        newProject.type = ShowProject.projectType[projectTypeIndex]
         
-        if let text = self.tableItemViews[2].contentText.text, text.isEmpty {
-            ToastHelper.showGlobalToast(message: "请选择地址")
-            return
+        //太阳能或者智慧系统
+        if projectTypeIndex == 0 || projectTypeIndex == 1 {
+            guard let projectName = self.solarSysFragment.tableItemViews[0].contentText.text, !projectName.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写项目名！")
+                return
+            }
+            guard let locationId = self.solarSysFragment.locationId else {
+                ToastHelper.showGlobalToast(message: "请选择项目地址！")
+                return
+            }
+            guard let street = self.solarSysFragment.tableItemViews[3].contentText.text, !street.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写街道！")
+                return
+            }
+            guard let deviceType = self.solarSysFragment.tableItemViews[4].contentText.text, !deviceType.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写设备型号！")
+                return
+            }
+            let capcityListIndex = self.solarSysFragment.dropBoxViews[0].getIndex()
+            guard capcityListIndex != -1 else {
+                ToastHelper.showGlobalToast(message: "请选择设计处理量")
+                return
+            }
+            guard let inwaterStd = self.solarSysFragment.tableItemViews[6].contentText.text, !inwaterStd.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入进水标准")
+                return
+            }
+            guard let inwaterCod = self.solarSysFragment.tableItemViews[7].contentText.text, !inwaterCod.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入进水标准-COD")
+                return
+            }
+            guard let inwaterAndan = self.solarSysFragment.tableItemViews[8].contentText.text, !inwaterAndan.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入进水标准-氨氮")
+                return
+            }
+            guard let inwaterZonglin = self.solarSysFragment.tableItemViews[9].contentText.text, !inwaterZonglin.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入进水标准-总磷")
+                return
+            }
+            guard let inwaterZongdan = self.solarSysFragment.tableItemViews[10].contentText.text, !inwaterZongdan.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入进水标准-总氮")
+                return
+            }
+            guard let inwaterPhValue = self.solarSysFragment.tableItemViews[11].contentText.text, !inwaterPhValue.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入进水标准-PH值！")
+                return
+            }
+            guard let inwaterXuanfuwu = self.solarSysFragment.tableItemViews[12].contentText.text, !inwaterXuanfuwu.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入进水标准-悬浮物！")
+                return
+            }
+            
+            let emissionStdIndex = self.solarSysFragment.dropBoxViews[1].getIndex()
+            guard emissionStdIndex != -1 else {
+                ToastHelper.showGlobalToast(message: "请选择排放标准！")
+                return
+            }
+            guard let workerName = self.solarSysFragment.tableItemViews[20].contentText.text, !workerName.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入运维人员姓名！")
+                return
+            }
+
+            guard let workerPhone = self.solarSysFragment.tableItemViews[21].contentText.text, !workerPhone.isEmpty else{
+                ToastHelper.showGlobalToast(message: "请输入运维人员联系方式！")
+                return
+            }
+            
+            newProject.projectName = projectName
+            newProject.locationId = locationId
+            newProject.street = street
+            newProject.deviceType = deviceType
+            newProject.capability = capcityList[capcityListIndex]
+            newProject.emissionStandards = emissionStd[emissionStdIndex]
+            
+            newProject.inwaterStandard = inwaterStd
+            newProject.inwaterCod = inwaterCod
+            newProject.inwaterAndan = inwaterAndan
+            newProject.inwaterZonglin = inwaterZonglin
+            newProject.inwaterZongdan = inwaterZongdan
+            newProject.inwaterPhValue = inwaterPhValue
+            newProject.inwaterXuanfuwu = inwaterXuanfuwu
+            
+            newProject.outerCod = outStds[emissionStdIndex][0]
+            newProject.outerAndan = outStds[emissionStdIndex][1]
+            newProject.outerZonglin = outStds[emissionStdIndex][2]
+            newProject.outerZongdan = outStds[emissionStdIndex][3]
+            newProject.outerPhValue = outStds[emissionStdIndex][4]
+            newProject.outerXuanfuwu = outStds[emissionStdIndex][5]
+            
+            newProject.workerName = workerName
+            newProject.workerPhone = workerPhone
         }
-        if let text = self.tableItemViews[3].contentText.text, text.isEmpty {
-            ToastHelper.showGlobalToast(message: "请填写街道！")
-            return
+        //水体
+        else{
+            guard let projectName = self.waterSysFragment.tableItemViews[0].contentText.text, !projectName.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写项目名！")
+                return
+            }
+            guard let locationId = self.waterSysFragment.locationId else {
+                ToastHelper.showGlobalToast(message: "请选择项目地址！")
+                return
+            }
+            guard let street = self.waterSysFragment.tableItemViews[3].contentText.text, !street.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写街道！")
+                return
+            }
+            guard let deviceType = self.waterSysFragment.tableItemViews[4].contentText.text, !deviceType.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写设备型号！")
+                return
+            }
+            guard let waterOxyenW = self.waterSysFragment.tableItemViews[5].contentText.text, !waterOxyenW.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写增氧设备功率！")
+                return
+            }
+            guard let waterOxyenKgoh = self.waterSysFragment.tableItemViews[4].contentText.text, !waterOxyenKgoh.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写增氧能力！")
+                return
+            }
+            guard let waterOxyenKgokwh = self.waterSysFragment.tableItemViews[4].contentText.text, !waterOxyenKgokwh.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写动力效率！")
+                return
+            }
+            guard let waterCycleMh = self.waterSysFragment.tableItemViews[4].contentText.text, !waterCycleMh.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写循环通量！")
+                return
+            }
+            guard let wateFuseArea = self.waterSysFragment.tableItemViews[4].contentText.text, !wateFuseArea.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写辐射面积！")
+                return
+            }
+            guard let workerName = self.waterSysFragment.tableItemViews[4].contentText.text, !workerName.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写运维人员姓名！")
+                return
+            }
+            guard let workPhone = self.waterSysFragment.tableItemViews[4].contentText.text, !workPhone.isEmpty else {
+                ToastHelper.showGlobalToast(message: "请填写运维人员联系方式！")
+                return
+            }
+            
+            newProject.projectName = projectName
+            newProject.locationId = locationId
+            newProject.street = street
+            newProject.deviceType = deviceType
+            newProject.waterOxyenW = waterOxyenW
+            newProject.waterOxyenKgoh = waterOxyenKgoh
+            newProject.waterOxyenKgokwh = waterOxyenKgokwh
+            newProject.waterCycleMh = waterCycleMh
+            newProject.wateFuseArea = wateFuseArea
+            newProject.workerName = workerName
+            newProject.workerPhone = workerName
+            
+            
         }
-        
-        if self.dropBoxViews[1].getIndex() == -1 {
-            ToastHelper.showGlobalToast(message: "请选择设计处理量")
-            return
-        }
-        if self.dropBoxViews[2].getIndex() == -1 {
-            ToastHelper.showGlobalToast(message: "请选择排放标准")
-            return
-        }
-        
-        
-        if let text = self.tableItemViews[7].contentText.text, text.isEmpty {
-            ToastHelper.showGlobalToast(message: "请填写运维人员姓名！")
-            return
-        }
-        
-        if let text = self.tableItemViews[8].contentText.text, text.isEmpty {
-            ToastHelper.showGlobalToast(message: "请填写运维人员联系方式！")
-            return
-        }
-        
-        self.newProject.projectName = self.tableItemViews[0].contentText.text
-        self.newProject.street = self.tableItemViews[3].contentText.text
-        self.newProject.workerName = self.tableItemViews[7].contentText.text
-        self.newProject.workerPhone = self.tableItemViews[8].contentText.text
         
         ClientRequest.addProject(project: newProject){
             resProject in
@@ -169,6 +360,9 @@ class ProjectAddViewController: BasePageViewController{
                 }
                 print("添加成功")
                 ToastHelper.showGlobalToast(message: "项目添加成功！")
+                //添加成功后从服务器中更新项目
+                self.doRefreshProjectListFromNet()
+                
             }else{
                 print("添加失败！")
                 ToastHelper.showGlobalToast(message: "数据获取失败， 添加失败！")
@@ -184,8 +378,12 @@ class ProjectAddViewController: BasePageViewController{
         guard row >= 0 && row <= ShowProject.projectType.count - 1 else{
             return
         }
-        newProject.type = ShowProject.projectType[row]
-        
+        //newProject.type = ShowProject.projectType[row]
+        if row == 0 || row == 1{
+            switchView(type: .solar)
+        }else {
+            switchView(type: .water)
+        }
     }
     
     func onCapcityListSelected(row: Int){
@@ -209,18 +407,3 @@ class ProjectAddViewController: BasePageViewController{
 
 }
 
-extension ProjectAddViewController: AddressPickerViewDelegate{
-    func onPickerViewSelected(addressPickerView: AddressPickerView, sender: Any?, locationId: String, locationName: String) {
-        print("locationId = \(locationId)")
-        print("locationName = \(locationName)")
-        newProject.locationId = locationId
-        newProject.locationName = locationName
-        self.tableItemViews[2].contentText.text = locationName
-    }
-    
-    func onPickerViewDidShow(addressPickerView: AddressPickerView, sender: Any?){
-        //收起键盘
-        self.tableItemViews[2].contentText.resignFirstResponder()
-        self.tableItemViews[2].contentText.endEditing(true)
-    }
-}

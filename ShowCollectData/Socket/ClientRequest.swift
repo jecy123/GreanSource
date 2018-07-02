@@ -41,7 +41,7 @@ class ClientRequest {
                 }
             case .success(let msg):
                 if msg.msgCode == ConnectAPI.LOGIN_RESPONSE{
-                    print(msg.msgStr)
+                    print("获取到消息 = " + msg.msgStr)
                     print("成功收到服务器响应！")
                     
                     let resAccount = ShowAccount()
@@ -63,6 +63,46 @@ class ClientRequest {
         }
         
     }
+    
+    //更新项目
+    public static func getProjectList(json: String, completeHandler: @escaping (([ShowProject]?) -> Void)) {
+        SocketConn.Instance.sendMessage(commandCode: ConnectAPI.PROJECT_QUERY_COMMAND, msgBody: json, msgId: 0) { (res) in
+            
+            switch res{
+            case .failed(let code):
+                if code == socketErrorCode.jsonStringFormatError{
+                    print("Json字符串格式错误！")
+                }else if code == socketErrorCode.responseFormatError{
+                    print("服务器响应字符串格式错误！")
+                }
+                
+                DispatchQueue.main.async {
+                    completeHandler(nil)
+                }
+            case .success(let msg):
+                if msg.msgCode == ConnectAPI.PROJECT_QUERY_RESPONSE{
+                    print("json = " + msg.msgStr)
+                    print("成功收到服务器响应！")
+                    
+                    let resPage = ShowPage<ShowProject>()
+                    let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
+                    resPage.fromDictionary(dic: dic)
+                    
+                    DispatchQueue.main.async {
+                        completeHandler(resPage.resList)
+                    }
+                }else{
+                    print("服务器消息响应码不符合条件！")
+                    
+                    DispatchQueue.main.async {
+                        completeHandler(nil)
+                    }
+                }
+                
+            }
+        }
+    }
+    
     //项目新增
     public static func addProject(project: ShowProject, completeHandler: @escaping ((ShowProject?) -> Void)){
         SocketConn.Instance.sendMessage(commandCode: ConnectAPI.PROJECT_ADD_COMMAND, msgBody: project.toJSON(), msgId: 0){
@@ -511,7 +551,7 @@ class ClientRequest {
         }
     }
     
-    public static func getAuditList(commandCode: Int32, responseCode:Int32, pageJson: String, completeHandler: @escaping (ShowPage?) -> Void){
+    public static func getAuditList(commandCode: Int32, responseCode:Int32, pageJson: String, completeHandler: @escaping (ShowPage<ShowAccount>?) -> Void){
         SocketConn.Instance.sendMessage(commandCode: commandCode, msgBody: pageJson, msgId: 0) {
             res in
             switch res {
@@ -531,7 +571,7 @@ class ClientRequest {
                     print("成功收到服务器响应！")
                     
                     let dic = JSONUtils.getDictionaryFromJSONString(jsonString: msg.msgStr)
-                    let page = ShowPage()
+                    let page = ShowPage<ShowAccount>()
                     page.fromDictionary(dic: dic)
                     
                     DispatchQueue.main.async {

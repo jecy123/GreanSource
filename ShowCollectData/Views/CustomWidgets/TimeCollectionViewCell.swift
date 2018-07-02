@@ -42,6 +42,23 @@ class TimeCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        var size: CGFloat = 0
+        var fontSize: CGFloat = 0
+        let screenH = UIScreen.main.bounds.height
+        if screenH >= 568.0 && screenH < 667.0 {
+            size = 25
+            fontSize = 8
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            size = 32
+            fontSize = 10
+        } else if screenH >= 736.0 {
+            size = 40
+            fontSize = 14
+        }
+        
+        self.imageCheck.bounds.size = CGSize(width: size, height: size)
+        self.labelTime.font = UIFont.systemFont(ofSize: fontSize)
+        self.labelTime.adjustsFontSizeToFitWidth = true
     }
 
 }

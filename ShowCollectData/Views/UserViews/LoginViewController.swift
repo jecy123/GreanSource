@@ -76,8 +76,14 @@ class ViewController: UIViewController {
         
         btnRegister.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         btnRefind.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
+        
+        btnRememberPass.imageView?.contentMode = .scaleAspectFill
+        btnAutoLogin.imageView?.contentMode = .scaleAspectFill
+        
         btnRememberPass.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         btnAutoLogin.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
+        
+        
         
     }
     
@@ -121,14 +127,40 @@ class ViewController: UIViewController {
         }
     }
     
-    func gotoMainView(accountType: AccountType, projects: [ShowProject], account: String){
+    func gotoMainView(accountType: AccountType, projects: [ShowProject], account: ShowAccount){
+        
+        let titleBarHeight : CGFloat = {
+            let screenH = UIScreen.main.bounds.height
+            var size: CGFloat = 0
+            if screenH >= 568.0 && screenH < 667.0 {
+                size = 40
+            } else if screenH >= 667.0 && screenH < 736.0 {
+                size = 45
+            } else if screenH >= 736.0 {
+                size = 50
+            }
+            return size
+        }()
+        
+        let titleFontSize: CGFloat = {
+            let screenH = UIScreen.main.bounds.height
+            var size: CGFloat = 0
+            if screenH >= 568.0 && screenH < 667.0 {
+                size = 12
+            } else if screenH >= 667.0 && screenH < 736.0 {
+                size = 15
+            } else if screenH >= 736.0 {
+                size = 17
+            }
+            return size
+        }()
         
         let pagesOptions:[UIViewPagerOption] = [
-            .TitleBarHeight(50),
+            .TitleBarHeight(titleBarHeight),
             .TitleBarBackgroundColor(ColorUtils.mainViewBackgroudColor),
             .TitleViewBackgroundColor(ColorUtils.mainThemeColor),
             .TitleBarScrollType(UIViewPagerTitleBarScrollType.UIViewControllerMenuScroll),
-            .TitleFont(UIFont.systemFont(ofSize: 15)),
+            .TitleFont(UIFont.systemFont(ofSize: titleFontSize)),
             .TitleColor(UIColor.black),
             .TitleSelectedColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
             .TitleSelectedBgColor(ColorUtils.selectedBtnColor),
@@ -139,7 +171,8 @@ class ViewController: UIViewController {
             .IsIndicatorArrow(true),
             .BottomlineColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)),
             .BottomlineHeight(1),
-            .TitleBarPosition(UIViewPageTitlePosition.bottom)
+            .TitleBarPosition(UIViewPageTitlePosition.bottom),
+            .IsTitleBarHidden(accountType == AccountType.guest)
             
         ]
         
@@ -151,7 +184,7 @@ class ViewController: UIViewController {
         rootView.account = account
         
         let accountDefaults = UserDefaults.standard
-        if let projectId = accountDefaults.value(forKey: account+"_"+Keys.selectedProjectId) {
+        if let projectId = accountDefaults.value(forKey: account.account+"_"+Keys.selectedProjectId) {
             rootView.selectedProjectId = projectId as! Int
         }        
         
@@ -215,7 +248,7 @@ class ViewController: UIViewController {
                 
                 AddressUtils.getItems(projects: resAccount.projects)
                 //print("projects = \(resAccount.projects)")
-                self.gotoMainView(accountType: AccountType(rawValue: resAccount.role!)!, projects: resAccount.projects, account: resAccount.account)
+                self.gotoMainView(accountType: AccountType(rawValue: resAccount.role!)!, projects: resAccount.projects, account: resAccount)
             }else{
                 
                 print("登录失败！")

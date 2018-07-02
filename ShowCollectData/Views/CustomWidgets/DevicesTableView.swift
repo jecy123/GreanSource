@@ -19,6 +19,8 @@ class DevicesTableView: UITableView{
     */
     var mDevices: [ShowDevice]!
     
+    var projectType: Int!
+    
     let NodeCellId = "DevicesTableViewCell"
     let cellHeight: CGFloat = 50
     
@@ -61,7 +63,13 @@ extension DevicesTableView: UITableViewDataSource{
         
         var device: ShowDevice!
         device = mDevices[indexPath.row]
-        cell.deviceTitleLabel.text = "太阳能污水处理控制柜"+String(device.boxNo)
+        var sysTypeName = "太阳能污水处理控制柜"
+        if projectType == ShowProject.PROJ_TYPE_SUNPOWER || projectType == ShowProject.PROJ_TYPE_SMART {
+            sysTypeName = "太阳能污水处理控制柜"
+        }else if projectType == ShowProject.PROJ_TYPE_WATER {
+            sysTypeName = "水体太阳能控制器"
+        }
+        cell.deviceTitleLabel.text = sysTypeName + String(device.boxNo)
         return cell
     }
 }

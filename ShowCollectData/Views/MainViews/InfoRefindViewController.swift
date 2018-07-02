@@ -24,7 +24,22 @@ class InfoRefindViewController: BasePageViewController {
         
         addAuditingFragment()
         
-        addSelectedButtons(buttonTitles: ["注册信息审核", "找回信息审核"], buttonWidth: 120, buttonHeight: 40)
+        var btnWidth: CGFloat = 120
+        var btnHeight: CGFloat = 40
+        
+        let screenH = UIScreen.main.bounds.height
+        if screenH >= 568.0 && screenH < 667 {
+            btnWidth = 81
+            btnHeight = 27
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            btnWidth = 99
+            btnHeight = 33
+        } else if screenH >= 736.0{
+            btnWidth = 120
+            btnHeight = 40
+        }
+        
+        //addSelectedButtons(buttonTitles: ["注册信息审核", "找回信息审核"], buttonWidth: btnWidth, buttonHeight: btnHeight)
         
     }
     

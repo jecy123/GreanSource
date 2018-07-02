@@ -12,7 +12,7 @@ class ShowLocation : BaseData{
     var locationId: String!
     var accountId: Int16!
     
-    override init() {
+    required init() {
         super.init()
     }
     
