@@ -314,11 +314,59 @@ extension RunningDataViewController: DeviceListFragmentDelegate {
 
 
 extension RunningDataViewController: EmergencyFragmentDelegate {
+    func totalStateChange(fragment: EmergencyFragment, state: OnOrOffState) {
+        guard let deviceList = self.currentDeviceList else {
+            return
+        }
+        print ("1111state.rawValue = \(state.rawValue)")
+        self.emergencyFragment.refreshdata(state0: state.rawValue)
+        for i in 0..<deviceList.count {
+            switch(state.rawValue){
+                case 0:
+                    deviceList[i].sw0 = 0
+                    deviceList[i].sw1 = 0
+                    deviceList[i].sw2 = 0
+                    deviceList[i].sw3 = 0
+                case 1:
+                    deviceList[i].sw0 = 2
+                    deviceList[i].sw1 = 2
+                    deviceList[i].sw2 = 2
+                    deviceList[i].sw3 = 2
+            default:
+                    break
+            }
+        }
+        let listJson = ShowDevice.arrayToJSON(list: deviceList)
+     //   print("Device List = \(listJson)")
+        ClientRequest.setProjectEmergencyStartOrStop(devicelistJson: listJson){
+            resDevices in
+            if let resDevices = resDevices{
+                var msg = ""
+                for device in resDevices {
+                    if device.msg == "此设备未连接" {
+                        msg += device.devNo + ","
+                    }
+                }
+                
+                if msg == "" {
+                    ToastHelper.showGlobalToast(message: "成功！")
+                }else {
+                    msg += "设备未连接"
+                    ToastHelper.showGlobalToast(message: msg)
+                }
+            }else{
+                ToastHelper.showGlobalToast(message: "获取数据失败！")
+            }
+            
+        }
+        
+    }
+    
     func fanStateChange(fragment: EmergencyFragment, index: Int, state: OnOrOffState) {
         guard let deviceList = self.currentDeviceList else {
             return
         }
-        
+         print ("2222state.rawValue = \(state.rawValue)")
         for i in 0..<deviceList.count {
             switch index {
             case 0:
@@ -334,7 +382,7 @@ extension RunningDataViewController: EmergencyFragmentDelegate {
             }
         }
         let listJson = ShowDevice.arrayToJSON(list: deviceList)
-        print("Device List = \(listJson)")
+  //      print("Device List = \(listJson)")
         ClientRequest.setProjectEmergencyStartOrStop(devicelistJson: listJson){
             resDevices in
             if let resDevices = resDevices{
