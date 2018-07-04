@@ -273,14 +273,19 @@ class EmergencyFragment: UIView {
         let buttonOffFrame = CGRect(x: leftMargin + titleW + paddingW + buttonW + paddingW, y: topMargin, width: buttonW, height: itemH)
         
         /******just for draw line*******/
-        let mDevices = [ShowDevice]()
+       /* let mDevices = [ShowDevice]()
         let deviceY = topMargin + itemH - 50
         let devicesFrame = CGRect(x: 0, y: deviceY, width: contentWidth - topMargin, height: 50)
         let devicesTableView = DevicesTableView(frame: devicesFrame, devices: mDevices )
-        self.verticalScrollView.addSubview(devicesTableView)
+        self.verticalScrollView.addSubview(devicesTableView)*/
         /*******************/
         self.totalbutton = totalOnOrOffButton(parentView: self.verticalScrollView, frameOn: buttonOnFrame, frameOff: buttonOffFrame)
         self.totalbutton?.delegate = self
+        let deviceY = topMargin + itemH - 10
+        let rect4 = CGRect(x: topMargin, y: deviceY, width: contentWidth - topMargin - topMargin, height: 1)
+        let bottomLine = UIView(frame: rect4)
+        bottomLine.backgroundColor = ColorUtils.itemTitleViewBgColor
+        self.addSubview(bottomLine)
 
     }
 
