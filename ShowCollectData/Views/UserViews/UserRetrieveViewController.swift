@@ -33,16 +33,16 @@ class UserRetrieveViewController: UserBaseController {
         var rect:CGRect
         
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[0], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: tableItemNames[0], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         //let dropBoxY = startY
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[1], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: tableItemNames[1], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX + 100, y: startY, width: itemWidth - 100, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[2], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: tableItemNames[2], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         self.tableItems = items
         

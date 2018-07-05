@@ -17,6 +17,9 @@ enum TableItemType{
     case typePopup
     case typeRemovableText
     case typeMultiLineText
+    case typeTextRight
+    case typePopupRight
+    case typenull
 }
 
 class TableItem
@@ -72,9 +75,14 @@ class TableItemView: UIView {
             frame.size.height -= 1
         }
         
-        let rect = CGRect(x: 0, y: 0, width: frame.width * labelRatio - 5, height: frame.height - 1)
+        let rect = CGRect(x: 5, y: 0, width: frame.width * labelRatio - 5, height: frame.height - 1)
         nameLabel = UILabel(frame: rect)
-        nameLabel.textAlignment = .right
+        if type == TableItemType.typeTextRight || type == TableItemType.typePopupRight {
+            nameLabel.textAlignment = .right
+        }
+        else {
+            nameLabel.textAlignment = .left
+        }
         nameLabel.adjustsFontSizeToFitWidth = true
         //nameLabel.font = UIFont.systemFont(ofSize: frame.height * 0.57)
         nameLabel.adjustFontByScreenHeight()
@@ -83,7 +91,7 @@ class TableItemView: UIView {
         
         self.addSubview(nameLabel)
         
-        if type == TableItemType.typeText {
+        if type == TableItemType.typeText || type == TableItemType.typeTextRight{
             
             let rect2 = CGRect(x: frame.width * labelRatio + 5, y: 0, width: frame.width*(1 - labelRatio) - 5,
                                height: frame.height)
@@ -133,6 +141,7 @@ class TableItemView: UIView {
             contentTextView.delegate = self
             self.addSubview(contentTextView)
         }
+        
         
         if withBottomLine {
             let rect4 = CGRect(x: 0, y: frame.height, width: frame.width, height: 1)

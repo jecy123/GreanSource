@@ -10,7 +10,7 @@ import UIKit
 
 class WaterSysFragment: BaseFragment {
     
-    let titles = ["项目名称", "项目类别", "项目地址", "街道", "设备型号", "增氧设备功率(W)", "增氧能力(KGO₂/H)", "动力效率(KGO₂/H)", "循环通量(M³/H)","辐射面积(M²)", "运维人员姓名", "运维人员联系方式"]
+    let titles = ["项目名称:", "项目类别:", "项目地址:", "街道:", "设备型号:", "增氧设备功率(W):", "增氧能力(KGO₂/H):", "动力效率(KGO₂/H):", "循环通量(M³/H):","辐射面积(M²):", "运维人员姓名:", "运维人员联系方式:"]
     
 
     func initViews(parentVC: UIViewController) {

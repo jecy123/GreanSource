@@ -37,44 +37,44 @@ class RegisterViewController: UserBaseController {
         var rect:CGRect!
         
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[0], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[0], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[1], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[1], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[2], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[2], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[3], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[3], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         //用户类型
         startY += itemHeight + itemPadding
         let userTypeY = startY
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[4], type: .typePopup, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[4], type: .typePopupRight, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[5], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[5], type: .typeTextRight, frame: rect, ratio: 0.4))
         //“项目地址”和“项目地址1”共用同一个y
         //startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[6], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        items.append(TableItem(name: menuNames[6], type: .typeTextRight, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
         
         startY += itemHeight + itemPadding
         
         self.telY1 = startY
         
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[7], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        items.append(TableItem(name: menuNames[7], type: .typeTextRight, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
         
         startY += itemHeight + itemPadding
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[8], type: .typeText, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        items.append(TableItem(name: menuNames[8], type: .typeTextRight, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
         
 //        startY += itemHeight + itemPadding
 //        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
@@ -83,14 +83,14 @@ class RegisterViewController: UserBaseController {
         startY += itemHeight + itemPadding
         self.telY2 = startY
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[9], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[9], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         startY += itemHeight + itemPadding
         let identiCodeY = startY
         
         rect = CGRect(x: startX + 100, y: startY, width: itemWidth - 100, height: itemHeight)
         //rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[10], type: .typeText, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[10], type: .typeTextRight, frame: rect, ratio: 0.4))
         
         self.tableItems = items
         

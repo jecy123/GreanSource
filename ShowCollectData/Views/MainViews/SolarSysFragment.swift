@@ -10,7 +10,10 @@ import UIKit
 
 class SolarSysFragment: BaseFragment{
     
-    let titles = ["项目名称", "项目类别", "项目地址", "街道", "设备型号", "设计处理量","进水标准", "COD","氨氮","总氮","总磷","PH值","悬浮物","排放标准","COD","氨氮","总氮","总磷","PH值","悬浮物","运维人员姓名","运维人员联系方式"]
+    let titles = ["项目名称:", "项目类别:", "项目地址:", "街道:", "设备型号:", "设计处理量:","进水标准:", "COD:","氨氮:","总磷:","总氮:","PH值:","悬浮物:","排放标准:","COD:","氨氮:","总磷:","总氮:","PH值:","悬浮物:","运维人员姓名:","运维人员联系方式:"]
+    
+    let danwei = "mg/L"
+    let nulltext = " "
     
     let capcityListNames = listToNames(list: capcityList)
     
@@ -58,24 +61,43 @@ class SolarSysFragment: BaseFragment{
         
         startY += itemH + 1
         startPoint = CGPoint(x: 0, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[7], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[7], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: frameW / 3, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startPoint = CGPoint(x: frameW / 2, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[8], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[8], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: 5 * frameW / 6, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startY += itemH + 1
         startPoint = CGPoint(x: 0, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[9], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[9], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: frameW / 3, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startPoint = CGPoint(x: frameW / 2, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[10], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[10], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: 5 * frameW / 6, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startY += itemH + 1
         startPoint = CGPoint(x: 0, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[11], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[11], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: frameW / 3, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: nulltext, type: .typenull, withBottomLine: true)
         
         startPoint = CGPoint(x: frameW / 2, y: startY)
         self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[12], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: 5 * frameW / 6, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
+        
         
         startY += itemH + 1
         startPoint = CGPoint(x: 0, y: startY)
@@ -85,26 +107,43 @@ class SolarSysFragment: BaseFragment{
         
         startY += itemH + 1
         startPoint = CGPoint(x: 0, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[14], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[14], type: .typeText, withBottomLine: true)
         
+        startPoint = CGPoint(x: frameW / 3, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startPoint = CGPoint(x: frameW / 2, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[15], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[15], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: 5 * frameW / 6, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
+        
         
         startY += itemH + 1
         startPoint = CGPoint(x: 0, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[16], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[16], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: frameW / 3, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startPoint = CGPoint(x: frameW / 2, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[17], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[17], type: .typeText, withBottomLine: true)
+        
+        startPoint = CGPoint(x: 5 * frameW / 6, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startY += itemH + 1
         startPoint = CGPoint(x: 0, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[18], type: .typeText, withBottomLine: true)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[18], type: .typeText, withBottomLine: true)
+  
+        startPoint = CGPoint(x: 5 * frameW / 6, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startPoint = CGPoint(x: frameW / 2, y: startY)
         self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[19], type: .typeText, withBottomLine: true)
         
+        startPoint = CGPoint(x: 5 * frameW / 6, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
         
         startY += itemH + 1
         startPoint = CGPoint(x: 0, y: startY)
@@ -116,29 +155,32 @@ class SolarSysFragment: BaseFragment{
         
          self.tableItemViews[2].contentText.addTarget(self, action: #selector(onAddressItemClicked(_:)), for: UIControlEvents.editingDidBegin)
         
+        self.tableItemViews[16].nameLabel.isHidden = true
+        
+        
         //COD
-        self.tableItemViews[14].contentText.isEnabled = false
-        self.tableItemViews[14].contentText.textColor = UIColor.gray
+        self.tableItemViews[20].contentText.isEnabled = false
+        self.tableItemViews[20].contentText.textColor = UIColor.gray
         
         //氨氮
-        self.tableItemViews[15].contentText.isEnabled = false
-        self.tableItemViews[15].contentText.textColor = UIColor.gray
+        self.tableItemViews[22].contentText.isEnabled = false
+        self.tableItemViews[22].contentText.textColor = UIColor.gray
         
         //总氮
-        self.tableItemViews[16].contentText.isEnabled = false
-        self.tableItemViews[16].contentText.textColor = UIColor.gray
+        self.tableItemViews[24].contentText.isEnabled = false
+        self.tableItemViews[24].contentText.textColor = UIColor.gray
         
         //总磷
-        self.tableItemViews[17].contentText.isEnabled = false
-        self.tableItemViews[17].contentText.textColor = UIColor.gray
+        self.tableItemViews[26].contentText.isEnabled = false
+        self.tableItemViews[26].contentText.textColor = UIColor.gray
         
         //PH值
-        self.tableItemViews[18].contentText.isEnabled = false
-        self.tableItemViews[18].contentText.textColor = UIColor.gray
+        self.tableItemViews[28].contentText.isEnabled = false
+        self.tableItemViews[28].contentText.textColor = UIColor.gray
         
         //悬浮物
-        self.tableItemViews[19].contentText.isEnabled = false
-        self.tableItemViews[19].contentText.textColor = UIColor.gray
+        self.tableItemViews[30].contentText.isEnabled = false
+        self.tableItemViews[30].contentText.textColor = UIColor.gray
         
         
         addDropBox(dropBoxFrame: CGRect(x: frameW * 0.4, y: dropBoxY1, width: frameW * 0.6, height: itemH - 1), names: self.capcityListNames, dropBoxDidSelected: onCapcityListSelected)
@@ -173,30 +215,30 @@ class SolarSysFragment: BaseFragment{
         print("emissionStd = \(emissionStd[row])")
         if row ==  0{
             //COD
-            self.tableItemViews[14].contentText.text = "50 mg/L"
+            self.tableItemViews[20].contentText.text = "50"
             //氨氮
-            self.tableItemViews[15].contentText.text = "5 mg/L"
+            self.tableItemViews[22].contentText.text = "5"
+            //总磷
+            self.tableItemViews[24].contentText.text = "0.5"
             //总氮
-            self.tableItemViews[16].contentText.text = "0.5 mg/L"
-            //总磷
-            self.tableItemViews[17].contentText.text = "15 mg/L"
+            self.tableItemViews[26].contentText.text = "15"
             //PH值
-            self.tableItemViews[18].contentText.text = "6-9"
+            self.tableItemViews[28].contentText.text = "6-9"
             //悬浮物
-            self.tableItemViews[19].contentText.text = "10 mg/L"
+            self.tableItemViews[30].contentText.text = "10"
         }else {
             //COD
-            self.tableItemViews[14].contentText.text = "60 mg/L"
+            self.tableItemViews[20].contentText.text = "60"
             //氨氮
-            self.tableItemViews[15].contentText.text = "8 mg/L"
-            //总氮
-            self.tableItemViews[16].contentText.text = "1 mg/L"
+            self.tableItemViews[22].contentText.text = "8"
             //总磷
-            self.tableItemViews[17].contentText.text = "20 mg/L"
+            self.tableItemViews[24].contentText.text = "1"
+            //总氮
+            self.tableItemViews[26].contentText.text = "20"
             //PH值
-            self.tableItemViews[18].contentText.text = "6-9"
+            self.tableItemViews[28].contentText.text = "6-9"
             //悬浮物
-            self.tableItemViews[19].contentText.text = "20 mg/L"
+            self.tableItemViews[30].contentText.text = "20"
             
         }
         //newProject.emissionStandards = emissionStd[row]
