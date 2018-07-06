@@ -11,7 +11,7 @@ import UIKit
 class UserRetrieveViewController: UserBaseController {
     
     //let tableItemNames:[String] = ["用户姓名","用户类型","项目区域","输入原号码","输入新号码","验证码"]
-    let tableItemNames: [String] = ["手机号码","用户姓名", "验证码" ]
+    let tableItemNames: [String] = ["手机号码:  ","用户姓名:  ", "验证码:  " ]
     let userTypes: [String] = ["环保部门人员","系统运维维人员"]
     
     var locationDic: [String : String] = [:]
@@ -26,31 +26,31 @@ class UserRetrieveViewController: UserBaseController {
         let startX: CGFloat = self.itemStartX
         var startY: CGFloat = self.topImageHeight + self.titleMarginTop + self.titleHeight + 30
         
-        let identiCodeY:CGFloat = startY + (itemHeight + itemPadding) * 2
+       // let identiCodeY:CGFloat = startY + (itemHeight + itemPadding) * 2
         
         var items:[TableItem] = [TableItem]()
         
         var rect:CGRect
         
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[0], type: .typeTextRight, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: tableItemNames[0], type: .typeTextRight, frame: rect, ratio: 0.35))
         
         startY += itemHeight + itemPadding
         //let dropBoxY = startY
         rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[1], type: .typeTextRight, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: tableItemNames[1], type: .typeTextRight, frame: rect, ratio: 0.35))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX + 100, y: startY, width: itemWidth - 100, height: itemHeight)
-        items.append(TableItem(name: tableItemNames[2], type: .typeTextRight, frame: rect, ratio: 0.4))
+        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
+        items.append(TableItem(name: tableItemNames[2], type: .typeTextRight, frame: rect, ratio: 0.35))
         
         self.tableItems = items
         
 //        let dropBoxFrame = CGRect(x: startX + itemWidth * 0.4 + 5, y: dropBoxY, width: itemWidth * 0.6 - 5, height: itemHeight)
 //
 //        addDropBox(frame: dropBoxFrame, userTypeMenus: userTypes)
-        
-        addIdentiCodeButton(frame: CGRect(x: startX, y: identiCodeY, width: 100, height: itemHeight))
+        startY += itemHeight + itemPadding
+        addIdentiCodeButton(frame: CGRect(x: itemWidth - 70, y: startY, width: 100, height: itemHeight))
     }
     
     override func viewDidLoad() {
@@ -139,7 +139,7 @@ class UserRetrieveViewController: UserBaseController {
     
     override func onIdentiCodeObtain(_ sender: Any){
         print("获取验证码")
-        guard let text = self.tableItemViews[4].contentText.text, !text.isEmpty else{
+        guard let text = self.tableItemViews[0].contentText.text, !text.isEmpty else{
             ToastHelper.showGlobalToast(message: "手机号不能为空！")
             print("手机号码选项为空")
             return
