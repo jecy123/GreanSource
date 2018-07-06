@@ -58,11 +58,11 @@ class UserBaseController: UIViewController {
         }
     }
     public var itemHeight: CGFloat{
-        var h = screenHeight / 22
+        var h = screenHeight / 22 - 2
         if h > 30 {
             h = 30
         }
-        print("h = \(h)")
+     //   print("h = \(h)")
         return h
     }
     public var itemPadding:CGFloat = 10

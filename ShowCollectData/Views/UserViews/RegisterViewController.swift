@@ -12,7 +12,7 @@ class RegisterViewController: UserBaseController {
     
     //var menuNames:[String] = ["手机号：","验证码：","账  号：","邮箱地址：","用户姓名：","密  码：","确认密码：","用户类型：","环保局地址：","项目地址1：", "项目地址2：", "项目地址3："]
     var menuNames:[String] = ["*账  号：","*密  码：","*确认密码：","*用户姓名：","*用户类型：","*项目地址：","*项目地址1：", "*项目地址2：", "*项目地址3：","*手机号：","*验证码："]
-    let userTypes: [String] = ["环保监督人员","系统运维维人员"]
+    let userTypes: [String] = ["环保监督人员","系统运维人员"]
     
     var addressDic: [String : String] = [:]
     
@@ -26,9 +26,19 @@ class RegisterViewController: UserBaseController {
         
         self.itemSize = CGFloat(menuNames.count)
         
-        self.itemPadding = 8
+        let screenH = UIScreen.main.bounds.height
         
-        let startX: CGFloat = itemStartX
+        if screenH >= 568.0 && screenH < 667 {
+            self.itemPadding = 4
+        } else if screenH >= 667.0 && screenH < 736.0 {
+             self.itemPadding = 8
+        } else if screenH >= 736.0{
+            self.itemPadding = 12
+        }
+        
+        let startX: CGFloat = itemStartX - 10
+        let itemnewWidth = itemWidth + 10
+        
         var startY: CGFloat = self.topImageHeight + self.titleMarginTop + self.titleHeight + 10
         
         
@@ -36,45 +46,46 @@ class RegisterViewController: UserBaseController {
         
         var rect:CGRect!
         
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[0], type: .typeTextRight, frame: rect, ratio: 0.4))
+        
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[0], type: .typeTextRight, frame: rect, ratio: 0.3))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[1], type: .typeTextRight, frame: rect, ratio: 0.4))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[1], type: .typeTextRight, frame: rect, ratio: 0.3))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[2], type: .typeTextRight, frame: rect, ratio: 0.4))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[2], type: .typeTextRight, frame: rect, ratio: 0.3))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[3], type: .typeTextRight, frame: rect, ratio: 0.4))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[3], type: .typeTextRight, frame: rect, ratio: 0.3))
         
         //用户类型
         startY += itemHeight + itemPadding
         let userTypeY = startY
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[4], type: .typePopupRight, frame: rect, ratio: 0.4))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[4], type: .typePopupRight, frame: rect, ratio: 0.3))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[5], type: .typeTextRight, frame: rect, ratio: 0.4))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[5], type: .typeTextRight, frame: rect, ratio: 0.3))
         //“项目地址”和“项目地址1”共用同一个y
         //startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[6], type: .typeTextRight, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[6], type: .typeTextRight, frame: rect, ratio: 0.3, withBottomLine: false, isHidden: true))
         
         startY += itemHeight + itemPadding
         
         self.telY1 = startY
         
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[7], type: .typeTextRight, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[7], type: .typeTextRight, frame: rect, ratio: 0.3, withBottomLine: false, isHidden: true))
         
         startY += itemHeight + itemPadding
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[8], type: .typeTextRight, frame: rect, ratio: 0.4, withBottomLine: false, isHidden: true))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[8], type: .typeTextRight, frame: rect, ratio: 0.3, withBottomLine: false, isHidden: true))
         
 //        startY += itemHeight + itemPadding
 //        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
@@ -82,24 +93,25 @@ class RegisterViewController: UserBaseController {
         
         startY += itemHeight + itemPadding
         self.telY2 = startY
-        rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[9], type: .typeTextRight, frame: rect, ratio: 0.4))
+        rect = CGRect(x: startX, y: startY, width: itemnewWidth, height: itemHeight)
+        items.append(TableItem(name: menuNames[9], type: .typeTextRight, frame: rect, ratio: 0.3))
         
         startY += itemHeight + itemPadding
-        let identiCodeY = startY
         
-        rect = CGRect(x: startX + 100, y: startY, width: itemWidth - 100, height: itemHeight)
+        rect = CGRect(x: startX , y: startY, width: itemnewWidth , height: itemHeight)
         //rect = CGRect(x: startX, y: startY, width: itemWidth, height: itemHeight)
-        items.append(TableItem(name: menuNames[10], type: .typeTextRight, frame: rect, ratio: 0.4))
+        items.append(TableItem(name: menuNames[10], type: .typeTextRight, frame: rect, ratio: 0.3))
         
         self.tableItems = items
         
-        let r = CGRect(x: startX + itemWidth * 0.4 + 5, y: userTypeY, width: itemWidth * 0.6 - 5, height: itemHeight)
+        let r = CGRect(x: startX + itemnewWidth * 0.3 + 5, y: userTypeY, width: itemnewWidth * 0.7 - 5, height: itemHeight)
         addDropBox(frame: r, userTypeMenus: userTypes)
         self.userTypeDropBox.setIndex(index: 0)
         
-        addIdentiCodeButton(frame: CGRect(x: startX, y: identiCodeY, width: 100, height: itemHeight))
         
+        startY += itemHeight + itemPadding
+        addIdentiCodeButton(frame: CGRect(x: itemnewWidth - 90, y: startY, width: 100, height: itemHeight))
+      
         startY += itemHeight + itemPadding
         self.confirm.frame.origin.y = startY + 10
         self.back.frame.origin.y = startY + 10
@@ -141,7 +153,7 @@ class RegisterViewController: UserBaseController {
             //修改第9、10项（手机号，验证码）选项以及获取验证码按钮的高度
             self.tableItemViews[9].frame.origin.y = telY1
             self.tableItemViews[10].frame.origin.y = telY1 + itemHeight + itemPadding
-            self.identiCodeConfirm.frame.origin.y = telY1 + itemHeight + itemPadding
+            self.identiCodeConfirm.frame.origin.y = telY1 + itemHeight + itemPadding + itemHeight + itemPadding
         }
         else if userType == .mantainer {
             self.tableItemViews[5].isHidden = true
@@ -152,7 +164,7 @@ class RegisterViewController: UserBaseController {
             //修改第9、10项（手机号，验证码）选项以及获取验证码按钮的高度
             self.tableItemViews[9].frame.origin.y = telY2
             self.tableItemViews[10].frame.origin.y = telY2 + itemHeight + itemPadding
-            self.identiCodeConfirm.frame.origin.y = telY2 + itemHeight + itemPadding
+            self.identiCodeConfirm.frame.origin.y = telY2 + itemHeight + itemPadding + itemHeight + itemPadding
         }
     }
     
@@ -286,7 +298,7 @@ class RegisterViewController: UserBaseController {
             return
         }
         
-        print("account = \(newAccount.toJSON())")
+   //print("account = \(newAccount.toJSON())")
         print("确认按钮按下")
         
         ClientRequest.registerAccount(showAccount: self.newAccount){
