@@ -27,6 +27,8 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     //选项未展开的图标
     let image_ec = "tree_ec.png"
     
+    let screenH = UIScreen.main.bounds.height
+    
     init(frame: CGRect, data1: [BaseItem], data2: [BaseItem], data3: [BaseItem]) {
         super.init(frame: frame, style: .plain)
         self.mNodes1 = data1
@@ -35,6 +37,7 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         
         self.delegate = self
         self.dataSource = self
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -74,7 +77,7 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         }else {
             node = mNodes3[indexPath.row]
         }
-        
+
         //cell缩进
         cell.background.bounds.origin.x = -20.0 * CGFloat(node.level)
         
@@ -92,14 +95,37 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
         }
         
         cell.nodeName.text = node.name
+        
+        if screenH >= 568.0 && screenH < 667.0 {
+             cell.nodeName.font = UIFont.systemFont(ofSize: 14)
+        } else if screenH >= 667.0 && screenH < 736.0 {
+             cell.nodeName.font = UIFont.systemFont(ofSize: 16)
+        } else if screenH >= 736.0 {
+             cell.nodeName.font = UIFont.systemFont(ofSize: 17)
+        }
+       
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if screenH >= 568.0 && screenH < 667.0 {
+            return 30
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            return 35
+        } else if screenH >= 736.0 {
+            return 40
+        }
         return 40
     }
    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if screenH >= 568.0 && screenH < 667.0 {
+            return 20
+        } else if screenH >= 667.0 && screenH < 736.0 {
+            return 25
+        } else if screenH >= 736.0 {
+            return 30
+        }
         return 30
     }
     
@@ -108,6 +134,7 @@ class TreeTableView: UITableView, UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         let title = systemNames[section]
+        
         return title
     }
     
