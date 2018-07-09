@@ -136,8 +136,8 @@ class SolarSysFragment: BaseFragment{
         startPoint = CGPoint(x: 0, y: startY)
         self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: titles[18], type: .typeText, withBottomLine: true)
   
-        startPoint = CGPoint(x: 5 * frameW / 6, y: startY)
-        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: danwei, type: .typenull, withBottomLine: true)
+        startPoint = CGPoint(x:  frameW / 3, y: startY)
+        self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 3, titleRatio: 0.4, title: nulltext, type: .typenull, withBottomLine: true)
         
         startPoint = CGPoint(x: frameW / 2, y: startY)
         self.addTableItemView(parentVC: parentVC, start: startPoint, itemW: frameW / 2, titleRatio: 0.4, title: titles[19], type: .typeText, withBottomLine: true)

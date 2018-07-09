@@ -361,7 +361,7 @@ class EmergencyFragment: UIView {
     }
     
     func refreshdata(state0:Int){
-        print ("3333333")
+       // print ("3333333")
         print(state0)
         switch(state0){
             case 0:
