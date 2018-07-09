@@ -154,6 +154,22 @@ class BasePageViewController: UIViewController{
         self.itemBgView.addSubview(infomationView)
     }
     
+    func addStatusInfoView(infoViewFrame: CGRect, titleRatio: CGFloat, titles: [String], contents: [String]){
+        infomationView = InfoView(frame: infoViewFrame, titleRatio: titleRatio, titles: titles, contents: contents,status:false)
+        self.itemBgView.addSubview(infomationView)
+      //  let tableItem = TableItem(name: titles[0], type: .typenull, frame: infoViewFrame, ratio: titleRatio,withBottomLine: false)
+       // let tableItemView = TableItemView(parentVC: self, item: tableItem)
+       // tableItemView.delegate = delegate
+        
+     //   tableItemView.tag = self.tableItemTag
+     //   self.tableItemTag += 1
+     //   self.itemBgView.addSubview(tableItemView)
+      //  self.tableItemViews.append(tableItemView)
+        
+        
+        
+    }
+    
     func addTableItemView(tableFrame: CGRect, titleRatio: CGFloat, title: String, type: TableItemType, withBottomLine: Bool, delegate: TableItemViewDelegate? = nil){
         let tableItem = TableItem(name: title, type: type, frame: tableFrame, ratio: titleRatio,withBottomLine: withBottomLine)
         let tableItemView = TableItemView(parentVC: self, item: tableItem)

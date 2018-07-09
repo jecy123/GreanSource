@@ -11,7 +11,7 @@ import UIKit
 //运行状态界面
 class RunningStateViewController: BasePageViewController{
     let titles:[String] = ["连续无故障运行时长：","上次故障发生时间："]
-    let contents: [String] = ["  天  小时", "    年  月  日  时"]
+    let contents: [String] = ["   天         小时", "      年          月         日" , "     时       分"]
     
     var mDevices: [ShowDevice]!{
         didSet{
@@ -74,7 +74,8 @@ class RunningStateViewController: BasePageViewController{
         //let y = (itemBgView.frame.height - height) / 2
         let y = itemBgTitleHeight + itemBgTitleHeight + 80
         let infoFrame = CGRect(x: 20, y: y, width: itemBgWidth, height: height)
-        addInfoView(infoViewFrame: infoFrame, titleRatio: 0.5, titles: titles, contents: contents)
+        addStatusInfoView(infoViewFrame: infoFrame, titleRatio: 0.5, titles: titles, contents: contents)
+
     }
     
     func initDeviceListTable(){
@@ -193,9 +194,9 @@ extension RunningStateViewController: UITableViewDelegate{
         if let safeTime = data.safeTime {
             let days = safeTime / (60 * 60 * 24)
             let hours = (safeTime % (60 * 60 * 24)) / (60 * 60)
-            let minutes = (safeTime % (60 * 60)) / 60
+           // let minutes = (safeTime % (60 * 60)) / 60
             
-            let safeTimeString = String(days) + "天" + String(hours) + "时"
+            let safeTimeString = String(days) + " 天        " + String(hours) + "  小时"
             //+String(minutes) + "分"
             self.infomationView.refreshOneContent(at: 0, content
                 : safeTimeString)
@@ -206,9 +207,12 @@ extension RunningStateViewController: UITableViewDelegate{
             let month = breakTime.getDate().month
             let day = breakTime.getDate().day
             let hour = breakTime.getDate().hour
+            let minutes = breakTime.getDate().minute
             
-            let breakTimeString = String(year) + "年" + String(month) + "月" + String(day) + "日" + String(hour) + "时"
+            let breakTimeString = String(year) + "  年        " + String(month) + "  月    "   + String(day) + "    日"
+            let breakTimeString1 =  String(hour) + "  时       " + String(minutes) + "  分"
             self.infomationView.refreshOneContent(at: 1, content: breakTimeString)
+            self.infomationView.refreshOneContent(at: 2, content: breakTimeString1)
         }
         
     }

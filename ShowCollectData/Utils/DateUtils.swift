@@ -10,15 +10,16 @@ import Foundation
 
 extension Date {
     ///获取年月日小时
-    func getDate()->(year: Int, month: Int, day: Int, hour: Int){
+    func getDate()->(year: Int, month: Int, day: Int, hour: Int, minute:Int){
         let calender = Calendar.current
         
         let year = calender.component(.year, from: self)
         let month = calender.component(.month, from: self)
         let day = calender.component(.day, from: self)
         let hour = calender.component(.hour, from: self)
+        let minute = calender.component(.minute, from: self)
         
-        return (year, month, day, hour)
+        return (year, month, day, hour,minute)
     }
     
     ///java长整形日期数据格式转换成swift的Date
