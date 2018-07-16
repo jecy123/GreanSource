@@ -11,7 +11,7 @@ import UIKit
 class RegisterViewController: UserBaseController {
     
     //var menuNames:[String] = ["手机号：","验证码：","账  号：","邮箱地址：","用户姓名：","密  码：","确认密码：","用户类型：","环保局地址：","项目地址1：", "项目地址2：", "项目地址3："]
-    var menuNames:[String] = ["*账  号：","*密  码：","*确认密码：","*用户姓名：","*用户类型：","*项目地址：","*项目地址1：", "*项目地址2：", "*项目地址3：","*手机号：","*验证码："]
+    var menuNames:[String] = ["*账  号：","*密  码：","*确认密码：","*用户姓名：","*用户类型：","*项目地址：","*项目地址1：", "项目地址2：", " 项目地址3：","*手机号：","*验证码："]
     let userTypes: [String] = ["环保监督人员","系统运维人员"]
     
     var addressDic: [String : String] = [:]
@@ -264,26 +264,22 @@ class RegisterViewController: UserBaseController {
                 return false
             }
             
-            guard let address2 = self.tableItemViews[7].contentText.text, !address2.isEmpty else{
-                ToastHelper.showGlobalToast(message: "请选择项目地址2！")
-                return false
-            }
-            guard let address3 = self.tableItemViews[8].contentText.text, !address3.isEmpty else{
-                ToastHelper.showGlobalToast(message: "请选择项目地址3！")
-                return false
-            }
-            
-            
             if let addressId1 = self.addressDic[address1] {
                 let location = ShowLocation(locationId: addressId1, retCode: 0, msg: "")
                 newAccount.locations.append(location)
             }
-            if let addressId2 = self.addressDic[address2] {
-                let location = ShowLocation(locationId: addressId2, retCode: 0, msg: "")
+            
+            
+            if let address2 = self.tableItemViews[7].contentText.text , !address2.isEmpty {
+                let addressId2 = self.addressDic[address2]
+                let location = ShowLocation(locationId: addressId2!, retCode: 0, msg: "")
                 newAccount.locations.append(location)
             }
-            if let addressId3 = self.addressDic[address3] {
-                let location = ShowLocation(locationId: addressId3, retCode: 0, msg: "")
+            
+            
+            if let address3 = self.tableItemViews[8].contentText.text ,!address3.isEmpty{
+                let addressId3 = self.addressDic[address3]
+                let location = ShowLocation(locationId: addressId3!, retCode: 0, msg: "")
                 newAccount.locations.append(location)
             }
             
@@ -329,12 +325,12 @@ class RegisterViewController: UserBaseController {
     }
     
     override func onIdentiCodeObtain(_ sender: Any) {
-        guard let text = self.tableItemViews[0].contentText.text, !text.isEmpty else{
+        guard let text = self.tableItemViews[9].contentText.text, !text.isEmpty else{
             ToastHelper.showGlobalToast(message: "手机号不能为空！")
             print("手机号码选项为空")
             return
         }
-        
+        //print("text = \(text)");
         guard StringUtils.isPhone(number: text) else {
             ToastHelper.showGlobalToast(message: "手机号码格式错误！")
             print("手机号码格式错误！")
