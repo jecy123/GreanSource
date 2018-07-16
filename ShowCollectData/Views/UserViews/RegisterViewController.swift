@@ -310,7 +310,7 @@ class RegisterViewController: UserBaseController {
                     //self.view.tgc_makeToast(message: errorMsg)
                     return
                 }
-                print("注册成功！")
+                print("注册成功！待审核")
                 if let msg = resResponse.msg {
                     ToastHelper.showGlobalToast(message: msg)
                 }

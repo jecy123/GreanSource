@@ -144,7 +144,7 @@ class UserBaseController: UIViewController {
                 }
                 print("获取验证码成功")
                 self.showVCode = resVCode
-                ToastHelper.showGlobalToast(message: "获取验证码成功")
+             //  ToastHelper.showGlobalToast(message: "获取验证码成功")
                /* if let code = resVCode.vcode{
                     ToastHelper.showGlobalToast(message: "获取验证码成功，验证码是" + code)
                 }*/
