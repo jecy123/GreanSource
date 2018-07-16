@@ -195,7 +195,7 @@ class ProjectAddViewController: BasePageViewController{
         newProject.type = ShowProject.projectType[projectTypeIndex]
         
         //太阳能或者智慧系统
-        if projectTypeIndex == 0 || projectTypeIndex == 1 {
+        if projectTypeIndex == 0 || projectTypeIndex == 2 {
             guard let projectName = self.solarSysFragment.tableItemViews[0].contentText.text, !projectName.isEmpty else {
                 ToastHelper.showGlobalToast(message: "请填写项目名！")
                 return
@@ -379,7 +379,7 @@ class ProjectAddViewController: BasePageViewController{
             return
         }
         //newProject.type = ShowProject.projectType[row]
-        if row == 0 || row == 1{
+        if row == 0 || row == 2{
             switchView(type: .solar)
         }else {
             switchView(type: .water)

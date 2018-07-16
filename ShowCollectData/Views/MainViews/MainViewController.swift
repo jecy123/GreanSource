@@ -208,7 +208,8 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
     ///更新项目列表
     func refreshProjectTreeView() {
         self.projectListTreeView.mNodes1 = AddressUtils.sunPowerItem.provinceItem
-        self.projectListTreeView.mNodes2 = AddressUtils.smartSysItem.provinceItem
+        self.projectListTreeView.mNodes2 = AddressUtils.waterSysItem.provinceItem
+        self.projectListTreeView.mNodes3 = AddressUtils.smartSysItem.provinceItem
         self.projectListTreeView.reloadData()
     }
     
@@ -224,7 +225,7 @@ class MainViewController: ISViewPagerContainer, TreeTableDelegate {
         projectListPopover.arrowSize.height = 0
         projectListPopover.willShowHandler = self.popoverWillShow
         let frame = CGRect(x: 0, y: 0, width: self.view.bounds.width / 3 * 2, height: self.view.frame.height * 0.75)
-        projectListTreeView = TreeTableView(frame: frame, data1: AddressUtils.sunPowerItem.provinceItem, data2:AddressUtils.smartSysItem.provinceItem, data3: AddressUtils.waterSysItem.provinceItem)
+        projectListTreeView = TreeTableView(frame: frame, data1: AddressUtils.sunPowerItem.provinceItem, data2:AddressUtils.waterSysItem.provinceItem, data3: AddressUtils.smartSysItem.provinceItem)
         projectListTreeView.treeTableDelegate = self
         
         userInfoPopover = Popover(options: [], showHandler: nil, dismissHandler: nil)

@@ -8,7 +8,7 @@
 
 import Foundation
 
-let systemNames = ["太阳能污水处理系统", "智慧运维系统", "水体太阳能曝气系统"]
+let systemNames = ["太阳能污水处理系统",  "水体太阳能曝气系统" ,"智慧运维系统",]
 
 let deviceNames = ["太阳能板", "电池", "曝气系统", "太阳能控制器"]
 let deviceCountOpts = [[2, 4, 6, 8, 16, 24, 32], [2, 4, 6, 8, 16, 24, 32], [2, 2, 3, 3, 6, 9, 12], [1, 1, 1, 2, 4, 6, 8]]
@@ -17,8 +17,8 @@ let outStds = [["50", "5", "0.5", "15", "6-9", "10"], ["60", "8", "1", "20", "6-
 
 
 let emissionStdAccessment: [Int : String] = [10 : "一级A", 20 : "一级B", 30 : "二级", 40 : "三级"]
-let emissionStdNames = ["一级A", "一级B", "二级", "三级"]
-let emissionStdNames2 = ["一级A", "一级B"]
+let emissionStdNames2 = ["一级A", "一级B", "二级", "三级"]
+let emissionStdNames = ["一级A", "一级B"]
 
 let capcityList = [5, 10, 20, 30, 50, 100]
 let emissionStd = [10, 20, 30, 40]

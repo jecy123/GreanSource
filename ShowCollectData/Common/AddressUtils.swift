@@ -27,9 +27,9 @@ class AddressUtils {
         if section == 0 {
             sectionProvince = sunPowerItem.provinceItem
         } else if section == 1 {
-            sectionProvince = smartSysItem.provinceItem
-        } else {
             sectionProvince = waterSysItem.provinceItem
+        } else {
+            sectionProvince = smartSysItem.provinceItem
         }
 
         for item in sectionProvince {

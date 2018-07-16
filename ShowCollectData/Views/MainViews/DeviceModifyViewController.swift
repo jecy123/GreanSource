@@ -177,6 +177,8 @@ class DeviceModifyViewController: BasePageViewController {
             projectType = "智能运维系统"
         case ShowProject.PROJ_TYPE_SUNPOWER:
             projectType = "太阳能污水处理系统"
+        case ShowProject.PROJ_TYPE_WATER:
+            projectType = "水体太阳能曝气系统"
         default:
             break
         }
