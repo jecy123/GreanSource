@@ -18,6 +18,7 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
     var readCount:Int
     var unreadCount:Int
     var responseMsg: ShowMessage!
+    private var reconnectcount:Int = 0
     
     public var responceHandler:((RequestRet)->Void)?
     
@@ -41,7 +42,16 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
     
     func sendMessage(commandCode:Int32, msgBody:String, msgId:Int, completeHandler:@escaping ((RequestRet) -> Void)) {
         self.tag = msgId
-        
+        if(reconnectcount >= 1 ){
+            if(reconnectcount >= 3){
+                ToastHelper.showGlobalToast(message: "请检查网络")
+                reconnectcount = 1
+                return
+            }
+            ToastHelper.showGlobalToast(message: "重新连接中")
+            self.connect()
+            return
+        }
         if let socket = self.socket {
             
             self.responceHandler = completeHandler
@@ -84,11 +94,16 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
             try socket.connect(toHost: ConnectAPI.serverIp , onPort: ConnectAPI.serverPort)
         } catch {
             print("连接失败: \(error)")
+            ToastHelper.showGlobalToast(message: "请检查网络1")
         }
     }
 
     func socket(_ sock: GCDAsyncSocket, didConnectToHost host: String, port: UInt16) {
         print("连接成功! ：服务器IP地址 " + host)
+        if(reconnectcount>0){
+            reconnectcount = 0
+            ViewController.dologinagain()
+        }
     }
     
     func socket(_ sock: GCDAsyncSocket, didWriteDataWithTag tag: Int) {
@@ -100,7 +115,15 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
         print("断开连接")
         if let err = err{
             print("连接错误:\(err)")
-            self.connect()
+            reconnectcount += 1
+          /*  if(reconnectcount>1 && reconnectcount < 6 ){
+               let thread:Thread = Thread{
+                    Thread.sleep(forTimeInterval:2)
+                    ViewController.dologinagain()
+                    return
+                }
+                thread.start()
+            }*/
         }
     }
     
@@ -109,9 +132,9 @@ class SocketConn: NSObject, GCDAsyncSocketDelegate{
     
     
     func socket(_ sock: GCDAsyncSocket, didRead data: Data, withTag tag: Int) {
-        let readClientDataString: NSString? = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)
+      /*  let readClientDataString: NSString? = NSString(data: data as Data, encoding: String.Encoding.utf8.rawValue)*/
         print("---收到数据---")
-        print(data.base64EncodedString())
+     //   print(data.base64EncodedString())
         
         let bytes = [UInt8](data)
         //这里要分段获取数据，因为如果待获取的数据太长，可能需要不止一次的读取数据

@@ -33,7 +33,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var textName: UITextField!
     @IBOutlet weak var textPwd: UITextField!
-    
+    private static var recordpasswd:String = ""
+    private static var recordname:String = ""
     
     var btnAutoLoginFlag: Int!{
         didSet{
@@ -82,7 +83,8 @@ class ViewController: UIViewController {
         
         btnRememberPass.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
         btnAutoLogin.addTarget(self, action: #selector(onClick(_:)), for: .touchUpInside)
-        
+        ViewController.recordpasswd = ""
+        ViewController.recordname = ""
         
         
     }
@@ -217,7 +219,32 @@ class ViewController: UIViewController {
             self.btnRememberPwdFlag = -self.btnRememberPwdFlag
         }
     }
-
+    
+    public  static func dologinagain(){
+    
+        if recordpasswd.isEmpty || recordname.isEmpty{
+            print("用户名密码不能为空!!")
+            return
+        }
+    
+        ClientRequest.login(accountName : recordname, password:recordpasswd){
+            resAccount in
+            if let resAccount = resAccount{
+            //登陆失败的返回码是1
+            if resAccount.retCode == 1{
+                let error:String = resAccount.msg
+                let errorMsg:String = "登陆失败：" + error
+                print(errorMsg)
+                return
+            }
+            ToastHelper.showGlobalToast(message: "重连成功")
+            loginAccount = resAccount.account
+            AddressUtils.getItems(projects: resAccount.projects)
+            }else{
+                print("登录失败！")
+            }
+        }
+    }
     
     func doLogin(accountName:String, password:String){
         
@@ -245,7 +272,8 @@ class ViewController: UIViewController {
                 self.doRecordNameAndPwd(isRecord: self.btnRememberPwdFlag, name: accountName, password: password)
                 print("\(resAccount.account) 已经登录")
                 loginAccount = resAccount.account
-                
+                ViewController.recordpasswd = password
+                ViewController.recordname = accountName
                 AddressUtils.getItems(projects: resAccount.projects)
                 //print("projects = \(resAccount.projects)")
                 self.gotoMainView(accountType: AccountType(rawValue: resAccount.role!)!, projects: resAccount.projects, account: resAccount)
